@@ -5,7 +5,6 @@ import appModel from '../../common/models/app_model';
 import Sample from '../../common/models/sample';
 import Occurrence from '../../common/models/occurrence';
 import HeaderView from '../../common/views/header_view';
-import FavouriteButtonView from './favourite_button_view';
 import speciesData from 'species.data';
 
 const API = {
@@ -19,27 +18,18 @@ const API = {
     mainView.on('record', () => {
       API.record(speciesModel);
     });
-    App.regions.main.show(mainView);
+    App.regions.getRegion('main').show(mainView);
 
     // HEADER
-    const favouriteButtonView = new FavouriteButtonView({
-      model: appModel,
-      speciesID: speciesModel.id,
-    });
-    favouriteButtonView.on('click', () => {
-      appModel.toggleFavouriteSpecies(speciesModel);
-    });
-
     const headerView = new HeaderView({
       id: 'species-account-header',
-      rightPanel: favouriteButtonView,
       model: new Backbone.Model({ title: speciesModel.get('taxon') }),
     });
 
-    App.regions.header.show(headerView);
+    App.regions.getRegion('header').show(headerView);
 
     // FOOTER
-    App.regions.footer.hide().empty();
+    App.regions.getRegion('footer').hide().empty();
   },
 
   // record species

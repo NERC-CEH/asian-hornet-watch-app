@@ -1,10 +1,10 @@
 module.exports = {
   data_init: {
-    command(list) {
-     return 'cd src/records/taxa/search/data && ' +
-      'python make.py '+ list + ' &&' +
-      'mkdir -p ../../../../../dist/main/data &&' +
-      'mv *data.json ../../../../../dist/main/data &&' +
+    command() {
+     return 'cd src/info/species/data && ' +
+      'python make.py species &&' +
+      'mkdir -p ../../../../dist/_build &&' +
+      'mv *data.json ../../../../dist/_build &&' +
       'rm warnings.log';
     },
     stdout: true,

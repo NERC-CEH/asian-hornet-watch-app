@@ -8,6 +8,7 @@ import CONFIG from 'config'; // Replaced with alias
 import App from 'app';
 import CommonController from '../common/controller';
 import InfoMenuController from './menu/controller';
+import SpeciesController from './species/controller';
 import HomeController from './home/controller';
 import './brc_approved/BRC_approved_logo.png';
 import './brc_approved/styles.scss';
@@ -45,6 +46,7 @@ const Router = Marionette.AppRouter.extend({
       CommonController.show({
         title: 'Credits', App, route: 'info/credits/main',
       }); },
+    'info/species/:id(/)': SpeciesController.show,
     'info/*path': function () { App.trigger('404:show'); },
   },
 });

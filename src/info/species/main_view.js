@@ -3,13 +3,14 @@
  *****************************************************************************/
 import $ from 'jquery';
 import Marionette from 'marionette';
-import JST from '../../../JST';
-import 'touchswipe/js/jquery.touchSwipe.min';
+import JST from 'JST';
+import 'touchswipe';
 import Gallery from '../../common/gallery';
 import { Device } from 'helpers';
+import './styles.scss';
 
-export default Marionette.ItemView.extend({
-  template: JST['species/account/main'],
+export default Marionette.View.extend({
+  template: JST['info/species/main'],
 
   events: {
     'click #species-map': 'toggleMap',
@@ -19,29 +20,29 @@ export default Marionette.ItemView.extend({
     'click #record-btn': 'record',
   },
 
-  onShow() {
+  onAttach() {
     // photos
     this.startSwipe();
 
     // add Map
     var $mapsHolder = $('#maps-holder');
-    $.get("images/country_coastline.svg", function(data) {
-      const svg = data.documentElement ?
-        new XMLSerializer().serializeToString(data.documentElement) : data;
-      $mapsHolder.append(svg);
-    });
-    $.get(this.model.attributes.map, function(data) {
-      const svg = data.documentElement ?
-        new XMLSerializer().serializeToString(data.documentElement) : data;
-      $mapsHolder.append(svg);
-    });
+    // $.get("images/country_coastline.svg", function(data) {
+    //   const svg = data.documentElement ?
+    //     new XMLSerializer().serializeToString(data.documentElement) : data;
+    //   $mapsHolder.append(svg);
+    // });
+    // $.get(this.model.attributes.map, function(data) {
+    //   const svg = data.documentElement ?
+    //     new XMLSerializer().serializeToString(data.documentElement) : data;
+    //   $mapsHolder.append(svg);
+    // });
   },
 
   startSwipe() {
     var that = this,
         WIDTH = $('#species_gallery').width(),
         currentImg = 0,
-        maxImages = this.model.get('illustration') ? 2 : 1,
+        maxImages = this.model.get('photo').length,
         speed = 500,
         imgs = null,
 

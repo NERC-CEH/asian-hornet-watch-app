@@ -205,12 +205,12 @@ const API = {
           const title = this.model.printLocation();
           const $title = this.$el.find('h1');
 
-          $title.html(title);
+          $title.html(title || 'Location');
         },
 
         serializeData() {
           return {
-            title: this.model.printLocation(),
+            title: this.model.printLocation() || 'Location',
           };
         },
       });

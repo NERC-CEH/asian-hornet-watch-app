@@ -50,6 +50,7 @@ module.exports = {
       'backbone.radio': 'backbone.radio/js/backbone.radio',
       marionette: 'marionette/js/backbone.marionette',
       morel: 'morel/js/morel',
+      touchswipe: 'touchswipe/js/jquery.touchSwipe.min',
       leaflet: 'leaflet/js/leaflet',
       OSOpenSpace: 'os-leaflet/js/OSOpenSpace',
       'Leaflet.GridRef': 'leaflet.gridref/js/L.GridRef',

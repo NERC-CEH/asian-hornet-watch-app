@@ -7,16 +7,10 @@ module.exports = grunt => {
     ],
 
     init: [
-      // 'init:data',
+      'exec:data_init',
       'bower',
       'copy',
       'vendor',
-    ],
-
-    'init:data': [
-      'exec:data_init:inventory',
-      'exec:data_init:indicator',
-      'exec:data_init:wildflower',
     ],
 
     vendor: [

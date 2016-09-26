@@ -1,0 +1,24 @@
+@import "../../common/styles/_variables";
+
+.progress {
+  position: fixed;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  bottom: 70px;
+  left: 47%;
+}
+
+.circle {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: rgba(0, 0, 0, 0.15);
+  -moz-border-radius: 70px;
+  -webkit-border-radius: 70px;
+  border-radius: 70px;
+}
+
+.circle-full {
+  background: $button-color;
+}
