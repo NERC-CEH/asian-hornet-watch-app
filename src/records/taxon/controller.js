@@ -9,6 +9,7 @@ import userModel from '../../common/models/user_model';
 import recordManager from '../../common/record_manager';
 import MainView from './main_view';
 import HeaderView from '../../common/views/header_view';
+import speciesData from 'species.data';
 
 const API = {
   show(id) {
@@ -26,8 +27,13 @@ const API = {
       }
 
       // MAIN
+      const speciesCollection = new Backbone.Collection(speciesData);
       const mainView = new MainView({
-        model: new Backbone.Model({ recordModel, appModel }),
+        model: new Backbone.Model({ recordModel, appModel, speciesCollection }),
+      });
+
+      mainView.on('select', (taxon) => {
+        API.save(recordModel, taxon);
       });
 
       App.regions.getRegion('main').show(mainView);
@@ -43,6 +49,14 @@ const API = {
 
     // FOOTER
     App.regions.getRegion('footer').hide().empty();
+  },
+
+  save(recordModel, taxon) {
+    const occ = recordModel.occurrences.at(0);
+    occ.set('taxon', taxon).save()
+      .then(() => {
+        window.history.back();
+      });
   },
 };
 

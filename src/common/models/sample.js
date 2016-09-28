@@ -58,6 +58,8 @@ let Sample = Morel.Sample.extend({
     // occurrences
     if (this.occurrences.length === 0) {
       sample.occurrences = 'no species selected';
+    } else if (!this.occurrences.at(0).get('taxon')) {
+      sample.occurrences = 'no species selected';
     }
 
     if (!_.isEmpty(sample) || !_.isEmpty(occurrences)) {

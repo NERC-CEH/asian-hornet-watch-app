@@ -41,6 +41,7 @@
 <li class="table-view-cell">
   <a id="records-button" href="#records" class="navigate-right">
     <span class="media-object pull-left icon icon-wasp"></span>
+    <span class="badge"><%- obj.records %></span>
     Records
   </a>
 </li>

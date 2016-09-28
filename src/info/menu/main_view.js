@@ -2,6 +2,7 @@
  * Info Menu main view.
  *****************************************************************************/
 
+import Morel from 'morel';
 import Marionette from 'marionette';
 import JST from 'JST';
 import './styles.scss';
@@ -20,9 +21,20 @@ export default Marionette.View.extend({
     change: 'render',
   },
 
-  serializeDate() {
+  serializeData() {
+    const userModel = this.model.get('userModel');
+    const recordsCollection = this.model.get('recordsCollection');
+
+    let savedRecords = 0;
+    recordsCollection.each((record) => {
+      if (record.getSyncStatus() === Morel.LOCAL) {
+        savedRecords++;
+      }
+    });
+
     return {
-      surname: this.model.get('surname'),
+      records: savedRecords,
+      surname: userModel.get('surname'),
     };
   },
 

@@ -36,3 +36,47 @@
   left: 10px;
   color: $color-gray;
 }
+
+#taxon-main {
+  .list {
+    margin: 0 -2%;
+
+    label {
+      color: $color-white;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 30vh;
+      border: 0;
+
+      a {
+        z-index: 10;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        color: $color-white;
+
+        span:before {
+          font-size: 35px;
+        }
+      }
+
+      .item-content {
+        width: 50%;
+        padding: 10px;
+        font-size: 18px;
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      // tick to shade
+      i.icon-check {
+        width: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 0;
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+}

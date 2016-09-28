@@ -5,7 +5,9 @@ module.exports = {
       'python make.py species &&' +
       'mkdir -p ../../../../dist/_build &&' +
       'mv *data.json ../../../../dist/_build &&' +
-      'rm warnings.log';
+      'rm -rf __pycache__ && ' +
+      'rm -f *.pyc && ' +
+      'rm -f warnings.log';
     },
     stdout: true,
   },
