@@ -23,7 +23,7 @@ const API = {
     // HEADER
     const headerView = new HeaderView({
       id: 'species-account-header',
-      model: new Backbone.Model({ title: speciesModel.get('taxon') }),
+      model: new Backbone.Model({ title: speciesModel.get('scientific_name') }),
     });
 
     App.regions.getRegion('header').show(headerView);

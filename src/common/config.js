@@ -1,25 +1,12 @@
 /** ****************************************************************************
  * Main app configuration file.
  *****************************************************************************/
-import { DateHelp } from 'helpers';
-
-const rangeValues = {
-  '< 1% (1-2 indivs)': 3648,
-  '< 1% (several indivs)': 3649,
-  '1-4%': 3650,
-  '5-10%': 3651,
-  '11-25%': 3652,
-  '26-33%': 3653,
-  '34-50%': 3654,
-  '51-75%': 3655,
-  '76-90%': 3656,
-  '91-100%': 3657,
-};
+import { DateHelp, LocHelp } from 'helpers';
 
 export default {
   // variables replaced on build
-  /* global APP_VERSION, APP_BUILD, APP_NAME, REGISTER_URL,
-   REPORT_URL, RECORD_URL, APP_SECRET */
+  /* global APP_VERSION, APP_BUILD, APP_NAME, REGISTER_URL, API_KEY, API_SECRET,
+   REPORT_URL, STATISTICS_URL, RECORD_URL, APP_SECRET */
   version: APP_VERSION,
   build: APP_BUILD,
   name: APP_NAME,
@@ -64,10 +51,10 @@ export default {
   morel: {
     manager: {
       url: RECORD_URL,
-      appname: 'hornets-watch',
-      appsecret: APP_SECRET,
-      website_id: 109,
-      survey_id: 195,
+      appname: API_KEY,
+      appsecret: API_SECRET,
+      website_id: 23,
+      survey_id: 417,
       input_form: 'enter-app-record',
     },
     sample: {
@@ -95,7 +82,7 @@ export default {
           // add other location related attributes
           options.flattener(attributes, options);
 
-          return location.latitude + ', ' + location.longitude;
+          return `${location.latitude}, ${location.longitude}`;
         },
       },
       location_accuracy: { id: 282 },
@@ -112,17 +99,11 @@ export default {
         },
       },
 
-      device_version: { id: 759 },
+      device_version: { id: 579 },
 
       date: {
         values(date) {
           return DateHelp.print(date);
-        },
-      },
-
-      group: {
-        values(group) {
-          return group.id;
         },
       },
     },
@@ -133,31 +114,16 @@ export default {
         },
       },
       number: {
-        id: 16,
-      },
-      'number-ranges': {
         id: 523,
         values: {
-          'default': 671,
-          '1': 665,
+          default: 671,
+          1: 665,
           '2-5': 666,
           '6-20': 667,
           '21-100': 668,
           '101-500': 669,
           '500+': 670,
         },
-      },
-      stage: {
-        id: 106,
-        values: {
-          'default': 1949,
-          'Adult': 1950,
-          'Pre-adult': 1951,
-          'Other': 1952,
-        },
-      },
-      identifiers: {
-        id: 18,
       },
     },
   },

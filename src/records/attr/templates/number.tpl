@@ -74,20 +74,3 @@
   </label>
 
 </div>
-
-<!--<ul class="list">-->
-
-  <!--<li class="item item-checkbox">-->
-    <!--<label class="checkbox">-->
-      <!--<input type="checkbox">-->
-    <!--</label>-->
-    <!--Flux Capacitor-->
-  <!--</li>-->
-
-  <!--<li class="item item-checkbox">-->
-  <!--<label class="checkbox">-->
-    <!--<input type="checkbox">-->
-  <!--</label>-->
-  <!--Flux Capacitor-->
-<!--</li>-->
-<!--</ul>-->

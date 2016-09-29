@@ -94,7 +94,8 @@ module.exports = {
       REPORT_URL: JSON.stringify(process.env.REPORT_URL || ''),
       RECORD_URL: JSON.stringify(process.env.RECORD_URL || ''),
       STATISTICS_URL: JSON.stringify(process.env.STATISTICS_URL || ''),
-      APP_SECRET: JSON.stringify(process.env.APP_SECRET || ''),
+      API_SECRET: JSON.stringify(process.env.API_SECRET || ''),
+      API_KEY: JSON.stringify(process.env.API_KEY || ''),
     }),
   ],
   postcss: [
