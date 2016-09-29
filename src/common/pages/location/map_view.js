@@ -12,7 +12,7 @@ import GridRef from 'Leaflet.GridRef';
 import OsGridRef from 'OsGridRef';
 import JST from 'JST';
 import { LocHelp } from 'helpers';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import 'typeahead';
 import mapMarker from './map_view_marker';
 import locationNameFinder from './location_name_search';

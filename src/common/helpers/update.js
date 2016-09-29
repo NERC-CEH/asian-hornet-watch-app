@@ -3,7 +3,7 @@
  *****************************************************************************/
 
 import { Log, Analytics } from 'helpers';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import appModel from '../models/app_model';
 
 const API = {

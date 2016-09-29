@@ -3,7 +3,7 @@
  *****************************************************************************/
 import Backbone from 'backbone';
 import Store from 'backbone.localStorage';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import pastLocationsExtension from './app_model_past_loc_ext';
 
 let AppModel = Backbone.Model.extend({
@@ -13,7 +13,6 @@ let AppModel = Backbone.Model.extend({
     exceptions: [],
 
     locations: [],
-    attrLocks: {},
     autosync: true,
     useGridRef: true,
     useGridMap: true,

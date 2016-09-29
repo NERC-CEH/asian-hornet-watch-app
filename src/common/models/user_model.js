@@ -4,7 +4,7 @@
 import _ from 'lodash';
 import Backbone from 'backbone';
 import Store from 'backbone.localStorage';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import { Validate, Analytics } from 'helpers';
 
 let UserModel = Backbone.Model.extend({
@@ -15,8 +15,6 @@ let UserModel = Backbone.Model.extend({
     surname: '',
     email: '',
     secret: '',
-
-    squares: {},
   },
 
   localStorage: new Store(CONFIG.name),

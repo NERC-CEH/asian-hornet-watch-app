@@ -14,7 +14,7 @@
  *****************************************************************************/
 
 import { Analytics } from 'helpers';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 
 const ERROR = 'e';
 const WARNING = 'w';

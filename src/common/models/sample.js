@@ -4,7 +4,7 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import Morel from 'morel';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import recordManager from '../record_manager';
 import ImageModel from './image';
 import Occurrence from './occurrence';
