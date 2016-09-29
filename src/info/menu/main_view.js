@@ -17,8 +17,9 @@ export default Marionette.View.extend({
     'click #logout-button': 'logout',
   },
 
-  modelEvents: {
-    change: 'render',
+  initialize() {
+    const userModel = this.model.get('userModel');
+    this.listenTo(userModel, 'logout', this.render);
   },
 
   serializeData() {
