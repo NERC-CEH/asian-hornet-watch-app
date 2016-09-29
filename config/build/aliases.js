@@ -8,7 +8,6 @@ module.exports = grunt => {
 
     init: [
       'exec:data_init',
-      'bower',
       'copy',
       'vendor',
     ],

@@ -4,9 +4,9 @@
 import $ from 'jquery';
 import Marionette from 'marionette';
 import L from 'leaflet';
-import 'vendor/leaflet/css/leaflet.css';
-import 'vendor/leaflet/images/layers-2x.png';
-import 'vendor/leaflet/images/layers.png';
+// import 'leaflet/dist/leaflet.css'; //todo
+// import 'leaflet/dist/layers-2x.png';
+// import 'leaflet/dist/layers.png';
 import OSLeaflet from 'OSOpenSpace';
 import GridRef from 'Leaflet.GridRef';
 import OsGridRef from 'OsGridRef';

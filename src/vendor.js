@@ -7,7 +7,6 @@ import 'fastclick';
 import 'typeahead';
 import 'bootstrap';
 import 'ratchet';
-import 'indexedDBShim';
 import 'hammer';
 import 'underscore';
 import 'backbone';

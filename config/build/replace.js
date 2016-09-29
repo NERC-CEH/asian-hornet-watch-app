@@ -8,8 +8,8 @@ module.exports = (grunt) => {
   return {
     // Fix double define problem
     latlon: {
-      src: ['dist/_build/vendor/latlon/js/latlon-ellipsoidal.js',
-        'dist/_build/vendor/latlon/js/latlon-spherical.js'],
+      src: ['node_modules/geodesy/latlon-ellipsoidal.js',
+        'node_modules/geodesy/latlon-spherical.js'],
       overwrite: true,
       replacements: [
         {
@@ -29,25 +29,10 @@ module.exports = (grunt) => {
         },
       ],
     },
-    // Fix iOS 8 readonly broken IndexedDB
-    indexedDBShim: {
-      src: ['dist/_build/vendor/IndexedDBShim/js/IndexedDBShim.js'],
-      overwrite: true,
-      replacements: [
-        {
-          from: 'shim(\'indexedDB\', idbModules.shimIndexedDB);',
-          to: 'shim(\'_indexedDB\', idbModules.shimIndexedDB);',
-        },
-        {
-          from: 'shim(\'IDBKeyRange\', idbModules.IDBKeyRange);',
-          to: 'shim(\'_IDBKeyRange\', idbModules.IDBKeyRange);',
-        },
-      ],
-    },
 
     // ratchet's modal functionality is not compatable with spa routing
     ratchet: {
-      src: ['dist/_build/vendor/ratchet/js/ratchet.js'],
+      src: ['node_modules/ratchet/dist/js/ratchet.js'],
       overwrite: true,
       replacements: [{
         from: 'getModal(event)',
@@ -57,7 +42,7 @@ module.exports = (grunt) => {
 
     // need to remove Ratchet's default fonts to work with fontello ones
     ratchet_fonts: {
-      src: ['dist/_build/vendor/ratchet/css/ratchet.css'],
+      src: ['node_modules/ratchet/dist/css/ratchet.css'],
       dest: BUILD + 'styles/ratchet.css',
       replacements: [
         {
