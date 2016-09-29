@@ -37,8 +37,6 @@ let UserModel = Backbone.Model.extend({
     this.set('name', '');
     this.set('surname', '');
 
-    this.resetSquares();
-
     this.save();
     this.trigger('logout');
     Analytics.trackEvent('User', 'logout');
