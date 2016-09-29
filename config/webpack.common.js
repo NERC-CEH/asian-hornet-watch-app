@@ -1,16 +1,16 @@
-require('dotenv').config({silent: true}); // get local environment variables from .env
+require('dotenv').config({ silent: true }); // get local environment variables from .env
 
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pkg = require('../package.json');
 
 const sassLoaders = [
   'css-loader?-url',
   'postcss-loader',
-  'sass-loader?includePaths[]=' + path.resolve(__dirname, './src'),
+  `sass-loader?includePaths[]=${path.resolve(__dirname, './src')}`,
 ];
 
 module.exports = {
@@ -61,7 +61,7 @@ module.exports = {
       'latlon-ellipsoidal': 'latlon/js/latlon-ellipsoidal',
       'photoswipe-lib': 'photoswipe/js/photoswipe',
       'photoswipe-ui-default': 'photoswipe/js/photoswipe-ui-default',
-},
+    },
   },
   module: {
     loaders: [
@@ -74,7 +74,7 @@ module.exports = {
       { test: /(\.png)|(\.svg)|(\.jpg)/, loader: 'file?name=images/[name].[ext]' },
       {
         test: /\.s?css$/,
-        loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!'))
+        loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),
       },
     ],
   },
@@ -88,8 +88,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       APP_BUILD: JSON.stringify(process.env.TRAVIS_BUILD_ID || new Date().getTime()),
-      'APP_NAME': JSON.stringify(pkg.name),
-      'APP_VERSION': JSON.stringify(pkg.version),
+      APP_NAME: JSON.stringify(pkg.name),
+      APP_VERSION: JSON.stringify(pkg.version),
       REGISTER_URL: JSON.stringify(process.env.REGISTER_URL || ''),
       REPORT_URL: JSON.stringify(process.env.REPORT_URL || ''),
       RECORD_URL: JSON.stringify(process.env.RECORD_URL || ''),
@@ -104,7 +104,7 @@ module.exports = {
     }),
   ],
   stats: {
-    children: false
+    children: false,
   },
   cache: true,
 };

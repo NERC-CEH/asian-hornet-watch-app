@@ -4,6 +4,7 @@
   },
   "extends": "airbnb/base",
   "rules": {
+    "no-mutable-exports": 0,
     "no-underscore-dangle": 0,
      "no-unused-expressions": [2, {
           "allowShortCircuit": true, // eg. a || a()
