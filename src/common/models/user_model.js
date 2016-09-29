@@ -76,7 +76,16 @@ let UserModel = Backbone.Model.extend({
 
   appendSampleUser(sample) {
     sample.set('email', this.get('email'));
-    sample.set('usersecret', this.get('secret'));
+
+    const secret = this.get('secret');
+    if (secret) {
+      sample.set('usersecret', secret);
+      sample.unset('name');
+      sample.unset('surname');
+    } else {
+      sample.set('name', this.get('name'));
+      sample.set('surname', this.get('surname'));
+    }
 
     return sample;
   },

@@ -10,7 +10,8 @@ const morelConfiguration = $.extend(CONFIG.morel.manager, {
   Storage: Morel.DatabaseStorage,
   Sample,
   onSend(sample) {
-    if (userModel.hasLogIn()) {
+    if (userModel.hasLogIn() ||
+      (sample.metadata.anonymous && userModel.get('email'))) { // send with email only
       // attach device information
       sample.set('device', Device.getPlatform());
       sample.set('device_version', Device.getVersion());

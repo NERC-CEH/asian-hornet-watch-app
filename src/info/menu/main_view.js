@@ -29,15 +29,22 @@ export default Marionette.View.extend({
     let savedRecords = 0;
     recordsCollection.each((record) => {
       const status = record.getSyncStatus();
-      if (status === Morel.LOCAL ||
+      if (record.metadata.saved &&
+        status === Morel.LOCAL ||
         status === Morel.SYNCHRONISING) {
         savedRecords++;
       }
     });
 
+    let surname;
+
+    if (userModel.hasLogIn()) {
+      surname = userModel.get('surname');
+    }
+
     return {
       records: savedRecords,
-      surname: userModel.get('surname'),
+      surname,
     };
   },
 

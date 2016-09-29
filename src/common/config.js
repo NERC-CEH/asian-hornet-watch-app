@@ -58,6 +58,17 @@ export default {
       input_form: 'enter-app-record',
     },
     sample: {
+      // anonymouse user info
+      name: {
+        id: 6,
+      },
+      surname: {
+        id: 7,
+      },
+      email: {
+        id: 8,
+      },
+
       location: {
         values(location, options) {
           // convert accuracy for map and gridref sources

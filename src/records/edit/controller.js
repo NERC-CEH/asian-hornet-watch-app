@@ -1,26 +1,23 @@
 /** ****************************************************************************
  * Record Edit controller.
  *****************************************************************************/
+import Marionette from 'marionette';
 import Backbone from 'backbone';
 import _ from 'lodash';
 import Morel from 'morel';
-import { Device, ImageHelp, Analytics, Log } from 'helpers';
+import { Device, ImageHelp, Analytics, Log, StringHelp, Validate } from 'helpers';
 import App from 'app';
 import appModel from '../../common/models/app_model';
 import userModel from '../../common/models/user_model';
 import recordManager from '../../common/record_manager';
+import JST from 'JST';
 import MainView from './main_view';
 import HeaderView from './header_view';
 import FooterView from './footer_view';
 
-let id;
-let record;
-
 const API = {
   show(recordID) {
     Log('Records:Edit:Controller: showing');
-
-    id = recordID;
     recordManager.get(recordID, (err, recordModel) => {
       if (err) {
         Log(err, 'e');
@@ -120,7 +117,10 @@ const API = {
       }
 
       if (Device.isOnline() && !userModel.hasLogIn()) {
-        App.trigger('user:login', { replace: true });
+        API.askLogin(() => {
+          recordModel.metadata.anonymous = true;
+          recordModel.save(null, { remote: true });
+        });
         return;
       }
 
@@ -168,6 +168,85 @@ const API = {
     });
   },
 
+  askLogin(anonymousCallback) {
+    App.regions.getRegion('dialog').show({
+      title: 'Your details',
+      body: 'Would you like to send it anonymously or login to iRecord account?',
+      buttons: [
+        {
+          title: 'Anonymous',
+          onClick() {
+            API.askAnonymous(anonymousCallback);
+          },
+        },
+        {
+          title: 'Login',
+          class: 'btn-positive',
+          onClick() {
+            App.regions.getRegion('dialog').hide();
+            App.trigger('user:login', { replace: true });
+          },
+        },
+      ],
+    });
+  },
+
+  askAnonymous(callback) {
+    const EditView = Marionette.View.extend({
+      template: JST['records/edit/anonymous'],
+      getValues() {
+        let values = {
+          email: StringHelp.escape(this.$el.find('#email').val()),
+          name: StringHelp.escape(this.$el.find('#name').val()),
+          surname: StringHelp.escape(this.$el.find('#surname').val()),
+        };
+
+        if (!Validate.email(values.email)) {
+          values = {};
+        }
+        return values;
+      },
+
+      onAttach() {
+        const $input = this.$el.find('#email');
+        $input.focus();
+        if (Device.isAndroid()) {
+          window.Keyboard.show();
+          $input.focusout(() => {
+            window.Keyboard.hide();
+          });
+        }
+      },
+    });
+
+    const editView = new EditView({ model: location });
+
+    App.regions.getRegion('dialog').show({
+      title: 'Your details',
+      body: editView,
+      buttons: [
+        {
+          title: 'Save',
+          class: 'btn-positive',
+          onClick() {
+            // update location
+            const user = editView.getValues();
+            userModel.setContactDetails(user);
+            App.regions.getRegion('dialog').hide();
+            callback(); // send record
+            window.history.back();
+          },
+        },
+        {
+          title: 'Cancel',
+          onClick() {
+            App.regions.getRegion('dialog').hide();
+          },
+        },
+      ],
+    });
+  },
+
   photoDelete(photo) {
     App.regions.getRegion('dialog').show({
       title: 'Delete',
@@ -202,6 +281,7 @@ const API = {
 
   photoSelect(recordModel) {
     Log('Records:Edit:Controller: photo selection');
+    const occurrence = recordModel.occurrences.at(0);
 
     App.regions.getRegion('dialog').show({
       title: 'Choose a method to upload a photo',
