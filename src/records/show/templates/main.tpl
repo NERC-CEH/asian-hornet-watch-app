@@ -37,7 +37,7 @@
   <% } %>
   <% if (obj.images.length) { %>
     <li id="img-array">
-      <% obj.images.each(function (image){ %>
+      <% obj.images.each((image) =>{ %>
         <img src="<%- image.getURL() %>" alt="">
       <% }) %>
     </li>

@@ -7,7 +7,7 @@ import Morel from 'morel';
 import Hammer from 'hammer';
 import { Log, StringHelp, Device, DateHelp } from 'helpers';
 import JST from 'JST';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import Gallery from '../../common/gallery';
 import './styles.scss';
 
@@ -21,7 +21,7 @@ const RecordView = Marionette.View.extend({
 
   events: {
     // need to pass the attribute therefore 'triggers' method does not suit
-    'click .js-attr'(e) {
+    'click .js-attr': (e) => {
       e.preventDefault();
       this.trigger('record:edit:attr', $(e.target).data('attr'));
     },
@@ -34,7 +34,7 @@ const RecordView = Marionette.View.extend({
   },
 
   initialize() {
-    this.template = JST[`records/list/record`];
+    this.template = JST['records/list/record'];
   },
 
   photoView(e) {
@@ -42,7 +42,7 @@ const RecordView = Marionette.View.extend({
 
     const items = [];
 
-    this.model.occurrences.at(0).images.each((image, index) => {
+    this.model.occurrences.at(0).images.each((image) => {
       items.push({
         src: image.getURL(),
         w: image.get('width') || 800,
@@ -50,8 +50,8 @@ const RecordView = Marionette.View.extend({
       });
     });
 
-// Initializes and opens PhotoSwipe
-    var gallery = new Gallery(items);
+    // Initializes and opens PhotoSwipe
+    const gallery = new Gallery(items);
     gallery.init();
   },
 
@@ -106,7 +106,7 @@ const RecordView = Marionette.View.extend({
     const date = DateHelp.print(recordModel.get('date'));
     const specie = occ.get('taxon') || {};
     const images = occ.images;
-    let img = images.length && images.at(0).get('thumbnail');
+    const img = images.length && images.at(0).get('thumbnail');
 
     const taxon = `${specie.common_name} ${specie.common_name_significant}`;
 
@@ -115,7 +115,7 @@ const RecordView = Marionette.View.extend({
     const locationPrint = recordModel.printLocation();
     const location = recordModel.get('location') || {};
 
-    let number = occ.get('number') && StringHelp.limit(occ.get('number'));
+    const number = occ.get('number') && StringHelp.limit(occ.get('number'));
 
     return {
       id: recordModel.id || recordModel.cid,

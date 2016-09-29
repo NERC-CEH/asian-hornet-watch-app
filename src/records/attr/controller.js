@@ -97,9 +97,8 @@ const API = {
         break;
       case 'number':
         // todo: validate before setting up
-          // specific number
-          newVal = values.number;
-          occ.set('number', newVal);
+        newVal = values.number;
+        occ.set('number', newVal);
         break;
       case 'comment':
         // todo:validate before setting up

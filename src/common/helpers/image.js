@@ -3,8 +3,8 @@
  *****************************************************************************/
 import Morel from 'morel';
 import _ from 'lodash';
-import ImageModel from '../models/image';
 import { Log, Analytics, Error, Device } from 'helpers';
+import ImageModel from '../models/image';
 
 const Image = {
   deleteInternalStorage(name, callback) {

@@ -80,7 +80,7 @@ const API = {
 
         if (!createNew) {
           // extend old location to preserve its previous attributes like name or id
-          let oldLocation = recordModel.get('location');
+          const oldLocation = recordModel.get('location');
           location = $.extend(oldLocation, location);
         }
 
@@ -122,9 +122,9 @@ const API = {
 
             window.history.back();
           },
-          error: (err) => {
-            Log(err, 'e');
-            App.regions.getRegion('dialog').error(err);
+          error: (error) => {
+            Log(error, 'e');
+            App.regions.getRegion('dialog').error(error);
           },
         });
       }
@@ -157,6 +157,8 @@ const API = {
           if (!_.isEmpty(errors)) {
             return errors;
           }
+
+          return null;
         }
 
         const validationError = validate(data);

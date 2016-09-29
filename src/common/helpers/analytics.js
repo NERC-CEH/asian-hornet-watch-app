@@ -89,10 +89,8 @@ const API = {
   },
 
   saveException(description) {
-    description += ', 1'; // append offline mark
-
     const offlineExceptions = appModel.get('exceptions');
-    offlineExceptions.push(description);
+    offlineExceptions.push(`${description}, 1`); // append offline mark
     appModel.set('exceptions', offlineExceptions);
     appModel.save();
   },

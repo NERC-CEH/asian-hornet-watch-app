@@ -5,7 +5,6 @@ import Marionette from 'marionette';
 import { Validate } from 'helpers';
 import JST from 'JST';
 
-
 export default Marionette.View.extend({
   template: JST['user/login/main'],
 

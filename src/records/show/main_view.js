@@ -1,12 +1,12 @@
 /** ****************************************************************************
  * Record Show main view.
  *****************************************************************************/
-import './styles.scss';
-
+import Morel from 'morel';
 import Marionette from 'marionette';
 import JST from 'JST';
-import { DateHelp } from 'helpers';
+import { DateHelp, StringHelp } from 'helpers';
 import Gallery from '../../common/gallery';
+import './styles.scss';
 
 export default Marionette.View.extend({
   template: JST['records/show/main'],
@@ -20,7 +20,7 @@ export default Marionette.View.extend({
 
     const items = [];
     const recordModel = this.model.get('recordModel');
-    recordModel.occurrences.at(0).images.each((image, index) => {
+    recordModel.occurrences.at(0).images.each((image) => {
       items.push({
         src: image.getURL(),
         w: image.get('width') || 800,
@@ -40,7 +40,7 @@ export default Marionette.View.extend({
 
     // taxon
     const scientificName = specie.scientific_name;
-    let commonName = specie.common_name;
+    const commonName = specie.common_name;
 
     const syncStatus = recordModel.getSyncStatus();
 
@@ -52,10 +52,6 @@ export default Marionette.View.extend({
       number = occ.get('number-ranges') && StringHelp.limit(occ.get('number-ranges'));
     }
 
-
-    // show activity title.
-    const group = recordModel.get('group');
-
     return {
       id: occ.cid,
       isSynchronising: syncStatus === Morel.SYNCHRONISING,
@@ -66,10 +62,7 @@ export default Marionette.View.extend({
       location_name: location.name,
       date: DateHelp.print(recordModel.get('date')),
       number,
-      stage: occ.get('stage') && StringHelp.limit(occ.get('stage')),
-      identifiers: occ.get('identifiers'),
       comment: occ.get('comment'),
-      group_title: group ? group.title : null,
       images: occ.images,
     };
   },

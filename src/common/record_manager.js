@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import _ from 'lodash';
 import Morel from 'morel';
 import { Device, Log } from 'helpers';
 import CONFIG from 'config';

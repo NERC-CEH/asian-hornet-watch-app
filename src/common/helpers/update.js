@@ -124,7 +124,7 @@ const API = {
  * @since 2011-07-14
  */
 function versionCompare(left, right) {
-  if (typeof left + typeof right != 'stringstring')
+  if (typeof left + typeof right !== 'stringstring')
     return false;
 
   let a = left.split('.')
@@ -132,9 +132,9 @@ function versionCompare(left, right) {
     , i = 0, len = Math.max(a.length, b.length);
 
   for (; i < len; i++) {
-    if ((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
+    if ((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i])), 10) {
       return 1;
-    } else if ((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
+    } else if ((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i])), 10) {
       return -1;
     }
   }

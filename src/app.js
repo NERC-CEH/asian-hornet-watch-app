@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Backbone from 'backbone';
 import Marionette from 'marionette';
 import FastClick from 'fastclick';
-import { Log, Update, Analytics, Device, RouterExtension } from 'helpers';
+import { Log, Update, Analytics, Device } from 'helpers';
 import CommonController from './common/controller';
 import DialogRegion from './common/views/dialog_region';
 import HideableRegion from './common/views/hideable_region';

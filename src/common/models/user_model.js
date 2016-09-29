@@ -102,25 +102,21 @@ let UserModel = Backbone.Model.extend({
     if (!attrs.firstname) {
       errors.firstName = "can't be blank";
     }
+
     if (!attrs.secondname) {
       errors.secondname = "can't be blank";
     }
 
     if (!attrs.password) {
       errors.password = "can't be blank";
-    } else {
-      if (attrs.password.length < 2) {
-        errors.password = 'is too short';
-      }
+    } else if (attrs.password.length < 2) {
+      errors.password = 'is too short';
     }
-
 
     if (!attrs['password-confirm']) {
       errors['password-confirm'] = "can't be blank";
-    } else {
-      if (attrs['password-confirm'] !== attrs.password) {
-        errors['password-confirm'] = 'passwords are not equal';
-      }
+    } else if (attrs['password-confirm'] !== attrs.password) {
+      errors['password-confirm'] = 'passwords are not equal';
     }
 
     if (!attrs['terms-agree']) {
@@ -139,10 +135,8 @@ let UserModel = Backbone.Model.extend({
 
     if (!attrs.email) {
       errors.email = "can't be blank";
-    } else {
-      if (!Validate.email(attrs.email)) {
-        errors.email = 'invalid';
-      }
+    } else if (!Validate.email(attrs.email)) {
+      errors.email = 'invalid';
     }
 
     if (!attrs.password) {

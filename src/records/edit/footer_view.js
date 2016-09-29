@@ -17,11 +17,11 @@ const SavedImageView = Marionette.View.extend({
     'click img': 'photoView',
   },
 
-  photoView(e) {
+  photoView() {
     this.trigger('photo:view', this);
   },
 
-  delete(e) {
+  delete() {
     this.trigger('photo:delete', this);
   },
 

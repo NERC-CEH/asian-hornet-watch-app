@@ -3,9 +3,8 @@
  *****************************************************************************/
 import Backbone from 'backbone';
 import App from 'app';
-import { Log, Device } from 'helpers';
+import { Log } from 'helpers';
 import appModel from '../../common/models/app_model';
-import userModel from '../../common/models/user_model';
 import recordManager from '../../common/record_manager';
 import MainView from './main_view';
 import HeaderView from '../../common/views/header_view';

@@ -4,7 +4,6 @@ import Marionette from 'marionette';
 import JST from 'JST';
 import '../styles/tabs.scss';
 
-
 const Tab = Marionette.View.extend({
   tagName: 'li',
   template: _.template('<%= obj.title %>'),

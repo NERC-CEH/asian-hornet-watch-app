@@ -4,15 +4,13 @@
 import _ from 'lodash';
 import appModel from '../../models/app_model';
 
-const substringMatcher = function (strs, max) {
+const substringMatcher = (strs, max) => {
   return function findMatches(q, cb) {
-    let matches, substrRegex;
-
     // an array that will be populated with substring matches
-    matches = [];
+    const matches = [];
 
     // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
+    const substrRegex = new RegExp(q, 'i');
 
     // iterate through the pool of strings and for any string that
     // contains the substring `q`, add it to the `matches` array

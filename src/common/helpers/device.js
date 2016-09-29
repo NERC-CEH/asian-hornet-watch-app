@@ -29,8 +29,7 @@ function detect(browserName) {
   const browser = browserName.toLowerCase();
 
   if (browser === 'chrome' || browser === 'safari') {
-    const isChrome = is('chrome'),
-      isSafari = is('safari');
+    const isSafari = is('safari');
 
     if (isSafari) {
       if (browser === 'chrome') {
@@ -112,13 +111,12 @@ function getPlatform() {
   let devicePlatform;
   if (window.cordova) {
     devicePlatform = window.device.platform;
-  } else {
-    if (isAndroidChrome()) {
-      devicePlatform = 'Android';
-    } else if (isIOS()) {
-      devicePlatform = 'iOS';
-    }
+  } else if (isAndroidChrome()) {
+    devicePlatform = 'Android';
+  } else if (isIOS()) {
+    devicePlatform = 'iOS';
   }
+
   return devicePlatform;
 }
 
@@ -128,6 +126,7 @@ export default {
   isMobile,
   isIOS,
   isIPhone,
+  isFirefox,
   isAndroidChrome,
   getIOSVersion,
   isHomeMode,

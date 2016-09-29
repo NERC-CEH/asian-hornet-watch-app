@@ -4,7 +4,7 @@
 import Backbone from 'backbone';
 import Marionette from 'marionette';
 import { Log } from 'helpers';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import App from 'app';
 import CommonController from '../common/controller';
 import InfoMenuController from './menu/controller';
@@ -19,35 +19,37 @@ App.info = {};
 const Router = Marionette.AppRouter.extend({
   routes: {
     '': HomeController.show,
-    'home': HomeController.show,
+    home: HomeController.show,
 
     'info(/)': InfoMenuController.show,
-    'info/about(/)': function () {
+    'info/about(/)': () => {
       CommonController.show({
-        title: 'About', App, route: 'info/about/main',
+        title: 'About',
+        App,
+        route: 'info/about/main',
         model: new Backbone.Model({
           version: CONFIG.version,
           build: CONFIG.build,
         }),
       }); },
-    'info/help(/)': function () {
+    'info/help(/)': () => {
       CommonController.show({
         title: 'Help', App, route: 'info/help/main',
       }); },
-    'info/privacy(/)': function () {
+    'info/privacy(/)': () => {
       CommonController.show({
         title: 'Privacy Policy', App, route: 'info/privacy/main',
       }); },
-    'info/brc-approved(/)': function () {
+    'info/brc-approved(/)': () => {
       CommonController.show({
         title: 'BRC Approved', App, route: 'info/brc_approved/main',
       }); },
-    'info/credits(/)': function () {
+    'info/credits(/)': () => {
       CommonController.show({
         title: 'Credits', App, route: 'info/credits/main',
       }); },
     'info/species/:id(/)': SpeciesController.show,
-    'info/*path': function () { App.trigger('404:show'); },
+    'info/*path': () => { App.trigger('404:show'); },
   },
 });
 
@@ -68,7 +70,9 @@ App.on('info', () => {
 App.on('info:about', () => {
   App.navigate('info/about');
   CommonController.show({
-    title: 'About', App, route: 'info/about/main',
+    title: 'About',
+    App,
+    route: 'info/about/main',
     model: new Backbone.Model({ version: CONFIG.version }),
   });
 });

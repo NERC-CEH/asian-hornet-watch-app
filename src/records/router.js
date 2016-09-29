@@ -24,7 +24,7 @@ const Router = Marionette.AppRouter.extend({
     'records/:id/edit/location(/)': EditLocationController.show,
     'records/:id/edit/taxon(/)': TaxonController.show,
     'records/:id/edit/:attr(/)': EditAttrController.show,
-    'records/*path': function () { App.trigger('404:show'); },
+    'records/*path': () => { App.trigger('404:show'); },
   },
 });
 
@@ -45,7 +45,7 @@ App.on('records:edit', (recordID, options) => {
 
 App.on('records:edit:taxon', (recordID, options) => {
   App.navigate(`records/${recordID}/edit/taxon/`, options);
-  TaxonController.show(recordID, occurrenceID);
+  TaxonController.show(recordID);
 });
 
 App.on('records:edit:location', (recordID, options) => {

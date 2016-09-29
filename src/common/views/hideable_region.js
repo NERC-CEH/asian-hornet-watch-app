@@ -1,9 +1,9 @@
 import Marionette from 'marionette';
 
 export default Marionette.Region.extend({
-  show() {
+  show(...args) {
     this.$el.show();
-    Marionette.Region.prototype.show.apply(this, arguments);
+    Marionette.Region.prototype.show.apply(this, args);
   },
 
   hide() {

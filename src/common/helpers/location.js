@@ -95,7 +95,7 @@ const helpers = {
 
     // calculate granularity
     const digits = Math.log(accuracy) / Math.LN10;
-    locationGranularity = 10 - digits * 2; // MAX GR ACC -
+    locationGranularity = 10 - (digits * 2); // MAX GR ACC -
     locationGranularity = Number((locationGranularity).toFixed(0)); // round the float
 
     // normalize granularity

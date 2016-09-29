@@ -122,11 +122,11 @@ const MapView = Marionette.View.extend({
 
     layers.OS.options.bounds = bounds;
 
-    layers.OS.on('tileerror', tile => {
+    layers.OS.on('tileerror', (tile) => {
       let index = 0;
       const result = tile.tile.src.match(/missingTileString=(\d+)/i);
       if (result) {
-        index = parseInt(result[1]);
+        index = parseInt(result[1], 10);
         index++;
 
         // don't do it more than few times

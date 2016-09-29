@@ -16,7 +16,7 @@ const API = {
       const error = new Error('Geolocation is not supported.');
       Log(error, 'e');
       callback && callback(error);
-      return;
+      return null;
     }
 
     // geolocation config
@@ -30,9 +30,9 @@ const API = {
       const location = {
         latitude: position.coords.latitude.toFixed(8),
         longitude: position.coords.longitude.toFixed(8),
-        accuracy: parseInt(position.coords.accuracy),
-        altitude: parseInt(position.coords.altitude),
-        altitudeAccuracy: parseInt(position.coords.altitudeAccuracy),
+        accuracy: parseInt(position.coords.accuracy, 10),
+        altitude: parseInt(position.coords.altitude, 10),
+        altitudeAccuracy: parseInt(position.coords.altitudeAccuracy, 10),
       };
 
       if (location.accuracy <= accuracyLimit) {

@@ -4,28 +4,27 @@
 import $ from 'jquery';
 import Marionette from 'marionette';
 import JST from 'JST';
-import Typeahead from 'typeahead';
-import locationNameFinder from './location_name_search';
 import CONFIG from 'config';
+import locationNameFinder from './location_name_search';
 
 export default Marionette.View.extend({
-  initialize() {
+  initialize(...args) {
     this.locationUpdate = null; // to store GPS updates
 
     const recordModel = this.model.get('recordModel');
 
     this.template = function template() {
       if (recordModel.isGPSRunning()) {
-        return JST['common/location/gps_running'](arguments[0]);
+        return JST['common/location/gps_running'](args[0]);
       }
 
       const location = recordModel.get('location') || {};
       // only gps and todays records
       if (location.source === 'gps' &&
         (new Date(location.updateTime).toDateString() === new Date().toDateString())) {
-        return JST['common/location/gps_success'](arguments[0]);
+        return JST['common/location/gps_success'](args[0]);
       }
-      return JST['common/location/gps'](arguments[0]);
+      return JST['common/location/gps'](args[0]);
     };
 
     this.listenTo(recordModel, 'geolocation:start geolocation:stop geolocation:error', this.render);

@@ -29,9 +29,9 @@ export default Marionette.View.extend({
     let savedRecords = 0;
     recordsCollection.each((record) => {
       const status = record.getSyncStatus();
-      if (record.metadata.saved &&
+      if (record.metadata.saved && (
         status === Morel.LOCAL ||
-        status === Morel.SYNCHRONISING) {
+        status === Morel.SYNCHRONISING)) {
         savedRecords++;
       }
     });

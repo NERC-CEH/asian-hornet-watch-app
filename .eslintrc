@@ -4,12 +4,14 @@
   },
   "extends": "airbnb/base",
   "rules": {
+    "no-console": 0,
+    "no-plusplus": 0,
     "no-mutable-exports": 0,
     "no-underscore-dangle": 0,
-     "no-unused-expressions": [2, {
-          "allowShortCircuit": true, // eg. a || a()
-          "allowTernary": true // eg. a ? b() : c()
-     }],
+    "no-unused-expressions": [2, {
+      "allowShortCircuit": true, // eg. a || a()
+      "allowTernary": true // eg. a ? b() : c()
+    }],
     "new-cap": ["error", {
       "capIsNewExceptions": ["Log", "UUID"]
     }]

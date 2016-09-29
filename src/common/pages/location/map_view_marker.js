@@ -61,26 +61,23 @@ const marker = {
           });
           this.marker.setLocation = this._setCircleLocation;
         }
+      } else if (this.marker instanceof L.Polygon) {
+        this.marker.setLocation(location);
       } else {
-        // GR square
-        if (this.marker instanceof L.Polygon) {
-          this.marker.setLocation(location);
-        } else {
-          // remove previous marker
-          this._removeMapMarker();
+        // remove previous marker
+        this._removeMapMarker();
 
-          const dimensions = this._getSquareDimensions(latLng, location) ||
-            [[0, 0], [0, 0]];
+        const dimensions = this._getSquareDimensions(latLng, location) ||
+          [[0, 0], [0, 0]];
 
-          // create an orange rectangle
-          this.marker = L.polygon(dimensions, {
-            color: 'red',
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 0.2,
-          });
-          this.marker.setLocation = this._setSquareLocation.bind(this);
-        }
+        // create an orange rectangle
+        this.marker = L.polygon(dimensions, {
+          color: 'red',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.2,
+        });
+        this.marker.setLocation = this._setSquareLocation.bind(this);
       }
     }
 

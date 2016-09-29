@@ -5,8 +5,8 @@ import $ from 'jquery';
 import Marionette from 'marionette';
 import JST from 'JST';
 import 'touchswipe';
-import Gallery from '../../common/gallery';
 import { Device } from 'helpers';
+import Gallery from '../../common/gallery';
 import './styles.scss';
 
 export default Marionette.View.extend({
@@ -25,7 +25,7 @@ export default Marionette.View.extend({
     this.startSwipe();
 
     // add Map
-    var $mapsHolder = $('#maps-holder');
+    // const $mapsHolder = $('#maps-holder');
     // $.get("images/country_coastline.svg", function(data) {
     //   const svg = data.documentElement ?
     //     new XMLSerializer().serializeToString(data.documentElement) : data;
@@ -39,43 +39,12 @@ export default Marionette.View.extend({
   },
 
   startSwipe() {
-    var that = this,
-        WIDTH = $('#species_gallery').width(),
-        currentImg = 0,
-        maxImages = this.model.get('photo').length,
-        speed = 500,
-        imgs = null,
-
-        swipeOptions = {
-          triggerOnTouchEnd: false,
-          swipeStatus: swipeStatus,
-          allowPageScroll: "vertical",
-          threshold: 75
-        };
-
-    var $img = $('#species_gallery .images .img');
-    $img.css('width', WIDTH);
-
-    var $progressCircles = this.$el.find('.gallery .progress div');
-
-    $(function () {
-      imgs = $('#species_gallery .images');
-      imgs.width(maxImages * WIDTH);
-      imgs.swipe(swipeOptions);
-
-      /**
-       * Tap handler for touchswipe does not work on Desktop computers -
-       * it is always fired even if we are swiping.
-       * Therfore, we disable gallery launch for non touch devices.
-       */
-      if (Device.isMobile()) {
-        imgs.find('img').on('tap', function (e) {
-          var id = $(this).data('id');
-          that.showGallery(id);
-        });
-      }
-    });
-
+    const that = this;
+    const WIDTH = $('#species_gallery').width();
+    let currentImg = 0;
+    const maxImages = this.model.get('photo').length;
+    const speed = 500;
+    let imgs = null;
 
     /**
      * Catch each phase of the swipe.
@@ -84,22 +53,22 @@ export default Marionette.View.extend({
      * end : we animate to the next image
      */
     function swipeStatus(event, phase, direction, distance) {
-      //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
-      if (phase == "move" && (direction == "left" || direction == "right")) {
+      // If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
+      if (phase === 'move' && (direction === 'left' || direction === 'right')) {
         var duration = 0;
 
-        if (direction == "left") {
+        if (direction === 'left') {
           scrollImages((WIDTH * currentImg) + distance, duration);
-        } else if (direction == "right") {
+        } else if (direction == 'right') {
           scrollImages((WIDTH * currentImg) - distance, duration);
         }
 
-      } else if (phase == "cancel") {
+      } else if (phase === 'cancel') {
         scrollImages(WIDTH * currentImg, speed);
-      } else if (phase == "end") {
-        if (direction == "right") {
+      } else if (phase === 'end') {
+        if (direction === 'right') {
           previousImage();
-        } else if (direction == "left") {
+        } else if (direction === 'left') {
           nextImage();
         }
       }
@@ -121,15 +90,15 @@ export default Marionette.View.extend({
      * Manually update the position of the imgs on drag
      */
     function scrollImages(distance, duration) {
-      imgs.css("transition-duration", (duration / 1000).toFixed(1) + "s");
+      imgs.css('transition-duration', (duration / 1000).toFixed(1) + 's');
 
       //inverse the number we set in the css
-      var value = (distance < 0 ? "" : "-") + Math.abs(distance).toString();
-      imgs.css("transform", "translate(" + value + "px,0)");
+      var value = (distance < 0 ? '' : '-') + Math.abs(distance).toString();
+      imgs.css('transform', 'translate(' + value + 'px,0)');
     }
 
-    var updateCircleProgress = function(number) {
-      $progressCircles.each(function () {
+    function updateCircleProgress(number) {
+      $progressCircles.each(() => {
         if ($(this).data('id') !== number) {
           $(this).removeClass('circle-full');
         } else {
@@ -137,6 +106,36 @@ export default Marionette.View.extend({
         }
       })
     }
+
+    const swipeOptions = {
+      triggerOnTouchEnd: false,
+      swipeStatus,
+      allowPageScroll: 'vertical',
+      threshold: 75,
+    };
+
+    const $img = $('#species_gallery .images .img');
+    $img.css('width', WIDTH);
+
+    const $progressCircles = this.$el.find('.gallery .progress div');
+
+    $(() => {
+      imgs = $('#species_gallery .images');
+      imgs.width(maxImages * WIDTH);
+      imgs.swipe(swipeOptions);
+
+      /**
+       * Tap handler for touchswipe does not work on Desktop computers -
+       * it is always fired even if we are swiping.
+       * Therfore, we disable gallery launch for non touch devices.
+       */
+      if (Device.isMobile()) {
+        imgs.find('img').on('tap', () => {
+          const id = $(this).data('id');
+          that.showGallery(id);
+        });
+      }
+    });
   },
 
   record() {
@@ -153,7 +152,7 @@ export default Marionette.View.extend({
   /**
    * Launches the species gallery viewing.
    */
-  photoView(view, e) {
+  photoView() {
     const items = [];
     const options = {};
 

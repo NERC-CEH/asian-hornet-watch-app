@@ -17,8 +17,8 @@ export default Marionette.View.extend({
   onSelect(e) {
     const id = $(e.target).val();
     const speciesCollection = this.model.get('speciesCollection');
-    const taxon = speciesCollection.models[parseInt(id) - 1];
-    if (!taxon)  return;
+    const taxon = speciesCollection.models[parseInt(id, 10) - 1];
+    if (!taxon) return;
 
     this.trigger('select', taxon.attributes);
   },

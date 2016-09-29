@@ -15,15 +15,8 @@ export default Marionette.View.extend({
     this.template = JST[`records/attr/${options.attr}`];
   },
 
-  events: {
-    'click input[type="radio"]': 'saveNumber',
-  },
-
-  saveNumber() {
-    // unset slider val
-    const $rangeOutput = this.$el.find('#rangeVal');
-    $rangeOutput.val('');
-    this.trigger('save');
+  triggers: {
+    'click input[type="radio"]': 'save',
   },
 
   getValues() {
@@ -41,11 +34,10 @@ export default Marionette.View.extend({
         break;
       }
       case 'number':
-        // ranges selection
         $inputs = this.$el.find('input[type="radio"]');
         $inputs.each((int, elem) => {
           if ($(elem).prop('checked')) {
-            values['number'] = $(elem).val();
+            values.number = $(elem).val();
           }
         });
         break;
@@ -83,20 +75,6 @@ export default Marionette.View.extend({
     }
 
     return templateData;
-  },
-
-  updateRangeSliderValue(e) {
-    const $input = $(e.target);
-    const $rangeOutput = this.$el.find('#range');
-
-    const value = logsl.position($input.val()).toFixed(0);
-    $rangeOutput.val(value);
-
-    // unset ranges selection
-    const $inputs = this.$el.find('input[type="radio"]');
-    $inputs.each((int, elem) => {
-      $(elem).prop('checked', false);
-    });
   },
 
   onAttach() {

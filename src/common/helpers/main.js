@@ -6,7 +6,6 @@ import GPS from './gps';
 import ImageHelp from './image';
 import LocHelp from './location';
 import Log from './log';
-import RouterExtension from './router_extension';
 import StringHelp from './string';
 import Update from './update';
 import UUID from './UUID';
@@ -21,7 +20,6 @@ export {
   ImageHelp,
   LocHelp,
   Log,
-  RouterExtension,
   StringHelp,
   Update,
   UUID,

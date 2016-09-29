@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Backbone from 'backbone';
 import App from 'app';
 import { Log, Device } from 'helpers';
-import CONFIG from 'config'; // Replaced with alias
+import CONFIG from 'config';
 import userModel from '../../common/models/user_model';
 import MainView from './main_view';
 import HeaderView from '../../common/views/header_view';

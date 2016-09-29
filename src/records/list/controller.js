@@ -3,11 +3,9 @@
  *****************************************************************************/
 import Morel from 'morel';
 import App from 'app';
-import { Log, Error, ImageHelp, Analytics } from 'helpers';
+import { Log, Analytics } from 'helpers';
 import userModel from '../../common/models/user_model';
 import recordManager from '../../common/record_manager';
-import Sample from '../../common/models/sample';
-import Occurrence from '../../common/models/occurrence';
 import MainView from './main_view';
 import HeaderView from './header_view';
 import LoaderView from '../../common/views/loader_view';

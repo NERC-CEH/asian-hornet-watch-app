@@ -37,7 +37,7 @@ export default {
         duplication = true;
       }
     });
-    if (duplication) return;
+    if (duplication) return null;
 
     // add new one
     location.id = UUID();

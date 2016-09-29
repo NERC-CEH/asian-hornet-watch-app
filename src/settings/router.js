@@ -7,13 +7,12 @@ import { Log } from 'helpers';
 import CommonController from '../common/controller';
 import MenuController from './menu/controller';
 
-
 App.settings = {};
 
 const Router = Marionette.AppRouter.extend({
   routes: {
     'settings(/)': MenuController.show,
-    'settings/*path': function () { App.trigger('404:show'); },
+    'settings/*path': () => { App.trigger('404:show'); },
   },
 });
 

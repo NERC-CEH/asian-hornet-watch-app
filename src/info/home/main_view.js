@@ -13,5 +13,5 @@ export default Marionette.View.extend({
 
   triggers: {
     'click #record-btn': 'record',
-  }
+  },
 });

@@ -6,7 +6,6 @@ import _ from 'lodash';
 import Morel from 'morel';
 import CONFIG from 'config';
 import recordManager from '../record_manager';
-import ImageModel from './image';
 import Occurrence from './occurrence';
 import GeolocExtension from './sample_geoloc_ext';
 
@@ -46,7 +45,7 @@ let Sample = Morel.Sample.extend({
     } else {
       const date = new Date(attrs.date);
       if (date === 'Invalid Date' || date > new Date()) {
-        sample.date = (new Date(date) > new Date) ? 'future date' : 'invalid';
+        sample.date = (new Date(date) > new Date()) ? 'future date' : 'invalid';
       }
     }
 

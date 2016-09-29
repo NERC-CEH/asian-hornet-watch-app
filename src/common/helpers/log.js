@@ -12,7 +12,6 @@
  *
  * Levels values defined in core app module.
  *****************************************************************************/
-
 import { Analytics } from 'helpers';
 import CONFIG from 'config';
 
@@ -20,7 +19,6 @@ const ERROR = 'e';
 const WARNING = 'w';
 const INFO = 'i';
 const DEBUG = 'd';
-
 
 /**
  * Prints and posts an error to the mobile authentication log.

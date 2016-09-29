@@ -1,15 +1,26 @@
 /** ****************************************************************************
  * Messages the user
  *****************************************************************************/
-
 import $ from 'jquery';
 import Backbone from 'backbone';
 import Marionette from 'marionette';
 import _ from 'lodash';
 import App from 'app';
 import JST from 'JST';
-
 import '../styles/dialog.scss';
+
+const errorsTable = {
+  25: {
+    body: 'Sorry, looks like there was a problem with the internal database.</br> ' +
+    '<b>Please close the app and start it again.</b>',
+    buttons: [{
+      title: 'Restart',
+      onClick: function onClick() {
+        App.restart();
+      },
+    }],
+  },
+};
 
 const StandardDialogView = Marionette.View.extend({
   template: JST['common/dialog'],
@@ -95,9 +106,9 @@ const StandardDialogView = Marionette.View.extend({
 export default Marionette.Region.extend({
   el: '#dialog',
 
-  constructor() {
+  constructor(...args) {
     _.bindAll(this);
-    Marionette.Region.prototype.constructor.apply(this, arguments);
+    Marionette.Region.prototype.constructor.apply(this, args);
 
     // attach events
     this.on('view:show', this.showModal, this);
@@ -115,7 +126,7 @@ export default Marionette.Region.extend({
   /**
    * Creates dialog
    *
-   * @param view
+   * @param options
    * className
    * hideAllowed
    *
@@ -185,11 +196,11 @@ export default Marionette.Region.extend({
     this.hide();
   },
 
-  error: function error(error = {}) {
+  error: function error(err = {}) {
     let options = {
       class: 'error',
       title: 'Yikes!',
-      body: error.message || error,
+      body: error.message || err,
       buttons: [{
         id: 'ok',
         title: 'OK',
@@ -198,8 +209,8 @@ export default Marionette.Region.extend({
     };
 
     // lookup for codes
-    if (error.code) {
-      const tableErrorOptions = errorsTable[error.code];
+    if (err.code) {
+      const tableErrorOptions = errorsTable[err.code];
       if (tableErrorOptions) {
         options = _.extend(options, tableErrorOptions);
       }
@@ -214,15 +225,3 @@ export default Marionette.Region.extend({
     }
   },
 });
-
-const errorsTable = {
-  25: {
-    body: 'Sorry, looks like there was a problem with the internal database.</br> ' + '<b>Please close the app and start it again.</b>',
-    buttons: [{
-      title: 'Restart',
-      onClick: function onClick() {
-        App.restart();
-      },
-    }],
-  },
-};
