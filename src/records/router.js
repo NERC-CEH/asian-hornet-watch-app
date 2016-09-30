@@ -1,7 +1,7 @@
 /** ****************************************************************************
  * Record router.
  *****************************************************************************/
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import { Log, Device } from 'helpers';
 import App from 'app';
 import recordManager from '../common/record_manager';

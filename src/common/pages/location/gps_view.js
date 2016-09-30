@@ -2,7 +2,7 @@
  * Location GPS view.
  *****************************************************************************/
 import $ from 'jquery';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import CONFIG from 'config';
 import locationNameFinder from './location_name_search';

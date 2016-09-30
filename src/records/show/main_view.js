@@ -2,7 +2,7 @@
  * Record Show main view.
  *****************************************************************************/
 import Morel from 'morel';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import { DateHelp, StringHelp } from 'helpers';
 import Gallery from '../../common/gallery';

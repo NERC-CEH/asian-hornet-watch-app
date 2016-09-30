@@ -2,7 +2,7 @@
  * Info router.
  *****************************************************************************/
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import { Log } from 'helpers';
 import CONFIG from 'config';
 import App from 'app';

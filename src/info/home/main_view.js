@@ -1,7 +1,7 @@
 /** ****************************************************************************
  * Home main view.
  *****************************************************************************/
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import './styles.scss';
 import './app_logo.png';

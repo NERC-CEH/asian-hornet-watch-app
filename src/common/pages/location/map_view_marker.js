@@ -1,6 +1,6 @@
 import { LocHelp, Log } from 'helpers';
 import L from 'leaflet';
-import OsGridRef from 'OsGridRef';
+import { OsGridRef } from 'geodesy';
 import './map_view_singleclick';
 
 const OS_ZOOM_DIFF = 6;

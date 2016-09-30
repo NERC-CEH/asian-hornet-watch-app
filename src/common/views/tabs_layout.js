@@ -1,6 +1,6 @@
 import Backbone from 'backbone';
 import _ from 'lodash';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import '../styles/tabs.scss';
 

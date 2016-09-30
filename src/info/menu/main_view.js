@@ -3,7 +3,7 @@
  *****************************************************************************/
 
 import Morel from 'morel';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import './styles.scss';
 

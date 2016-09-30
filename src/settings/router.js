@@ -1,7 +1,7 @@
 /** ****************************************************************************
  * Settings router.
  *****************************************************************************/
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import App from 'app';
 import { Log } from 'helpers';
 import CommonController from '../common/controller';

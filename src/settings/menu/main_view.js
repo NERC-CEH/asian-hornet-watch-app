@@ -2,7 +2,7 @@
  * Setting Menu main view.
  *****************************************************************************/
 import $ from 'jquery';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import { Device } from 'helpers';
 import JST from 'JST';
 

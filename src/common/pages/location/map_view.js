@@ -2,14 +2,14 @@
  * Location main view.
  *****************************************************************************/
 import $ from 'jquery';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import L from 'leaflet';
-// import 'leaflet/dist/leaflet.css'; //todo
-// import 'leaflet/dist/layers-2x.png';
-// import 'leaflet/dist/layers.png';
-import OSLeaflet from 'OSOpenSpace';
-import GridRef from 'Leaflet.GridRef';
-import OsGridRef from 'OsGridRef';
+import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/images/layers-2x.png';
+import 'leaflet/dist/images/layers.png';
+import OSLeaflet from 'os-leaflet';
+import GridRef from 'leaflet.gridref';
+import { OsGridRef } from 'geodesy';
 import JST from 'JST';
 import { LocHelp } from 'helpers';
 import CONFIG from 'config';
@@ -58,10 +58,10 @@ const MapView = Marionette.View.extend({
 
   addLocationNameSearch() {
     this.$el.find('.typeahead').typeahead({
-      hint: false,
-      highlight: false,
-      minLength: 0,
-    },
+        hint: false,
+        highlight: false,
+        minLength: 0,
+      },
       {
         limit: 3,
         name: 'names',

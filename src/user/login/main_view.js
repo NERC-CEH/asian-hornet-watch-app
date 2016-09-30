@@ -1,7 +1,7 @@
 /** ****************************************************************************
  * User Login main view.
  *****************************************************************************/
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import { Validate } from 'helpers';
 import JST from 'JST';
 

@@ -1,7 +1,7 @@
 /** ****************************************************************************
  * Record Edit footer view.
  *****************************************************************************/
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import _ from 'lodash';
 import Morel from 'morel';
 import JST from 'JST';

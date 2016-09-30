@@ -3,7 +3,7 @@
  *****************************************************************************/
 import $ from 'jquery';
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import _ from 'lodash';
 import App from 'app';
 import JST from 'JST';

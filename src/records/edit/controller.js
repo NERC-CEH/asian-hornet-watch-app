@@ -1,7 +1,7 @@
 /** ****************************************************************************
  * Record Edit controller.
  *****************************************************************************/
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
 import _ from 'lodash';
 import Morel from 'morel';

@@ -3,7 +3,7 @@
  *****************************************************************************/
 import _ from 'lodash';
 import Backbone from 'backbone';
-import Store from 'backbone.localStorage';
+import Store from 'backbone.localstorage';
 import CONFIG from 'config';
 import { Validate, Analytics } from 'helpers';
 

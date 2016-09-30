@@ -3,7 +3,7 @@
  *****************************************************************************/
 import $ from 'jquery';
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import FastClick from 'fastclick';
 import { Log, Update, Analytics, Device } from 'helpers';
 import CommonController from './common/controller';

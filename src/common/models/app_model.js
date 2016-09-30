@@ -2,7 +2,7 @@
  * App model. Persistent.
  *****************************************************************************/
 import Backbone from 'backbone';
-import Store from 'backbone.localStorage';
+import Store from 'backbone.localstorage';
 import CONFIG from 'config';
 import pastLocationsExtension from './app_model_past_loc_ext';
 

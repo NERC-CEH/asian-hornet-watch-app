@@ -1,4 +1,4 @@
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 
 export default Marionette.Region.extend({
   show(...args) {

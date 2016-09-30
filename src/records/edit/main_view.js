@@ -1,7 +1,7 @@
 /** ****************************************************************************
  * Record Edit main view.
  *****************************************************************************/
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import Morel from 'morel';
 import JST from 'JST';
 import { DateHelp, StringHelp } from 'helpers';

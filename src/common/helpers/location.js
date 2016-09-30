@@ -1,8 +1,7 @@
 /** ****************************************************************************
  * Some location transformation logic.
  *****************************************************************************/
-import LatLon from 'latlon-ellipsoidal';
-import OsGridRef from 'OsGridRef';
+import { LatLonEllipsoidal as LatLon, OsGridRef } from 'geodesy';
 
 const helpers = {
   coord2grid(location) {

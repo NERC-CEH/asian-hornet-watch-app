@@ -2,7 +2,7 @@
  * Record Attribute main view.
  *****************************************************************************/
 import $ from 'jquery';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import { Device, DateHelp, StringHelp, Log } from 'helpers';
 import JST from 'JST';
 

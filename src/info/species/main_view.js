@@ -2,9 +2,9 @@
  * Home main view.
  *****************************************************************************/
 import $ from 'jquery';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import JST from 'JST';
-import 'touchswipe';
+import 'jquery-touchswipe';
 import { Device } from 'helpers';
 import Gallery from '../../common/gallery';
 import './styles.scss';

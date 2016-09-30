@@ -2,9 +2,9 @@
  * Record List main view.
  *****************************************************************************/
 import $ from 'jquery';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import Morel from 'morel';
-import Hammer from 'hammer';
+import Hammer from 'hammerjs';
 import { Log, StringHelp, Device, DateHelp } from 'helpers';
 import JST from 'JST';
 import CONFIG from 'config';

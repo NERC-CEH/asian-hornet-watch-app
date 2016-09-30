@@ -1,5 +1,5 @@
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import { Log } from 'helpers';
 import JST from 'JST';
 import App from 'app';
