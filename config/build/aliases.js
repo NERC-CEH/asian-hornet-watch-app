@@ -13,7 +13,6 @@ module.exports = grunt => {
     ],
 
     vendor: [
-      'replace:indexedDBShim',
       'replace:latlon',
       'replace:ratchet',
       'replace:ratchet_fonts',
