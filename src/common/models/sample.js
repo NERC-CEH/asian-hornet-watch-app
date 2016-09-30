@@ -13,6 +13,7 @@ let Sample = Morel.Sample.extend({
   constructor(...args) {
     this.manager = recordManager;
     Morel.Sample.prototype.constructor.apply(this, args);
+    this.set('form', CONFIG.morel.manager.input_form);
   },
 
   Occurrence,
