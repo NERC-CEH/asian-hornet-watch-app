@@ -110,7 +110,7 @@ export default {
         },
       },
 
-      device_version: { id: 579 },
+      device_version: { id: 759 },
 
       date: {
         values(date) {
