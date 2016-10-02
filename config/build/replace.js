@@ -43,7 +43,7 @@ module.exports = (grunt) => {
     // need to remove Ratchet's default fonts to work with fontello ones
     ratchet_fonts: {
       src: ['node_modules/ratchet/dist/css/ratchet.css'],
-      dest: BUILD + 'styles/ratchet.css',
+      overwrite: true,
       replacements: [
         {
           from: /font-family: Ratchicons;/g,
@@ -52,6 +52,17 @@ module.exports = (grunt) => {
         {
           from: /src: url\(\"\.\.\/fonts.*;/g,
           to: '',
+        }],
+    },
+
+    // need to remove Ratchet's default fonts to work with fontello ones
+    photoswipe: {
+      src: ['node_modules/photoswipe/dist/default-skin/default-skin.css'],
+      overwrite: true,
+      replacements: [
+        {
+          from: 'url(default-skin.',
+          to: 'url(images/default-skin.',
         }],
     },
 

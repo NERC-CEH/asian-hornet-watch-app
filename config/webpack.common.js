@@ -52,7 +52,7 @@ module.exports = {
       },
       { test: /\.json/, loader: 'json' },
       { test: /(\.png)|(\.svg)|(\.jpg)/, loader: 'file?name=images/[name].[ext]' },
-      { test: /(\.woff)|(\.ttf)/, loader: 'file?name=fonts/[name].[ext]' },
+      { test: /(\.woff)|(\.ttf)/, loader: 'file?name=font/[name].[ext]' },
       {
         test: /\.s?css$/,
         loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),

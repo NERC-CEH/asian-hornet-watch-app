@@ -17,6 +17,7 @@ module.exports = grunt => {
       'replace:ratchet',
       'replace:ratchet_fonts',
       'replace:fontello_fonts',
+      'replace:photoswipe',
     ],
 
     run: [
