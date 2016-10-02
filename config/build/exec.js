@@ -16,7 +16,7 @@ module.exports = {
     stdout: true,
   },
   cordova_clean_www: {
-    command: 'rm -R dist/cordova/www/* && rm dist/cordova/config.xml',
+    command: 'rm -R -f dist/cordova/www/* && rm -f dist/cordova/config.xml',
     stdout: true,
   },
   cordova_copy_dist: {

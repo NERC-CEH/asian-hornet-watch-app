@@ -63,10 +63,10 @@ module.exports = grunt => {
     ],
 
     'cordova:update': [
-      'replace:cordova_config',
       // update www
       'exec:cordova_clean_www',
       'exec:cordova_copy_dist',
+      'replace:cordova_config',
     ],
 
     'cordova:android': [
