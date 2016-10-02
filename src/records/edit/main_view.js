@@ -11,6 +11,11 @@ import './styles.scss';
 export default Marionette.View.extend({
   template: JST['records/edit/main'],
 
+  initialize() {
+    const recordModel = this.model.get('recordModel');
+    this.listenTo(recordModel, 'request sync error geolocation', this.render);
+  },
+
   serializeData() {
     const recordModel = this.model.get('recordModel');
     const occ = recordModel.occurrences.at(0);
