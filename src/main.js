@@ -14,6 +14,8 @@ import './settings/router';
 import './user/router';
 
 import '../node_modules/ratchet/dist/css/ratchet.css';
+import '../node_modules/ratchet/dist/fonts/ratchicons.ttf';
+import '../node_modules/ratchet/dist/fonts/ratchicons.woff';
 import '../dist/_build/styles/icons.css';
 import './common/styles/app.scss';
 
