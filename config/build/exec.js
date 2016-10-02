@@ -24,7 +24,10 @@ module.exports = {
     stdout: true,
   },
   cordova_add_platforms: {
-    command: 'cd dist/cordova && cordova platforms add ios android',
+    command:
+    'cd dist/cordova && ' +
+    'cordova platforms add ios android && ' +
+    'cordova plugin add cordova-plugin-camera --variable CAMERA_USAGE_DESCRIPTION="please"',
     stdout: true,
   },
   /**
