@@ -35,10 +35,6 @@ let Sample = Morel.Sample.extend({
     if (!location.latitude || !location.longitude) {
       sample.location = 'missing';
     }
-    // location name
-    if (!location.name) {
-      sample['location name'] = 'missing';
-    }
 
     // date
     if (!attrs.date) {
