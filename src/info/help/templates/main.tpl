@@ -25,18 +25,13 @@
     </a>
     <p id="c3" class="collapse"
        aria-labelledby="headingTwo" aria-expanded="false">
-      All your saved records will be shown on the home page.
-      By default a record is in <i>draft</i> mode until it is set for submission.
-      While it is in <i>draft</i> mode the application will not synchronise your
-      record with the database. To set it for sending,
-      open the record and press the <span class="icon icon-send"></span> button in the header.
-      The application will try to submit your record once there is a good network
-      connection.
+      All your saved records will be shown on the user
+      account <span class="icon icon-wasp"></span> page accessed from App Info
+      <span class="icon icon-info"></span>.
 
       If the record has reached the database a red
-      <span class="icon icon-send" style="color: red;"></span>(set for submission & saved locally)
-      will become blue <span class="icon icon-send" style="color: #3c479d;"></span>
-      (synced to the database). Once it has successfully reached
+      <span class="icon icon-send" style="color: red;"></span>(saved locally)
+      will become black (synced to the database). Once it has successfully reached
       the database the record becomes unavailable for new edits.
       To further edit it
       please use the <a href="http://irecord.org.uk">iRecord Website</a>.
@@ -57,7 +52,7 @@
       You can set all your draft records for submission. To do that go to the
       settings page <span class="icon icon-settings"></span> and click Submit All
       <span class="icon icon-send"></span> button.
-      This will try to send all the valid records.
+      This will try to send all the locally saved and not yet synchronised records.
     </p>
   </li>
   <li class="table-view-cell">
