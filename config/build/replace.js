@@ -69,7 +69,7 @@ module.exports = (grunt) => {
     // Cordova config changes
     cordova_config: {
       src: [
-        'config/cordova.xml',
+        'config/cordova/cordova.xml',
       ],
       dest: 'dist/cordova/config.xml',
       replacements: [
