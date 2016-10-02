@@ -1,20 +1,26 @@
+import Backbone from 'backbone';
 import App from 'app';
 import appModel from '../../common/models/app_model';
 import Sample from '../../common/models/sample';
+import recordManager from '../../common/record_manager';
 import Occurrence from '../../common/models/occurrence';
 import MainView from './main_view';
 
 const API = {
   show() {
-    const mainView = new MainView();
-    App.regions.getRegion('main').show(mainView);
-    mainView.on('record', API.record);
+    recordManager.getAll((err, recordsCollection) => {
+      const mainView = new MainView({
+        model: new Backbone.Model({ recordsCollection }),
+      });
+      App.regions.getRegion('main').show(mainView);
+      mainView.on('record', API.record);
 
-    // HEADER
-    App.regions.getRegion('header').hide().empty();
+      // HEADER
+      App.regions.getRegion('header').hide().empty();
 
-    // FOOTER
-    App.regions.getRegion('footer').hide().empty();
+      // FOOTER
+      App.regions.getRegion('footer').hide().empty();
+    });
   },
 
   // record species

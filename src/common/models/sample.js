@@ -98,6 +98,16 @@ let Sample = Morel.Sample.extend({
 
     return promise;
   },
+
+  isLocalOnly() {
+    const status = this.getSyncStatus();
+    if (this.metadata.saved && (
+      status === Morel.LOCAL ||
+      status === Morel.SYNCHRONISING)) {
+      return true;
+    }
+    return false;
+  },
 });
 
 // add geolocation functionality

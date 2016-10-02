@@ -224,6 +224,16 @@ header .subtitle {
   color: $color-yellow;
 }
 
+.badge.warn {
+  color: $color-white;
+  background-color: $color-yellow;
+}
+
+.badge.error {
+  color: $color-white;
+  background-color: $color-orange;
+}
+
 //todo: alert is absolete
 .alert {
   color: $color-orange;

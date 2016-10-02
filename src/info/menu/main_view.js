@@ -27,13 +27,10 @@ export default Marionette.View.extend({
     const recordsCollection = this.model.get('recordsCollection');
 
     let savedRecords = 0;
+    let needSync = false;
     recordsCollection.each((record) => {
-      const status = record.getSyncStatus();
-      if (record.metadata.saved && (
-        status === Morel.LOCAL ||
-        status === Morel.SYNCHRONISING)) {
-        savedRecords++;
-      }
+      if (record.isLocalOnly()) needSync = true;
+      if (record.metadata.saved) savedRecords++;
     });
 
     let surname;
@@ -44,6 +41,7 @@ export default Marionette.View.extend({
 
     return {
       records: savedRecords,
+      needSync,
       surname,
     };
   },

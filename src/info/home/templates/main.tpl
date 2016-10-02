@@ -13,6 +13,9 @@
   <li class="table-view-cell">
     <a href="#info" class="navigate-right">
       <span class="media-object pull-left icon icon-info"></span>
+      <% if (obj.records > 0) { %>
+      <span class="badge <%- obj.needSync ? 'error' : '' %>"><%- obj.records %></span>
+      <% } %>
       App Info
     </a>
   </li>
