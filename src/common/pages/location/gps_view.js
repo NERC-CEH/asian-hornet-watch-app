@@ -8,12 +8,12 @@ import CONFIG from 'config';
 import locationNameFinder from './location_name_search';
 
 export default Marionette.View.extend({
-  initialize(...args) {
+  initialize() {
     this.locationUpdate = null; // to store GPS updates
 
     const recordModel = this.model.get('recordModel');
 
-    this.template = function template() {
+    this.template = function template(...args) {
       if (recordModel.isGPSRunning()) {
         return JST['common/location/gps_running'](args[0]);
       }
