@@ -1,7 +1,14 @@
 <ul class="table-view">
   <li>
     <p>
-      TODO
+      Hornet Watch is an app designed to record and help the early detection of Asian Hornet
+      in the UK following the first confirmed record in September 2016. Asian Hornet is a
+      non-native species within the UK and could have a serious impact on our native insects
+      and honeybees so early detection is important. There are a number of native insects
+      in the UK that look very similar, and are common and widespread. Records of these species
+      are equally welcome to help map their distribution and Hornet Watch provides an
+      identification guide to help determine which species you have seen. Please do include a
+      photograph with your record if possible to help us confirm the identity of the species.
     </p>
   </li>
   <li>
