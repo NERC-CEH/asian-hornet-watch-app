@@ -28,10 +28,11 @@ const API = {
       // MAIN
       const speciesCollection = new Backbone.Collection(speciesData);
       const mainView = new MainView({
-        model: new Backbone.Model({ recordModel, appModel, speciesCollection }),
+        collection: speciesCollection,
+        recordModel,
       });
 
-      mainView.on('select', (taxon) => {
+      mainView.on('childview:select', (taxon) => {
         API.save(recordModel, taxon);
       });
 

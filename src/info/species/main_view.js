@@ -8,6 +8,9 @@ import 'jquery-touchswipe';
 import { Device } from 'helpers';
 import Gallery from '../../common/gallery';
 import './styles.scss';
+import './data/maps/loader';
+import './data/images/loader';
+import './data/timelines/loader';
 
 export default Marionette.View.extend({
   template: JST['info/species/main'],
@@ -25,17 +28,12 @@ export default Marionette.View.extend({
     this.startSwipe();
 
     // add Map
-    // const $mapsHolder = $('#maps-holder');
-    // $.get("images/country_coastline.svg", function(data) {
-    //   const svg = data.documentElement ?
-    //     new XMLSerializer().serializeToString(data.documentElement) : data;
-    //   $mapsHolder.append(svg);
-    // });
-    // $.get(this.model.attributes.map, function(data) {
-    //   const svg = data.documentElement ?
-    //     new XMLSerializer().serializeToString(data.documentElement) : data;
-    //   $mapsHolder.append(svg);
-    // });
+    const $mapsHolder = $('#maps-holder');
+    $.get('images/' + this.model.attributes.map, function(data) {
+      const svg = data.documentElement ?
+        new XMLSerializer().serializeToString(data.documentElement) : data;
+      $mapsHolder.append(svg);
+    });
   },
 
   startSwipe() {

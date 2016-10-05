@@ -6,44 +6,41 @@ import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import './styles.scss';
 
-export default Marionette.View.extend({
-  id: 'taxon-main',
+const View = Marionette.View.extend({
   template: JST['records/taxon/main'],
 
   events: {
     'click input': 'onSelect',
   },
 
-  onSelect(e) {
-    const id = $(e.target).val();
-    const speciesCollection = this.model.get('speciesCollection');
-    const taxon = speciesCollection.models[parseInt(id, 10) - 1];
-    if (!taxon) return;
-
-    this.trigger('select', taxon.attributes);
+  onSelect() {
+    this.trigger('select', this.model.attributes);
   },
 
   serializeData() {
-    const recordModel = this.model.get('recordModel');
-    const speciesCollection = this.model.get('speciesCollection');
+    const recordModel = this.options.recordModel;
     const occ = recordModel.occurrences.at(0);
 
-    const pics = [];
+    const taxon = occ.get('taxon') || {};
 
-    speciesCollection.each((species) => {
-      const photos = species.get('photo');
-      pics.push(photos[0]);
-    });
-
-    const data = {
-      pics,
+    return {
+      id: this.model.id,
+      name: this.model.get('common_name'),
+      pic: this.model.get('photo')[0],
+      selected: taxon.id === this.model.id,
     };
-
-    const taxon = occ.get('taxon');
-    if (taxon) {
-      data[taxon.id] = true;
-    }
-    return data;
   },
 });
 
+export default Marionette.CollectionView.extend({
+  id: 'taxon-main',
+  tagName: 'div',
+  className: 'list',
+  childView: View,
+
+  childViewOptions() {
+    return {
+      recordModel: this.options.recordModel,
+    };
+  },
+});

@@ -77,7 +77,7 @@
     bottom: 0;
     left: 0;
     margin: 0;
-    padding-left: 45%;
+    padding-left: 38%;
 
     background-color: rgba(10,10,10,0.3);
 
@@ -87,29 +87,6 @@
   }
 }
 
-
-/* Flight Graph */
-#species-flight {
-  height: 12vh;
-  min-height: 70px;
-  padding-top: 0;
-}
-.axis path, .axis line {
-  fill: none;
-  stroke: #777;
-  shape-rendering: crispEdges;
-}
-
-.axis text {
-  font-family: 'Arial';
-  font-size: 13px;
-}
-.tick {
-  stroke-dasharray: 1, 2;
-}
-.bar {
-  fill: FireBrick;
-}
 
 /* Species Map */
 #species-map{
