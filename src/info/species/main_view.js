@@ -161,22 +161,19 @@ export default Marionette.View.extend({
       title = `&copy; ${author}`;
     }
 
-    items.push({
-      src: this.model.get('profile_pic'),
-      w: this.model.get('profile_pic_width') || 800,
-      h: this.model.get('profile_pic_height') || 800,
-      title,
+    const photos = this.model.get('photo');
+
+    photos.forEach((pic) => {
+      items.push({
+        src: `images/${pic}`,
+        w: this.model.get('profile_pic_width') || 800,
+        h: this.model.get('profile_pic_height') || 800,
+        title,
+      });
     });
 
-    if (this.model.get('illustration')) {
-      items.push({
-        src: this.model.get('illustration'),
-        w: this.model.get('illustration_width') || 800,
-        h: this.model.get('illustration_height') || 800,
-      });
-    }
 
-// Initializes and opens PhotoSwipe
+    // Initializes and opens PhotoSwipe
     var gallery = new Gallery(items, options);
     gallery.init();
   },
