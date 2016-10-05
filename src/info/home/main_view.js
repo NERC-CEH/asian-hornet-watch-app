@@ -4,8 +4,7 @@
 import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import './styles.scss';
-import './app_logo.png';
-import './background.jpg';
+import './images/app_logo.png';
 
 export default Marionette.View.extend({
   id: 'home',
