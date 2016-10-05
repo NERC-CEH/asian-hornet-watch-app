@@ -40,7 +40,7 @@
   <li id="timeline"><img src="images/<%- obj.timeline %>" alt=""></li>
   <% } %>
 
-  <li>
+  <li id="species-description">
   <p><%= obj.description %></p>
 </li>
 
