@@ -48,6 +48,16 @@
     height: 30vh;
     border: 0;
 
+    &.other {
+      height: inherit;
+
+      .item-content {
+        width: 100%;
+        text-align: center;
+        font-size: 40px;
+      }
+    }
+
     a {
       z-index: 10;
       position: absolute;
