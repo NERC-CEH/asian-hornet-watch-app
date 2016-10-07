@@ -36,7 +36,9 @@ const API = {
         API.save(recordModel, taxon);
       });
 
-      App.regions.getRegion('main').show(mainView);
+      const mainRegion = App.regions.getRegion('main');
+      mainRegion.el.scrollTop = 0; // needs to be at the top
+      mainRegion.show(mainView);
     });
 
     // HEADER
