@@ -96,13 +96,13 @@ export default Marionette.View.extend({
     }
 
     function updateCircleProgress(number) {
-      $progressCircles.each(() => {
-        if ($(this).data('id') !== number) {
-          $(this).removeClass('circle-full');
+      $progressCircles.each((id, circle) => {
+        if ($(circle).data('id') !== number) {
+          $(circle).removeClass('circle-full');
         } else {
-          $(this).addClass('circle-full');
+          $(circle).addClass('circle-full');
         }
-      })
+      });
     }
 
     const swipeOptions = {

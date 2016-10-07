@@ -5,9 +5,8 @@
     <% } %>
   </div>
   <div class="progress">
-    <div class="circle circle-full" data-id="0"></div>
     <% obj.photo.forEach(function(pic, i) { %>
-    <div class="circle" data-id="<%- i + 1 %>"></div>
+    <div class="circle <%- i === 0 ? 'circle-full' : '' %>" data-id="<%- i %>"></div>
     <% }) %>
   </div>
 </div>
