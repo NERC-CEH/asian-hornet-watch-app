@@ -12,7 +12,7 @@
 </div>
 
 <div class="segmented-control no-border">
-  <a id="gallery-button" class="control-item icon icon-eye">Gallery</a>
+  <a id="gallery-button" class="control-item icon icon-camera">Gallery</a>
   <a id="species-map-button" class="control-item icon icon-map">Distribution</a>
 </div>
 
