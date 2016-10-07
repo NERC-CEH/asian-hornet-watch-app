@@ -2,17 +2,16 @@
 
 #home {
   //background: url(../images/background.jpg) center center no-repeat;
-  background-color: $color-main-light;
+  background-image: url(images/background.png);
   margin: -45px -2% 0;
   padding: 14px;
   height: 100vh;
   padding-top: 0;
 
   .app-logo {
-    height: 190px;
     padding: 20px;
     margin: 0 -15px 12%;
-    background-color: $color-main;
+    background-color: rgba(0,0,0,0.6);
     font-size: 53px;
     color: $color-white;
     text-align: center;
@@ -20,7 +19,7 @@
     img  {
       width: 100%;
       max-width: 500px;
-      margin: 0 auto;
+      margin: 10vh auto;
       display: block;
     }
   }
