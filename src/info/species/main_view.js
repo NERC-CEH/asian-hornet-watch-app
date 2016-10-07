@@ -154,18 +154,16 @@ export default Marionette.View.extend({
     const items = [];
     const options = {};
 
-    let title;
-
-    const author = this.model.get('profile_pic_author');
-    if (author) {
-      title = `&copy; ${author}`;
-    }
-
     const photos = this.model.get('photos');
+    const author = this.model.get('author') || [];
     const width = this.model.get('width') || [];
     const height = this.model.get('height') || [];
 
     for (let i = 0; i < photos; i++) {
+      let title;
+      if (author[i]) {
+        title = `&copy; ${author[i]}`;
+      }
       items.push({
         src: `images/${this.model.id}_${i}.jpg`,
         w: width[i] || 800,

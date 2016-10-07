@@ -1,7 +1,7 @@
 <div class="gallery" id="species_gallery">
   <div class="images">
     <% for (var i = 0; i < obj.photos; i++) { %>
-    <div class="img photo" style="background-image: url('images/<%= obj.id + '_' + i + '.jpg' %>')" alt="&copy; <%= obj.pic_author %>"></div>
+    <div class="img photo" style="background-image: url('images/<%= obj.id + '_' + i + '.jpg' %>')" alt="&copy; <%= obj.author[i] %>"></div>i
     <% } %>
   </div>
   <div class="progress">
