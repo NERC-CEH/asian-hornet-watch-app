@@ -18,7 +18,9 @@ const API = {
     mainView.on('record', () => {
       API.record(speciesModel);
     });
-    App.regions.getRegion('main').show(mainView);
+    const mainRegion = App.regions.getRegion('main');
+    mainRegion.el.scrollTop = 0; // needs to be at the top
+    mainRegion.show(mainView);
 
     // HEADER
     const headerView = new HeaderView({
