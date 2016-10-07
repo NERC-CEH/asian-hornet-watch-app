@@ -65,7 +65,7 @@ export default {
       surname: {
         id: 7,
       },
-      email: {
+      user_email: { // email key is taken
         id: 8,
       },
 
