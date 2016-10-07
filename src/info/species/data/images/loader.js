@@ -30,8 +30,6 @@ import './3_4.jpg';
 import './3_5.jpg';
 import './3_6.jpg';
 import './3_7.jpg';
-import './3_8.jpg';
-import './3_9.jpg';
 import './4_0.jpg';
 import './4_1.jpg';
 import './4_2.jpg';

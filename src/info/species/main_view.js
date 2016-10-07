@@ -29,7 +29,7 @@ export default Marionette.View.extend({
 
     // add Map
     const $mapsHolder = $('#maps-holder');
-    $.get('images/' + this.model.attributes.map, function(data) {
+    $.get(`images/${this.model.id}.svg`, function(data) {
       const svg = data.documentElement ?
         new XMLSerializer().serializeToString(data.documentElement) : data;
       $mapsHolder.append(svg);
