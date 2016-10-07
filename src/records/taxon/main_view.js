@@ -23,11 +23,14 @@ const View = Marionette.View.extend({
 
     const taxon = occ.get('taxon') || {};
 
+    const other = !this.model.get('description');
+
     return {
       id: this.model.id,
       name: this.model.get('common_name'),
       pic: this.model.get('photo')[0],
       selected: taxon.id === this.model.id,
+      other,
     };
   },
 });
