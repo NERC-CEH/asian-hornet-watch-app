@@ -1,13 +1,13 @@
 <div class="gallery" id="species_gallery">
   <div class="images">
-    <% for (pic in obj.photo) { %>
-    <div class="img photo" style="background-image: url('images/<%= obj.photo[pic] %>')" alt="&copy; <%= obj.pic_author %>"></div>
+    <% for (var i = 0; i < obj.photos; i++) { %>
+    <div class="img photo" style="background-image: url('images/<%= obj.id + '_' + i + '.jpg' %>')" alt="&copy; <%= obj.pic_author %>"></div>
     <% } %>
   </div>
   <div class="progress">
-    <% obj.photo.forEach(function(pic, i) { %>
+    <% for (var i = 0; i < obj.photos; i++) { %>
     <div class="circle <%- i === 0 ? 'circle-full' : '' %>" data-id="<%- i %>"></div>
-    <% }) %>
+    <% } %>
   </div>
 </div>
 

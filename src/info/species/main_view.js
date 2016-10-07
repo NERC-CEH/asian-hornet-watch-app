@@ -40,7 +40,7 @@ export default Marionette.View.extend({
     const that = this;
     const WIDTH = $('#species_gallery').width();
     let currentImg = 0;
-    const maxImages = this.model.get('photo').length;
+    const maxImages = this.model.get('photos');
     const speed = 500;
     let imgs = null;
 
@@ -161,17 +161,18 @@ export default Marionette.View.extend({
       title = `&copy; ${author}`;
     }
 
-    const photos = this.model.get('photo');
+    const photos = this.model.get('photos');
+    const width = this.model.get('width') || [];
+    const height = this.model.get('height') || [];
 
-    photos.forEach((pic) => {
+    for (let i = 0; i < photos; i++) {
       items.push({
-        src: `images/${pic}`,
-        w: this.model.get('profile_pic_width') || 800,
-        h: this.model.get('profile_pic_height') || 800,
+        src: `images/${this.model.id}_${i}.jpg`,
+        w: width[i] || 800,
+        h: height[i] || 800,
         title,
       });
-    });
-
+    }
 
     // Initializes and opens PhotoSwipe
     var gallery = new Gallery(items, options);

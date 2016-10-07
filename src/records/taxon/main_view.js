@@ -28,7 +28,7 @@ const View = Marionette.View.extend({
     return {
       id: this.model.id,
       name: this.model.get('common_name'),
-      pic: this.model.get('photo')[0],
+      pic: `${this.model.id}_0.jpg`,
       selected: taxon.id === this.model.id,
       other,
     };
