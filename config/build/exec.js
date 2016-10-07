@@ -27,7 +27,7 @@ module.exports = {
     command:
     'cd dist/cordova && ' +
     'cordova platforms add ios android && ' +
-    'cordova plugin add cordova-plugin-camera --variable CAMERA_USAGE_DESCRIPTION="please"',
+    'cordova plugin add cordova-plugin-camera --variable CAMERA_USAGE_DESCRIPTION="please" --variable PHOTOLIBRARY_USAGE_DESCRIPTION="please"',
     stdout: true,
   },
   /**
