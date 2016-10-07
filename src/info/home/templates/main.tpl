@@ -1,6 +1,10 @@
 <div class="app-logo">
-  <!--img src="images/app_logo.png"-->
-  Hornet Watch
+  <img src="images/app_logo.png">
+</div>
+
+<div id="intro-snippet">
+  Help detect the non-native Asian Hornet and record our native hornets and their
+  look-alikes so we can update their status and distribution in the UK.
 </div>
 
 <ul id="buttons" class="table-view buttons">
