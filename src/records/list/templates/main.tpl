@@ -7,9 +7,7 @@
 <% } %>
 <div class="info-message">
   <p>
-    Saved recordings. <br/>
-    <em style="font-weight: 300; display: inline;"> Full app statistics
-      <a href="<%- obj.statistics_url %>" target="_blank" style="font-weight:bold;color: white;">here.</a></em>
+    Saved recordings.
   </p>
 </div>
 <ul id="records-list" class="table-view no-top"></ul>
