@@ -70,6 +70,11 @@ module.exports = grunt => {
     ],
 
     'cordova:android': [
+      'prompt:keystore',
+      'cordova:android:new',
+      'cordova:android:old'
+    ],
+    'cordova:android:new': [
       'cordova:_prepAndroid',
       'replace:cordova_config',
       'exec:cordova_android_build',
