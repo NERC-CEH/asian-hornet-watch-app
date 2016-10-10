@@ -1,3 +1,5 @@
+require('dotenv').config({ silent: true }); // get local environment variables from .env
+
 module.exports = {
   data_init: {
     command() {
@@ -40,7 +42,7 @@ module.exports = {
 
     'cordova --release build android && ' +
     'cd platforms/android/build/outputs/apk &&' +
-    'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $ANDROID_KEYSTORE android-release-unsigned.apk irecord &&' +
+    'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ' + process.env.KEYSTORE + ' android-release-unsigned.apk irecord &&' +
     'zipalign -v 4 android-release-unsigned.apk main.apk && ' +
 
     'mv -f main.apk ../../../../../dist/',
@@ -59,10 +61,10 @@ module.exports = {
     'cordova --release build android && ' +
     'cd platforms/android/build/outputs/apk &&' +
 
-    'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $ANDROID_KEYSTORE android-armv7-release-unsigned.apk irecord &&' +
+    'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ' + process.env.KEYSTORE + ' android-armv7-release-unsigned.apk irecord &&' +
     'zipalign -v 4 android-armv7-release-unsigned.apk arm7.apk && ' +
 
-    'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $ANDROID_KEYSTORE android-x86-release-unsigned.apk irecord &&' +
+    'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ' + process.env.KEYSTORE + ' android-x86-release-unsigned.apk irecord &&' +
     'zipalign -v 4 android-x86-release-unsigned.apk x86.apk && ' +
 
     'mv -f arm7.apk ../../../../../dist/ && ' +
