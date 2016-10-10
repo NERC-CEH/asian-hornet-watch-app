@@ -1,8 +1,6 @@
 /** ****************************************************************************
  * App start.
  *****************************************************************************/
-import 'bootstrap';
-import 'ratchet';
 
 import App from 'app';
 import 'photoswipe/dist/photoswipe.css';
