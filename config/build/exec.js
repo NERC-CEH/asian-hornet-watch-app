@@ -23,6 +23,10 @@ module.exports = function (grunt) {
       command: 'rm -R -f dist/cordova/www/* && rm -f dist/cordova/config.xml',
       stdout: true,
     },
+    cordova_rebuild: {
+      command: 'cd dist/cordova/ && cordova prepare ios android',
+      stdout: true,
+    },
     cordova_copy_dist: {
       command: 'cp -R dist/main/* dist/cordova/www/',
       stdout: true,

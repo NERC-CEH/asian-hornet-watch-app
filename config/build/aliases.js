@@ -62,11 +62,16 @@ module.exports = grunt => {
       'exec:cordova_add_platforms',
     ],
 
+
+    /**
+     * Updates cordova project - use after tinkering with src or congig
+     */
     'cordova:update': [
       // update www
       'exec:cordova_clean_www',
       'exec:cordova_copy_dist',
       'replace:cordova_config',
+      'exec:cordova_rebuild',
     ],
 
     'cordova:android': [
