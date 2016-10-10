@@ -60,8 +60,10 @@ const API = {
               // err.xhr.responseText = Invalid password"
               // it thinks that the user tries to update its account
               response = 'An account with this email exist';
-            } else {
+            } else if (err.thrownError && typeof err.thrownError === 'string') {
               response = err.thrownError;
+            } else {
+              response = 'Unknown error occurred';
             }
 
             App.regions.getRegion('dialog').error({ message: response });
