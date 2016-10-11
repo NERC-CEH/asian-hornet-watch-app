@@ -12,7 +12,7 @@ import ShowController from './show/controller';
 import EditController from './edit/controller';
 import EditLocationController from '../common/pages/location/controller';
 import EditAttrController from './attr/controller';
-import TaxonController from './taxon/controller';
+import TaxonController from '../common/pages/taxon/controller';
 
 App.records = {};
 

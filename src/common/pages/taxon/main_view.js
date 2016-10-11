@@ -1,13 +1,12 @@
 /** ****************************************************************************
  * Record Show main view.
  *****************************************************************************/
-import $ from 'jquery';
 import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import './styles.scss';
 
 const View = Marionette.View.extend({
-  template: JST['records/taxon/main'],
+  template: JST['common/taxon/main'],
 
   events: {
     'click input': 'onSelect',
