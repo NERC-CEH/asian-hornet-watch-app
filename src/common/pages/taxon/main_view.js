@@ -18,18 +18,18 @@ const View = Marionette.View.extend({
 
   serializeData() {
     const recordModel = this.options.recordModel;
-    const occ = recordModel.occurrences.at(0);
-
-    const taxon = occ.get('taxon') || {};
-
-    const other = !this.model.get('description');
+    let taxon;
+    if (recordModel) {
+      const occ = recordModel.occurrences.at(0);
+      taxon = occ.get('taxon') || {};
+    }
 
     return {
       id: this.model.id,
       name: this.model.get('common_name'),
       pic: `${this.model.id}_0.jpg`,
-      selected: taxon.id === this.model.id,
-      other,
+      selected: taxon && taxon.id === this.model.id,
+      recordModel,
     };
   },
 });

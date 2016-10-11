@@ -12,33 +12,47 @@ import speciesData from 'species.data';
 const API = {
   show(id) {
     Log('Records:Taxon:Controller: showing');
-    recordManager.get(id, (err, recordModel) => {
-      if (err) {
-        Log(err, 'e');
-      }
 
-      // Not found
-      if (!recordModel) {
-        Log('No record model found', 'e');
-        App.trigger('404:show', { replace: true });
-        return;
-      }
+    if (id) {
+      recordManager.get(id, (err, recordModel) => {
+        if (err) {
+          Log(err, 'e');
+        }
+
+        // Not found
+        if (!recordModel) {
+          Log('No record model found', 'e');
+          App.trigger('404:show', { replace: true });
+          return;
+        }
+
+        // MAIN
+        const speciesCollection = new Backbone.Collection(speciesData);
+        const mainView = new MainView({
+          collection: speciesCollection,
+          recordModel,
+        });
+
+        mainView.on('childview:select', (taxon) => {
+          API.save(recordModel, taxon);
+        });
+
+        const mainRegion = App.regions.getRegion('main');
+        mainRegion.el.scrollTop = 0; // needs to be at the top
+        mainRegion.show(mainView);
+      });
+    } else {
 
       // MAIN
       const speciesCollection = new Backbone.Collection(speciesData);
       const mainView = new MainView({
         collection: speciesCollection,
-        recordModel,
-      });
-
-      mainView.on('childview:select', (taxon) => {
-        API.save(recordModel, taxon);
       });
 
       const mainRegion = App.regions.getRegion('main');
       mainRegion.el.scrollTop = 0; // needs to be at the top
       mainRegion.show(mainView);
-    });
+    }
 
     // HEADER
     const headerView = new HeaderView({
