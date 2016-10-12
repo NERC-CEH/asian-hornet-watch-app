@@ -9,6 +9,7 @@ import App from 'app';
 import CommonController from '../common/controller';
 import InfoMenuController from './menu/controller';
 import SpeciesController from './species/controller';
+import SpeciesComparisonController from './species_comparison/controller';
 import SpeciesListController from '../common/pages/taxon/controller';
 import HomeController from './home/controller';
 import './brc_approved/BRC_approved_logo.png';
@@ -49,6 +50,7 @@ const Router = Marionette.AppRouter.extend({
       CommonController.show({
         title: 'Credits', App, route: 'info/credits/main',
       }); },
+    'info/species/comparison(/)': SpeciesComparisonController.show,
     'info/species/:id(/)': SpeciesController.show,
     'info/species(/)': SpeciesListController.show,
     'info/*path': () => { App.trigger('404:show'); },

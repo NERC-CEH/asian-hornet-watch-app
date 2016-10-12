@@ -494,6 +494,11 @@ li.table-view-cell {
   }
 }
 
+ul.no-style {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
 p a {
   color: $color-blue;

@@ -4,7 +4,7 @@ import MainView from './main_view';
 import appModel from '../../common/models/app_model';
 import Sample from '../../common/models/sample';
 import Occurrence from '../../common/models/occurrence';
-import HeaderView from '../../common/views/header_view';
+import HeaderView from './header_view';
 import speciesData from 'species.data';
 
 const API = {
@@ -23,9 +23,13 @@ const API = {
     mainRegion.show(mainView);
 
     // HEADER
+    let compare = false;
+    const name = speciesModel.get('common_name');
+    if (name.indexOf('hornet') >= 0) {
+      compare = true;
+    }
     const headerView = new HeaderView({
-      id: 'species-account-header',
-      model: new Backbone.Model({ title: speciesModel.get('scientific_name') }),
+      model: new Backbone.Model({ title: speciesModel.get('scientific_name'), compare }),
     });
 
     App.regions.getRegion('header').show(headerView);
