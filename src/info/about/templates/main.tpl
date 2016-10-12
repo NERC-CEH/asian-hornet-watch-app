@@ -1,17 +1,17 @@
 <ul class="table-view">
   <li>
     <p>
-      Asian Hornet Watch is an app designed to record and help the early detection of
-      Asian Hornet in the UK following the first confirmed record in September 2016.
-      Asian Hornet is a non-native species within the UK and could have a serious impact
-      on our wild insects and honeybees so early detection is important. There are a number
-      of native insects in the UK that look very similar to the Asian Hornet, and are common
-      and widespread. Asian Hornet Watch provides an identification guide to help check
-      which species you have seen and an opportunity to record your sightings. Insect
-      identification can be difficult and so please do include a photograph with your
-      record to help us confirm the identity of the species you have seen.
+      Asian Hornet Watch is an app designed to record and help the early detection
+      of Asian Hornet in the UK following the first confirmed record in September
+      2016. Asian Hornet is a non-native species within the UK and could have a
+      serious impact on our insects including honeybees so early detection is
+      important. There are a number of native insects in the UK that look very
+      similar to the Asian Hornet, and are common and widespread. Asian Hornet
+      Watch provides an identification guide to help check which species you have
+      seen and an opportunity to record your sightings. Insect identification can
+      be difficult and so please do include a photograph with your record to help
+      us confirm the identity of the species you have seen.
     </p>
-  </li>
   <li>
     <p><strong>Who can use the app?</strong></p>
     <p>We encourage everyone to get involved with recording species as it is
