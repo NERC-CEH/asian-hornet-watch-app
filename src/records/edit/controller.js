@@ -170,21 +170,21 @@ const API = {
 
   askLogin(anonymousCallback) {
     App.regions.getRegion('dialog').show({
-      title: 'Your details',
-      body: 'Would you like to send it anonymously or login to iRecord account?',
+      title: '',
+      body: 'Please select <b>Login</b> if you have an iRecord account or would like to register, otherwise select <b>Submit</b> and enter your contact details.',
       buttons: [
-        {
-          title: 'Anonymous',
-          onClick() {
-            API.askAnonymous(anonymousCallback);
-          },
-        },
         {
           title: 'Login',
           class: 'btn-positive',
           onClick() {
             App.regions.getRegion('dialog').hide();
             App.trigger('user:login', { replace: true });
+          },
+        },
+        {
+          title: 'Submit',
+          onClick() {
+            API.askAnonymous(anonymousCallback);
           },
         },
       ],
