@@ -93,6 +93,7 @@
 
     <% if (obj.notes) { %>
     <p>
+      <strong>Other features:</strong>
       <span><%= obj.notes %></span>
     </p>
     <% } %>
