@@ -5,16 +5,8 @@ import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import './styles.scss';
 
-const View = Marionette.View.extend({
-  template: JST['common/taxon/taxon'],
-
-  events: {
-    'click input': 'onSelect',
-  },
-
-  onSelect() {
-    this.trigger('select', this.model.attributes);
-  },
+export default Marionette.View.extend({
+  template: JST['common/taxon_comparison/main'],
 
   serializeData() {
     const recordModel = this.options.recordModel;
@@ -30,22 +22,6 @@ const View = Marionette.View.extend({
       pic: `${this.model.id}_0.jpg`,
       selected: taxon && taxon.id === this.model.id,
       recordModel,
-    };
-  },
-});
-
-export default Marionette.CompositeView.extend({
-  id: 'taxon-main',
-  template: JST['common/taxon/main'],
-  childViewContainer: '#species-list',
-
-  tagName: 'div',
-  className: 'list',
-  childView: View,
-
-  childViewOptions() {
-    return {
-      recordModel: this.options.recordModel,
     };
   },
 });

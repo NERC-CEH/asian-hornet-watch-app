@@ -38,7 +38,14 @@
 }
 
 #taxon-main.list {
-  margin: 0 -2%;
+  margin: -1px -2% 0;
+
+  #species-list {
+    margin-bottom: -2px;
+  }
+  #species-list > div {
+    padding: 0;
+  }
 
   label {
     color: $color-white;
