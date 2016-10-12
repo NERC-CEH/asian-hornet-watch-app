@@ -226,7 +226,7 @@ const API = {
       body: editView,
       buttons: [
         {
-          title: 'Save',
+          title: 'Submit',
           class: 'btn-positive',
           onClick() {
             // update location
