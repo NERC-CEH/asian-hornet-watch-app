@@ -108,7 +108,7 @@ const RecordView = Marionette.View.extend({
     const images = occ.images;
     const img = images.length && images.at(0).get('thumbnail');
 
-    const taxon = `${specie.common_name} ${specie.common_name_significant}`;
+    const taxon = specie.common_name;
 
     const syncStatus = this.model.getSyncStatus();
 
@@ -128,7 +128,6 @@ const RecordView = Marionette.View.extend({
       date,
       taxon,
       number,
-      stage: occ.get('stage') && StringHelp.limit(occ.get('stage')),
       comment: occ.get('comment'),
       img: img ? `<img src="${img}"/>` : '',
     };
