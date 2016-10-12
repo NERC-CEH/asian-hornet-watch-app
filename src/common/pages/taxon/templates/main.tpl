@@ -13,4 +13,8 @@
     <span class="media-object pull-left icon icon-info"></span>
   </a>
   <% } %>
+  <% if (obj.id === 1) { %>
+  <span id="hornet-warning" class="media-object pull-left icon icon-warn"></span>
+  <% } %>
+
 </label>
