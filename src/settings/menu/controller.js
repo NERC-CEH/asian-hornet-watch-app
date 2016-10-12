@@ -67,8 +67,8 @@ const API = {
   },
 
   deleteAllRecords() {
-    let body = 'Are you sure you want to delete all submitted records?';
-    body += '</br><i><b>Note:</b> submitted ones will remain on the server.</i>';
+    let body = 'Are you sure you want to delete all successfully synchronised local records?';
+    body += '</br><i><b>Note:</b> records on the server will not be touched.</i>';
 
     App.regions.getRegion('dialog').show({
       title: 'Delete All',
