@@ -3,8 +3,7 @@
 </div>
 
 <div id="intro-snippet">
-  Help detect the non-native Asian Hornet and record our native hornets and their
-  look-alikes so we can update their status and distribution in the UK.
+  Learn more about Asian hornet and help detect it by recording suspected sightings.
 </div>
 
 <ul id="buttons" class="table-view buttons">
