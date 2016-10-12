@@ -1,8 +1,8 @@
 @import "../../common/styles/_variables.scss";
 
 #home {
-  //background: url(../images/background.jpg) center center no-repeat;
-  background-image: url(images/background.png);
+  background: url(images/background.png) center center no-repeat;
+  background-size: cover;
   margin: -45px -2% 0;
   padding: 14px;
   height: 100vh;
