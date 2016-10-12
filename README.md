@@ -1,4 +1,4 @@
-# Hornet Watch App
+# Asian Hornet Watch app
 
 ## Contribution
 

@@ -1,8 +1,8 @@
 {
-  "name": "hornet-watch",
+  "name": "asian-hornet-watch",
   "id": "uk.ac.ceh.hornets",
-  "title": "Hornet Watch",
-  "description": "Hornet Watch application.",
+  "title": "Asian Hornet Watch",
+  "description": "Asian Hornet Watch application.",
   "version": "1.0.0",
   "build": "2",
   "homepage": "http://www.irecord.org.uk",
