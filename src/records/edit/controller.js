@@ -171,7 +171,7 @@ const API = {
   askLogin(anonymousCallback) {
     App.regions.getRegion('dialog').show({
       title: '',
-      body: 'Please select <b>Login</b> if you have an iRecord account or would like to register, otherwise select <b>Submit</b> and enter your contact details.',
+      body: 'Please select <b>Login</b> if you have an iRecord account or would like to register, otherwise select <b>Send</b> and enter your contact details.',
       buttons: [
         {
           title: 'Login',
@@ -182,7 +182,7 @@ const API = {
           },
         },
         {
-          title: 'Submit',
+          title: 'Send',
           onClick() {
             API.askAnonymous(anonymousCallback);
           },
@@ -226,7 +226,7 @@ const API = {
       body: editView,
       buttons: [
         {
-          title: 'Submit',
+          title: 'Send',
           class: 'btn-positive',
           onClick() {
             // update location

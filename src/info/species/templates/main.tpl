@@ -39,10 +39,6 @@
   <li id="timeline"><img src="images/<%- obj.timeline %>" alt=""></li>
   <% } %>
 
-  <li id="species-description">
-  <p><%= obj.description %></p>
-</li>
-
   <li>
     <% if (obj.size) { %>
     <p>
@@ -99,11 +95,7 @@
     <% } %>
   </li>
 
-
-  <!--<li class="table-view-cell">-->
-  <!--<a id="record-btn" class="navigate-right btn-small">-->
-  <!--<span class="media-object pull-left icon icon-plus"></span>-->
-  <!--Record Species-->
-  <!--</a>-->
-  <!--</li>-->
+  <li id="species-description">
+    <p><%= obj.description %></p>
+  </li>
 </ul>

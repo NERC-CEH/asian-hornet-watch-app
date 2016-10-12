@@ -19,9 +19,9 @@
     <strong>Photographs:</strong>
     <p>
       Jean Haxaire, John Feltwell, Laurent Eude, Luc Alary, Steph Cariou,
-      Michel Reynaud, Siga, Jean HaxaireSteven Falk, Paul Davis, Steven Falk,
+      Michel Reynaud, Siga, Jean Haxaire, Steven Falk, Paul Davis, Steven Falk,
       Cristian Arghuis, Martin D Parr, Nigel Jones, Chris Taklis, Colin Pumfrett,
-      Frank PostSteve Covey, Paul Hill, Les Binns, Holger Groschl, Peter L HerringLee Collins,
+      Frank Post, Steve Covey, Paul Hill, Les Binns, Holger Groschl, Peter L Herring, Lee Collins,
       Marc Botham,
       Joaquim Alves Gaspar, Matt Smith, Frank Post, Pere Igor, Fujnky
     </p>
