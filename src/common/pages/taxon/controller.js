@@ -38,7 +38,7 @@ const API = {
         });
 
         const mainRegion = App.regions.getRegion('main');
-        mainRegion.el.scrollTop = 0; // needs to be at the top
+        if (mainRegion.el.scrollTop) mainRegion.el.scrollTop = 0; // needs to be at the top
         mainRegion.show(mainView);
       });
     } else {
@@ -50,7 +50,7 @@ const API = {
       });
 
       const mainRegion = App.regions.getRegion('main');
-      mainRegion.el.scrollTop = 0; // needs to be at the top
+      if (mainRegion.el.scrollTop) mainRegion.el.scrollTop = 0; // needs to be at the top
       mainRegion.show(mainView);
     }
 
