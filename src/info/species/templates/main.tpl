@@ -28,9 +28,7 @@
       <use id="species-map-data" xlink:href="#data"/>
       <g id="legend">
         <text dy="15" x="30" y="0" style="font-size: normal">Main area</text>
-        <rect width="20" height="20" fill="#42423e" y="0" x="0"></rect>
-        <text dy="15" x="30" y="30" style="font-size: normal">Individual records</text>
-        <rect width="20" height="20" fill="#FFC019" y="30" x="0"></rect>
+        <rect width="20" height="20" fill="#FFC019" y="0" x="0"></rect>
       </g>
     </svg>
   </li>
