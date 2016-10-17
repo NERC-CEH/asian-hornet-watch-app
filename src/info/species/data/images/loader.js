@@ -12,6 +12,7 @@ import './1_6.jpg';
 import './1_7.jpg';
 import './1_8.jpg';
 import './1_9.jpg';
+import './1_10.jpg';
 import './2_0.jpg';
 import './2_1.jpg';
 import './2_2.jpg';
