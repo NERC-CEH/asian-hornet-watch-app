@@ -1,4 +1,5 @@
 <ul class="table-view">
+  <li><img src="images/sponsor_logo.png" alt=""></li>
   <li>
     <p>
       <strong>We are very grateful for all the people that helped to
@@ -14,16 +15,32 @@
       <li>Lucy Cornwell (APHA)</li>
     </ul>
     </p>
-    </li>
+  </li>
   <li>
     <strong>Photographs:</strong>
     <p>
-      Jean Haxaire, John Feltwell, Laurent Eude, Luc Alary, Steph Cariou,
-      Michel Reynaud, Siga, Jean Haxaire, Steven Falk, Paul Davis, Steven Falk,
-      Cristian Arghuis, Martin D Parr, Nigel Jones, Chris Taklis, Colin Pumfrett,
-      Frank Post, Steve Covey, Paul Hill, Les Binns, Holger Groschl, Peter L Herring, Lee Collins,
-      Marc Botham,
-      Joaquim Alves Gaspar, Matt Smith, Frank Post, Pere Igor, Fujnky
+      <b>Front page</b> - Opening (flash): Didier Descouens; Background: Laurent Eude
+      <b>Species pages</b> - Asian Hornet: Jean Haxaire, John Feltwell, Laurent Eude,
+      Luc Alary, Steph Cariou, Michel Reynaud, Siga, National Bee Unit;
+      European Hornet: Steven Falk, Paul Davis, Steven Falk, Cristian Arghuis,
+      Steven Falk, Martin D Parr, Nigel Jones, Chris Taklis, Colin Pumfrett,
+      Frank Post; Giant Woodwasp: Steve Covey, Paul Hill, Les Binns, Les Binns,
+      Holger Groschl, Nigel Jones, Les Binns, Peter L Herring; Hornet Hoverfly:
+      Lee Collins, Marc Botham, Steven Falk, Joaquim Alves Gaspar, Paul Davis,
+      Matt Smith, Frank Post, Pere Igor, Fujnky, Steven Falk; Hornet comparisons:
+      National Bee Unit, John Feltwell, Cristian Arghuis, Jean Marie Rohou, Steven Falk,
+      John Feltwell, Frank Post
+    </p>
+  </li>
+  <li>
+    <strong>Maps</strong>
+    <p>Colin Harrower</p>
+  </li>
+  <li>
+    <strong>Recording Schemes</strong>
+    <p>
+      Matt Smith and Stuart Roberts (Bees Wasps and Ants Recording Scheme);
+      Stuart Ball and Roger Morris (Hoverfly Recording Scheme)
     </p>
   </li>
 </ul>

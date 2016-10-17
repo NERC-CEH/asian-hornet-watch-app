@@ -15,6 +15,7 @@ import HomeController from './home/controller';
 import './brc_approved/BRC_approved_logo.png';
 import './brc_approved/styles.scss';
 import './help/swipe_record.png';
+import './credits/sponsor_logo.png';
 
 App.info = {};
 
