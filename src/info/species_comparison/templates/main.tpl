@@ -27,8 +27,8 @@
     <div class="heading annotation pull-right">European Hornet</div>
     <img src="images/Thorax1.jpg" alt="">
     <img src="images/Thorax2.jpg" alt="">
-    <div class="annotation pull-left">Black with extensive brown markings</div>
-    <div class="annotation pull-right">Entirely black</div>
+    <div class="annotation pull-left">Entirely black</div>
+    <div class="annotation pull-right">Black with extensive brown markings</div>
   </li>
   <li class="table-view-divider">Legs</li>
   <li class="table-view-cell">
