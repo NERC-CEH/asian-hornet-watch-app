@@ -1,5 +1,8 @@
+<div class="warning-message">
+  <p>Caution: take care when recording this species as its sting is similar to that of a wasp</p>
+</div>
 <ul class="table-view core inputs no-top <%- obj.isSynchronising ? 'disabled' : '' %>">
-  <li class="table-view-divider">Please fill in the details.</li>
+  <li class="table-view-divider" style="margin-top: 0">Please fill in the details.</li>
   <li class="table-view-cell">
     <a href="#records/<%- obj.id %>/edit/taxon" id="species-button" class="navigate-right">
       <span class="media-object pull-left icon icon-wasp"></span>
