@@ -86,7 +86,6 @@
     </p>
     <% } %>
 
-
     <% if (obj.notes) { %>
     <p>
       <strong>Other features:</strong>
@@ -94,6 +93,15 @@
     </p>
     <% } %>
   </li>
+
+  <% if (obj.id === 1 || obj.id === 2) { %>
+  <li class="table-view-cell">
+    <a href="#info/species/comparison" class="navigate-right btn-small">
+      <span class="media-object pull-left icon icon-info"></span>
+      Compare Species
+    </a>
+  </li>
+  <% } %>
 
   <li id="species-description">
     <p><%= obj.description %></p>
