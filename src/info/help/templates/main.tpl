@@ -8,7 +8,7 @@
     </a>
     <p id="c1" class="collapse"
        aria-labelledby="headingOne" aria-expanded="false">
-      Please press the plus <span class="icon icon-plus"></span> record button in the home page header.
+      Please press the <span class="icon icon-plus"></span> record button in the home page.
       This will bring you to the record form page. After selecting the species,
       fill in the details of the sighting, like location, date, number seen etc.
       <br>
@@ -84,11 +84,11 @@
       Sign in/out or register
     </a>
     <p id="c9" class="collapse" aria-labelledby="headingTwo" aria-expanded="false">
-      To login, open the main menu page <span class="icon icon-menu"></span>,
+      To login, open the app info page <span class="icon icon-info"></span>,
       click Login <span class="icon icon-user"></span>
       or Register <span class="icon icon-user-plus"></span> buttons and follow the instructions.
       <br><br>
-      To logout, visit the main menu page <span class="icon icon-menu"></span>
+      To logout, visit the app info page <span class="icon icon-info"></span>
       and click the logout <span class="icon icon-logout"></span> button.
       <br><br>
       <b>Note:</b> after registering a new account you must verify your email
