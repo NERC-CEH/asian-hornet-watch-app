@@ -35,9 +35,7 @@
     </svg>
   </li>
 
-  <% if (obj.timeline) { %>
   <li id="timeline"><img src="images/<%- obj.timeline %>" alt=""></li>
-  <% } %>
 
   <li>
     <% if (obj.size) { %>
