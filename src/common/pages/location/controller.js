@@ -139,10 +139,6 @@ const API = {
         function validate(attrs) {
           const errors = {};
 
-          if (!attrs.name) {
-            errors.name = "can't be blank";
-          }
-
           if (!attrs.gridref) {
             errors.gridref = "can't be blank";
           } else {
