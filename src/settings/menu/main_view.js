@@ -12,8 +12,8 @@ export default Marionette.View.extend({
   template: JST['settings/menu/main'],
 
   events: {
-    'toggle #use-autosync-btn': 'onSettingToggled',
-    'click #use-autosync-btn': 'onSettingToggled',
+    'toggle #use-training-btn': 'onSettingToggled',
+    'click #use-training-btn': 'onSettingToggled',
   },
 
   triggers: {
