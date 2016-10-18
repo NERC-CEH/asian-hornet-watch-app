@@ -67,7 +67,7 @@ export default Marionette.View.extend({
         break;
       }
       case 'comment':
-        templateData.comment = this.model.get('comment');
+        templateData.comment = occ.get('comment');
         break;
       default:
         Log('Records:Attribute:MainView: no such attribute', 'e');
