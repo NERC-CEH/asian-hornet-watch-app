@@ -115,6 +115,10 @@ export default {
       },
     },
     occurrence: {
+      training: {
+        id: 'training',
+      },
+
       taxon: {
         values(taxon) {
           return taxon.warehouse_id;

@@ -3,6 +3,7 @@ import Morel from 'morel';
 import { Device, Log } from 'helpers';
 import CONFIG from 'config';
 import Sample from './models/sample';
+import appModel from './models/app_model';
 import userModel from './models/user_model';
 
 const morelConfiguration = $.extend(CONFIG.morel.manager, {
@@ -15,7 +16,12 @@ const morelConfiguration = $.extend(CONFIG.morel.manager, {
       sample.set('device', Device.getPlatform());
       sample.set('device_version', Device.getVersion());
 
+      // attach user information
       userModel.appendSampleUser(sample);
+
+      // training setting
+      const training = appModel.get('useTraining');
+      sample.occurrences.at(0).set('training', training);
     } else {
       // don't send until the user has logged in
       return true;

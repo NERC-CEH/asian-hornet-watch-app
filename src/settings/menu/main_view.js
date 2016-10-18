@@ -39,9 +39,7 @@ export default Marionette.View.extend({
   serializeData() {
     const appModel = this.model;
     return {
-      useGridRef: appModel.get('useGridRef'),
-      useGridMap: appModel.get('useGridMap'),
-      autosync: appModel.get('autosync'),
+      useTraining: appModel.get('useTraining'),
     };
   },
 });
