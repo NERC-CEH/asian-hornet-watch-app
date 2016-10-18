@@ -1,6 +1,8 @@
 <div class="info-message">
-  Asian Hornet is most likely to be confused with European Hornet which is slightly
-  larger. Other than size the two species differ in the following ways below.
+  <p>
+    Asian Hornet is most likely to be confused with European Hornet which is slightly
+    larger. Other than size the two species differ in the following ways below.
+  </p>
 </div>
 <ul class="table-view no-style">
   <li class="table-view-divider">Abdomen</li>
