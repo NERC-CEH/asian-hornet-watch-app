@@ -26,17 +26,13 @@ export default {
   },
 
   login: {
-    url: REGISTER_URL,
+    url: 'http://www.brc.ac.uk/irecord/user/mobile/register',
     timeout: 30000,
   },
 
   report: {
-    url: REPORT_URL,
+    url: 'http://www.brc.ac.uk/irecord/mobile/report',
     timeout: 80000,
-  },
-
-  statistics: {
-    url: STATISTICS_URL,
   },
 
   // mapping
@@ -50,11 +46,11 @@ export default {
   // morel configuration
   morel: {
     manager: {
-      url: RECORD_URL,
+      url: 'http://www.brc.ac.uk/irecord/mobile/submit',
       appname: API_KEY,
       appsecret: API_SECRET,
       website_id: 23,
-      survey_id: 417,
+      survey_id: 423,
       input_form: 'enter-app-record',
     },
     sample: {

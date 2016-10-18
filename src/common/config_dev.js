@@ -1,10 +1,36 @@
 /** ****************************************************************************
  * Main app development configuration file.
  *****************************************************************************/
+import $ from 'jquery';
 import config from './config';
 
-// google analytics
-config.ga.status = false;
-config.log.ga_error = false;
+const newConfig = $.extend(true, config, {
+  // google analytics
+  ga: {
+    status: false,
+  },
 
-export default config;
+  log: {
+    ga_error: false,
+  },
+
+  login: {
+    url: 'http://192.171.199.230/irecord7/user/mobile/register',
+    timeout: 30000,
+  },
+
+  report: {
+    url: 'http://192.171.199.230/irecord7/mobile/report',
+    timeout: 80000,
+  },
+
+  // morel configuration
+  morel: {
+    manager: {
+      url: 'http://192.171.199.230/irecord7/mobile/submit',
+      survey_id: 417,
+    },
+  },
+});
+
+export default newConfig;
