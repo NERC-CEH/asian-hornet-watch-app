@@ -196,19 +196,21 @@ const API = {
       template: JST['records/edit/anonymous'],
       getValues() {
         let values = {
-          email: StringHelp.escape(this.$el.find('#email').val()),
-          name: StringHelp.escape(this.$el.find('#name').val()),
-          surname: StringHelp.escape(this.$el.find('#surname').val()),
+          email: StringHelp.escape(this.$el.find('#user-email').val()),
+          name: StringHelp.escape(this.$el.find('#user-name').val()),
+          surname: StringHelp.escape(this.$el.find('#user-surname').val()),
         };
 
-        if (!Validate.email(values.email)) {
-          values = {};
-        }
         return values;
       },
 
+      onFormDataInvalid(errors) {
+        const $view = this.$el;
+        Validate.updateViewFormErrors($view, errors, '#user-');
+      },
+
       onAttach() {
-        const $input = this.$el.find('#email');
+        const $input = this.$el.find('#user-email');
         $input.focus();
         if (Device.isAndroid()) {
           window.Keyboard.show();
@@ -229,8 +231,14 @@ const API = {
           title: 'Send',
           class: 'btn-positive',
           onClick() {
-            // update location
+            // update user
             const user = editView.getValues();
+            // validate
+            const errors = API.validateAnonymous(user);
+            if (errors) {
+              editView.onFormDataInvalid(errors);
+              return;
+            }
             userModel.setContactDetails(user);
             App.regions.getRegion('dialog').hide();
             callback(); // send record
@@ -245,6 +253,30 @@ const API = {
         },
       ],
     });
+  },
+
+  validateAnonymous(attrs) {
+    const errors = {};
+
+    if (!attrs.email) {
+      errors.email = "can't be blank";
+    } else if (!Validate.email(attrs.email)) {
+      errors.email = 'invalid';
+    }
+
+    if (!attrs.name) {
+      errors.name = "can't be blank";
+    }
+
+    if (!attrs.surname) {
+      errors.surname = "can't be blank";
+    }
+
+    if (!_.isEmpty(errors)) {
+      return errors;
+    }
+
+    return null;
   },
 
   photoDelete(photo) {
