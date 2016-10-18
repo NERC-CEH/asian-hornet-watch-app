@@ -257,6 +257,18 @@
       "css": "warn",
       "code": 59412,
       "src": "fontawesome"
+    },
+    {
+      "uid": "frauy9fser6zk9n5ih3rdpz7zzfjbrvu",
+      "css": "eye",
+      "code": 59425,
+      "src": "modernpics"
+    },
+    {
+      "uid": "d8813acae9d35ada76fda399a6000587",
+      "css": "ball",
+      "code": 59447,
+      "src": "maki"
     }
   ]
 }

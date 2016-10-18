@@ -93,7 +93,7 @@
   <% if (obj.id === 1 || obj.id === 2) { %>
   <li class="table-view-cell">
     <a href="#info/species/comparison" class="navigate-right btn-small">
-      <span class="media-object pull-left icon icon-info"></span>
+      <span class="media-object pull-left icon icon-eye"></span>
       Compare Species
     </a>
   </li>
