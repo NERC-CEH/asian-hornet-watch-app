@@ -1,4 +1,5 @@
-import { LocHelp, Log } from 'helpers';
+import LocHelp from 'helpers/location';
+import Log from 'helpers/log';
 import L from 'leaflet';
 import { OsGridRef } from 'geodesy';
 import './map_view_singleclick';
@@ -18,7 +19,7 @@ const marker = {
    */
   updateMapMarker(location) {
     if (!location.latitude || !location.longitude) return;
-    Log('Common:Location:Map view: updating map marker');
+    Log('Common:Location:Map view: updating map marker.');
 
     const inUK = LocHelp.isInUK(location);
 
@@ -118,7 +119,7 @@ const marker = {
     location.gridref = LocHelp.coord2grid(location);
 
     // trigger won't work to bubble up
-    this.triggerMethod('location:select:map', this, location);
+    this.triggerMethod('location:select:map', location);
     this.updateMapMarker(location);
 
     // // zoom to marker

@@ -2,7 +2,9 @@
  * App Model past locations functions.
  *****************************************************************************/
 import _ from 'lodash';
-import { UUID, LocHelp } from 'helpers';
+import UUID from 'helpers/UUID';
+import Log from 'helpers/log';
+import LocHelp from 'helpers/location';
 
 const MAX_SAVED = 100;
 
@@ -13,6 +15,7 @@ export default {
    * @param location
    */
   setLocation(origLocation = {}) {
+    Log('AppModel:PastLocations: setting.');
     const location = _.cloneDeep(origLocation);
     const locations = this.get('locations');
 
@@ -37,7 +40,9 @@ export default {
         duplication = true;
       }
     });
-    if (duplication) return null;
+    if (duplication) {
+      return null;
+    }
 
     // add new one
     location.id = UUID();
@@ -54,6 +59,8 @@ export default {
   },
 
   removeLocation(location = {}) {
+    Log('AppModel:PastLocations: removing.');
+
     const that = this;
     const locations = this.get('locations');
 

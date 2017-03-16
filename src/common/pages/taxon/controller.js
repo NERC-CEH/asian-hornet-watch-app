@@ -1,48 +1,55 @@
 /** ****************************************************************************
- * Record Show controller.
+ * Taxon controller.
  *****************************************************************************/
 import Backbone from 'backbone';
 import App from 'app';
-import { Log } from 'helpers';
-import recordManager from '../../record_manager';
+import radio from 'radio';
+import speciesData from 'species.data';
+import Log from 'helpers/log';
+import savedSamples from 'saved_samples';
 import MainView from './main_view';
 import HeaderView from '../../views/header_view';
-import speciesData from 'species.data';
 
 const API = {
-  show(id) {
+  show(sampleID) {
     Log('Records:Taxon:Controller: showing');
 
-    if (id) {
-      recordManager.get(id, (err, recordModel) => {
-        if (err) {
-          Log(err, 'e');
-        }
+    const that = this;
+    this.id = sampleID;
 
-        // Not found
-        if (!recordModel) {
-          Log('No record model found', 'e');
-          App.trigger('404:show', { replace: true });
-          return;
-        }
-
-        // MAIN
-        const speciesCollection = new Backbone.Collection(speciesData);
-        const mainView = new MainView({
-          collection: speciesCollection,
-          recordModel,
+    if (sampleID) {
+      // wait till savedSamples is fully initialized
+      if (savedSamples.fetching) {
+        savedSamples.once('fetching:done', () => {
+          API.show.apply(that, [sampleID]);
         });
+        return;
+      }
 
-        mainView.on('childview:select', (taxon) => {
-          API.save(recordModel, taxon);
-        });
+      // check if the sample has taxon specified
+      const sample = savedSamples.get(sampleID);
+      // Not found
+      if (!sample) {
+        Log('No sample model found.', 'e');
+        radio.trigger('app:404:show', { replace: true });
+        return;
+      }
 
-        const mainRegion = App.regions.getRegion('main');
-        if (mainRegion.el.scrollTop) mainRegion.el.scrollTop = 0; // needs to be at the top
-        mainRegion.show(mainView);
+      // MAIN
+      const speciesCollection = new Backbone.Collection(speciesData);
+      const mainView = new MainView({
+        collection: speciesCollection,
+        sampleModel: sample,
       });
-    } else {
 
+      mainView.on('childview:select', (taxon) => {
+        API.save(sample, taxon);
+      });
+
+      const mainRegion = App.regions.getRegion('main');
+      if (mainRegion.el.scrollTop) mainRegion.el.scrollTop = 0; // needs to be at the top
+      radio.trigger('app:main', mainView);
+    } else {
       // MAIN
       const speciesCollection = new Backbone.Collection(speciesData);
       const mainView = new MainView({
@@ -51,19 +58,19 @@ const API = {
 
       const mainRegion = App.regions.getRegion('main');
       if (mainRegion.el.scrollTop) mainRegion.el.scrollTop = 0; // needs to be at the top
-      mainRegion.show(mainView);
+      radio.trigger('app:main', mainView);
     }
 
-    // HEADER
+// HEADER
     const headerView = new HeaderView({
       model: new Backbone.Model({
         title: 'Species',
       }),
     });
-    App.regions.getRegion('header').show(headerView);
+    radio.trigger('app:header', headerView);
 
-    // FOOTER
-    App.regions.getRegion('footer').hide().empty();
+// FOOTER
+    radio.trigger('app:footer:hide');
   },
 
   save(recordModel, taxon) {

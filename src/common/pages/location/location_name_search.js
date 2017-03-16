@@ -2,9 +2,9 @@
  * Returns a location name search function.
  */
 import _ from 'lodash';
-import appModel from '../../models/app_model';
+import appModel from 'app_model';
 
-const substringMatcher = (strs, max) => {
+function substringMatcher(strs, max) {
   return function findMatches(q, cb) {
     // an array that will be populated with substring matches
     const matches = [];
@@ -26,7 +26,7 @@ const substringMatcher = (strs, max) => {
 
     cb(matches);
   };
-};
+}
 
 export default (max) => {
   const previousLocations = appModel.get('locations');

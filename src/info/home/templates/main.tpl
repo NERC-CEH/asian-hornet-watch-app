@@ -14,7 +14,7 @@
     </a>
   </li>
   <li class="table-view-cell">
-    <a id="record-btn" class="navigate-right">
+    <a id="sample-btn" class="navigate-right">
       <span class="media-object pull-left icon icon-plus"></span>
       Record
     </a>
@@ -22,8 +22,8 @@
   <li class="table-view-cell">
     <a href="#info" class="navigate-right">
       <span class="media-object pull-left icon icon-info"></span>
-      <% if (obj.records > 0) { %>
-      <span class="badge <%- obj.needSync ? 'error' : '' %>"><%- obj.records %></span>
+      <% if (obj.samples > 0) { %>
+      <span class="badge <%- obj.needSync ? 'error' : '' %>"><%- obj.samples %></span>
       <% } %>
       App Info
     </a>

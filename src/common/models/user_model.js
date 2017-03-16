@@ -5,16 +5,20 @@ import _ from 'lodash';
 import Backbone from 'backbone';
 import Store from 'backbone.localstorage';
 import CONFIG from 'config';
-import { Validate, Analytics } from 'helpers';
+import Log from 'helpers/log';
+import Validate from 'helpers/validate';
+import Analytics from 'helpers/analytics';
 
 let UserModel = Backbone.Model.extend({
   id: 'user',
 
   defaults: {
+    drupalID: '',
     name: '',
-    surname: '',
+    firstname: '',
+    secondname: '',
     email: '',
-    secret: '',
+    password: '',
   },
 
   localStorage: new Store(CONFIG.name),
@@ -30,11 +34,14 @@ let UserModel = Backbone.Model.extend({
    * Resets the user login information.
    */
   logOut() {
-    this.set('email', '');
-    this.set('secret', '');
-    this.set('name', '');
-    this.set('surname', '');
+    Log('User: logging out.');
 
+    this.set('email', '');
+    this.set('password', '');
+    this.set('name', '');
+    this.set('firstname', '');
+    this.set('secondname', '');
+    
     this.save();
     this.trigger('logout');
     Analytics.trackEvent('User', 'logout');
@@ -47,45 +54,33 @@ let UserModel = Backbone.Model.extend({
    * @param user User object or empty object
    */
   logIn(user) {
-    this.set('secret', user.secret || '');
-    this.setContactDetails(user);
-    this.save();
-    this.trigger('login');
+    Log('User: logging in.');
 
-    Analytics.trackEvent('User', 'login');
-  },
-
-  /**
-   * Sets user contact information.
-   */
-  setContactDetails(user) {
+    this.set('drupalID', user.id || '');
+    this.set('password', user.password || '');
     this.set('email', user.email || '');
     this.set('name', user.name || '');
-    this.set('surname', user.surname || '');
+    this.set('firstname', user.firstname || '');
+    this.set('secondname', user.secondname || '');
     this.save();
+
+    this.trigger('login');
+    Analytics.trackEvent('User', 'login');
   },
 
   /**
    * Returns user contact information.
    */
   hasLogIn() {
-    return this.get('secret');
+    return this.get('password');
   },
 
-  appendSampleUser(sample) {
-    const secret = this.get('secret');
-    if (secret) {
-      sample.set('email', this.get('email'));
-      sample.set('usersecret', secret);
-      sample.unset('name');
-      sample.unset('surname');
-    } else {
-      sample.set('user_email', this.get('email'));
-      sample.set('name', this.get('name'));
-      sample.set('surname', this.get('surname'));
-    }
+  getUser() {
+    return this.get('email');
+  },
 
-    return sample;
+  getPassword() {
+    return this.get('password');
   },
 
   validateRegistration(attrs) {
@@ -93,10 +88,8 @@ let UserModel = Backbone.Model.extend({
 
     if (!attrs.email) {
       errors.email = "can't be blank";
-    } else {
-      if (!Validate.email(attrs.email)) {
-        errors.email = 'invalid';
-      }
+    } else if (!Validate.email(attrs.email)) {
+      errors.email = 'invalid';
     }
 
     if (!attrs.firstname) {
@@ -133,14 +126,26 @@ let UserModel = Backbone.Model.extend({
   validateLogin(attrs) {
     const errors = {};
 
-    if (!attrs.email) {
-      errors.email = "can't be blank";
-    } else if (!Validate.email(attrs.email)) {
-      errors.email = 'invalid';
+    if (!attrs.name) {
+      errors.name = "can't be blank";
     }
 
     if (!attrs.password) {
       errors.password = "can't be blank";
+    }
+
+    if (!_.isEmpty(errors)) {
+      return errors;
+    }
+
+    return null;
+  },
+
+  validateReset(attrs) {
+    const errors = {};
+
+    if (!attrs.name) {
+      errors.name = "can't be blank";
     }
 
     if (!_.isEmpty(errors)) {

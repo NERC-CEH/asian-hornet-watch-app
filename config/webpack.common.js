@@ -6,6 +6,7 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pkg = require('../package.json');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 const sassLoaders = [
   'css-loader?-url',
@@ -32,8 +33,14 @@ module.exports = {
     ],
     alias: {
       app: 'app',
-      config: 'common/config',
-      helpers: 'common/helpers/main',
+      config: 'common/config/config',
+      helpers: 'common/helpers',
+      radio: 'common/radio',
+      saved_samples: 'common/saved_samples',
+      sample: 'common/models/sample',
+      occurrence: 'common/models/occurrence',
+      app_model: 'common/models/app_model',
+      user_model: 'common/models/user_model',
 
       // vendor
       typeahead: 'typeahead.js/dist/typeahead.jquery',
@@ -72,9 +79,9 @@ module.exports = {
       APP_BUILD: JSON.stringify(process.env.TRAVIS_BUILD_ID || pkg.build || new Date().getTime()),
       APP_NAME: JSON.stringify(pkg.name),
       APP_VERSION: JSON.stringify(pkg.version),
-      API_SECRET: JSON.stringify(process.env.API_SECRET || ''),
       API_KEY: JSON.stringify(process.env.API_KEY || ''),
     }),
+    new CircularDependencyPlugin(),
   ],
   postcss: [
     autoprefixer({

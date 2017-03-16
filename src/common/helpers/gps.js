@@ -1,4 +1,4 @@
-import { Log, Error } from 'helpers';
+import Log from './log';
 
 const API = {
   GPS_ACCURACY_LIMIT: 100, // meters

@@ -12,26 +12,26 @@ export default Marionette.View.extend({
   template: JST['info/home/main'],
 
   triggers: {
-    'click #record-btn': 'record',
+    'click #sample-btn': 'sample',
   },
 
   initialize() {
-    const recordsCollection = this.model.get('recordsCollection');
-    this.listenTo(recordsCollection, 'sync', this.render);
+    const savedSamples = this.model.get('savedSamples');
+    this.listenTo(savedSamples, 'sync', this.render);
   },
 
   serializeData() {
-    const recordsCollection = this.model.get('recordsCollection');
+    const savedSamples = this.model.get('savedSamples');
 
-    let savedRecords = 0;
+    let savedsamples = 0;
     let needSync = false;
-    recordsCollection.each((record) => {
-      if (record.isLocalOnly()) needSync = true;
-      if (record.metadata.saved) savedRecords++;
+    savedSamples.each((sample) => {
+      if (sample.isLocalOnly()) needSync = true;
+      if (sample.metadata.saved) savedsamples++;
     });
 
     return {
-      records: savedRecords,
+      samples: savedsamples,
       needSync,
     };
   },

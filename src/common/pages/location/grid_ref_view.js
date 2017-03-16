@@ -3,7 +3,9 @@
  *****************************************************************************/
 import Marionette from 'backbone.marionette';
 import JST from 'JST';
-import { LocHelp, StringHelp, Validate } from 'helpers';
+import LocHelp from 'helpers/location';
+import StringHelp from 'helpers/string';
+import Validate from 'helpers/validate';
 import 'typeahead';
 import locationNameFinder from './location_name_search';
 
@@ -44,7 +46,7 @@ export default Marionette.View.extend({
       name,
     };
     // trigger won't work to bubble up
-    this.triggerMethod('location:select:gridref', this, data);
+    this.triggerMethod('location:select:gridref', data);
   },
 
   onFormDataInvalid(errors) {
@@ -53,7 +55,7 @@ export default Marionette.View.extend({
   },
 
   serializeData() {
-    const location = this.model.get('recordModel').get('location') || {};
+    const location = this.model.get('sample').get('location') || {};
     let gridref;
 
     if (location.latitude && location.longitude) {

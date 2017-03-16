@@ -2,7 +2,6 @@
  * Info Menu main view.
  *****************************************************************************/
 
-import Morel from 'morel';
 import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import './styles.scss';
@@ -24,26 +23,21 @@ export default Marionette.View.extend({
 
   serializeData() {
     const userModel = this.model.get('userModel');
-    const recordsCollection = this.model.get('recordsCollection');
+    const savedSamples = this.model.get('savedSamples');
 
-    let savedRecords = 0;
+    let savedsamples = 0;
     let needSync = false;
-    recordsCollection.each((record) => {
-      if (record.isLocalOnly()) needSync = true;
-      if (record.metadata.saved) savedRecords++;
+    savedSamples.each((sample) => {
+      if (sample.isLocalOnly()) needSync = true;
+      if (sample.metadata.saved) savedsamples++;
     });
 
-    let surname;
-
-    if (userModel.hasLogIn()) {
-      surname = userModel.get('surname');
-    }
-
     return {
-      records: savedRecords,
+      samples: savedsamples,
       needSync,
-      surname,
-    };
+      login: userModel.hasLogIn(),
+      firstname: userModel.get('firstname'),
+      secondname: userModel.get('secondname'),    };
   },
 
   logout() {

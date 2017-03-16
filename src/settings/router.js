@@ -3,8 +3,8 @@
  *****************************************************************************/
 import Marionette from 'backbone.marionette';
 import App from 'app';
-import { Log } from 'helpers';
-import CommonController from '../common/controller';
+import radio from 'radio';
+import Log from 'helpers/log';
 import MenuController from './menu/controller';
 
 App.settings = {};
@@ -12,18 +12,11 @@ App.settings = {};
 const Router = Marionette.AppRouter.extend({
   routes: {
     'settings(/)': MenuController.show,
-    'settings/*path': () => { App.trigger('404:show'); },
+    'settings/*path': () => { radio.trigger('app:404:show'); },
   },
 });
 
-App.on('settings', () => {
-  App.navigate('settings/menu');
-  CommonController.show({
-    title: 'Settings', App, route: 'settings/menu',
-  });
-});
-
 App.on('before:start', () => {
-  Log('Settings:router: initializing');
+  Log('Settings:router: initializing.');
   App.settings.router = new Router();
 });

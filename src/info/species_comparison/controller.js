@@ -1,15 +1,15 @@
 /** ****************************************************************************
- * Record Show controller.
+ * sample Show controller.
  *****************************************************************************/
 import Backbone from 'backbone';
 import App from 'app';
-import { Log } from 'helpers';
+import Log from 'helpers/log';
 import MainView from './main_view';
 import HeaderView from '../../common/views/header_view';
 
 const API = {
   show() {
-    Log('Records:Taxon:Controller: showing');
+    Log('samples:Taxon:Controller: showing');
 
     // MAIN
     const mainView = new MainView();
