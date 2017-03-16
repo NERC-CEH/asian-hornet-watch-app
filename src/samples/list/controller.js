@@ -5,18 +5,26 @@ import Indicia from 'indicia';
 import radio from 'radio';
 import Log from 'helpers/log';
 import Analytics from 'helpers/analytics';
-import ImageHelp from 'helpers/image';
 import appModel from 'app_model';
 import savedSamples from 'saved_samples';
-import Sample from 'sample';
-import Occurrence from 'occurrence';
-import ImageModel from '../../common/models/image';
 import MainView from './main_view';
 import HeaderView from './header_view';
 
 const API = {
   show() {
+    // wait till savedSamples is fully initialized
+    if (savedSamples.fetching) {
+      const that = this;
+      savedSamples.once('fetching:done', () => {
+        API.show.apply(that);
+      });
+      return;
+    }
+
     Log(`Samples:List:Controller: showing ${savedSamples.length}.`);
+
+    // clean from drafts
+    API.clearDrafts(savedSamples);
 
     // MAIN
     const mainView = new MainView({
@@ -86,9 +94,10 @@ const API = {
   },
 
   clearDrafts(savedSamples) {
-    savedSamples.each((record) => {
-      if (!record.metadata.saved) {
-        record.destroy();
+    savedSamples.each((sample) => {
+      if (!sample.metadata.saved) {
+        Log(`Samples:List:Controller: clearing sample ${sample.cid}.`);
+        sample.destroy();
       }
     });
   },

@@ -28,7 +28,10 @@ const API = {
     const occurrence = new Occurrence();
     sample.addOccurrence(occurrence);
     sample.save().then(() => {
+      savedSamples.add(sample);
+
       sample.startGPS();
+
       appModel.set('draftSampleID', sample.cid);
 
       // navigate to sample edit

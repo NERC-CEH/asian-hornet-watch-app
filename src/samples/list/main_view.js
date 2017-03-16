@@ -4,6 +4,7 @@
 import $ from 'jquery';
 import Marionette from 'backbone.marionette';
 import Indicia from 'indicia';
+import appModel from 'app_model';
 import Hammer from 'hammerjs';
 import Log from 'helpers/log';
 import StringHelp from 'helpers/string';
@@ -115,8 +116,8 @@ const SampleView = Marionette.View.extend({
 
     const syncStatus = this.model.getSyncStatus();
 
-    const locationPrint = sample.printLocation();
     const location = sample.get('location') || {};
+    const locationPrint = location.name || appModel.printLocation(location);
 
     const number = occ.get('number') && StringHelp.limit(occ.get('number'));
 
@@ -127,7 +128,6 @@ const SampleView = Marionette.View.extend({
       onDatabase: syncStatus === Indicia.SYNCED,
       isLocating: sample.isGPSRunning(),
       location: locationPrint,
-      location_name: location.name,
       isSynchronising: syncStatus === Indicia.SYNCHRONISING,
       date,
       taxon,

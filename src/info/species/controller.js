@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 import App from 'app';
 import radio from 'radio';
+import savedSamples from 'saved_samples';
 import speciesData from 'species.data';
 import MainView from './main_view';
 import appModel from '../../common/models/app_model';
@@ -46,6 +47,8 @@ const API = {
     occurrence.set('taxon', speciesModel.attributes);
     sample.addOccurrence(occurrence);
     sample.save().then(() => {
+      savedSamples.add(sample);
+
       sample.startGPS();
       appModel.set('draftSampleID', sample.cid);
 

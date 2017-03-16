@@ -63,10 +63,6 @@ const Sample = Indicia.Sample.extend({
     if (!location.latitude || !location.longitude) {
       sample.location = 'missing';
     }
-    // location name
-    if (!location.name) {
-      sample['location name'] = 'missing';
-    }
 
     // date
     if (!attrs.date) {
@@ -90,8 +86,7 @@ const Sample = Indicia.Sample.extend({
       this.occurrences.each((occurrence) => {
         const errors = occurrence.validate(null, { remote: true });
         if (errors) {
-          const occurrenceID = occurrence.cid;
-          occurrences[occurrenceID] = errors;
+          sample.occurrences = 'no species selected';
         }
       });
     }

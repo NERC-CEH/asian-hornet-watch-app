@@ -3,5 +3,5 @@
 </div>
 <div class="pull-right">
   <button  id="sample-save-btn"
-           class="icon <%- obj.isSynchronising ? 'icon-plus icon-spin disabled' : 'icon-send' %>"></button>
+           class="icon <%- obj.isSynchronising ? 'icon-plus icon-spin disabled' : 'icon-send' %>">Send</button>
 </div>
