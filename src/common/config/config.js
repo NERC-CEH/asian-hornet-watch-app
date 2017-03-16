@@ -65,39 +65,15 @@ const CONFIG = {
       // anonymouse user info
       firstname: {
         id: 6,
-        values(val, submission, sample) {
-          if (sample.metadata.anonymous) {
-            return val;
-          }
-          return null;
-        },
       },
       secondname: {
         id: 7,
-        values(val, submission, sample) {
-          if (sample.metadata.anonymous) {
-            return val;
-          }
-          return null;
-        },
       },
       user_email: { // email key is taken
         id: 8,
-        values(val, submission, sample) {
-          if (sample.metadata.anonymous) {
-            return val;
-          }
-          return null;
-        },
       },
       phone: {
         id: 20,
-        values(val, submission, sample) {
-          if (sample.metadata.anonymous) {
-            return val;
-          }
-          return null;
-        },
       },
 
       location: {

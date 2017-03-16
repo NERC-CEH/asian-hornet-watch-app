@@ -156,7 +156,11 @@ const API = {
         }
 
         // sync
-        sample.save(null, { remote: true }).catch(onError);
+        sample.save({
+            user_email: userModel.get('email'),
+            firstname: userModel.get('firstname'),
+            secondname: userModel.get('secondname'),
+          }, { remote: true }).catch(onError);
         radio.trigger('sample:saved');
       })
       .catch((err) => {
