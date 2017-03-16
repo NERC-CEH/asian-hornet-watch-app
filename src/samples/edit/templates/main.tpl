@@ -1,5 +1,5 @@
 <% if (obj.training) { %>
-<div class="main-header training"></div>
+<div class="main-header training">Training</div>
 <% } %>
 <div class="warning-message">
   <p>Caution: take care when recording this species as its sting is similar to that of a wasp</p>

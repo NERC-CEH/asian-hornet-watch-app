@@ -11,4 +11,8 @@
     <label class="media-object pull-left icon icon-user"></label>
     <input id="user-surname" name="text" type="text" placeholder="Surname">
   </div>
+  <div class="input-row">
+    <label class="media-object pull-left icon icon-user"></label>
+    <input id="user-phone" name="text" type="tel" placeholder="Phone">
+  </div>
 </div>

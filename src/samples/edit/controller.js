@@ -1,14 +1,18 @@
 /** ****************************************************************************
  * Sample Edit controller.
  *****************************************************************************/
+import Marionette from 'backbone.marionette';
 import Backbone from 'backbone';
 import _ from 'lodash';
 import Indicia from 'indicia';
 import Device from 'helpers/device';
+import Validate from 'helpers/validate';
+import StringHelp from 'helpers/string';
 import ImageHelp from 'helpers/image';
 import Analytics from 'helpers/analytics';
 import Log from 'helpers/log';
 import App from 'app';
+import JST from 'JST';
 import radio from 'radio';
 import appModel from 'app_model';
 import userModel from 'user_model';
@@ -100,6 +104,7 @@ const API = {
     radio.trigger('app:footer', footerView);
   },
 
+
   save(sample) {
     Log('Samples:Edit:Controller: save clicked.');
 
@@ -122,26 +127,36 @@ const API = {
           return;
         }
 
-        if (!userModel.hasLogIn()) {
-          radio.trigger('user:login', { replace: true });
+        function onError(err = {}) {
+          Log(err, 'e');
+
+          const visibleDialog = App.regions.getRegion('dialog').$el.is(':visible');
+          // we don't want to close any other dialog
+          if (err.message && !visibleDialog) {
+            radio.trigger('app:dialog:error',
+              `Sorry, we have encountered a problem while sending the record.
+                
+                 <p><i>${err.message}</i></p>`
+            );
+          }
+        }
+
+        if (Device.isOnline() && !userModel.hasLogIn()) {
+          API.askLogin((user) => {
+            sample.metadata.anonymous = true;
+
+            sample.save({
+              user_email: user.email,
+              firstname: user.firstname,
+              secondname: user.secondname,
+              phone: user.phone,
+            }, { remote: true }).catch(onError);
+          });
           return;
         }
 
         // sync
-        sample.save(null, { remote: true })
-          .catch((err = {}) => {
-            Log(err, 'e');
-
-            const visibleDialog = App.regions.getRegion('dialog').$el.is(':visible');
-            // we don't want to close any other dialog
-            if (err.message && !visibleDialog) {
-              radio.trigger('app:dialog:error',
-                `Sorry, we have encountered a problem while sending the record.
-                
-                 <p><i>${err.message}</i></p>`
-              );
-            }
-          });
+        sample.save(null, { remote: true }).catch(onError);
         radio.trigger('sample:saved');
       })
       .catch((err) => {
@@ -185,7 +200,7 @@ const API = {
   },
 
   askLogin(anonymousCallback) {
-    App.regions.getRegion('dialog').show({
+    radio.trigger('app:dialog', {
       title: '',
       body: 'Please select <b>Login</b> if you have an iRecord account or would like to register, otherwise select <b>Send</b> and enter your contact details.',
       buttons: [
@@ -193,7 +208,7 @@ const API = {
           title: 'Login',
           class: 'btn-positive',
           onClick() {
-            radio.trigger('dialog:hide');
+            radio.trigger('app:dialog:hide');
             radio.trigger('user:login', { replace: true });
           },
         },
@@ -209,12 +224,13 @@ const API = {
 
   askAnonymous(callback) {
     const EditView = Marionette.View.extend({
-      template: JST['records/edit/anonymous'],
+      template: JST['samples/edit/anonymous'],
       getValues() {
-        let values = {
+        const values = {
           email: StringHelp.escape(this.$el.find('#user-email').val()),
-          name: StringHelp.escape(this.$el.find('#user-name').val()),
-          surname: StringHelp.escape(this.$el.find('#user-surname').val()),
+          firstname: StringHelp.escape(this.$el.find('#user-name').val()),
+          secondname: StringHelp.escape(this.$el.find('#user-surname').val()),
+          phone: StringHelp.escape(this.$el.find('#user-phone').val()),
         };
 
         return values;
@@ -255,9 +271,8 @@ const API = {
               editView.onFormDataInvalid(errors);
               return;
             }
-            userModel.setContactDetails(user);
             App.regions.getRegion('dialog').hide();
-            callback(); // send record
+            callback(user); // send record
             window.history.back();
           },
         },
@@ -280,11 +295,11 @@ const API = {
       errors.email = 'invalid';
     }
 
-    if (!attrs.name) {
+    if (!attrs.firstname) {
       errors.name = "can't be blank";
     }
 
-    if (!attrs.surname) {
+    if (!attrs.secondname) {
       errors.surname = "can't be blank";
     }
 

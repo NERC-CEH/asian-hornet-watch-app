@@ -21,7 +21,6 @@ export default Marionette.View.extend({
     const sample = this.model.get('sample');
     const occ = sample.getOccurrence();
     const specie = occ.get('taxon') || {};
-    const appModel = this.model.get('appModel');
 
     // taxon
     const scientificName = specie.scientific_name;

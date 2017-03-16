@@ -68,6 +68,18 @@ let UserModel = Backbone.Model.extend({
     Analytics.trackEvent('User', 'login');
   },
 
+
+  /**
+   * Sets user contact information.
+   */
+  setContactDetails(user) {
+    this.set('email', user.email || '');
+    this.set('firstname', user.name || '');
+    this.set('secondname', user.surname || '');
+    this.save();
+  },
+
+
   /**
    * Returns user contact information.
    */

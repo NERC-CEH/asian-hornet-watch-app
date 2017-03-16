@@ -11,6 +11,9 @@ export default Indicia.Occurrence.extend({
   metadata() {
     return {
       training: appModel.get('useTraining'),
+      release_status: 'P',
+      sensitive: 't',
+      sensitivity_precision: 100000,
     };
   },
 });

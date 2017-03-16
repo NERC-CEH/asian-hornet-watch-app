@@ -5,6 +5,7 @@ import Indicia from 'indicia';
 import radio from 'radio';
 import Log from 'helpers/log';
 import Analytics from 'helpers/analytics';
+import userModel from 'user_model';
 import appModel from 'app_model';
 import savedSamples from 'saved_samples';
 import MainView from './main_view';
@@ -30,6 +31,7 @@ const API = {
     const mainView = new MainView({
       collection: savedSamples,
       appModel,
+      userModel,
     });
 
     mainView.on('childview:sample:edit:attr', (childView, attr) => {

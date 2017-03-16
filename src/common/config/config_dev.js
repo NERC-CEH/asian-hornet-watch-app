@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Indicia from 'indicia';
 import config from './config';
 
-const HOST = 'https://test.brc.ac.uk/irecord7/'; // Backend URL - needs trailing slash
+const HOST = 'https://www.brc.ac.uk/irecord/'; // Backend URL - needs trailing slash
 
 const newConfig = $.extend(true, config, {
   // google analytics
@@ -31,7 +31,7 @@ const newConfig = $.extend(true, config, {
   // indicia configuration
   indicia: {
     host: HOST,
-    survey_id: 417,
+    // survey_id: 417,
   },
 });
 

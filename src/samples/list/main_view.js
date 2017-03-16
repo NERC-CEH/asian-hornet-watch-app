@@ -237,6 +237,7 @@ export default Marionette.CompositeView.extend({
   serializeData() {
     return {
       useTraining: this.options.appModel.get('useTraining'),
+      loggedIn: this.options.userModel.hasLogIn(),
     };
   },
 });
