@@ -37,6 +37,10 @@
       please use the <a href="http://irecord.org.uk">iRecord Website</a>.
       <br>
       <br>
+      All records submitted via the Hornet app are initially treated as
+      confidential and will not appear in other iRecord reports unless the confidential status is retracted.
+      <br>
+      <br>
       <b>Note:</b> you have to be signed in to your iRecord account and have a network connection,
       for the records to be automatically synchronised in the background.
       <br>
