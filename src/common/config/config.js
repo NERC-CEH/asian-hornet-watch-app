@@ -161,8 +161,9 @@ const CONFIG = {
       },
       number: {
         id: 523,
+        default: 'Present',
         values: {
-          default: 671,
+          'Present': 671,
           1: 665,
           '2-5': 666,
           '6-20': 667,

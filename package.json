@@ -3,8 +3,8 @@
   "id": "uk.ac.ceh.hornets",
   "title": "Asian Hornet Watch",
   "description": "Asian Hornet Watch application.",
-  "version": "1.0.0",
-  "build": "6",
+  "version": "1.0.1",
+  "build": "1",
   "homepage": "http://www.irecord.org.uk",
   "author": {
     "name": "Karolis Kazlauskis",
