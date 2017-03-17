@@ -110,7 +110,13 @@ const SampleView = Marionette.View.extend({
     const date = DateHelp.print(sample.get('date'), true);
     const specie = occ.get('taxon') || {};
     const media = occ.media;
-    const img = media.length && media.at(0).get('thumbnail');
+    let img = media.length && media.at(0).get('thumbnail');
+
+    // quick fix
+    // todo: remove this once cordova thumbnails are fixed
+    if (window.cordova) {
+      img = img[0];
+    }
 
     const taxon = specie.common_name;
 
