@@ -27,7 +27,10 @@
     <plugin name="cordova-sqlite-storage" spec="~2.0.2" />
 
     <access origin="*" />
-    v="geo:*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
 
     <preference name="android-minSdkVersion" value="{MIN_SDK}" />
     <preference name="orientation" value="portrait" />
