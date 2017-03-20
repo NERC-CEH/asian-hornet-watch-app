@@ -12,7 +12,7 @@ export default Indicia.Occurrence.extend({
     return {
       training: appModel.get('useTraining'),
       release_status: 'P',
-      sensitive: 't',
+      confidential: 't',
       sensitivity_precision: 100000,
     };
   },
