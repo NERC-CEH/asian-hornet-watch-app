@@ -3,8 +3,8 @@
   "id": "uk.ac.ceh.hornets",
   "title": "Asian Hornet Watch",
   "description": "Asian Hornet Watch application.",
-  "version": "1.0.1",
-  "build": "3",
+  "version": "1.0.2",
+  "build": "1",
   "homepage": "http://www.irecord.org.uk",
   "author": {
     "name": "Karolis Kazlauskis",
@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NERC-CEH/hornet-watch-app"
+    "url": "https://github.com/NERC-CEH/asian-hornet-watch-app"
   },
   "bugs": {
-    "url": "https://github.com/NERC-CEH/hornet-watch-app/issues"
+    "url": "https://github.com/NERC-CEH/asian-hornet-watch-app/issues"
   },
   "licenses": [
     {
