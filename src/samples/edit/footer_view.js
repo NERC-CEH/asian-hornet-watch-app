@@ -47,11 +47,14 @@ export default Marionette.CompositeView.extend({
   },
 
   events: {
-    'change input': 'photoUpload',
-  },
-
-  photoUpload(e) {
-    this.trigger('photo:upload', e);
+    'change input'(e) { // eslint-disable-line
+      this.trigger('photo:upload', e);
+    },
+    'click .img-picker'() { // eslint-disable-line
+      if (window.cordova) {
+        this.trigger('photo:selection');
+      }
+    },
   },
 
   childViewContainer: '#img-array',
@@ -88,19 +91,5 @@ export default Marionette.CompositeView.extend({
 // Initializes and opens PhotoSwipe
     const gallery = new Gallery(items, options);
     gallery.init();
-  },
-
-  onAttach() {
-    const that = this;
-
-    // create camera/gallery selection
-    if (window.cordova) {
-      Log('Samples:Edit:Footer: removing image picker input.');
-      this.$el.find('.img-picker input').remove();
-
-      this.$el.find('.img-picker').on('click', () => {
-        that.trigger('photo:selection');
-      });
-    }
   },
 });
