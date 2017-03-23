@@ -83,7 +83,7 @@ const API = {
           const userAuth = btoa(`${details.name}:${details.password}`);
           xhr.setRequestHeader('Authorization', `Basic ${userAuth}`);
           xhr.setRequestHeader('x-api-key', CONFIG.indicia.api_key);
-          xhr.setRequestHeader('content-type', 'application/json');
+          xhr.setRequestHeader('content-type', 'plain/text');
         },
         success(receivedData) {
           const data = receivedData.data || {};

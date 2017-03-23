@@ -99,7 +99,7 @@ const API = {
         data: JSON.stringify({ data: details }),
         headers: {
           'x-api-key': CONFIG.indicia.api_key,
-          'content-type': 'application/json',
+          'content-type': 'plain/text',
         },
         timeout: CONFIG.users.timeout,
         success(receivedData) {
