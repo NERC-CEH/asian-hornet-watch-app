@@ -1,4 +1,4 @@
-module.exports = grunt => {
+module.exports = (grunt) => {
   return {
     default: [
       'init',
@@ -43,8 +43,12 @@ module.exports = grunt => {
       'webpack:dev',
     ],
 
-    test: ['karma:local'],
-    'test:sauce': ['karma:sauce'],
+    test: [
+      'karma:local',
+    ],
+    'test:sauce': [
+      'karma:sauce',
+    ],
 
     // Cordova set up
     cordova: [
@@ -57,8 +61,9 @@ module.exports = grunt => {
 
       'exec:cordova_clean_www',
       'exec:cordova_copy_dist',
-      'cordova:_prepAndroid',
+      // 'cordova:_prepAndroid', // !!!!! use this to switch between android and ios
       'replace:cordova_config',
+      'replace:cordova_build',
       'exec:cordova_add_platforms',
     ],
 
@@ -71,24 +76,25 @@ module.exports = grunt => {
       'exec:cordova_clean_www',
       'exec:cordova_copy_dist',
       'replace:cordova_config',
+      'replace:cordova_build',
       'exec:cordova_rebuild',
     ],
 
     'cordova:android': [
       'prompt:keystore',
-      'cordova:android:new',
-      'cordova:android:old'
-    ],
-    'cordova:android:new': [
+      // new
       'cordova:_prepAndroid',
       'replace:cordova_config',
+      'replace:cordova_build',
       'exec:cordova_android_build',
-    ],
-    'cordova:android:old': [
+
+      // old
       'cordova:_prepAndroidOld',
       'replace:cordova_config',
+      'replace:cordova_build',
       'exec:cordova_android_build_old',
     ],
+
 
     /**
      * Sets up the right SDK version and package ID for the config generator

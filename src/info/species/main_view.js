@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Marionette from 'backbone.marionette';
 import JST from 'JST';
 import 'jquery-touchswipe';
-import { Device } from 'helpers';
+import Device from 'helpers/device';
 import Gallery from '../../common/gallery';
 import './styles.scss';
 import './data/maps/loader';
@@ -20,7 +20,7 @@ export default Marionette.View.extend({
     'click #species-map-button': 'toggleMap',
     'click #gallery-button': 'photoView',
     'click .images .img': 'photoView',
-    'click #record-btn': 'record',
+    'click #sample-btn': 'sample',
   },
 
   onAttach() {
@@ -136,8 +136,8 @@ export default Marionette.View.extend({
     });
   },
 
-  record() {
-    this.trigger('record');
+  sample() {
+    this.trigger('sample');
   },
 
   /**

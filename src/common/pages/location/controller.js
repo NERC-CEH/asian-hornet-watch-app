@@ -4,12 +4,16 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import Backbone from 'backbone';
-import Morel from 'morel';
-import { Log, Validate, StringHelp, LocHelp } from 'helpers';
+import Indicia from 'indicia';
+import Log from 'helpers/log';
+import Validate from 'helpers/validate';
+import StringHelp from 'helpers/string';
+import LocHelp from 'helpers/location';
 import App from 'app';
+import radio from 'radio';
 
-import recordManager from '../../record_manager';
-import appModel from '../../models/app_model';
+import savedSamples from 'saved_samples';
+import appModel from 'app_model';
 import TabsLayout from '../../views/tabs_layout';
 import HeaderView from '../../views/header_view';
 
@@ -19,213 +23,233 @@ import GridRefView from './grid_ref_view';
 import './styles.scss';
 
 const API = {
-  show(recordID) {
-    recordManager.get(recordID, (err, recordModel) => {
-      // Not found
-      if (!recordModel) {
-        App.trigger('404:show', { replace: true });
-        return;
-      }
-
-      // can't edit a saved one - to be removed when record update
-      // is possible on the server
-      if (recordModel.getSyncStatus() === Morel.SYNCED) {
-        App.trigger('records:show', recordID, { replace: true });
-        return;
-      }
-
-      // MAIN
-      const recordLocation = recordModel.get('location') || {};
-      const active = {};
-      if (!recordLocation.source) {
-        active.gps = true;
-      } else {
-        active[recordLocation.source] = true;
-      }
-      const mainView = new TabsLayout({
-        tabs: [
-          {
-            active: active.gps,
-            id: 'gps',
-            title: '<span class="icon icon-location"></span>',
-            ContentView: GpsView,
-          },
-          {
-            active: active.map,
-            id: 'map',
-            title: '<span class="icon icon-map"></span>',
-            ContentView: MapView,
-          },
-          {
-            active: active.gridref,
-            id: 'grid-ref',
-            title: 'GR',
-            ContentView: GridRefView,
-          },
-        ],
-        model: new Backbone.Model({ recordModel, appModel }),
-        vent: App,
+  show(sampleID) {
+// wait till savedSamples is fully initialized
+    if (savedSamples.fetching) {
+      const that = this;
+      savedSamples.once('fetching:done', () => {
+        API.show.apply(that, [sampleID]);
       });
+      return;
+    }
 
-      function onLocationSelect(view, loc, createNew) {
-        if (typeof loc !== 'object') {
-          // jQuery event object bug fix
-          Log('Location:Controller:onLocationSelect: loc is not an object', 'e');
-          return;
-        }
+    const sample = savedSamples.get(sampleID);
 
-        let location = loc;
-        // we don't need the GPS running and overwriting the selected location
-        recordModel.stopGPS();
+    // Not found
+    if (!sample) {
+      radio.trigger('app:404:show', { replace: true });
+      return;
+    }
 
-        if (!createNew) {
-          // extend old location to preserve its previous attributes like name or id
-          const oldLocation = recordModel.get('location');
-          location = $.extend(oldLocation, location);
-        }
+    // can't edit a saved one - to be removed when sample update
+    // is possible on the server
+    if (sample.getSyncStatus() === Indicia.SYNCED) {
+      radio.trigger('samples:show', sampleID, { replace: true });
+      return;
+    }
 
-        recordModel.set('location', location);
-        recordModel.trigger('change:location');
-      }
-
-      function onGPSClick() {
-        // turn off if running
-        if (recordModel.isGPSRunning()) {
-          recordModel.stopGPS();
-        } else {
-          recordModel.startGPS();
-        }
-      }
-
-      function onLocationNameChange(view, name) {
-        if (!name || typeof name !== 'string') {
-          return;
-        }
-
-        const location = recordModel.get('location') || {};
-        location.name = StringHelp.escape(name);
-        recordModel.set('location', location);
-        recordModel.trigger('change:location');
-      }
-
-      function onPageExit() {
-        recordModel.save(null, {
-          success: () => {
-            const location = recordModel.get('location') || {};
-
-            if ((location.latitude && location.longitude) || location.name) {
-              // save to past locations
-              const locationID = appModel.setLocation(recordModel.get('location'));
-              location.id = locationID;
-              recordModel.set('location', location);
-            }
-
-            window.history.back();
-          },
-          error: (error) => {
-            Log(error, 'e');
-            App.regions.getRegion('dialog').error(error);
-          },
-        });
-      }
-
-      mainView.on('childview:location:select:map', onLocationSelect);
-      mainView.on('childview:location:select:gridref', (view, data) => {
-        /**
-         * Validates the new location
-         * @param attrs
-         * @returns {{}}
-         */
-        function validate(attrs) {
-          const errors = {};
-
-          if (!attrs.gridref) {
-            errors.gridref = "can't be blank";
-          } else {
-            const gridref = attrs.gridref.replace(/\s/g, '');
-            if (!Validate.gridRef(gridref)) {
-              errors.gridref = 'invalid';
-            } else if (!LocHelp.grid2coord(gridref)) {
-              errors.gridref = 'invalid';
-            }
-          }
-
-          if (!_.isEmpty(errors)) {
-            return errors;
-          }
-
-          return null;
-        }
-
-        const validationError = validate(data);
-        if (!validationError) {
-          App.trigger('gridref:form:data:invalid', {}); // update form
-          const latLon = LocHelp.grid2coord(data.gridref);
-          const location = {
-            source: 'gridref',
-            name: data.name,
-            gridref: data.gridref,
-            latitude: parseFloat(latLon.lat.toFixed(8)),
-            longitude: parseFloat(latLon.lon.toFixed(8)),
-          };
-
-          // -2 because of gridref letters, 2 because this is min precision
-          const accuracy = (data.gridref.replace(/\s/g, '').length - 2) || 2;
-          location.accuracy = accuracy;
-
-          onLocationSelect(view, location);
-          onPageExit();
-        } else {
-          App.trigger('gridref:form:data:invalid', validationError);
-        }
-      });
-      mainView.on('childview:gps:click', onGPSClick);
-      mainView.on('childview:location:name:change', onLocationNameChange);
-
-      App.regions.getRegion('main').show(mainView);
-
-      // HEADER
-      const LocationHeader = HeaderView.extend({
-        id: 'location-header',
-
-        /*
-         From Marionette docs:
-         it is suggested that you avoid re-rendering the entire View unless
-         absolutely necessary. Instead, if you are binding the View's template
-         to a model and need to update portions of the View, you should listen
-         to the model's "change" events and only update the necessary DOM elements.
-         */
-        modelEvents: {
-          'change:location': 'updateTitle',
+    // MAIN
+    const sampleLocation = sample.get('location') || {};
+    const active = {};
+    if (!sampleLocation.source) {
+      active.gps = true;
+    } else {
+      active[sampleLocation.source] = true;
+    }
+    const mainView = new TabsLayout({
+      tabs: [
+        {
+          active: active.gps,
+          id: 'gps',
+          title: '<span class="icon icon-location"></span>',
+          ContentView: GpsView,
         },
-
-        updateTitle() {
-          const title = this.model.printLocation();
-          const $title = this.$el.find('h1');
-
-          $title.html(title || 'Location');
+        {
+          active: active.map,
+          id: 'map',
+          title: '<span class="icon icon-map"></span>',
+          ContentView: MapView,
         },
-
-        serializeData() {
-          return {
-            title: this.model.printLocation() || 'Location',
-          };
+        {
+          active: active.gridref,
+          id: 'grid-ref',
+          title: 'GR',
+          ContentView: GridRefView,
         },
-      });
-
-      const headerView = new LocationHeader({
-        onExit: onPageExit,
-        model: recordModel,
-      });
-
-      App.regions.getRegion('header').show(headerView);
-
-      // if exit on selection click
-      mainView.on('save', onPageExit);
+      ],
+      model: new Backbone.Model({ sample, appModel }),
+      vent: App,
     });
 
+    function onLocationSelect(loc, createNew) {
+      if (typeof loc !== 'object') {
+        // jQuery event object bug fix
+        Log('Location:Controller:onLocationSelect: loc is not an object.', 'e');
+        return;
+      }
+
+      let location = loc;
+      // we don't need the GPS running and overwriting the selected location
+      sample.stopGPS();
+
+      if (!createNew) {
+        // extend old location to preserve its previous attributes like name or id
+        let oldLocation = sample.get('location');
+        if (!_.isObject(oldLocation)) oldLocation = {}; // check for locked true
+        location = $.extend(oldLocation, location);
+      }
+
+      sample.set('location', location);
+      sample.trigger('change:location');
+    }
+
+    function onGPSClick() {
+      // turn off if running
+      if (sample.isGPSRunning()) {
+        sample.stopGPS();
+      } else {
+        sample.startGPS();
+      }
+    }
+
+    function onLocationNameChange(name) {
+      if (!name || typeof name !== 'string') {
+        return;
+      }
+
+      const location = sample.get('location') || {};
+      location.name = StringHelp.escape(name);
+      sample.set('location', location);
+      sample.trigger('change:location');
+    }
+
+    function onPageExit() {
+      sample.save()
+        .then(() => {
+          const attr = 'location';
+          let location = sample.get('location') || {};
+
+          if ((location.latitude && location.longitude) || location.name) {
+            // we can lock loaction and name on their own
+            // don't lock GPS though, because it varies more than a map or gridref
+
+            // save to past locations
+            const locationID = appModel.setLocation(sample.get('location'));
+            location.id = locationID;
+            sample.set('location', location);
+
+          }
+
+          window.history.back();
+        })
+        .catch((error) => {
+          Log(error, 'e');
+          radio.trigger('app:dialog:error', error);
+        });
+    }
+
+    mainView.on('childview:location:select:past', (location) => {
+      onLocationSelect(location, true);
+      onPageExit();
+    });
+    mainView.on('childview:location:select:map', onLocationSelect);
+    mainView.on('childview:location:select:gridref', (data) => {
+      /**
+       * Validates the new location
+       * @param attrs
+       * @returns {{}}
+       */
+      function validate(attrs) {
+        const errors = {};
+
+        if (!attrs.gridref) {
+          errors.gridref = "can't be blank";
+        } else {
+          const gridref = attrs.gridref.replace(/\s/g, '');
+          if (!Validate.gridRef(gridref)) {
+            errors.gridref = 'invalid';
+          } else if (!LocHelp.grid2coord(gridref)) {
+            errors.gridref = 'invalid';
+          }
+        }
+
+        if (!_.isEmpty(errors)) {
+          return errors;
+        }
+
+        return null;
+      }
+
+      const validationError = validate(data);
+      if (!validationError) {
+        radio.trigger('gridref:form:data:invalid', {}); // update form
+        const latLon = LocHelp.grid2coord(data.gridref);
+        const location = {
+          source: 'gridref',
+          name: data.name,
+          gridref: data.gridref,
+          latitude: parseFloat(latLon.lat.toFixed(8)),
+          longitude: parseFloat(latLon.lon.toFixed(8)),
+        };
+
+        // -2 because of gridref letters, 2 because this is min precision
+        const accuracy = (data.gridref.replace(/\s/g, '').length - 2) || 2;
+        location.accuracy = accuracy;
+
+        onLocationSelect(location);
+        onPageExit();
+      } else {
+        radio.trigger('gridref:form:data:invalid', validationError);
+      }
+    });
+    mainView.on('childview:gps:click', onGPSClick);
+    mainView.on('childview:location:name:change', onLocationNameChange);
+
+    radio.trigger('app:main', mainView);
+
+    // HEADER
+    // header view
+    const LocationHeader = HeaderView.extend({
+      id: 'location-header',
+
+      /*
+       From Marionette docs:
+       it is suggested that you avoid re-rendering the entire View unless
+       absolutely necessary. Instead, if you are binding the View's template
+       to a model and need to update portions of the View, you should listen
+       to the model's "change" events and only update the necessary DOM elements.
+       */
+      modelEvents: {
+        'change:location': 'updateTitle',
+      },
+
+      updateTitle() {
+        const title = this.model.printLocation();
+        const $title = this.$el.find('h1');
+
+        $title.html(title || 'Location');
+      },
+
+      serializeData() {
+        return {
+          title: this.model.printLocation() || 'Location',
+        };
+      },
+    });
+
+    const headerView = new LocationHeader({
+      onExit: onPageExit,
+      model: sample,
+    });
+
+    radio.trigger('app:header', headerView);
+
+    // if exit on selection click
+    mainView.on('save', onPageExit);
+
+
     // FOOTER
-    App.regions.getRegion('footer').hide().empty();
+    radio.trigger('app:footer:hide');
   },
 };
 

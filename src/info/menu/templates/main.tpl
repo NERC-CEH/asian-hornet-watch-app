@@ -39,19 +39,19 @@
 
 <li class="table-view-divider">Account</li>
 <li class="table-view-cell">
-  <a id="records-button" href="#records" class="navigate-right">
+  <a id="samples-button" href="#samples" class="navigate-right">
     <span class="media-object pull-left icon icon-wasp"></span>
-    <% if (obj.records > 0) { %>
-    <span class="badge <%- obj.needSync ? 'error' : '' %>"><%- obj.records %></span>
+    <% if (obj.samples > 0) { %>
+    <span class="badge <%- obj.needSync ? 'error' : '' %>"><%- obj.samples %></span>
     <% } %>
     Records
   </a>
 </li>
-<% if (obj.surname) { %>
+<% if (obj.login) { %>
 <li class="table-view-cell">
   <a id="logout-button" class="navigate-right">
     <span class="media-object pull-left icon icon-logout"></span>
-    Logout: <%- obj.name %> <%- obj.surname %>
+    Logout: <%- obj.firstname %> <%- obj.secondname %>
   </a>
 </li>
 <% } else { %>

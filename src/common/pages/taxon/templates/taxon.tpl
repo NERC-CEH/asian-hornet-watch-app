@@ -1,5 +1,5 @@
 <label class="item item-radio" style="background-image: url(images/<%- obj.pic %>)">
-  <% if (obj.recordModel) { %>
+  <% if (obj.sampleModel) { %>
   <input type="radio" name="group" value="<%- obj.id %>" <%- obj.selected ? 'checked' : ''%>>
   <% } %>
   <div class="radio-content">

@@ -11,7 +11,7 @@ import OSLeaflet from 'os-leaflet';
 import GridRef from 'leaflet.gridref';
 import { OsGridRef } from 'geodesy';
 import JST from 'JST';
-import { LocHelp } from 'helpers';
+import LocHelp from 'helpers/location';
 import CONFIG from 'config';
 import 'typeahead';
 import mapMarker from './map_view_marker';
@@ -34,7 +34,7 @@ const MapView = Marionette.View.extend({
   },
 
   changeName(e) {
-    this.triggerMethod('location:name:change', this, $(e.target).val());
+    this.triggerMethod('location:name:change', $(e.target).val());
   },
 
   initialize() {
@@ -58,10 +58,10 @@ const MapView = Marionette.View.extend({
 
   addLocationNameSearch() {
     this.$el.find('.typeahead').typeahead({
-        hint: false,
-        highlight: false,
-        minLength: 0,
-      },
+      hint: false,
+      highlight: false,
+      minLength: 0,
+    },
       {
         limit: 3,
         name: 'names',
@@ -228,7 +228,7 @@ const MapView = Marionette.View.extend({
   _getZoomLevel() {
     const currentLocation = this._getCurrentLocation();
     let mapZoomLevel = 1;
-    // check if record has location
+    // check if sample has location
     if (currentLocation.latitude && currentLocation.longitude) {
       // transform location accuracy to map zoom level
       switch (currentLocation.source) {
@@ -312,7 +312,7 @@ const MapView = Marionette.View.extend({
   },
 
   _getCurrentLocation() {
-    return this.model.get('recordModel').get('location') || {};
+    return this.model.get('sample').get('location') || {};
   },
 
   serializeData() {

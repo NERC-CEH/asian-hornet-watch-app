@@ -37,6 +37,10 @@
       please use the <a href="http://irecord.org.uk">iRecord Website</a>.
       <br>
       <br>
+      All records submitted via the Hornet app are initially treated as
+      confidential and will not appear in other iRecord reports unless the confidential status is retracted.
+      <br>
+      <br>
       <b>Note:</b> you have to be signed in to your iRecord account and have a network connection,
       for the records to be automatically synchronised in the background.
       <br>
@@ -108,7 +112,9 @@
     </p>
   </li>
   <li>
-    For more help please visit the iRecord <a href="http://www.brc.ac.uk/irecord/forum/26" target="_blank">forum</a>.
+    For more help please visit the iRecord <a href="<%= obj.site_url %>/forum/26">forum</a>.
+    <p>Or drop us an <a href='mailto:appshelp%40ceh.ac.uk?subject=Asian%20Hornets%20Watch%20Support%20%26%20Feedback&body=%0A%0A%0AVersion%3A%20<%- obj.version %>%0ABrowser%3A <%- window.navigator.appVersion %>%0A'>email</a>.
+    </p>
   </li>
 </ul>
 <br>

@@ -1,5 +1,5 @@
 /** ****************************************************************************
- * Record Show main view.
+ * Taxon main view.
  *****************************************************************************/
 import Marionette from 'backbone.marionette';
 import JST from 'JST';
@@ -17,10 +17,10 @@ const View = Marionette.View.extend({
   },
 
   serializeData() {
-    const recordModel = this.options.recordModel;
+    const sampleModel = this.options.sampleModel;
     let taxon;
-    if (recordModel) {
-      const occ = recordModel.occurrences.at(0);
+    if (sampleModel) {
+      const occ = sampleModel.occurrences.at(0);
       taxon = occ.get('taxon') || {};
     }
 
@@ -29,7 +29,7 @@ const View = Marionette.View.extend({
       name: this.model.get('common_name'),
       pic: `${this.model.id}_0.jpg`,
       selected: taxon && taxon.id === this.model.id,
-      recordModel,
+      sampleModel,
     };
   },
 });
@@ -45,7 +45,7 @@ export default Marionette.CompositeView.extend({
 
   childViewOptions() {
     return {
-      recordModel: this.options.recordModel,
+      sampleModel: this.options.sampleModel,
     };
   },
 });

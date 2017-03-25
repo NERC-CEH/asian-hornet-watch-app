@@ -1,5 +1,5 @@
 /** ****************************************************************************
- * Record Show main view.
+ * sample Show main view.
  *****************************************************************************/
 import Marionette from 'backbone.marionette';
 import JST from 'JST';
