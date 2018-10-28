@@ -102,6 +102,7 @@ const API = {
         sample.destroy();
       }
     });
+    appModel.unset('draftSampleID').save();
   },
 };
 

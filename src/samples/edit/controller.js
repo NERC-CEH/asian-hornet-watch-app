@@ -22,6 +22,21 @@ import MainView from './main_view';
 import HeaderView from './header_view';
 import FooterView from './footer_view';
 
+function onSendError(err = {}) {
+  Log(err, 'e');
+
+  const visibleDialog = App.regions.getRegion('dialog').$el.is(':visible');
+  // we don't want to close any other dialog
+  if (err.message && !visibleDialog) {
+    radio.trigger(
+      'app:dialog:error',
+      `Sorry, we have encountered a problem while sending the record.
+            
+             <p><i>${err.message}</i></p>`
+    );
+  }
+}
+
 const API = {
   show(sampleID) {
     // wait till savedSamples is fully initialized
@@ -50,7 +65,6 @@ const API = {
       return;
     }
 
-
     // MAIN
     const mainView = new MainView({
       model: new Backbone.Model({ sample, appModel }),
@@ -68,7 +82,6 @@ const API = {
       // unbind when page destroyed
       sample.off('request sync error', checkIfSynced);
     });
-
 
     // HEADER
     const headerView = new HeaderView({
@@ -104,69 +117,55 @@ const API = {
     radio.trigger('app:footer', footerView);
   },
 
-
   save(sample) {
     Log('Samples:Edit:Controller: save clicked.');
-
-    const promise = sample.setToSend();
+    // const promise = sample.setToSend();
 
     // invalid sample
-    if (!promise) {
+    if (!sample.isValid({ remote: true })) {
       const invalids = sample.validationError;
       API.showInvalidsMessage(invalids);
       return;
     }
 
-    promise
-      .then(() => {
-        // should we sync?
-        if (!Device.isOnline()) {
-          radio.trigger('app:dialog:error', {
-            message: 'Looks like you are offline!',
-          });
-          return;
-        }
-
-        function onError(err = {}) {
-          Log(err, 'e');
-
-          const visibleDialog = App.regions.getRegion('dialog').$el.is(':visible');
-          // we don't want to close any other dialog
-          if (err.message && !visibleDialog) {
-            radio.trigger('app:dialog:error',
-              `Sorry, we have encountered a problem while sending the record.
-                
-                 <p><i>${err.message}</i></p>`
-            );
-          }
-        }
-
-        if (Device.isOnline() && !userModel.hasLogIn()) {
-          API.askLogin((user) => {
-            sample.metadata.anonymous = true;
-
-            sample.save({
-              user_email: user.email,
-              firstname: user.firstname,
-              secondname: user.secondname,
-              phone: user.phone,
-            }, { remote: true }).catch(onError);
-          });
-          return;
-        }
-
-        // sync
-        sample.save({
-            user_email: userModel.get('email'),
-            firstname: userModel.get('firstname'),
-            secondname: userModel.get('secondname'),
-          }, { remote: true }).catch(onError);
-        radio.trigger('sample:saved');
-      })
-      .catch((err) => {
-        Log(err, 'e');
-        radio.trigger('app:dialog:error', err);
+    // should we sync?
+    if (!Device.isOnline()) {
+      radio.trigger('app:dialog:error', {
+        message: 'Looks like you are offline!',
       });
+      return;
+    }
+
+    this.getUser().then((user) => {
+      if (!user) {
+        return;
+      }
+
+      sample
+        .save(user)
+        .then(() => {
+          sample.metadata.saved = true;
+          return sample.save();
+        })
+        .then(() => {
+          appModel.unset('draftSampleID').save();
+          window.history.back();
+        })
+        .then(() => sample.save(null, { remote: true }))
+        .catch(onSendError);
+    });
+  },
+
+  getUser() {
+    if (!userModel.hasLogIn()) {
+      return API.askLogin();
+    }
+
+    return Promise.resolve({
+      user_email: userModel.get('email'),
+      firstname: userModel.get('firstname'),
+      secondname: userModel.get('secondname'),
+    });
   },
 
   showInvalidsMessage(invalids) {
@@ -203,30 +202,36 @@ const API = {
     });
   },
 
-  askLogin(anonymousCallback) {
-    radio.trigger('app:dialog', {
-      title: '',
-      body: 'Please select <b>Login</b> if you have an iRecord account or would like to register, otherwise select <b>Send</b> and enter your contact details.',
-      buttons: [
-        {
-          title: 'Login',
-          class: 'btn-positive',
-          onClick() {
-            radio.trigger('app:dialog:hide');
-            radio.trigger('user:login', { replace: true });
+  askLogin() {
+    return new Promise((resolve, reject) => {
+      radio.trigger('app:dialog', {
+        title: '',
+        body:
+          'Please select <b>Login</b> if you have an iRecord account or would like to register, otherwise select <b>Send</b> and enter your contact details.',
+        buttons: [
+          {
+            title: 'Login',
+            class: 'btn-positive',
+            onClick() {
+              radio.trigger('app:dialog:hide');
+              radio.trigger('user:login');
+              resolve();
+            },
           },
-        },
-        {
-          title: 'Send',
-          onClick() {
-            API.askAnonymous(anonymousCallback);
+          {
+            title: 'Send',
+            onClick() {
+              API.askAnonymous()
+                .then(resolve)
+                .catch(reject);
+            },
           },
-        },
-      ],
+        ],
+      });
     });
   },
 
-  askAnonymous(callback) {
+  askAnonymous() {
     const EditView = Marionette.View.extend({
       template: JST['samples/edit/anonymous'],
       getValues() {
@@ -259,34 +264,41 @@ const API = {
 
     const editView = new EditView({ model: location });
 
-    App.regions.getRegion('dialog').show({
-      title: 'Your details',
-      body: editView,
-      buttons: [
-        {
-          title: 'Send',
-          class: 'btn-positive',
-          onClick() {
-            // update user
-            const user = editView.getValues();
-            // validate
-            const errors = API.validateAnonymous(user);
-            if (errors) {
-              editView.onFormDataInvalid(errors);
-              return;
-            }
-            App.regions.getRegion('dialog').hide();
-            callback(user); // send record
-            window.history.back();
+    return new Promise((resolve) => {
+      App.regions.getRegion('dialog').show({
+        title: 'Your details',
+        body: editView,
+        buttons: [
+          {
+            title: 'Send',
+            class: 'btn-positive',
+            onClick() {
+              // update user
+              const user = editView.getValues();
+              // validate
+              const errors = API.validateAnonymous(user);
+              if (errors) {
+                editView.onFormDataInvalid(errors);
+                return;
+              }
+              App.regions.getRegion('dialog').hide();
+              resolve({
+                user_email: user.email,
+                firstname: user.firstname,
+                secondname: user.secondname,
+                phone: user.phone,
+              });
+            },
           },
-        },
-        {
-          title: 'Cancel',
-          onClick() {
-            App.regions.getRegion('dialog').hide();
+          {
+            title: 'Cancel',
+            onClick() {
+              App.regions.getRegion('dialog').hide();
+              resolve();
+            },
           },
-        },
-      ],
+        ],
+      });
     });
   },
 
@@ -317,8 +329,9 @@ const API = {
   photoDelete(photo) {
     radio.trigger('app:dialog', {
       title: 'Delete',
-      body: 'Are you sure you want to remove this photo from the sample?' +
-      '</br><i><b>Note:</b> it will remain in the gallery.</i>',
+      body:
+        'Are you sure you want to remove this photo from the sample?' +
+        '</br><i><b>Note:</b> it will remain in the gallery.</i>',
       buttons: [
         {
           title: 'Cancel',
@@ -369,16 +382,19 @@ const API = {
         {
           title: 'Gallery',
           onClick() {
-            ImageHelp.getImage((entry) => {
-              API.addPhoto(occurrence, entry.nativeURL, (occErr) => {
-                if (occErr) {
-                  radio.trigger('app:dialog:error', occErr);
-                }
-              });
-            }, {
-              sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY,
-              saveToPhotoAlbum: false,
-            });
+            ImageHelp.getImage(
+              (entry) => {
+                API.addPhoto(occurrence, entry.nativeURL, (occErr) => {
+                  if (occErr) {
+                    radio.trigger('app:dialog:error', occErr);
+                  }
+                });
+              },
+              {
+                sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY,
+                saveToPhotoAlbum: false,
+              }
+            );
             radio.trigger('app:dialog:hide');
           },
         },
@@ -390,11 +406,10 @@ const API = {
    * Adds a new image to occurrence.
    */
   addPhoto(occurrence, photo) {
-    return ImageHelp.getImageModel(ImageModel, photo)
-      .then((image) => {
-        occurrence.addMedia(image);
-        return occurrence.save();
-      });
+    return ImageHelp.getImageModel(ImageModel, photo).then((image) => {
+      occurrence.addMedia(image);
+      return occurrence.save();
+    });
   },
 };
 

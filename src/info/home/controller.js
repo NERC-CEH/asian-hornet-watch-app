@@ -23,6 +23,12 @@ const API = {
 
   // sample species
   sample() {
+    const draftSampleID = appModel.get('draftSampleID');
+    if (draftSampleID) {
+      radio.trigger('samples:edit', draftSampleID);
+      return;
+    }
+
     // create new sample
     const sample = new Sample();
     const occurrence = new Occurrence();
@@ -32,7 +38,7 @@ const API = {
 
       sample.startGPS();
 
-      appModel.set('draftSampleID', sample.cid);
+      appModel.set('draftSampleID', sample.cid).save();
 
       // navigate to sample edit
       radio.trigger('samples:edit', sample.cid);

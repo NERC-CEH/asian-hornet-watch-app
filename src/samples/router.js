@@ -79,22 +79,18 @@ radio.on('samples:edit:attr', (sampleID, attrID, options) => {
   }
 });
 
-radio.on('sample:saved', () => {
-  window.history.back();
-});
-
 function syncSamples() {
   if (Device.isOnline() && appModel.get('autosync') && userModel.hasLogIn()) {
     // wait till savedSamples is fully initialized
     if (savedSamples.fetching) {
       savedSamples.once('fetching:done', () => {
         Log('Samples:router: syncing all samples.');
-        savedSamples.save(null, { remote: true });
+        savedSamples.syncAll();
       });
       return;
     }
     Log('Samples:router: syncing all samples.');
-    savedSamples.save(null, { remote: true });
+    savedSamples.syncAll();
   }
 }
 

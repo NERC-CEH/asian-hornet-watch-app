@@ -20,42 +20,25 @@ const Collection = Indicia.Collection.extend({
     return Promise.all(toWait);
   },
 
-  setAllToSend() {
+  syncAll() {
     Log('SavedSamples: setting all samples to send.');
 
-    const that = this;
-    const toWait = [];
-    this.models.forEach((sample) => {
-      const validPromise = sample.setToSend();
-      if (!validPromise) {
-        return;
-      }
-      toWait.push(validPromise);
-    });
-    return Promise.all(toWait)
-      .then(() => {
-        const toWaitSend = [];
-        that.models.forEach((sample) => {
-          const validPromise = sample.save(null, { remote: true });
-          if (!validPromise) {
-            return;
-          }
-          toWaitSend.push(validPromise);
-        });
-        Promise.all(toWaitSend);
-        // no promise return since we don't want wait till all are submitted
-        // as this can be done in the background
-      });
+    this.models
+      .filter(sample => sample.metadata.saved && sample.isLocalOnly())
+      .forEach(sample => sample.save(null, { remote: true }));
+    // no promise return since we don't want wait till all are submitted
+    // as this can be done in the background
+    return Promise.resolve();
   },
 });
-
 
 const savedSamples = new Collection();
 Log('SavedSamples: fetching all samples.');
 
 // load all the samples from storage
 savedSamples.fetching = true;
-savedSamples.fetch()
+savedSamples
+  .fetch()
   .then(() => {
     Log('SavedSamples: fetching all samples done.');
 

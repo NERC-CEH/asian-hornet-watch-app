@@ -52,12 +52,6 @@ const Sample = Indicia.Sample.extend({
     const sample = {};
     const occurrences = {};
 
-    // todo: remove this bit once sample DB update is possible
-    // check if saved or already send
-    if (!this.metadata.saved || this.getSyncStatus() === Indicia.SYNCED) {
-      sample.send = false;
-    }
-
     // location
     const location = attrs.location || {};
     if (!location.latitude || !location.longitude) {
@@ -70,13 +64,13 @@ const Sample = Indicia.Sample.extend({
     } else {
       const date = new Date(attrs.date);
       if (date === 'Invalid Date' || date > new Date()) {
-        sample.date = (new Date(date) > new Date()) ? 'future date' : 'invalid';
+        sample.date = new Date(date) > new Date() ? 'future date' : 'invalid';
       }
     }
 
     // location type
     if (!attrs.location_type) {
-      sample.location_type = 'can\'t be blank';
+      sample.location_type = "can't be blank";
     }
 
     // occurrences
@@ -102,30 +96,6 @@ const Sample = Indicia.Sample.extend({
     return null;
   },
 
-  /**
-   * Set the sample for submission and send it.
-   */
-  setToSend() {
-    // don't change it's status if already saved
-    if (this.metadata.saved) {
-      return Promise.resolve(this);
-    }
-
-    this.metadata.saved = true;
-
-    if (!this.isValid({ remote: true })) {
-      // since the sample was invalid and so was not saved
-      // we need to revert it's status
-      this.metadata.saved = false;
-      return false;
-    }
-
-    Log('SampleModel: was set to send.');
-
-    // save sample
-    return this.save();
-  },
-
   checkExpiredGroup() {
     const activity = this.get('group');
     if (activity) {
@@ -149,8 +119,7 @@ const Sample = Indicia.Sample.extend({
 
   isLocalOnly() {
     const status = this.getSyncStatus();
-    return this.metadata.saved &&
-      (status === Indicia.LOCAL || status === Indicia.SYNCHRONISING);
+    return this.metadata.saved && (status === Indicia.LOCAL || status === Indicia.SYNCHRONISING);
   },
 
   timeout() {
