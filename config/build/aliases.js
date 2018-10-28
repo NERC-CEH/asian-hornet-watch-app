@@ -81,17 +81,10 @@ module.exports = (grunt) => {
 
     'cordova:android': [
       'prompt:keystore',
-      // new
       'cordova:_prepAndroid',
       'replace:cordova_config',
       'replace:cordova_build',
       'exec:cordova_android_build',
-
-      // old
-      'cordova:_prepAndroidOld',
-      'replace:cordova_config',
-      'replace:cordova_build',
-      'exec:cordova_android_build_old',
     ],
 
 
@@ -100,10 +93,6 @@ module.exports = (grunt) => {
      */
     'cordova:_prepAndroid': () => {
       grunt.option('android', true);
-    },
-    'cordova:_prepAndroidOld': () => {
-      grunt.option('android', true);
-      grunt.option('oldversion', true);
     },
   };
 };
