@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Indicia from 'indicia';
 import config from './config';
 
-const HOST = 'https://www.brc.ac.uk/irecord/'; // Backend URL - needs trailing slash
+const HOST = 'http://test.brc.ac.uk/irecord_dev/'; // Backend URL - needs trailing slash
 
 const newConfig = $.extend(true, config, {
   // google analytics
