@@ -6,30 +6,6 @@ const pkg = require('../../package.json');
 
 module.exports = (grunt) => {
   return {
-    // Fix double define problem
-    latlon: {
-      src: ['node_modules/geodesy/latlon-ellipsoidal.js',
-        'node_modules/geodesy/latlon-spherical.js'],
-      overwrite: true,
-      replacements: [
-        {
-          from: 'if (typeof module != \'undefined\' && module.exports) ' +
-          'module.exports.Vector3d = Vector3d;',
-          to: '',
-        },
-        {
-          from: 'if (typeof define == \'function\' && define.amd) ' +
-          'define([], function() { return Vector3d; });',
-          to: '',
-        },
-        {
-          from: 'if (typeof define == \'function\' && define.amd) ' +
-          'define([\'Dms\'], function() { return LatLon; });',
-          to: '',
-        },
-      ],
-    },
-
     // ratchet's modal functionality is not compatable with spa routing
     ratchet: {
       src: ['node_modules/ratchet/dist/js/ratchet.js'],

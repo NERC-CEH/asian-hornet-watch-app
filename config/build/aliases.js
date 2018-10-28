@@ -13,7 +13,6 @@ module.exports = (grunt) => {
     ],
 
     vendor: [
-      'replace:latlon',
       'replace:ratchet',
       'replace:ratchet_fonts',
       'replace:fontello_fonts',
