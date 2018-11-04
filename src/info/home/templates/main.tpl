@@ -10,7 +10,7 @@
   <li class="table-view-cell">
     <a href="#info/species" class="navigate-right">
       <span class="media-object pull-left icon icon-wasp"></span>
-      Species Info
+      Check your ID
     </a>
   </li>
   <li class="table-view-cell">
