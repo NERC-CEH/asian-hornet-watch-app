@@ -8,7 +8,7 @@ module.exports = (grunt) => {
 
     init: [
       'exec:data_init',
-      'copy',
+      'copy:main',
       'vendor',
     ],
 
@@ -63,6 +63,7 @@ module.exports = (grunt) => {
       // 'cordova:_prepAndroid', // !!!!! use this to switch between android and ios
       'replace:cordova_config',
       'replace:cordova_build',
+      'copy:cordova_hooks',
       'exec:cordova_add_platforms',
     ],
 

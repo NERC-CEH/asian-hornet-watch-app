@@ -25,6 +25,9 @@
     <plugin name="cordova-plugin-google-analytics" spec="1.8.6" />
     <plugin name="cordova-sqlite-storage" spec="2.3.3" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <!--https://github.com/danwilson/google-analytics-plugin/issues/218-->
+    <hook src="hooks/removeAdFramework.js" type="after_plugin_install" />
+
     <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
         <string>To access your camera when attaching images to records</string>
     </edit-config>
