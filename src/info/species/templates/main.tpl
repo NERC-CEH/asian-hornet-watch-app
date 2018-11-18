@@ -22,15 +22,21 @@
     <div class="taxon"><%= obj.scientific_name %></div>
   </li>
   <li id="species-map" style="display: none">
-    <div id="maps-holder" style="display:none"></div>
-    <svg viewBox="0 0 400 500"  preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
-      <use id="species-map-data" xlink:href="#data"/>
-      <g id="legend">
-        <text dy="15" x="30" y="0" style="font-size: normal">Main area</text>
-        <rect width="20" height="20" fill="#FFC019" y="0" x="0"></rect>
-      </g>
-    </svg>
+    <% if (obj.id !== 1) { %>
+      <div id="maps-holder" style="display:none"></div>
+      <svg viewBox="0 0 400 500"  preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+        <use id="species-map-data" xlink:href="#data"/>
+        <g id="legend">
+          <text dy="15" x="30" y="0" style="font-size: normal">Main area</text>
+          <rect width="20" height="20" fill="#FFC019" y="0" x="0"></rect>
+        </g>
+      </svg>
+    <% } else { %>
+    <div class="info-message">
+      <p>Asian hornet is not currently established in the UK.</p>
+    </div>
+    <% } %>
   </li>
 
   <li id="timeline"><img src="images/<%- obj.timeline %>" alt=""></li>
