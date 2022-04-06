@@ -1,1 +1,0 @@
-<span class="icon icon-warn warn"></span> No photo has been added
