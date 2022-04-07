@@ -1,0 +1,15 @@
+.DS_Store
+.npm-debug.log
+node_modules
+dist
+.env*
+*.patch
+coverage
+.vscode
+.nowbuild
+.now
+/build
+/components
+/resources
+.vercel
+.gradle

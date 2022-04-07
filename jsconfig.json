@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "common/*": ["src/common/*"],
+      "helpers/*": ["src/common/helpers/*"],
+      "models/*": ["src/common/models/*"],
+      "Components/*": ["src/common/Components/*"],
+      "@apps": ["src/common/appsBitCollection"]
+    },
+    "experimentalDecorators": true
+  },
+  "include": ["./src/**/*"]
+}
