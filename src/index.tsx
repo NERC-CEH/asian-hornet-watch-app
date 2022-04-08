@@ -24,7 +24,6 @@ i18n.use(initReactI18next).init({ lng: 'en' });
 mobxConfig({ enforceActions: 'never' });
 
 setupIonicReact({
-  hardwareBackButton: false, // android back button
   swipeBackEnabled: false,
 });
 
