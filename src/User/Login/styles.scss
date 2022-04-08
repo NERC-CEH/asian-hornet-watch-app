@@ -1,0 +1,40 @@
+#user-login {
+  ion-list,
+  ion-item {
+    --background: transparent;
+    background: transparent;
+  }
+
+  ion-content {
+    --padding-top: 30px;
+
+    ion-icon {
+      color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.4em;
+      font-weight: 500;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1em;
+      font-weight: 400;
+      margin-bottom: 70px;
+    }
+
+    form ion-router-link.password-forgot-button {
+      display: block;
+      padding: 10px;
+      text-align: right;
+      font-size: 0.85em;
+      color: var(--ion-color-dark);
+    }
+
+    ion-button[type='submit'] {
+      margin-bottom: 60px;
+    }
+  }
+}

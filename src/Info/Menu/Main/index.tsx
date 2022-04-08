@@ -1,6 +1,14 @@
-import React from 'react';
-import { Main } from '@flumens';
-import { IonIcon, IonList, IonItem, IonItemDivider } from '@ionic/react';
+import React, { FC } from 'react';
+import { Main, InfoMessage } from '@flumens';
+import { observer } from 'mobx-react';
+import { UserModel } from 'common/models/user';
+import {
+  IonIcon,
+  IonList,
+  IonItem,
+  IonItemDivider,
+  IonButton,
+} from '@ionic/react';
 import {
   settingsOutline,
   informationCircleOutline,
@@ -8,10 +16,30 @@ import {
   lockClosedOutline,
   heartOutline,
   helpBuoyOutline,
+  personOutline,
+  personAddOutline,
+  exitOutline,
 } from 'ionicons/icons';
 import './styles.scss';
 
-const MainComponent = () => {
+type Props = {
+  logOut: () => void;
+  refreshAccount: any;
+  resendVerificationEmail: () => Promise<void>;
+  isLoggedIn: boolean;
+  user: UserModel;
+};
+
+const MainComponent: FC<Props> = ({
+  isLoggedIn,
+  user,
+  logOut,
+  refreshAccount,
+  resendVerificationEmail,
+}) => {
+  const isNotVerified = user.attrs.verified === false; // verified is undefined in old versions
+  const userEmail = user.attrs.email;
+
   return (
     <Main>
       <IonList lines="full">
@@ -55,9 +83,50 @@ const MainComponent = () => {
             App
           </IonItem>
         </div>
+
+        <IonItemDivider>Account</IonItemDivider>
+        <div className="rounded">
+          {isLoggedIn && (
+            <IonItem detail id="logout-button" onClick={logOut}>
+              <IonIcon icon={exitOutline} size="small" slot="start" />
+              Logout
+              {': '}
+              {user.attrs.firstName} {user.attrs.lastName}
+            </IonItem>
+          )}
+
+          {isLoggedIn && isNotVerified && (
+            <InfoMessage className="verification-warning">
+              Looks like your <b>{{ userEmail }}</b> email hasn't been verified
+              yet.
+              <div>
+                <IonButton fill="outline" onClick={refreshAccount}>
+                  Refresh
+                </IonButton>
+                <IonButton fill="clear" onClick={resendVerificationEmail}>
+                  Resend Email
+                </IonButton>
+              </div>
+            </InfoMessage>
+          )}
+
+          {!isLoggedIn && (
+            <IonItem routerLink="/user/login" detail>
+              <IonIcon icon={personOutline} size="small" slot="start" />
+              Login
+            </IonItem>
+          )}
+
+          {!isLoggedIn && (
+            <IonItem routerLink="/user/register" detail>
+              <IonIcon icon={personAddOutline} size="small" slot="start" />
+              Register
+            </IonItem>
+          )}
+        </div>
       </IonList>
     </Main>
   );
 };
 
-export default MainComponent;
+export default observer(MainComponent);

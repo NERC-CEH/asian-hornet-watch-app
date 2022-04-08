@@ -178,3 +178,27 @@ ul {
     }
   }
 }
+
+input[type='email'] {
+  background: var(--ion-page-background);
+}
+input[type='password'] {
+  background: var(--ion-page-background);
+}
+input[type='text'] {
+  background: var(--ion-page-background);
+}
+
+ion-button[type='submit'] {
+  max-width: 50%;
+
+  margin: 20px auto 60px auto;
+}
+
+ion-alert {
+  ion-list,
+  ion-item {
+    background: none;
+    --background: none;
+  }
+}
