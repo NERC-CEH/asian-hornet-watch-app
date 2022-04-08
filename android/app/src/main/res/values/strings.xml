@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Asian Hornet Watch</string>
-    <string name="title_activity_main">Asian Hornet Watch</string>
-    <string name="package_name">uk.ac.ceh.ahw</string>
-    <string name="custom_url_scheme">uk.ac.ceh.ahw</string>
+  <string name="app_name">Asian Hornet Watch</string>
+  <string name="title_activity_main">Asian Hornet Watch</string>
+  <string name="package_name">uk.ac.ceh.hornets</string>
+  <string name="custom_url_scheme">uk.ac.ceh.hornets</string>
 </resources>

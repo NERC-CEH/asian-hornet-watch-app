@@ -1,4 +1,4 @@
-package uk.ac.ceh.ahw;
+package uk.ac.ceh.hornets;
 
 import com.getcapacitor.BridgeActivity;
 
