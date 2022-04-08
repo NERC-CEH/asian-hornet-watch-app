@@ -75,7 +75,7 @@ export const useUserStatusCheck = () => {
   const toast = useToast();
   const loader = useLoader();
 
-  return async () => {
+  const userStatusAlert = async () => {
     if (!device.isOnline) {
       toast.warn('Looks like you are offline!');
       return false;
@@ -99,6 +99,7 @@ export const useUserStatusCheck = () => {
 
     return true;
   };
+  return userStatusAlert;
 };
 
 export { userModel as default, UserModel };

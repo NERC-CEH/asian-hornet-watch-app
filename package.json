@@ -209,7 +209,7 @@
       "no-restricted-exports": 0,
       "default-param-last": 0,
       "@typescript-eslint/no-this-alias": 0,
-      "@getify/proper-arrows/name": 2
+      "@getify/proper-arrows/params": 0
     }
   },
   "prettier": {

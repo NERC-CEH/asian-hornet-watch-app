@@ -17,5 +17,6 @@ export default class AppOccurrence extends Occurrence {
 
   validateRemote = validateRemoteModel;
 
+  // eslint-disable-next-line
   isDisabled = () => this.isUploaded();
 }

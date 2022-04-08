@@ -9,7 +9,7 @@ import {
 import { AnySchema } from 'yup';
 import { Formik, Form } from 'formik';
 import { Main, InputWithValidation } from '@flumens';
-import { Details } from '../Login';
+import { Details } from './';
 
 type Props = {
   schema: AnySchema;

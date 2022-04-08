@@ -1,8 +1,5 @@
 import { device, getDeepErrorMessage, useAlert } from '@flumens';
-import Sample, {
-  Attrs as SampleAttrs,
-  Options as SampleOptions,
-} from '@bit/flumens.apps.models.sample';
+import Sample, { Attrs as SampleAttrs } from '@bit/flumens.apps.models.sample';
 import userModel from 'models/user';
 import { modelStore } from './store';
 import Occurrence from './occurrence';
@@ -23,15 +20,10 @@ class AppSample extends Sample {
 
   media: Media[] = this.media;
 
-  constructor(options: SampleOptions) {
-    super(options);
-  }
-
   store = modelStore;
 
-  destroy = () => {
-    return super.destroy();
-  };
+  // eslint-disable-next-line
+  destroy = () => super.destroy();
 
   async upload() {
     if (this.remote.synchronising || this.isUploaded()) return true;
@@ -53,7 +45,7 @@ class AppSample extends Sample {
 export const useValidateCheck = (sample: AppSample) => {
   const alert = useAlert();
 
-  return () => {
+  const validateAlert = () => {
     const invalids = sample.validateRemote();
     if (invalids) {
       alert({
@@ -70,6 +62,8 @@ export const useValidateCheck = (sample: AppSample) => {
     }
     return true;
   };
+
+  return validateAlert;
 };
 
 export default AppSample;

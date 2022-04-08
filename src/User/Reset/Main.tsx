@@ -5,7 +5,7 @@ import { personOutline } from 'ionicons/icons';
 import { Trans as T } from 'react-i18next';
 import { AnySchema } from 'yup';
 import { Formik, Form } from 'formik';
-import { Details } from '../Reset';
+import { Details } from './';
 
 type Props = {
   onSubmit: (details: Details) => Promise<void>;

@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 import { Page, useAlert, useToast, useLoader } from '@flumens';
 import savedSamples from 'models/savedSamples';
 import CONFIG from 'common/config';
-import appModel from 'models/app';
 import userModel, { useUserStatusCheck } from 'models/user';
 import { IonFooter, IonItem, IonLabel, IonCheckbox } from '@ionic/react';
 import flumensLogo from 'common/images/flumens.svg';
@@ -12,7 +11,7 @@ import Main from './Main';
 const useConfirmationDialog = () => {
   const alert = useAlert();
 
-  return (callback: any) => {
+  const logoutAlert = (callback: any) => {
     let deleteData = false;
 
     const onCheckboxChange = (e: any) => {
@@ -46,6 +45,8 @@ const useConfirmationDialog = () => {
       ],
     });
   };
+
+  return logoutAlert;
 };
 
 const MenuController: FC = () => {
