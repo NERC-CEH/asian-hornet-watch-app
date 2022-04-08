@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@bit/flumens.apps.attr-page": "^3.0.14",
+    "@bit/flumens.apps.collapse": "^1.0.0",
     "@bit/flumens.apps.device": "^0.3.4",
     "@bit/flumens.apps.header": "^0.7.0",
     "@bit/flumens.apps.helpers.alert": "^2.0.0",

@@ -1,7 +1,27 @@
-.app-menu {
+#menu {
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
   img {
     margin: 0 auto;
     display: block;
-    height: 140px;
+  }
+
+  ion-footer {
+    div {
+      text-align: center;
+    }
+
+    p {
+      margin-top: 10px;
+      margin-bottom: 40px;
+      opacity: 0.6;
+      font-weight: normal;
+    }
+
+    img {
+      width: 30%;
+    }
   }
 }

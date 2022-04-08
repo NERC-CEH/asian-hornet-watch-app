@@ -11,6 +11,7 @@ export { default as alert } from '@bit/flumens.apps.helpers.alert';
 export { default as loader } from '@bit/flumens.apps.helpers.loader';
 export { default as toast } from '@bit/flumens.apps.helpers.toast';
 export { default as initAnalytics } from '@bit/flumens.apps.utils.analytics';
+export { default as Collapse } from '@bit/flumens.apps.collapse';
 
 export {
   default as Model,
