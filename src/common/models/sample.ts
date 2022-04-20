@@ -1,16 +1,24 @@
 import { device, getDeepErrorMessage, useAlert } from '@flumens';
 import Sample, { Attrs as SampleAttrs } from '@bit/flumens.apps.models.sample';
 import userModel from 'models/user';
+import surveyConfig from 'Survey/config';
 import { modelStore } from './store';
 import Occurrence from './occurrence';
+import GPSExtension from './sampleGPSExt';
 import Media from './image';
 
-type Attrs = SampleAttrs;
+type Attrs = SampleAttrs & {
+  location?: any;
+};
 
 class AppSample extends Sample {
   static fromJSON(json: any) {
     return super.fromJSON(json, Occurrence, AppSample, Media);
   }
+
+  isGPSRunning: any;
+
+  gpsExtensionInit: any;
 
   attrs: Attrs = this.attrs;
 
@@ -21,6 +29,13 @@ class AppSample extends Sample {
   media: Media[] = this.media;
 
   store = modelStore;
+
+  constructor(args: any) {
+    super(args);
+
+    this.survey = surveyConfig;
+    Object.assign(this, GPSExtension());
+  }
 
   // eslint-disable-next-line
   destroy = () => super.destroy();
