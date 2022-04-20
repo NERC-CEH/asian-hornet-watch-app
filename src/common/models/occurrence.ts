@@ -4,7 +4,7 @@ import Occurrence, {
 import { validateRemoteModel } from '@bit/flumens.apps.utils.validation';
 import Media from './image';
 
-type Attrs = OccurrenceAttrs;
+type Attrs = OccurrenceAttrs & { taxon: any };
 
 export default class AppOccurrence extends Occurrence {
   static fromJSON(json: any) {

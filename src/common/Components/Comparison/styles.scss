@@ -1,0 +1,150 @@
+#species-profile {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+
+  ion-slides {
+    background: #e5e5e5;
+    overflow: visible;
+    margin-bottom: 20px;
+
+    ion-slide.species-profile-photo {
+      position: relative;
+      overflow: hidden;
+
+      .title {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        background: #e5e5e5;
+        color: white;
+        border-radius: 15px 0 0 0;
+        padding: 5px 15px 5px 20px;
+        transform: translate3d(0, 0, 0); // fixes iOS scroll z-index
+      }
+
+      height: 240px;
+      background: #e5e5e5;
+    }
+
+    .swiper-pagination {
+      position: absolute;
+      bottom: -20px;
+      background: #e5e5e5;
+
+      .swiper-pagination-bullet {
+        opacity: 0.5;
+        --bullet-background: grey;
+      }
+      .swiper-pagination-bullet-active {
+        opacity: 0.8;
+        --bullet-background-active: var(--ion-color-primary);
+      }
+    }
+  }
+
+  ion-card-header {
+    display: flex;
+    justify-content: space-between;
+    background: #e5e5e5;
+
+    .title {
+      h1 {
+        font-size: 1.4em;
+        margin: 0 0 8px;
+        font-weight: bold;
+      }
+      h3 {
+        font-size: 1.2em;
+        margin: 0;
+        color: var(--ion-color-dark);
+        font-weight: 200;
+      }
+    }
+
+    ion-button {
+      align-self: center;
+      margin-left: 20px;
+    }
+  }
+
+  ion-card-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    background: white;
+
+    p {
+      font-size: 1em;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .map img {
+      max-width: 50%;
+    }
+
+    h3 {
+      font-weight: bold;
+      border-left: 3px solid var(--ion-color-primary);
+      padding-left: 5px;
+      text-transform: uppercase;
+      margin: 30px auto 15px;
+      max-height: 22px;
+    }
+  }
+
+  .species-label.inline-label {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .species-status {
+    font-size: 0.8em;
+    line-height: 0.8em;
+    padding: 0 10px;
+    height: 20px;
+    text-transform: capitalize;
+  }
+
+  .fullscreen-tappable {
+    position: relative;
+
+    .fullscreen-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2em;
+      --ionicon-stroke-width: 20px;
+      background: linear-gradient(271deg, #eaeaea 38%, #80808000 100%);
+      height: 100%;
+      padding: 0 10px;
+      width: 20%;
+
+      ion-icon {
+        position: absolute;
+        right: 12%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    &.map {
+      background: linear-gradient(271deg, #eaeaea3d 38%, #80808000 100%);
+    }
+  }
+}
+
+.gallery-modal.white-background {
+  ion-title {
+    color: var(--ion-color-dark);
+  }
+  ion-content {
+    --background: white;
+  }
+}

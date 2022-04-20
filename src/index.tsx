@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { setupIonicReact, isPlatform } from '@ionic/react';
 import appModel from 'models/app';
+import savedSamples from 'models/savedSamples';
 import { StatusBar, Style as StatusBarStyle } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
 import i18n from 'i18next';
@@ -29,6 +30,7 @@ setupIonicReact({
 
 async function init() {
   await appModel.ready;
+  await savedSamples._init;
 
   appModel.attrs.sendAnalytics &&
     initAnalytics({

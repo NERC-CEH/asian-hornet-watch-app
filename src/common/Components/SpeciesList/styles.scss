@@ -1,0 +1,151 @@
+.species-list {
+  .user-feedback-row {
+    padding: 10px 20px;
+
+    #feedback-request {
+      border-radius: 10px;
+      ion-card-title {
+        font-family: 'Museo500';
+      }
+    }
+  }
+
+  ion-grid {
+    padding: 0;
+  }
+
+  .species-tile {
+    padding: 0;
+
+    .container {
+      position: relative;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      margin: 8px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #d9d9da;
+
+      ion-icon {
+        // TODO: remove once real pics are available
+        width: 100%;
+        height: 100%;
+        --ionicon-stroke-width: 5px;
+        z-index: 1;
+
+        svg path {
+          fill: white !important;
+        }
+      }
+
+      ion-label {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0.5em;
+        min-height: 3.6em;
+        line-height: 1.3em;
+        text-align: center;
+        font-family: 'Museo700';
+        z-index: 10;
+      }
+
+      overflow: hidden;
+
+      .thumbnail {
+        margin: -8% -3% -16%;
+        width: 106%;
+        min-height: 120px; // fixes loading image jitter
+        max-width: none;
+        z-index: 10;
+      }
+      img.thumbnail-background {
+        position: absolute;
+        height: 100%;
+      }
+      div.thumbnail-background {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 40%;
+
+        img {
+          position: absolute;
+          filter: blur(30px);
+          transform: scale(2.5);
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .info-box {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: #fffffff0;
+        border-radius: 50%;
+        transform: translate(50%, -50%);
+        box-shadow: 0 0 15px 5px #e6e6e6;
+        z-index: 100;
+
+        ion-icon {
+          width: 30%;
+          height: 50%;
+          --ionicon-stroke-width: 20;
+          position: absolute;
+          bottom: 4%;
+          left: 16%;
+        }
+      }
+    }
+  }
+
+  ion-item-divider.item-divider-sticky {
+    padding: 0;
+    color: white;
+    width: 104%;
+    z-index: 1000;
+
+    margin: 10px -2%;
+    &:first-child {
+      margin-top: 0;
+    }
+
+    ion-label {
+      width: 100%;
+      text-align: center;
+    }
+
+    background: var(--ion-color-primary) !important;
+    &.species-now {
+      background: #51735f !important;
+    }
+    &.species-moths {
+      background: #556786 !important;
+    }
+    &.species-additional {
+      background: #696969 !important;
+    }
+  }
+}
+
+.species-modal-header ion-toolbar {
+  position: fixed;
+  --background: transparent;
+  --border-style: none;
+
+  ion-button {
+    height: 40px;
+    width: 40px;
+    background: var(--ion-color-light) !important;
+    border-radius: 50%;
+    box-shadow: 0 0 7px #0000003d;
+
+    ion-icon {
+      color: black;
+    }
+  }
+}
