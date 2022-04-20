@@ -66,6 +66,10 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
   const dateValue = sample.attrs.date?.split('T')[0];
 
+  const isDisabled = sample.isUploaded();
+
+  const maxDate: any = new Date().toISOString().split('T');
+
   const onChangeDate = (e: any) => {
     sample.attrs.date = e.detail.value;
     sample.save();
@@ -91,7 +95,12 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
           {getLocationButton()}
 
-          <IonItem className="menu-attr-item" id="open-modal">
+          <IonItem
+            disabled={isDisabled}
+            className="menu-attr-item"
+            id="open-modal"
+            detail
+          >
             <IonIcon icon={calendarOutline} slot="start" />
             <IonLabel>Date</IonLabel>
             <IonLabel slot="end">{dateValue}</IonLabel>
@@ -103,7 +112,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
               showDefaultButtons={true}
               presentation="date"
               value={dateValue}
-              max={dateValue}
+              max={maxDate[0]}
             />
           </IonModal>
 
