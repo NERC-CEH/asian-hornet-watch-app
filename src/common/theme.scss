@@ -202,3 +202,53 @@ ion-alert {
     --background: none;
   }
 }
+
+.leaflet-control-zoom {
+  display: none;
+}
+
+ion-textarea {
+  margin: 10px auto !important;
+  max-width: 95%;
+  border-radius: 15px;
+}
+
+ion-textarea {
+  background: var(--ion-color-light) !important;
+  padding: 0 10px;
+}
+
+*:not(.rounded) > .info-message {
+  border-radius: 10px;
+  margin: 10px;
+}
+
+ion-radio-group ion-item {
+  --border-style: none;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.photo-picker {
+  --inner-padding-end: 0;
+
+  #img-picker-array .img {
+    margin-right: 5px;
+    .delete {
+      background-color: #80808085;
+    }
+  }
+
+  #img-picker-array .img-picker {
+    border-right: none;
+
+    ion-button {
+      background: #3aa3644a;
+      margin: 5px;
+      height: calc(80px - 10px);
+      width: calc(80px - 10px);
+      border-radius: 15px;
+      transform: none;
+    }
+  }
+}
