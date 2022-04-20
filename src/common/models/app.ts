@@ -1,7 +1,11 @@
 import { Model, ModelAttrs } from '@flumens';
 import { genericStore } from './store';
 
-export interface Attrs extends ModelAttrs {
+export type SurveyDraftKeys = {
+  'draftId:survey'?: string;
+};
+
+export interface Attrs extends ModelAttrs, SurveyDraftKeys {
   appSession: number;
   showedWelcome: boolean;
   sendAnalytics: boolean;
