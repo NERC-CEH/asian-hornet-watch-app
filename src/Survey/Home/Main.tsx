@@ -3,14 +3,25 @@ import Sample from 'models/sample';
 import { useRouteMatch } from 'react-router';
 import { observer } from 'mobx-react';
 import {
-  Attr,
   Main,
   MenuAttrItem,
   MenuAttrItemFromModel,
   InfoMessage,
 } from '@flumens';
-import { warningOutline, locationOutline } from 'ionicons/icons';
-import { IonList, IonItemDivider, IonLabel } from '@ionic/react';
+import {
+  warningOutline,
+  locationOutline,
+  calendarOutline,
+} from 'ionicons/icons';
+import {
+  IonList,
+  IonItemDivider,
+  IonLabel,
+  IonItem,
+  IonIcon,
+  IonModal,
+  IonDatetime,
+} from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
 import PhotoPicker from 'Survey/common/Components/PhotoPicker';
 import GridRefValue from 'Survey/common/Components/GridRefValue';
@@ -22,8 +33,6 @@ type Props = {
 
 const HomeMain: FC<Props> = ({ sample }) => {
   const { url } = useRouteMatch();
-  const survey = sample.getSurvey();
-  const surveyDateProps = survey.attrs.date.pageProps.attrProps.inputProps;
 
   const [occ] = sample.occurrences;
 
@@ -55,6 +64,13 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
   const speciesValue = sample.occurrences[0].attrs.taxon.common_name;
 
+  const dateValue = sample.attrs.date?.split('T')[0];
+
+  const onChangeDate = (e: any) => {
+    sample.attrs.date = e.detail.value;
+    sample.save();
+  };
+
   return (
     <Main>
       <InfoMessage icon={warningOutline}>
@@ -74,12 +90,22 @@ const HomeMain: FC<Props> = ({ sample }) => {
           />
 
           {getLocationButton()}
-          <Attr
-            model={sample}
-            attr="date"
-            input="date"
-            inputProps={surveyDateProps}
-          />
+
+          <IonItem className="menu-attr-item" id="open-modal">
+            <IonIcon icon={calendarOutline} slot="start" />
+            <IonLabel>Date</IonLabel>
+            <IonLabel slot="end">{dateValue}</IonLabel>
+          </IonItem>
+
+          <IonModal id="date-time-modal" trigger="open-modal">
+            <IonDatetime
+              onIonChange={onChangeDate}
+              showDefaultButtons={true}
+              presentation="date"
+              value={dateValue}
+              max={dateValue}
+            />
+          </IonModal>
 
           <MenuAttrItemFromModel attr="number" model={sample} />
           <MenuAttrItemFromModel attr="comment" model={sample} />

@@ -9,6 +9,7 @@ import Media from './image';
 
 type Attrs = SampleAttrs & {
   location?: any;
+  date?: string;
 };
 
 class AppSample extends Sample {
