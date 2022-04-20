@@ -1,0 +1,36 @@
+#surveys-list {
+  ion-header {
+    ion-badge {
+      display: inline;
+      margin-left: 10px;
+    }
+
+    ion-toolbar {
+      --ion-toolbar-background: transparent;
+      &.md {
+        --ion-toolbar-background: white;
+      }
+
+      ion-segment-button {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      position: fixed;
+      color: var(--ion-color-main);
+    }
+  }
+
+  ion-content {
+    --padding-top: 80px;
+
+    .info-background-message {
+      margin-top: 150px;
+    }
+
+    .upload-all-button {
+      margin: 0 auto 20px;
+      max-width: 60%;
+    }
+  }
+}

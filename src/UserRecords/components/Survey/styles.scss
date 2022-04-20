@@ -1,0 +1,79 @@
+#surveys-list ion-content {
+  ion-list {
+    background: transparent;
+
+    .survey-list-item {
+      border-radius: 10px;
+      margin-bottom: 6px;
+      background: white;
+
+      ion-item {
+        --border-width: 0;
+
+        .species-info {
+          margin: 10px 10px;
+
+          span {
+            margin-right: 10px;
+          }
+          ion-badge {
+            --background: var(--ion-color-medium);
+            margin-bottom: -4px;
+          }
+        }
+
+        ion-icon {
+          font-size: 2.5em;
+        }
+
+        ion-badge {
+          margin-left: 5px;
+          font-size: 0.6em;
+
+          ion-icon {
+            font-size: 0.8em;
+            margin-right: 5px;
+          }
+        }
+
+        > ion-label {
+          margin-left: 20px;
+        }
+
+        h3 {
+          font-size: 1.1em;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .empty {
+    width: 80%;
+    max-width: 250px;
+    margin: 50px auto 50px;
+    --border-width: 0;
+    --background: white;
+    --color: var(--ion-color-light-contrast);
+    border-radius: 10px;
+
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05),
+      0 2px 9px 0 rgba(62, 57, 107, 0.05);
+
+    div {
+      margin: 0 auto;
+      font-weight: 200;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    ion-icon {
+      background: var(--ion-color-primary);
+      padding: 5px;
+      border-radius: 4px;
+      color: white;
+      margin: 0 5px 0 8px;
+      margin-bottom: -7px;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.survey-status {
+  ion-badge {
+    text-transform: uppercase;
+  }
+}
+
+ion-button.survey-status-upload {
+  margin-right: 10px;
+  --padding-end: 15px;
+  --padding-start: 15px;
+}
+
+ion-spinner.survey-status {
+  width: 15px;
+}
