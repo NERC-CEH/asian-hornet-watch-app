@@ -99,6 +99,7 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
     );
   };
 
+  const openModal = () => setSpeciesProfile(true);
   return (
     <>
       {getGallery()}
@@ -164,7 +165,7 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
             <b>Other features:</b> {species?.notes}
           </p>
 
-          <IonItem onClick={() => setSpeciesProfile(true)} detail>
+          <IonItem onClick={openModal} detail>
             <IonIcon icon={eyeOutline} size="small" slot="start" />
             Compare species
           </IonItem>

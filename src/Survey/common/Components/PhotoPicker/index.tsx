@@ -11,17 +11,20 @@ import './styles.scss';
 export function usePromptImageSource() {
   const [presentActionSheet] = useIonActionSheet();
 
-  return () =>
-    new Promise<boolean | null>(resolve => {
-      presentActionSheet({
-        buttons: [
-          { text: 'Gallery', handler: () => resolve(false) },
-          { text: 'Camera', handler: () => resolve(true) },
-          { text: 'Cancel', role: 'cancel', handler: () => resolve(null) },
-        ],
-        header: 'Choose a method to upload a photo',
-      });
+  const message = (
+    resolve: (value: boolean | PromiseLike<boolean | null> | null) => void
+  ): void => {
+    presentActionSheet({
+      buttons: [
+        { text: 'Gallery', handler: () => resolve(false) },
+        { text: 'Camera', handler: () => resolve(true) },
+        { text: 'Cancel', role: 'cancel', handler: () => resolve(null) },
+      ],
+      header: 'Choose a method to upload a photo',
     });
+  };
+  const promptMessage = () => new Promise<boolean | null>(message);
+  return promptMessage;
 }
 
 interface Props extends Omit<ComponentProps<typeof PhotoPicker>, 'getImage'> {
@@ -39,6 +42,7 @@ const AppPhotoPicker: FC<Props> = ({ model, ...restProps }) => {
     const [image] = await captureImage({
       camera: shouldUseCamera,
     });
+
     if (!image) {
       return null;
     }

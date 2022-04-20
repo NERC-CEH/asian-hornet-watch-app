@@ -7,7 +7,7 @@ const Comparison = () => {
   return (
     <>
       <Page id="comparison">
-        <Header title="Comparison"></Header>
+        <Header title="Comparison" />
         <Main id="species-profile">Comparison</Main>
       </Page>
     </>
