@@ -100,6 +100,11 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
   };
 
   const openModal = () => setSpeciesProfile(true);
+
+  const isSpeciesAsianOrEuropean =
+    species?.common_name === 'Asian hornet' ||
+    species?.common_name === 'European hornet';
+
   return (
     <>
       {getGallery()}
@@ -165,10 +170,14 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
             <b>Other features:</b> {species?.notes}
           </p>
 
-          <IonItem onClick={openModal} detail>
-            <IonIcon icon={eyeOutline} size="small" slot="start" />
-            Compare species
-          </IonItem>
+          {isSpeciesAsianOrEuropean && (
+            <div className="rounded">
+              <IonItem onClick={openModal} detail>
+                <IonIcon icon={eyeOutline} size="small" slot="start" />
+                Compare species
+              </IonItem>
+            </div>
+          )}
 
           <IonModal isOpen={!!speciesProfile} backdropDismiss={false} mode="md">
             <IonHeader className="species-modal-header">
