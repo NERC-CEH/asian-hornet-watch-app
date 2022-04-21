@@ -1,6 +1,6 @@
 import React, { FC, SyntheticEvent } from 'react';
 import { IonCard, IonLabel, IonRow, IonIcon } from '@ionic/react';
-import { informationCircleOutline } from 'ionicons/icons';
+import { informationCircleOutline, warning } from 'ionicons/icons';
 import 'common/images/images';
 import './styles.scss';
 
@@ -19,8 +19,10 @@ const SpeciesCard: FC<Props> = ({
 }) => {
   const isSurvey = !!onSelect;
 
+  const isSpeciesAsianHornet = species.common_name === 'Asian hornet';
+
   return (
-    <IonRow id="card">
+    <IonRow id="card" key={species.id}>
       <IonCard onClick={onClick}>
         {isSurvey && (
           <div className="info-box" onClick={viewSpecies}>
@@ -34,7 +36,13 @@ const SpeciesCard: FC<Props> = ({
         >
           <div className="card-wrapper">
             <div className="card-blur-container">
-              <IonLabel>{species.common_name} </IonLabel>
+              <IonLabel>
+                {species.common_name}
+
+                {isSpeciesAsianHornet && (
+                  <IonIcon icon={warning} color="danger" />
+                )}
+              </IonLabel>
             </div>
           </div>
         </div>

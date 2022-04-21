@@ -74,7 +74,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
   return (
     <Main>
-      <InfoMessage icon={warningOutline}>
+      <InfoMessage icon={warning} className="info-message warning">
         Caution: take care when recording this species as its sting is similar
         to that of a wasp
       </InfoMessage>

@@ -40,7 +40,7 @@
       }
       .swiper-pagination-bullet-active {
         opacity: 0.8;
-        --bullet-background-active: var(--ion-color-primary);
+        background: var(--ion-color-secondary);
       }
     }
   }
@@ -52,7 +52,7 @@
 
     .title {
       h1 {
-        font-size: 1.4em;
+        font-size: 1.6em;
         margin: 0 0 8px;
         font-weight: bold;
       }
@@ -137,6 +137,12 @@
     &.map {
       background: linear-gradient(271deg, #eaeaea3d 38%, #80808000 100%);
     }
+  }
+
+  .container-wrapper {
+    margin-top: 15px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
   }
 }
 

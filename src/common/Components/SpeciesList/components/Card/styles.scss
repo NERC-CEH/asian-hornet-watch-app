@@ -1,6 +1,7 @@
 #card {
   ion-card.ios {
     box-shadow: rgba(12, 12, 12, 0.47) 0px 4px 15px;
+    margin: 15px 10px;
   }
 
   ion-card {
@@ -53,9 +54,17 @@
           border-radius: 0px 0px 5px 5px;
 
           ion-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 10px 10px;
             color: white;
-            font-weight: 300;
+            font-weight: 500;
+            width: 100%;
+          }
+
+          ion-icon {
+            font-size: 1.4em;
           }
 
           ion-label.md {

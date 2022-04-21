@@ -3,7 +3,6 @@ import {
   IonCardHeader,
   IonSlides,
   IonSlide,
-  IonList,
   IonItem,
   IonIcon,
   IonModal,
@@ -11,7 +10,9 @@ import {
   IonButtons,
   IonButton,
   IonToolbar,
+  IonCardContent,
 } from '@ionic/react';
+import { Trans as T } from 'react-i18next';
 import { Main, Gallery, InfoMessage } from '@flumens';
 import { informationCircle, eyeOutline, arrowBack } from 'ionicons/icons';
 import ImageWithBackground from '../ImageWithBackground';
@@ -80,7 +81,9 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
         src: imageURL,
         width: species.images[0].width[index],
         height: species.images[0].height[index],
-        footer: `© ${species.images[0].author[index]}`,
+        footer:
+          species.images[0]?.author[index] &&
+          `© ${species.images[0]?.author[index]}`,
       };
     };
 
@@ -100,9 +103,11 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
   const openModal = () => setSpeciesProfile(true);
 
-  const isSpeciesAsianOrEuropean =
+  const isSpeciesAsianOrEuropeanHornet =
     species?.common_name === 'Asian hornet' ||
     species?.common_name === 'European hornet';
+
+  const isSpeciesAsianHornet = species?.common_name === 'Asian hornet';
 
   return (
     <>
@@ -120,79 +125,103 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
           </div>
         </IonCardHeader>
 
-        <IonList>
-          <p>
-            <h3>Distribution:</h3>
-            <InfoMessage icon={informationCircle}>
-              Asian hornet is often confused with similar species, find out more
-              about each below.
-            </InfoMessage>
+        <IonCardContent>
+          {!isSpeciesAsianHornet && (
+            <>
+              <h3>Distribution:</h3>
+              <p>
+                <img src={`/images/${species?.id}_map.svg`} />
+              </p>
+            </>
+          )}
 
-            <img src={`/images/${species?.id}_map.svg`} />
-          </p>
+          {isSpeciesAsianHornet && (
+            <>
+              <h3>Distribution:</h3>
+              <InfoMessage icon={informationCircle}>
+                Asian hornet is not currently established in the UK.
+              </InfoMessage>
+            </>
+          )}
 
-          <p>
-            <h3>:</h3>
-            <InfoMessage icon={informationCircle}>
-              Asian hornet is often confused with similar species, find out more
-              about each below.
-            </InfoMessage>
+          <h3>Flight period:</h3>
+          <img src={`/images/${species?.id}_timeline.jpg`} />
 
-            <img src={`/images/${species?.id}_timeline.jpg`} />
-          </p>
+          {species?.size && (
+            <>
+              <h3>Size:</h3>
+              <p>{species?.size}</p>
+            </>
+          )}
+          {species?.legs && (
+            <>
+              <h3>Legs:</h3>
+              <p>{species?.legs}</p>
+            </>
+          )}
 
-          <p>
-            <b>Size:</b> {species?.size}
-          </p>
+          {species?.abdomen && (
+            <>
+              <h3>Abdomen:</h3>
+              <p>{species?.abdomen}</p>
+            </>
+          )}
 
-          <p>
-            <b>Legs:</b> {species?.legs}
-          </p>
+          {species?.head && (
+            <>
+              <h3>Head:</h3>
+              <p>{species?.head}</p>
+            </>
+          )}
 
-          <p>
-            <b>Abdomen:</b> {species?.abdomen}
-          </p>
+          {species?.antennae && (
+            <>
+              <h3>Antennae:</h3>
+              <p>{species?.antennae}</p>
+            </>
+          )}
 
-          <p>
-            <b>Head:</b> {species?.head}
-          </p>
+          {species?.thorax && (
+            <>
+              <h3>Thorax:</h3>
+              <p>{species?.thorax}</p>
+            </>
+          )}
 
-          <p>
-            <b>Antennae:</b> {species?.antennae}
-          </p>
+          {species?.notes && (
+            <>
+              <h3>Other features:</h3>
+              <p>
+                <T>{species?.notes}</T>
+              </p>
+            </>
+          )}
 
-          <p>
-            <b>Thorax:</b> {species?.thorax}
-          </p>
-
-          <p>
-            <b>Other features:</b> {species?.notes}
-          </p>
-
-          {isSpeciesAsianOrEuropean && (
-            <div className="rounded">
-              <IonItem onClick={openModal} detail>
+          {isSpeciesAsianOrEuropeanHornet && (
+            <div className="container-wrapper">
+              <IonItem onClick={openModal} lines="none" detail>
                 <IonIcon icon={eyeOutline} size="small" slot="start" />
                 Compare species
               </IonItem>
             </div>
           )}
 
-          <IonModal isOpen={!!speciesProfile} backdropDismiss={false} mode="md">
-            <IonHeader className="species-modal-header">
-              <IonToolbar>
-                <IonButtons slot="start">
-                  <IonButton onClick={hideSpeciesModal}>
-                    <IonIcon slot="icon-only" icon={arrowBack} />
-                  </IonButton>
-                </IonButtons>
-              </IonToolbar>
-            </IonHeader>
-            <Comparison />
-          </IonModal>
-
+          <h3>Description:</h3>
           <p>{species?.description}</p>
-        </IonList>
+        </IonCardContent>
+
+        <IonModal isOpen={!!speciesProfile} backdropDismiss={false} mode="md">
+          <IonHeader className="species-modal-header">
+            <IonToolbar>
+              <IonButtons slot="start">
+                <IonButton onClick={hideSpeciesModal}>
+                  <IonIcon slot="icon-only" icon={arrowBack} />
+                </IonButton>
+              </IonButtons>
+            </IonToolbar>
+          </IonHeader>
+          <Comparison />
+        </IonModal>
       </Main>
     </>
   );
