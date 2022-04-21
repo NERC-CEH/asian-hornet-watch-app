@@ -261,3 +261,7 @@ ion-radio-group ion-item {
     align-items: center;
   }
 }
+
+.menu-attr-item ion-label[slot='end'] {
+  max-width: 40%;
+}

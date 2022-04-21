@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useAlert, useToast } from '@flumens';
+import { useAlert, useToast, date } from '@flumens';
 import Sample, { useValidateCheck } from 'models/sample';
 import { useUserStatusCheck } from 'models/user';
 import { observer } from 'mobx-react';
@@ -8,12 +8,13 @@ import {
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
-  IonBadge,
   IonLabel,
   IonIcon,
+  IonAvatar,
 } from '@ionic/react';
 // import flowerIcon from 'common/images/flowerIcon.svg';
 import OnlineStatus from './components/OnlineStatus';
+import waspIcon from 'common/images/wasp.svg';
 import './styles.scss';
 
 const useDeleteAlert = (sample: Sample) => {
@@ -57,35 +58,30 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
   let href;
   if (!sample.remote.synchronising) {
     href = `/survey/${survey.name}/${sample.cid}`;
-    if (survey.name === 'transect' && !sample.metadata.completedDetails) {
-      href += '/details';
-    }
   }
 
   function getSampleInfo() {
-    if (survey.name === 'transect') {
-      return (
-        <div className="species-info">
-          <h3>{survey.label}</h3>
-        </div>
-      );
+    const occ = sample.occurrences[0];
+
+    const prettyDate = date.print(sample.attrs.date);
+
+    const image = occ?.media[0];
+    let avatar = <IonIcon icon={waspIcon} color="warning" />;
+
+    if (image) {
+      avatar = <img src={image.getURL()} />;
     }
 
-    const showSpeciesLength = sample.samples.length;
+    const label = occ?.attrs?.taxon?.common_name;
 
     return (
-      <div className="species-info">
-        <h3>
-          {survey.label}
-
-          {!!showSpeciesLength && (
-            <IonBadge>
-              {/* <IonIcon icon={flowerIcon} /> */}
-              {showSpeciesLength}
-            </IonBadge>
-          )}
-        </h3>
-      </div>
+      <>
+        <IonAvatar>{avatar}</IonAvatar>
+        <IonLabel position="stacked" mode="ios" color="dark">
+          <IonLabel className="species-name">{label || 'Record'}</IonLabel>
+          <IonLabel class="ion-text-wrap">{prettyDate}</IonLabel>
+        </IonLabel>
+      </>
     );
   }
 
@@ -102,8 +98,8 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
   return (
     <IonItemSliding className="survey-list-item">
       <IonItem routerLink={href} detail>
-        <IonIcon icon={survey.icon} color="primary" />
-        <IonLabel>{getSampleInfo()}</IonLabel>
+        {getSampleInfo()}
+
         <OnlineStatus
           sample={sample}
           onUpload={onUpload}

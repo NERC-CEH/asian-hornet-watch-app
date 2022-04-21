@@ -15,7 +15,6 @@ import Sample from 'models/sample';
 import savedSamples from 'models/savedSamples';
 import InfoBackgroundMessage from 'common/Components/InfoBackgroundMessage';
 import Survey from './components/Survey';
-import './images/empty-samples-list-icon.svg';
 import './styles.scss';
 
 function byCreateTime(smp1: Sample, smp2: Sample) {
