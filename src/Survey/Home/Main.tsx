@@ -8,11 +8,7 @@ import {
   MenuAttrItemFromModel,
   InfoMessage,
 } from '@flumens';
-import {
-  warningOutline,
-  locationOutline,
-  calendarOutline,
-} from 'ionicons/icons';
+import { warning, locationOutline, calendarOutline } from 'ionicons/icons';
 import {
   IonList,
   IonItemDivider,
@@ -71,6 +67,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
   const maxDate: any = new Date().toISOString().split('T');
 
   const onChangeDate = (e: any) => {
+    // eslint-disable-next-line
     sample.attrs.date = e.detail.value;
     sample.save();
   };
@@ -109,7 +106,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
           <IonModal id="date-time-modal" trigger="open-modal">
             <IonDatetime
               onIonChange={onChangeDate}
-              showDefaultButtons={true}
+              showDefaultButtons
               presentation="date"
               value={dateValue}
               max={maxDate[0]}

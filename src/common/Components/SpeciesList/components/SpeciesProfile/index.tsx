@@ -24,7 +24,6 @@ type Props = {
 };
 
 const SpeciesProfile: FC<Props> = ({ species }) => {
-  // static contextType = IonLifeCycleContext;
   const [showGallery, setShowGallery] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 

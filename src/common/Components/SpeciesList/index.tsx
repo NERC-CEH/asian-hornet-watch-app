@@ -44,6 +44,7 @@ const SpeciesList: FC<Props> = ({ onSelect }) => {
         onClick={onClick}
         viewSpecies={viewSpecies}
         onSelect={onSelect}
+        key={sp.id}
       />
     );
   };

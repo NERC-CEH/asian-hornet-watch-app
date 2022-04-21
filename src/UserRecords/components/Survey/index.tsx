@@ -12,9 +12,8 @@ import {
   IonIcon,
   IonAvatar,
 } from '@ionic/react';
-// import flowerIcon from 'common/images/flowerIcon.svg';
-import OnlineStatus from './components/OnlineStatus';
 import waspIcon from 'common/images/wasp.svg';
+import OnlineStatus from './components/OnlineStatus';
 import './styles.scss';
 
 const useDeleteAlert = (sample: Sample) => {
