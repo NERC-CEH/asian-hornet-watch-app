@@ -14,12 +14,14 @@ export interface Attrs extends DrupalUserModelAttrs {
   fullName?: string;
   firstName?: string;
   lastName?: string;
+  id?: number | null;
 }
 
 const defaults: Attrs = {
   fullName: '',
   firstName: '',
   lastName: '',
+  id: null,
 };
 
 class UserModel extends DrupalUserModel {

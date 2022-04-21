@@ -15,12 +15,13 @@ function getValue(sample: Sample) {
 
 interface Props {
   sample: Sample;
+  requiredMessage?: string;
 }
 
-const GridRefValue: FC<Props> = ({ sample }) => {
+const GridRefValue: FC<Props> = ({ sample, requiredMessage = '' }) => {
   const value = getValue(sample);
 
-  return <div className="gridref-label">{value}</div>;
+  return <div className="gridref-label">{value || requiredMessage}</div>;
 };
 
 export default observer(GridRefValue);

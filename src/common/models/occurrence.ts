@@ -1,7 +1,7 @@
 import Occurrence, {
   Attrs as OccurrenceAttrs,
 } from '@bit/flumens.apps.models.occurrence';
-import { validateRemoteModel } from '@bit/flumens.apps.utils.validation';
+import { validateRemoteModel } from '@flumens';
 import Media from './image';
 
 type Attrs = OccurrenceAttrs & { taxon: any };

@@ -1,4 +1,9 @@
-import { device, getDeepErrorMessage, useAlert } from '@flumens';
+import {
+  validateRemoteModel,
+  device,
+  getDeepErrorMessage,
+  useAlert,
+} from '@flumens';
 import Sample, { Attrs as SampleAttrs } from '@bit/flumens.apps.models.sample';
 import userModel from 'models/user';
 import surveyConfig from 'Survey/config';
@@ -16,6 +21,8 @@ class AppSample extends Sample {
   static fromJSON(json: any) {
     return super.fromJSON(json, Occurrence, AppSample, Media);
   }
+
+  validateRemote = validateRemoteModel;
 
   isGPSRunning: any;
 

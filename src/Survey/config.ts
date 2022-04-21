@@ -133,25 +133,25 @@ const survey = {
     create() {
       return new Occurrence({
         attrs: {
-          taxon: {
-            comment: null,
-          },
+          comment: null,
+          taxon: null,
         },
       });
     },
 
-    verify(_: any, occ: any) {
+    verify(attrs: any) {
+      console.log('!', attrs);
+
       try {
-        Yup.object()
-          .shape({
-            media: Yup.array()
-              .min(1, 'Please add a photo of the bloom')
-              .required(),
-          })
-          .validateSync(occ, { abortEarly: false });
+        const occurrenceScheme = Yup.object().shape({
+          taxon: Yup.object().nullable().required('Species is missing.'),
+        });
+
+        occurrenceScheme.validateSync(attrs, { abortEarly: false });
       } catch (attrError) {
         return attrError;
       }
+
       return null;
     },
   },
