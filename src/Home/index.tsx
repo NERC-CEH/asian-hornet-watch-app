@@ -26,15 +26,15 @@ const HomeController: FC = () => {
     <>
       <IonTabs>
         <IonRouterOutlet>
-          <Redirect path="/home" to="/home/info" exact />
+          <Redirect path="/home" to="/home/landing" exact />
           <Route path="/home/info" component={Menu} exact />
           <Route path="/home/records" component={UserRecords} exact />
-          <Route path="/home/home" component={Home} exact />
+          <Route path="/home/landing" component={Home} exact />
           <Route path="/home/species" component={Species} exact />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom" className="home-tab-bar">
-          <IonTabButton tab="/home/home" href="/home/home">
+          <IonTabButton tab="/home/landing" href="/home/landing">
             <IonIcon icon={homeOutline} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
