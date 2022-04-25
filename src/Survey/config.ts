@@ -171,11 +171,12 @@ const survey = {
     return null;
   },
 
-  create(Sample: any) {
+  create(Sample: any, training: boolean) {
     const sample = new Sample({
       metadata: {
         survey: survey.name,
         survey_id: survey.id,
+        training: training,
       },
 
       attrs: {

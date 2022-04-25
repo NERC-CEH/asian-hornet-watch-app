@@ -17,6 +17,8 @@ type Props = {
 const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
   const { navigate } = useContext(NavContext);
 
+  const isTraining = !!sample.metadata.training;
+
   const checkSampleStatus = useValidateCheck(sample);
 
   const isEditing = sample.metadata.saved;
@@ -60,9 +62,17 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     <IonButton onClick={onFinish}>{isEditing ? 'Upload' : 'Finish'}</IonButton>
   );
 
+  const trainingModeSubheader = isTraining && (
+    <div className="training-subheader">Training Mode</div>
+  );
+
   return (
     <Page id="survey-home">
-      <Header title="Record" rightSlot={finishButton} />
+      <Header
+        title="Record"
+        rightSlot={finishButton}
+        subheader={trainingModeSubheader}
+      />
 
       <Main sample={sample} />
     </Page>

@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import Home from './Home';
 import Info from './Info/router';
 import User from './User/router';
+import Settings from './Settings/router';
 import Survey from './Survey/router';
 
 const HomeRedirect = () => {
@@ -21,6 +22,7 @@ const App = () => (
         {Info}
         {User}
         {Survey}
+        {Settings}
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

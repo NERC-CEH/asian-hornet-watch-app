@@ -37,7 +37,8 @@ async function getNewSample(
   survey: typeof SurveyConfig,
   draftIdKey: keyof SurveyDraftKeys
 ) {
-  const sample = await survey.create(Sample);
+  const { training } = appModel.attrs;
+  const sample = await survey.create(Sample, training);
   await sample.save();
 
   savedSamples.push(sample);

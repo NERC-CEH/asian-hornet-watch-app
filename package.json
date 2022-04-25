@@ -31,6 +31,7 @@
     "@bit/flumens.apps.main": "^1.0.0",
     "@bit/flumens.apps.menu-attr-item": "^1.2.4",
     "@bit/flumens.apps.menu-attr-item-from-model": "^2.0.3",
+    "@bit/flumens.apps.menu-attr-toggle": "^1.0.3",
     "@bit/flumens.apps.model-location-map": "^3.1.4",
     "@bit/flumens.apps.models.drupal-user-model": "1.0.3",
     "@bit/flumens.apps.models.init-stored-samples": "^0.1.0",

@@ -1,0 +1,29 @@
+#settings {
+  ion-content {
+    --padding-top: 10px;
+
+    .info-message {
+      --background: #fff;
+
+      ion-label ion-note {
+        color: var(--ion-color-medium);
+      }
+    }
+
+    .menu-attr-toggle {
+      ion-icon {
+        font-size: 18px;
+      }
+    }
+
+    ion-item ion-toggle {
+      padding-right: 0;
+    }
+
+    .rounded {
+      .menu-attr-toggle:first-of-type {
+        --border-radius: 15px 15px 0 0;
+      }
+    }
+  }
+}

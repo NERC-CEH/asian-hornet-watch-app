@@ -11,6 +11,7 @@ import {
   IonLabel,
   IonIcon,
   IonAvatar,
+  IonBadge,
 } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
 import OnlineStatus from './components/OnlineStatus';
@@ -78,7 +79,10 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
         <IonAvatar>{avatar}</IonAvatar>
         <IonLabel position="stacked" mode="ios" color="dark">
           <IonLabel className="species-name">{label || 'Record'}</IonLabel>
-          <IonLabel class="ion-text-wrap">{prettyDate}</IonLabel>
+          <div className="badge-wrapper">
+            <IonLabel class="ion-text-wrap">{prettyDate}</IonLabel>
+            {sample.metadata.training && <IonBadge>Training</IonBadge>}
+          </div>
         </IonLabel>
       </>
     );

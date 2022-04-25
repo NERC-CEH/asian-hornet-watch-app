@@ -21,6 +21,8 @@ export { default as InputWithValidation } from '@bit/flumens.apps.input-with-val
 export { default as InfoBackgroundMessage } from '@bit/flumens.apps.info-background-message';
 export { default as ModelLocation } from '@bit/flumens.apps.model-location-map';
 export { default as Gallery } from '@bit/flumens.apps.gallery';
+export { default as MenuAttrToggle } from '@bit/flumens.apps.menu-attr-toggle';
+
 export * from '@bit/flumens.apps.utils.location';
 export * from '@bit/flumens.apps.utils.validation';
 export * from '@bit/flumens.apps.helpers.image';
