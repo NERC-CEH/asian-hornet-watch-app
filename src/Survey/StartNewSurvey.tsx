@@ -90,6 +90,17 @@ function StartNewSurvey({ survey }: Props): null {
     })();
   };
 
+  const disableBackButton = () => {
+    const disableHardwareBackButton = (event: any) =>
+      event.detail.register(101, () => null);
+
+    document.addEventListener('ionBackButton', disableHardwareBackButton);
+
+    return () =>
+      document.removeEventListener('ionBackButton', disableHardwareBackButton);
+  };
+  useEffect(disableBackButton);
+
   useEffect(pickDraftOrCreateSampleWrap, [match.url]);
 
   return null;

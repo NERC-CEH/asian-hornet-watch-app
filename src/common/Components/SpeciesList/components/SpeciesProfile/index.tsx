@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   IonCardHeader,
   IonSlides,
@@ -34,6 +34,17 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
     setShowGallery(false);
     setPhotoIndex(0);
   };
+
+  const disableBackButton = () => {
+    const disableHardwareBackButton = (event: any) =>
+      event.detail.register(101, () => null);
+
+    document.addEventListener('ionBackButton', disableHardwareBackButton);
+
+    return () =>
+      document.removeEventListener('ionBackButton', disableHardwareBackButton);
+  };
+  useEffect(disableBackButton);
 
   const getSlides = () => {
     const slideOpts = {
