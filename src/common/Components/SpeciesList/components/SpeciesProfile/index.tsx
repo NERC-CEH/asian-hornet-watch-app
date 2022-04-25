@@ -41,8 +41,9 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
     document.addEventListener('ionBackButton', disableHardwareBackButton);
 
-    return () =>
+    const removeEventListener = () =>
       document.removeEventListener('ionBackButton', disableHardwareBackButton);
+    return removeEventListener;
   };
   useEffect(disableBackButton);
 

@@ -1,6 +1,6 @@
+import { set } from 'mobx';
 import { Model, ModelAttrs } from '@flumens';
 import { genericStore } from './store';
-import { set } from 'mobx';
 
 export type SurveyDraftKeys = {
   'draftId:survey'?: string;

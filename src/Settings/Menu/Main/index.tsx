@@ -12,7 +12,7 @@ import './styles.scss';
 const useResetDialog = (resetApp: any) => {
   const alert = useAlert();
 
-  return () =>
+  const alertDialog = () =>
     alert({
       header: 'Reset',
       skipTranslation: true,
@@ -33,6 +33,7 @@ const useResetDialog = (resetApp: any) => {
         },
       ],
     });
+  return alertDialog;
 };
 
 type Props = {

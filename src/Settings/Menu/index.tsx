@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import savedSamples from 'models/savedSamples';
+import SavedSamples from 'models/savedSamples';
 import { UserModel } from 'models/user';
 import { AppModel } from 'models/app';
 import { Page, Header, useToast } from '@flumens';
@@ -12,7 +12,7 @@ function onToggle(appModel: any, setting: string, checked: boolean) {
 }
 
 type Props = {
-  savedSamples: typeof savedSamples;
+  savedSamples: typeof SavedSamples;
   appModel: AppModel;
   userModel: UserModel;
 };

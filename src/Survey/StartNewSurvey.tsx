@@ -97,8 +97,9 @@ function StartNewSurvey({ survey }: Props): null {
 
     document.addEventListener('ionBackButton', disableHardwareBackButton);
 
-    return () =>
+    const removeEventListener = () =>
       document.removeEventListener('ionBackButton', disableHardwareBackButton);
+    return removeEventListener;
   };
   useEffect(disableBackButton);
 

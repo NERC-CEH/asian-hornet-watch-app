@@ -40,9 +40,11 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     const isValid = checkSampleStatus();
     if (!isValid) return;
 
+    // eslint-disable-next-line
     appModel.attrs['draftId:survey'] = '';
     await appModel.save();
 
+    // eslint-disable-next-line
     sample.metadata.saved = true;
     sample.save();
 
