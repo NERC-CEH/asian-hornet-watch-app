@@ -53,32 +53,6 @@
 
       overflow: hidden;
 
-      .thumbnail {
-        margin: -8% -3% -16%;
-        width: 106%;
-        min-height: 120px; // fixes loading image jitter
-        max-width: none;
-        z-index: 10;
-      }
-      img.thumbnail-background {
-        position: absolute;
-        height: 100%;
-      }
-      div.thumbnail-background {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 40%;
-
-        img {
-          position: absolute;
-          filter: blur(30px);
-          transform: scale(2.5);
-          height: 100%;
-          width: 100%;
-        }
-      }
-
       .info-box {
         position: absolute;
         right: 0;
@@ -100,34 +74,6 @@
           left: 16%;
         }
       }
-    }
-  }
-
-  ion-item-divider.item-divider-sticky {
-    padding: 0;
-    color: white;
-    width: 104%;
-    z-index: 1000;
-
-    margin: 10px -2%;
-    &:first-child {
-      margin-top: 0;
-    }
-
-    ion-label {
-      width: 100%;
-      text-align: center;
-    }
-
-    background: var(--ion-color-primary) !important;
-    &.species-now {
-      background: #51735f !important;
-    }
-    &.species-moths {
-      background: #556786 !important;
-    }
-    &.species-additional {
-      background: #696969 !important;
     }
   }
 }
