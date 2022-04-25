@@ -8,6 +8,18 @@
   }
 
   .info-message.warning {
+    --background: #e4d9d0 !important;
+
+    ion-icon {
+      fill: #7e5e3c !important;
+    }
+
+    ion-icon,
+    ion-note {
+      color: #7e5e3c !important;
+    }
+  }
+
   .training-subheader {
     background: black;
     color: white;
