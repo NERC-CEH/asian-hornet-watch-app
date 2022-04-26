@@ -69,7 +69,7 @@ const RegisterMain: FC<Props> = ({ onSubmit, schema }) => {
           By clicking Sign Up, you agree to our{' '}
           <a href={`${config.backend.url}/privacy-notice`}>Privacy Policy</a>{' '}
           and{' '}
-          <a href={`${config.backend.url}/terms-of-use`}>
+          <a href={`${config.backend.url}/terms_of_use`}>
             Terms and Conditions
           </a>
         </div>
