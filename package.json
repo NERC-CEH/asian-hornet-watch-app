@@ -44,7 +44,7 @@
     "@bit/flumens.apps.photo-picker": "^3.0.2",
     "@bit/flumens.apps.route-with-models": "^1.0.1",
     "@bit/flumens.apps.section": "^0.4.1",
-    "@bit/flumens.apps.utils.analytics": "^0.2.0",
+    "@bit/flumens.apps.utils.analytics": "^0.2.1",
     "@bit/flumens.apps.utils.location": "0.1.7",
     "@bit/flumens.apps.utils.validation": "^0.4.15",
     "@capacitor/android": "^3.4.3",
