@@ -24,7 +24,7 @@ class AppModel extends Model {
   attrs: Attrs = Model.extendAttrs(this.attrs, defaults);
 
   resetDefaults() {
-    set(this.attrs, {});
+    set(this.attrs, JSON.parse(JSON.stringify(defaults)));
     delete this.id;
     return this.save();
   }
