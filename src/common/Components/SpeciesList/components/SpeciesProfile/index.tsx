@@ -121,6 +121,8 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
   const isSpeciesAsianHornet = species?.common_name === 'Asian hornet';
 
+  if (!species) null;
+
   return (
     <>
       {getGallery()}
@@ -130,9 +132,9 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
         <IonCardHeader>
           <div className="title">
-            <h1>{species?.common_name}</h1>
+            <h1>{species.common_name}</h1>
             <h3>
-              <i>{species?.scientific_name}</i>
+              <i>{species.scientific_name}</i>
             </h3>
           </div>
         </IonCardHeader>
@@ -157,54 +159,54 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
           )}
 
           <h3>Flight period:</h3>
-          <img src={`/images/${species?.id}_timeline.jpg`} />
+          <img src={`/images/${species.id}_timeline.jpg`} />
 
-          {species?.size && (
+          {species.size && (
             <>
               <h3>Size:</h3>
-              <p>{species?.size}</p>
+              <p>{species.size}</p>
             </>
           )}
-          {species?.legs && (
+          {species.legs && (
             <>
               <h3>Legs:</h3>
-              <p>{species?.legs}</p>
+              <p>{species.legs}</p>
             </>
           )}
 
-          {species?.abdomen && (
+          {species.abdomen && (
             <>
               <h3>Abdomen:</h3>
-              <p>{species?.abdomen}</p>
+              <p>{species.abdomen}</p>
             </>
           )}
 
-          {species?.head && (
+          {species.head && (
             <>
               <h3>Head:</h3>
-              <p>{species?.head}</p>
+              <p>{species.head}</p>
             </>
           )}
 
-          {species?.antennae && (
+          {species.antennae && (
             <>
               <h3>Antennae:</h3>
-              <p>{species?.antennae}</p>
+              <p>{species.antennae}</p>
             </>
           )}
 
-          {species?.thorax && (
+          {species.thorax && (
             <>
               <h3>Thorax:</h3>
-              <p>{species?.thorax}</p>
+              <p>{species.thorax}</p>
             </>
           )}
 
-          {species?.notes && (
+          {species.notes && (
             <>
               <h3>Other features:</h3>
               <p>
-                <T>{species?.notes}</T>
+                <T>{species.notes}</T>
               </p>
             </>
           )}
@@ -219,7 +221,10 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
           )}
 
           <h3>Description:</h3>
-          <p>{species?.description}</p>
+          <p>
+            <T>{species.description} </T>
+            {species.factsheet && <a href={species.factsheet}>fact sheet</a>}
+          </p>
         </IonCardContent>
 
         <IonModal isOpen={!!speciesProfile} backdropDismiss={false} mode="md">
