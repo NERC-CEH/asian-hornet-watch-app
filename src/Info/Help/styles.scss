@@ -1,2 +1,32 @@
 #help {
+  ion-content {
+    --padding-top: 25px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+  }
+
+  .collapse-block {
+    visibility: visible;
+
+    ion-item {
+      --inner-border-width: 0 !important;
+    }
+  }
+  .collapse-block .ios {
+    ion-label {
+      font-weight: 500;
+    }
+  }
+
+  .collapse-content-wrapper {
+    img {
+      margin-top: 10px;
+      border-radius: 15px;
+    }
+
+    ion-icon {
+      margin: 0 3px;
+      transform: translateY(10%);
+    }
+  }
 }
