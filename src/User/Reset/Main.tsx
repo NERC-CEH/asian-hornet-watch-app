@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { IonButton, IonList } from '@ionic/react';
 import { Main, InputWithValidation } from '@flumens';
 import { personOutline } from 'ionicons/icons';
-import { Trans as T } from 'react-i18next';
 import { AnySchema } from 'yup';
 import { Formik, Form } from 'formik';
 import { Details } from './';
@@ -27,7 +26,7 @@ const ResetMain: FC<Props> = ({ onSubmit, schema }) => {
       </IonList>
 
       <IonButton color="secondary" type="submit" expand="block">
-        <T>Reset</T>
+        Reset
       </IonButton>
     </Form>
   );
@@ -36,9 +35,7 @@ const ResetMain: FC<Props> = ({ onSubmit, schema }) => {
 
   return (
     <Main>
-      <h2>
-        <T>Enter your email address to request a password reset.</T>
-      </h2>
+      <h2>Enter your email address to request a password reset.</h2>
 
       <Formik
         validationSchema={schema}

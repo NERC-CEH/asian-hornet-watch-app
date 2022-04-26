@@ -7,7 +7,6 @@ import {
   eyeOutline,
   eyeOffOutline,
 } from 'ionicons/icons';
-import { Trans as T } from 'react-i18next';
 import { AnySchema } from 'yup';
 import { Formik, Form } from 'formik';
 import { Main, InputWithValidation } from '@flumens';
@@ -67,37 +66,31 @@ const RegisterMain: FC<Props> = ({ onSubmit, schema }) => {
         </InputWithValidation>
 
         <div className="terms-info-text">
-          <T>
-            By clicking Sign Up, you agree to our{' '}
-            <IonRouterLink href={`${config.backend.url}/privacy-notice`}>
-              Privacy Policy
-            </IonRouterLink>{' '}
-            and{' '}
-            <IonRouterLink href={`${config.backend.url}/terms-of-use`}>
-              Terms and Conditions
-            </IonRouterLink>
-          </T>
+          By clicking Sign Up, you agree to our{' '}
+          <IonRouterLink href={`${config.backend.url}/privacy-notice`}>
+            Privacy Policy
+          </IonRouterLink>{' '}
+          and{' '}
+          <IonRouterLink href={`${config.backend.url}/terms-of-use`}>
+            Terms and Conditions
+          </IonRouterLink>
         </div>
       </IonList>
 
       <IonButton color="secondary" type="submit" expand="block">
-        <T>Sign Up</T>
+        Sign Up
       </IonButton>
 
       <div className="signin-button">
-        <T>I am already a member</T>.{' '}
-        <IonRouterLink routerLink="/user/login">
-          <T>Sign In</T>
-        </IonRouterLink>
+        I am already a member.{' '}
+        <IonRouterLink routerLink="/user/login">Sign In</IonRouterLink>
       </div>
     </Form>
   );
 
   return (
     <Main>
-      <h1>
-        <T>Create a free account</T>
-      </h1>
+      <h1>Create a free account</h1>
 
       <Formik validationSchema={schema} onSubmit={onSubmit} initialValues={{}}>
         {registrationForm}
