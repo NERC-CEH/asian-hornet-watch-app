@@ -121,7 +121,7 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
   const isSpeciesAsianHornet = species?.common_name === 'Asian hornet';
 
-  if (!species) null;
+  if (!species) return null;
 
   return (
     <>
