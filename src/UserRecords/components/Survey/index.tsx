@@ -65,7 +65,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
 
     const prettyDate = date.print(sample.attrs.date);
 
-    const image = occ?.media[0];
+    const image = occ?.media.length && occ?.media[0];
     let avatar = <IonIcon icon={waspIcon} color="warning" />;
 
     if (image) {
