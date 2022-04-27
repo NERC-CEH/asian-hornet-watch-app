@@ -11,7 +11,6 @@ import {
 import { warning, locationOutline, calendarOutline } from 'ionicons/icons';
 import {
   IonList,
-  IonItemDivider,
   IonLabel,
   IonItem,
   IonIcon,
@@ -80,7 +79,6 @@ const HomeMain: FC<Props> = ({ sample }) => {
       </InfoMessage>
 
       <IonList lines="full">
-        <IonItemDivider>Please fill in the details</IonItemDivider>
         <div className="rounded">
           <PhotoPicker model={occ} />
 
