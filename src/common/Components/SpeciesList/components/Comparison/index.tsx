@@ -1,6 +1,12 @@
 import React from 'react';
 import { Main, InfoMessage } from '@flumens';
-import { IonItemDivider, IonRow, IonCol, IonList } from '@ionic/react';
+import {
+  IonItemDivider,
+  IonRow,
+  IonCol,
+  IonList,
+  IonTitle,
+} from '@ionic/react';
 import { informationCircle } from 'ionicons/icons';
 import abdomen1 from './images/abdomen1.jpg';
 import abdomen2 from './images/abdomen2.jpg';
@@ -17,6 +23,8 @@ const Comparison = () => {
   return (
     <>
       <Main id="comparison">
+        <IonTitle>Comparison</IonTitle>
+
         <InfoMessage icon={informationCircle}>
           Asian Hornet is most likely to be confused with European Hornet which
           is slightly larger. Other than size the two species differ in the
