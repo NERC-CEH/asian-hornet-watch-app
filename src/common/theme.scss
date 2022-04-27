@@ -289,3 +289,14 @@ ion-radio-group ion-item {
     background: var(--ion-color-secondary);
   }
 }
+
+.model-location-map {
+  .leaflet-top.leaflet-right {
+    .leaflet-control {
+      &:first-of-type {
+        border: transparent !important;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) !important;
+      }
+    }
+  }
+}
