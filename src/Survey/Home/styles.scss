@@ -8,15 +8,15 @@
   }
 
   .info-message.warning {
-    --background: var(--ion-color-warning) !important;
+    --background: #fff698 !important;
 
     ion-icon {
-      fill: var(--ion-color-warning-contrast) !important;
+      fill: #2f2c06 !important;
     }
 
     ion-icon,
     ion-note {
-      color: var(--ion-color-warning-contrast) !important;
+      color: #2f2c06 !important;
     }
   }
 

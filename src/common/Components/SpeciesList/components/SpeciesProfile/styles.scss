@@ -5,7 +5,7 @@
   --padding-bottom: 0;
 
   ion-slides {
-    background: #e5e5e5;
+    background: var(--ion-page-background);
     overflow: visible;
     margin-bottom: 20px;
 
@@ -18,7 +18,7 @@
         bottom: 0;
         right: 0;
         z-index: 100;
-        background: #e5e5e5;
+        background: var(--ion-page-background);
         color: white;
         border-radius: 15px 0 0 0;
         padding: 5px 15px 5px 20px;
@@ -26,13 +26,13 @@
       }
 
       height: 240px;
-      background: #e5e5e5;
+      background: var(--ion-page-background);
     }
 
     .swiper-pagination {
       position: absolute;
       bottom: -20px;
-      background: #e5e5e5;
+      background: var(--ion-page-background);
 
       .swiper-pagination-bullet {
         opacity: 0.5;
@@ -48,7 +48,7 @@
   ion-card-header {
     display: flex;
     justify-content: space-between;
-    background: #e5e5e5;
+    background: var(--ion-page-background);
 
     .title {
       h1 {

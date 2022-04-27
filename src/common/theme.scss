@@ -1,3 +1,5 @@
+@import './roundedTheme.scss';
+
 :root {
   --ion-color-primary: #424733;
   --ion-color-primary-rgb: 66, 71, 51;
@@ -6,7 +8,7 @@
   --ion-color-primary-shade: #3a3e2d;
   --ion-color-primary-tint: #555947;
 
-  --ion-color-secondary: #d1741e;
+  --ion-color-secondary: #d66800;
   --ion-color-secondary-rgb: 209, 116, 30;
   --ion-color-secondary-contrast: #fff;
   --ion-color-secondary-contrast-rgb: 0, 0, 0;
@@ -62,7 +64,7 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  --ion-page-background: #f4f5f8;
+  --ion-page-background: #f8f7f4;
 }
 
 h1,
@@ -107,53 +109,11 @@ h3 {
   --border-color: var(--ion-color-medium);
 }
 
+ion-router-link,
 a {
   text-decoration: none;
   color: rgb(17, 128, 197);
 }
-
-/* ROUND-THEME START */
-body {
-  background-color: var(--ion-page-background);
-}
-
-ion-content {
-  --background: var(--ion-page-background);
-}
-
-div.rounded {
-  border-radius: 15px;
-  overflow: hidden;
-  margin-bottom: 20px;
-
-  > :last-child {
-    --border-style: none;
-  }
-
-  ion-item-sliding ion-item:last-of-type {
-    --border-style: none;
-  }
-}
-
-ion-list {
-  padding: 0 10px !important;
-}
-
-ion-list,
-ion-item-divider {
-  background: transparent !important;
-}
-
-ion-textarea {
-  background: var(--ion-color-light) !important;
-  padding: 0 10px;
-}
-
-.apps-section * {
-  --background: transparent;
-}
-
-/* ROUND-THEME END */
 
 html.ios.plt-hybrid #status-bar-background {
   background: transparent;
