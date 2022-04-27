@@ -29,6 +29,8 @@ type Props = {
 const HomeMain: FC<Props> = ({ sample }) => {
   const { url } = useRouteMatch();
 
+  const isDisabled = sample.isUploaded();
+
   const [occ] = sample.occurrences;
 
   const getLocationButton = () => {
@@ -61,8 +63,6 @@ const HomeMain: FC<Props> = ({ sample }) => {
   const speciesValue = sample?.occurrences[0]?.attrs?.taxon?.common_name;
 
   const dateValue = sample.attrs.date?.split('T')[0];
-
-  const isDisabled = sample.isUploaded();
 
   const maxDate: any = new Date().toISOString().split('T');
 

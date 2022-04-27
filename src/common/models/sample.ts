@@ -7,10 +7,10 @@ import {
 import Sample, { Attrs as SampleAttrs } from '@bit/flumens.apps.models.sample';
 import userModel from 'models/user';
 import surveyConfig from 'Survey/config';
+import CONFIG from 'common/config';
 import { modelStore } from './store';
 import Occurrence from './occurrence';
 import GPSExtension from './sampleGPSExt';
-import CONFIG from 'common/config';
 
 type Attrs = SampleAttrs & {
   location?: any;
