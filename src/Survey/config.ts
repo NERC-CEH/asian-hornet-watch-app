@@ -203,10 +203,8 @@ const survey = {
       attrs: {
         input_form: 'enter-app-record',
         location_type: 'latlon',
-        size: null,
         number: 'Present',
         location: null,
-        activities: [],
       },
     });
 
