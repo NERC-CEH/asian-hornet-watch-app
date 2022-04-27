@@ -79,9 +79,11 @@ const HomeMain: FC<Props> = ({ sample }) => {
         to that of a wasp
       </InfoMessage>
 
-      <IonItemDivider>Please fill in the details</IonItemDivider>
       <IonList lines="full">
+        <IonItemDivider>Please fill in the details</IonItemDivider>
         <div className="rounded">
+          <PhotoPicker model={occ} />
+
           <MenuAttrItem
             routerLink={`${url}/species`}
             icon={waspIcon}
@@ -115,11 +117,6 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
           <MenuAttrItemFromModel attr="number" model={sample} />
           <MenuAttrItemFromModel attr="comment" model={sample} />
-        </div>
-
-        <IonItemDivider>Species Photo</IonItemDivider>
-        <div className="rounded">
-          <PhotoPicker model={occ} />
         </div>
       </IonList>
     </Main>

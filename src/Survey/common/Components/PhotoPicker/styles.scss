@@ -61,6 +61,12 @@
     padding: 3px;
   }
 
+  .empty {
+    color: var(--ion-color-warning) !important;
+    font-weight: 500 !important;
+    font-size: 0.9em !important;
+  }
+
   ion-spinner {
     position: absolute;
     bottom: 4px;
