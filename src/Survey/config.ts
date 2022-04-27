@@ -30,7 +30,7 @@ export const verifyLocationSchema = Yup.mixed().test(
 
 const numberValues = [
   { value: 'Present', id: 671 },
-  { value: '1', id: 665 },
+  { value: 1, id: 665 },
   { value: '2-5', id: 666 },
   { value: '21-100', id: 667 },
   { value: '101-500', id: 669 },
@@ -40,7 +40,7 @@ const numberValues = [
 const survey = {
   name: 'survey',
   label: 'Record',
-  id: 445,
+  id: 423,
 
   getDraftIdKey: () => `draftId:${survey.name}`,
 
@@ -55,7 +55,19 @@ const survey = {
       },
     },
 
+    device: {
+      id: 273,
+      values: {
+        ios: 2398,
+        android: 2399,
+      },
+    },
+
+    appVersion: { id: 1139 },
+
     locationAccuracy: { remote: { id: 282 } },
+    locationAltitude: { remote: { id: 283 } },
+    locationAltitudeAccuracy: { remote: { id: 284 } },
     locationSource: { remote: { id: 760 } },
     locationGridref: { remote: { id: 335 } },
     location: {
@@ -65,7 +77,14 @@ const survey = {
         id: 'entered_sref',
         values(location: any, submission: any) {
           // convert accuracy for map and gridref sources
-          const { accuracy, source, gridref, name } = location;
+          const {
+            accuracy,
+            altitude,
+            altitudeAccuracy,
+            source,
+            gridref,
+            name,
+          } = location;
 
           const keys = survey.attrs;
           const locationAttributes = {
@@ -73,6 +92,8 @@ const survey = {
             [keys.locationSource.remote.id]: source,
             [keys.locationGridref.remote.id]: gridref,
             [keys.locationAccuracy.remote.id]: accuracy,
+            [keys.locationAltitude.remote.id]: altitude,
+            [keys.locationAltitudeAccuracy.remote.id]: altitudeAccuracy,
           };
 
           // add other location related attributes
@@ -180,6 +201,7 @@ const survey = {
       },
 
       attrs: {
+        input_form: 'enter-app-record',
         location_type: 'latlon',
         size: null,
         number: 'Present',
