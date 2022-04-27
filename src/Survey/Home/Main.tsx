@@ -52,6 +52,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
           label="Location"
           skipValueTranslation
           required
+          disabled={isDisabled}
         />
       </>
     );
@@ -80,7 +81,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
       <IonList lines="full">
         <div className="rounded">
-          <PhotoPicker model={occ} />
+          <PhotoPicker model={occ} isDisabled={isDisabled} />
 
           <MenuAttrItem
             routerLink={`${url}/species`}
@@ -88,6 +89,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
             value={speciesValue}
             label="Species"
             required
+            disabled={isDisabled}
           />
 
           {getLocationButton()}
@@ -96,7 +98,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
             disabled={isDisabled}
             className="menu-attr-item"
             id="open-modal"
-            detail
+            detail={!isDisabled}
           >
             <IonIcon icon={calendarOutline} slot="start" />
             <IonLabel>Date</IonLabel>
