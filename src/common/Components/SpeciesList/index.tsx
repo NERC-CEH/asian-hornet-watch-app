@@ -12,12 +12,13 @@ import {
 import { Main, InfoMessage } from '@flumens';
 import { arrowBack, informationCircle } from 'ionicons/icons';
 import speciesData from 'common/data/species.json';
+import { Species } from 'common/data/species';
 import SpeciesProfile from './components/SpeciesProfile';
 import SpeciesCard from './components/Card';
 import './styles.scss';
 
 type Props = {
-  onSelect?: (sp: any) => void;
+  onSelect?: (sp: Species) => void;
 };
 const SpeciesList: FC<Props> = ({ onSelect }) => {
   const [speciesProfile, setSpeciesProfile] = useState<any | null>(null);
@@ -26,7 +27,7 @@ const SpeciesList: FC<Props> = ({ onSelect }) => {
 
   const isSurvey = !!onSelect;
 
-  const getSpecies = (sp: any) => {
+  const getSpecies = (sp: Species) => {
     const viewSpecies = (e: SyntheticEvent) => {
       e.preventDefault();
       e.stopPropagation();

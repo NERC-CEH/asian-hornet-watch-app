@@ -1,14 +1,15 @@
 import React, { FC, SyntheticEvent } from 'react';
 import { IonCard, IonLabel, IonRow, IonIcon } from '@ionic/react';
+import { Species } from 'common/data/species';
 import { informationCircleOutline, warning } from 'ionicons/icons';
 import 'common/images/images';
 import './styles.scss';
 
 type Props = {
-  species?: any;
+  species: Species;
   viewSpecies?: (e: SyntheticEvent) => void;
   onClick?: any;
-  onSelect?: (sp: any) => void;
+  onSelect?: (sp: Species) => void;
 };
 
 const SpeciesCard: FC<Props> = ({

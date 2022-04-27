@@ -115,11 +115,13 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
   const openModal = () => setSpeciesProfile(true);
 
-  const isSpeciesAsianOrEuropeanHornet =
-    species?.common_name === 'Asian hornet' ||
-    species?.common_name === 'European hornet';
+  if (!species) return null;
 
-  const isSpeciesAsianHornet = species?.common_name === 'Asian hornet';
+  const isSpeciesAsianOrEuropeanHornet =
+    species.common_name === 'Asian hornet' ||
+    species.common_name === 'European hornet';
+
+  const isSpeciesAsianHornet = species.common_name === 'Asian hornet';
 
   if (!species) return null;
 
