@@ -10,7 +10,6 @@ import surveyConfig from 'Survey/config';
 import { modelStore } from './store';
 import Occurrence from './occurrence';
 import GPSExtension from './sampleGPSExt';
-import Media from './image';
 
 type Attrs = SampleAttrs & {
   location?: any;
@@ -19,7 +18,7 @@ type Attrs = SampleAttrs & {
 
 class AppSample extends Sample {
   static fromJSON(json: any) {
-    return super.fromJSON(json, Occurrence, AppSample, Media);
+    return super.fromJSON(json, Occurrence, AppSample);
   }
 
   validateRemote = validateRemoteModel;
@@ -33,8 +32,6 @@ class AppSample extends Sample {
   occurrences: Occurrence[] = this.occurrences;
 
   samples: AppSample[] = this.samples;
-
-  media: Media[] = this.media;
 
   store = modelStore;
 
