@@ -10,6 +10,7 @@ import surveyConfig from 'Survey/config';
 import { modelStore } from './store';
 import Occurrence from './occurrence';
 import GPSExtension from './sampleGPSExt';
+import CONFIG from 'common/config';
 
 type Attrs = SampleAttrs & {
   location?: any;
@@ -37,6 +38,12 @@ class AppSample extends Sample {
 
   constructor(args: any) {
     super(args);
+
+    this.remote.url = `${CONFIG.backend.indicia.url}/index.php/services/rest`;
+    // eslint-disable-next-line
+    this.remote.headers = async () => ({
+      Authorization: `Bearer ${await userModel.getAccessToken()}`,
+    });
 
     this.survey = surveyConfig;
     Object.assign(this, GPSExtension());

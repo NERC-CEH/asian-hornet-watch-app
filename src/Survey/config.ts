@@ -146,7 +146,7 @@ const survey = {
       taxon: {
         remote: {
           id: 'taxa_taxon_list_id',
-          values: ({ warehouseId }: any) => warehouseId,
+          values: (taxon: any) => taxon.warehouse_id,
         },
       },
     },
