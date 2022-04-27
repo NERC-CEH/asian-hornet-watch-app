@@ -161,8 +161,6 @@ const survey = {
     },
 
     verify(attrs: any) {
-      console.log('!', attrs);
-
       try {
         const occurrenceScheme = Yup.object().shape({
           taxon: Yup.object().nullable().required('Species is missing.'),
