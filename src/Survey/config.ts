@@ -65,44 +65,34 @@ const survey = {
 
     appVersion: { id: 1139 },
 
-    locationAccuracy: { remote: { id: 282 } },
-    locationAltitude: { remote: { id: 283 } },
-    locationAltitudeAccuracy: { remote: { id: 284 } },
-    locationSource: { remote: { id: 760 } },
-    locationGridref: { remote: { id: 335 } },
     location: {
-      label: 'Location',
-      icon: locationOutline,
+      menuProps: { icon: locationOutline },
       remote: {
         id: 'entered_sref',
-        values(location: any, submission: any) {
+        values(location: any, submission:any) {
           // convert accuracy for map and gridref sources
           const {
             accuracy,
-            altitude,
-            altitudeAccuracy,
             source,
             gridref,
+            altitude,
             name,
+            altitudeAccuracy,
           } = location;
-
-          const keys = survey.attrs;
-          const locationAttributes = {
-            location_name: name,
-            [keys.locationSource.remote.id]: source,
-            [keys.locationGridref.remote.id]: gridref,
-            [keys.locationAccuracy.remote.id]: accuracy,
-            [keys.locationAltitude.remote.id]: altitude,
-            [keys.locationAltitudeAccuracy.remote.id]: altitudeAccuracy,
-          };
 
           // add other location related attributes
           // eslint-disable-next-line
-          submission.fields = { ...submission.fields, ...locationAttributes };
+          submission.values = { ...submission.values };
+
+          submission.values['smpAttr:760'] = source; // eslint-disable-line
+          submission.values['smpAttr:335'] = gridref; // eslint-disable-line
+          submission.values['smpAttr:282'] = accuracy; // eslint-disable-line
+          submission.values['smpAttr:283'] = altitude; // eslint-disable-line
+          submission.values['smpAttr:284'] = altitudeAccuracy; // eslint-disable-line
+          submission.values['location_name'] = name; // eslint-disable-line
 
           const lat = parseFloat(location.latitude);
           const lon = parseFloat(location.longitude);
-
           if (Number.isNaN(lat) || Number.isNaN(lat)) {
             return null;
           }
