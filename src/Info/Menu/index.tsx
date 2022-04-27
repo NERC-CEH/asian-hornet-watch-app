@@ -2,10 +2,8 @@ import React, { FC } from 'react';
 import { observer } from 'mobx-react';
 import { Page, useAlert, useToast, useLoader } from '@flumens';
 import savedSamples from 'models/savedSamples';
-import CONFIG from 'common/config';
 import userModel, { useUserStatusCheck } from 'models/user';
-import { IonFooter, IonItem, IonLabel, IonCheckbox } from '@ionic/react';
-import flumensLogo from 'common/images/flumens.svg';
+import { IonItem, IonLabel, IonCheckbox } from '@ionic/react';
 import Main from './Main';
 
 const useConfirmationDialog = () => {
@@ -100,15 +98,6 @@ const MenuController: FC = () => {
         refreshAccount={checkUserStatus}
         resendVerificationEmail={resendVerificationEmail}
       />
-      <IonFooter className="ion-no-border">
-        <div>
-          <a href="https://flumens.io">
-            <img src={flumensLogo} alt="logo" />
-          </a>
-
-          <p className="app-version">{`App version: v${CONFIG.version} (${CONFIG.build})`}</p>
-        </div>
-      </IonFooter>
     </Page>
   );
 };

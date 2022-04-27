@@ -20,6 +20,8 @@ import {
   personAddOutline,
   exitOutline,
 } from 'ionicons/icons';
+import CONFIG from 'common/config';
+import flumensLogo from 'common/images/flumens.svg';
 import './styles.scss';
 
 type Props = {
@@ -44,45 +46,6 @@ const MainComponent: FC<Props> = ({
     <Main>
       <IonList lines="full">
         <h1>Menu</h1>
-
-        <IonItemDivider>Info</IonItemDivider>
-        <div className="rounded">
-          <IonItem routerLink="/info/about" detail>
-            <IonIcon
-              icon={informationCircleOutline}
-              size="small"
-              slot="start"
-            />
-            About
-          </IonItem>
-          <IonItem routerLink="/info/help" detail>
-            <IonIcon icon={helpBuoyOutline} size="small" slot="start" />
-            Help
-          </IonItem>
-
-          <IonItem routerLink="/info/privacy" detail>
-            <IonIcon icon={lockClosedOutline} size="small" slot="start" />
-            Privacy Policy
-          </IonItem>
-
-          <IonItem routerLink="/info/brc" detail>
-            <IonIcon icon={thumbsUpOutline} size="small" slot="start" />
-            BRC Approved
-          </IonItem>
-
-          <IonItem routerLink="/info/credits" detail>
-            <IonIcon icon={heartOutline} size="small" slot="start" />
-            Credits
-          </IonItem>
-        </div>
-
-        <IonItemDivider>Settings</IonItemDivider>
-        <div className="rounded">
-          <IonItem routerLink="/settings/menu" detail>
-            <IonIcon icon={settingsOutline} size="small" slot="start" />
-            App
-          </IonItem>
-        </div>
 
         <IonItemDivider>Account</IonItemDivider>
         <div className="rounded">
@@ -123,6 +86,53 @@ const MainComponent: FC<Props> = ({
               Register
             </IonItem>
           )}
+        </div>
+
+        <IonItemDivider>Info</IonItemDivider>
+        <div className="rounded">
+          <IonItem routerLink="/info/about" detail>
+            <IonIcon
+              icon={informationCircleOutline}
+              size="small"
+              slot="start"
+            />
+            About
+          </IonItem>
+          <IonItem routerLink="/info/help" detail>
+            <IonIcon icon={helpBuoyOutline} size="small" slot="start" />
+            Help
+          </IonItem>
+
+          <IonItem routerLink="/info/privacy" detail>
+            <IonIcon icon={lockClosedOutline} size="small" slot="start" />
+            Privacy Policy
+          </IonItem>
+
+          <IonItem routerLink="/info/brc" detail>
+            <IonIcon icon={thumbsUpOutline} size="small" slot="start" />
+            BRC Approved
+          </IonItem>
+
+          <IonItem routerLink="/info/credits" detail>
+            <IonIcon icon={heartOutline} size="small" slot="start" />
+            Credits
+          </IonItem>
+        </div>
+
+        <IonItemDivider>Settings</IonItemDivider>
+        <div className="rounded">
+          <IonItem routerLink="/settings/menu" detail>
+            <IonIcon icon={settingsOutline} size="small" slot="start" />
+            App
+          </IonItem>
+        </div>
+
+        <div>
+          <a href="https://flumens.io">
+            <img src={flumensLogo} alt="logo" />
+          </a>
+
+          <p className="app-version">{`App version: v${CONFIG.version} (${CONFIG.build})`}</p>
         </div>
       </IonList>
     </Main>
