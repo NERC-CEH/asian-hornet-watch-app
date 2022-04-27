@@ -127,18 +127,6 @@ const survey = {
       },
       remote: { values: (date: Date) => dateHelp.print(date, false) },
     },
-
-    number: {
-      menuProps: { icon: numberIcon },
-      pageProps: {
-        attrProps: {
-          input: 'radio',
-          info: 'How many individuals of this type',
-          inputProps: { options: numberValues },
-        },
-      },
-      remote: { id: 523, values: numberValues },
-    },
   },
 
   occ: {
@@ -149,6 +137,18 @@ const survey = {
           values: (taxon: any) => taxon.warehouse_id,
         },
       },
+
+      number: {
+        menuProps: { icon: numberIcon },
+        pageProps: {
+          attrProps: {
+            input: 'radio',
+            info: 'How many individuals of this type',
+            inputProps: { options: numberValues },
+          },
+        },
+        remote: { id: 523, values: numberValues },
+      },
     },
 
     create() {
@@ -156,6 +156,7 @@ const survey = {
         attrs: {
           comment: null,
           taxon: null,
+          number: 'Present',
         },
       });
     },
@@ -201,7 +202,6 @@ const survey = {
       attrs: {
         input_form: 'enter-app-record',
         location_type: 'latlon',
-        number: 'Present',
         location: null,
       },
     });
