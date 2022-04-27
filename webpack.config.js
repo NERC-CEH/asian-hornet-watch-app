@@ -12,11 +12,6 @@ const required = [
 
 const development = {
   APP_BACKEND_URL: '',
-  APP_BACKEND_CLIENT_ID: '',
-  APP_BACKEND_CLIENT_PASS: '',
-  APP_MAPBOX_MAP_KEY: '',
-  APP_SENTRY_KEY: '',
-  APP_OS_MAP_KEY: '',
 };
 
 appConfig.plugins.unshift(

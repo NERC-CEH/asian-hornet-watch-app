@@ -11,14 +11,12 @@ import { set } from 'mobx';
 import { genericStore } from './store';
 
 export interface Attrs extends DrupalUserModelAttrs {
-  fullName?: string;
   firstName?: string;
   lastName?: string;
   id?: number | null;
 }
 
 const defaults: Attrs = {
-  fullName: '',
   firstName: '',
   lastName: '',
   id: null,
