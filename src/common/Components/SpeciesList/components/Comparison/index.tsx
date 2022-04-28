@@ -1,6 +1,6 @@
 import React from 'react';
 import { Main, InfoMessage, Section } from '@flumens';
-import { IonRow, IonCol, IonTitle } from '@ionic/react';
+import { IonRow, IonCol, IonTitle, IonList } from '@ionic/react';
 import { informationCircle } from 'ionicons/icons';
 import abdomen1 from './images/abdomen1.jpg';
 import abdomen2 from './images/abdomen2.jpg';
