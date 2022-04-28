@@ -20,6 +20,7 @@ import Menu from '../Info/Menu';
 import Home from './Home';
 import Species from './Species';
 import UserRecords from '../UserRecords';
+import './styles.scss';
 
 const HomeController: FC = () => {
   return (
