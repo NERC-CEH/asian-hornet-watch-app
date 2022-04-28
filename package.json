@@ -63,6 +63,7 @@
     "@ionic/react": "^6.0.12",
     "@ionic/react-router": "^6.0.12",
     "axios": "^0.26.1",
+    "clsx": "^1.1.1",
     "cordova-sqlite-storage": "^6.0.0",
     "formik": "^2.2.9",
     "i18next": "^21.6.14",

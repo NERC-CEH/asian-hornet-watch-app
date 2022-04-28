@@ -18,6 +18,7 @@ import {
   IonDatetime,
 } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
+import DateInput from 'Survey/common/Components/DateInput';
 import PhotoPicker from 'Survey/common/Components/PhotoPicker';
 import GridRefValue from 'Survey/common/Components/GridRefValue';
 
@@ -63,7 +64,9 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
   const speciesValue = sample?.occurrences[0]?.attrs?.taxon?.common_name;
 
-  const dateValue = sample.attrs.date?.split('T')[0];
+  const dateValue = new Date(
+    sample.attrs.date || (sample as any).attributes.date
+  ).toISOString();
 
   const maxDate: any = new Date().toISOString().split('T');
 
@@ -83,7 +86,6 @@ const HomeMain: FC<Props> = ({ sample }) => {
       <IonList lines="full">
         <div className="rounded">
           <PhotoPicker model={occ} isDisabled={isDisabled} />
-
           <MenuAttrItem
             routerLink={`${url}/species`}
             icon={waspIcon}
@@ -92,10 +94,21 @@ const HomeMain: FC<Props> = ({ sample }) => {
             required
             disabled={isDisabled}
           />
-
           {getLocationButton()}
 
-          <IonItem
+          {/* <DateInput
+            value={sample.attrs.date}
+            onChange={onChangeDate}
+            presentation="date"
+          /> */}
+
+          <DateInput
+            value={sample.attrs.date}
+            onChange={onChangeDate}
+            presentation="time"
+          />
+
+          {/* <IonItem
             disabled={isDisabled}
             className="menu-attr-item"
             id="open-modal"
@@ -105,7 +118,6 @@ const HomeMain: FC<Props> = ({ sample }) => {
             <IonLabel>Date</IonLabel>
             <IonLabel slot="end">{dateValue}</IonLabel>
           </IonItem>
-
           <IonModal id="date-time-modal" trigger="open-modal">
             <IonDatetime
               onIonChange={onChangeDate}
@@ -114,7 +126,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
               value={dateValue}
               max={maxDate[0]}
             />
-          </IonModal>
+          </IonModal> */}
 
           <MenuAttrItemFromModel
             attr="number"
