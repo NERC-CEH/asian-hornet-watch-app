@@ -119,7 +119,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
           <MenuAttrItemFromModel
             attr="number"
             model={occ}
-            routerLink={`${url}/${occ.cid}/number`}
+            routerLink={`${url}/${occ?.cid}/number`}
           />
           <MenuAttrItemFromModel attr="comment" model={sample} />
         </div>

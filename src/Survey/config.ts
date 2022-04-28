@@ -29,8 +29,8 @@ export const verifyLocationSchema = Yup.mixed().test(
 );
 
 const numberValues = [
-  { value: 'Present', id: 671 },
-  { value: 1, id: 665 },
+  { isDefault: true, value: 'Present', label: 'Present' },
+  { value: '1', id: 665 },
   { value: '2-5', id: 666 },
   { value: '21-100', id: 667 },
   { value: '101-500', id: 669 },
@@ -69,7 +69,7 @@ const survey = {
       menuProps: { icon: locationOutline },
       remote: {
         id: 'entered_sref',
-        values(location: any, submission:any) {
+        values(location: any, submission: any) {
           // convert accuracy for map and gridref sources
           const {
             accuracy,
