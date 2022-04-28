@@ -1,12 +1,6 @@
 import React from 'react';
-import { Main, InfoMessage } from '@flumens';
-import {
-  IonItemDivider,
-  IonRow,
-  IonCol,
-  IonList,
-  IonTitle,
-} from '@ionic/react';
+import { Main, InfoMessage, Section } from '@flumens';
+import { IonRow, IonCol, IonTitle } from '@ionic/react';
 import { informationCircle } from 'ionicons/icons';
 import abdomen1 from './images/abdomen1.jpg';
 import abdomen2 from './images/abdomen2.jpg';
@@ -19,6 +13,8 @@ import legs2 from './images/legs2.jpg';
 import 'common/images/images';
 import './styles.scss';
 
+const { H } = Section;
+
 const Comparison = () => {
   return (
     <Main id="comparison">
@@ -30,74 +26,81 @@ const Comparison = () => {
         ways below.
       </InfoMessage>
 
-      <IonList>
-        <IonItemDivider>
-          <p>Abdomen</p>
-        </IonItemDivider>
-        <div className="rounded">
-          <IonRow>
-            <IonCol>
-              <h4> Asian Hornet</h4>
-
+      <Section>
+        <H>Abdomen</H>
+        <IonRow>
+          <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
+            <h5> Asian Hornet</h5>
+            <div style={{ flex: 1 }}>
               <img src={abdomen1} />
+            </div>{' '}
+            <div style={{ flex: 1 }}>
               <p className="message">Mostly dark with orange segment 4</p>
-            </IonCol>
-            <IonCol>
-              <h4>European Hornet</h4>
+            </div>
+          </IonCol>
+          <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
+            <h5>European Hornet</h5>
+            <div style={{ flex: 1 }}>
               <img src={abdomen2} />
+            </div>
+
+            <div style={{ flex: 1 }}>
               <p className="message">Extensive yellow/orange</p>
-            </IonCol>
-          </IonRow>
-        </div>
+            </div>
+          </IonCol>
+        </IonRow>
+      </Section>
 
-        <IonItemDivider>Head</IonItemDivider>
-        <div className="rounded">
-          <IonRow>
-            <IonCol>
-              <h4> Asian Hornet</h4>
-              <img src={head1} />
-              <p className="message">Orange face, black top, dark antennae</p>
-            </IonCol>
-            <IonCol>
-              <h4>European Hornet</h4>
-              <img src={head2} />
-              <p className="message">Yellow face, yellow top, paler antennae</p>
-            </IonCol>
-          </IonRow>
-        </div>
+      <Section>
+        <H>Head</H>
 
-        <IonItemDivider>Thorax</IonItemDivider>
-        <div className="rounded">
-          <IonRow>
-            <IonCol>
-              <h4> Asian Hornet</h4>
-              <img src={thorax1} />
-              <p className="message">Entirely black</p>
-            </IonCol>
-            <IonCol>
-              <h4>European Hornet</h4>
-              <img src={thorax2} />
-              <p className="message">Black with extensive brown markings</p>
-            </IonCol>
-          </IonRow>
-        </div>
+        <IonRow>
+          <IonCol>
+            <h5> Asian Hornet</h5>
+            <img src={head1} />
+            <p className="message">Orange face, black top, dark antennae</p>
+          </IonCol>
+          <IonCol>
+            <h5>European Hornet</h5>
+            <img src={head2} />
+            <p className="message">Yellow face, yellow top, paler antennae</p>
+          </IonCol>
+        </IonRow>
+      </Section>
 
-        <IonItemDivider>Legs</IonItemDivider>
-        <div className="rounded">
-          <IonRow>
-            <IonCol>
-              <h4> Asian Hornet</h4>
-              <img src={legs1} />
-              <p className="message">Dark with yellow ends</p>
-            </IonCol>
-            <IonCol>
-              <h4>European Hornet</h4>
-              <img src={legs2} />
-              <p className="message">All brown with brown ends</p>
-            </IonCol>
-          </IonRow>
-        </div>
-      </IonList>
+      <Section>
+        <H>Thorax</H>
+
+        <IonRow>
+          <IonCol>
+            <h5> Asian Hornet</h5>
+            <img src={thorax1} />
+            <p className="message">Entirely black</p>
+          </IonCol>
+          <IonCol>
+            <h5>European Hornet</h5>
+            <img src={thorax2} />
+            <p className="message">Black with extensive brown markings</p>
+          </IonCol>
+        </IonRow>
+      </Section>
+
+      <Section>
+        <H>Legs</H>
+
+        <IonRow>
+          <IonCol>
+            <h5> Asian Hornet</h5>
+            <img src={legs1} />
+            <p className="message">Dark with yellow ends</p>
+          </IonCol>
+          <IonCol>
+            <h5>European Hornet</h5>
+            <img src={legs2} />
+            <p className="message">All brown with brown ends</p>
+          </IonCol>
+        </IonRow>
+      </Section>
     </Main>
   );
 };
