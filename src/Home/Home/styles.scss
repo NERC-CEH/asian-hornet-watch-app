@@ -9,14 +9,25 @@
       background-size: cover;
       background-position: 71%;
 
-      .app-logo {
-        position: absolute;
-        z-index: 10000;
-        width: 67%;
-        max-width: 250px;
-        left: 50%;
-        top: 8%;
-        transform: translateX(-50%);
+      .app-home-background-contrast {
+        width: 100%;
+        background: var(--ion-color-primary);
+        display: flex;
+        justify-content: center;
+
+        .app-logo {
+          margin: 5% 0;
+          padding: 5%;
+          max-width: 80%;
+        }
+      }
+
+      .text {
+        width: 90%;
+        margin: 20px auto;
+        font-size: 1.1em;
+        color: white;
+        font-weight: 700;
       }
 
       ion-item-group {
@@ -34,9 +45,11 @@
           margin-bottom: 10px;
           --inner-border-width: 0;
           --border-radius: 40px;
-          --background: var(--ion-color-secondary);
-          --color: white;
-          --color-activated: white;
+          border-radius: 40px;
+          --background: var(--ion-page-background);
+          --color: var(--ion-color-primary);
+          --color-activated: var(--ion-color-primary);
+          box-shadow: 0 0 5px var(--ion-color-primary-tint);
           font-weight: 500;
           font-size: 1.2em;
 

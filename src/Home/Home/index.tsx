@@ -13,11 +13,18 @@ const Home: FC = () => {
           className="app-home-background"
           style={{ backgroundImage: `url(${homePageBackground})` }}
         >
-          <img className="app-logo" src={appLogo} alt="" />
+          <div className="app-home-background-contrast">
+            <img className="app-logo" src={appLogo} alt="" />
+          </div>
+
+          <div className="text">
+            Learn more about Asian hornet and help detect it by recording
+            suspected sightings.
+          </div>
+
           <IonItemGroup>
             <IonItem
               className="pretty-button"
-              color="light"
               routerLink="/survey/survey"
               routerDirection="none"
               detail
