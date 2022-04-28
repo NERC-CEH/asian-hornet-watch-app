@@ -43,6 +43,7 @@ const LoginController: FC<Props> = ({ userModel }) => {
       if (err instanceof Error) {
         toast.error(err.message);
       }
+      loader.hide();
       console.error(err);
     }
 
