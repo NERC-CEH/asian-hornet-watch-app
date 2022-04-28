@@ -12,8 +12,6 @@ import {
 import {
   settingsOutline,
   informationCircleOutline,
-  thumbsUpOutline,
-  lockClosedOutline,
   heartOutline,
   helpBuoyOutline,
   personOutline,
@@ -101,16 +99,6 @@ const MainComponent: FC<Props> = ({
           <IonItem routerLink="/info/help" detail>
             <IonIcon icon={helpBuoyOutline} size="small" slot="start" />
             Help
-          </IonItem>
-
-          <IonItem routerLink="/info/privacy" detail>
-            <IonIcon icon={lockClosedOutline} size="small" slot="start" />
-            Privacy Policy
-          </IonItem>
-
-          <IonItem routerLink="/info/brc" detail>
-            <IonIcon icon={thumbsUpOutline} size="small" slot="start" />
-            BRC Approved
           </IonItem>
 
           <IonItem routerLink="/info/credits" detail>
