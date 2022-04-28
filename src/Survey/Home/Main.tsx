@@ -20,7 +20,6 @@ import {
 import waspIcon from 'common/images/wasp.svg';
 import PhotoPicker from 'Survey/common/Components/PhotoPicker';
 import GridRefValue from 'Survey/common/Components/GridRefValue';
-import numberIcon from 'common/images/number.svg';
 
 import './styles.scss';
 
@@ -63,7 +62,6 @@ const HomeMain: FC<Props> = ({ sample }) => {
   };
 
   const speciesValue = sample?.occurrences[0]?.attrs?.taxon?.common_name;
-  const numberValue = sample?.occurrences[0]?.attrs?.number;
 
   const dateValue = sample.attrs.date?.split('T')[0];
 
@@ -118,14 +116,11 @@ const HomeMain: FC<Props> = ({ sample }) => {
             />
           </IonModal>
 
-          <MenuAttrItem
+          <MenuAttrItemFromModel
+            attr="number"
+            model={occ}
             routerLink={`${url}/${occ.cid}/number`}
-            icon={numberIcon}
-            value={numberValue}
-            label="Number"
-            disabled={isDisabled}
           />
-
           <MenuAttrItemFromModel attr="comment" model={sample} />
         </div>
       </IonList>
