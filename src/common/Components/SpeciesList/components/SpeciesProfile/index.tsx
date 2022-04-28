@@ -14,7 +14,12 @@ import {
 } from '@ionic/react';
 import { Trans as T } from 'react-i18next';
 import { Main, Gallery, InfoMessage } from '@flumens';
-import { informationCircle, eyeOutline, arrowBack } from 'ionicons/icons';
+import {
+  informationCircle,
+  eyeOutline,
+  arrowBack,
+  expandOutline,
+} from 'ionicons/icons';
 import ImageWithBackground from '../ImageWithBackground';
 import Comparison from '../Comparison';
 import 'common/images/images';
@@ -25,15 +30,11 @@ type Props = {
 };
 
 const SpeciesProfile: FC<Props> = ({ species }) => {
-  const [showGallery, setShowGallery] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(0);
+  const [showGallery, setShowGallery] = useState<any>(false);
 
   const [speciesProfile, setSpeciesProfile] = useState<any | null>(null);
 
-  const hideGallery = () => {
-    setShowGallery(false);
-    setPhotoIndex(0);
-  };
+  const hideGallery = () => setShowGallery(false);
 
   const disableBackButton = () => {
     const disableHardwareBackButton = (event: any) =>
@@ -56,10 +57,7 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
     const getSlide = (_: any, index: number) => {
       const imageURL = `/images/${species.id}_${index}.jpg`;
 
-      const onSpeciesImageClicked = () => {
-        setShowGallery(true);
-        setPhotoIndex(index);
-      };
+      const onSpeciesImageClicked = () => setShowGallery(index);
 
       return (
         <IonSlide
@@ -86,34 +84,64 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
   const hideSpeciesModal = () => setSpeciesProfile(null);
 
   const getGallery = () => {
-    const getImageSource = (_: any, index: number) => {
-      const imageURL = `/images/${species.id}_${index}.jpg`;
+    let items = [];
+    let className = 'white-background';
+    let pageTitle = '';
+    let initialSlide = 0;
 
-      return {
-        src: imageURL,
-        width: species.images[0].width[index],
-        height: species.images[0].height[index],
-        footer:
-          species.images[0]?.author[index] &&
-          `© ${species.images[0]?.author[index]}`,
+    if (Number.isInteger(showGallery)) {
+      const getImageSource = (_: any, index: number) => {
+        const imageURL = `/images/${species.id}_${index}.jpg`;
+
+        return {
+          src: imageURL,
+          width: species.images[0].width[index],
+          height: species.images[0].height[index],
+          footer:
+            species.images[0]?.author[index] &&
+            `© ${species.images[0]?.author[index]}`,
+        };
       };
-    };
 
-    const items = species?.images[0]?.width?.map(getImageSource) || [];
+      items = species?.images[0]?.width?.map(getImageSource) || [];
+      className = '';
+      initialSlide = showGallery;
+    }
+
+    if (showGallery === 'map') {
+      items.push({ src: `/images/${species.id}_map.svg` });
+      pageTitle = 'Distribution';
+    }
 
     return (
       <div>
         <Gallery
-          isOpen={showGallery}
+          isOpen={showGallery || showGallery === 0}
           items={items}
-          initialSlide={photoIndex}
+          className={className}
+          title={pageTitle}
+          mode="md"
+          initialSlide={initialSlide}
           onClose={hideGallery}
         />
       </div>
     );
   };
 
+  const getMapGallery = () => setShowGallery('map');
+
   const openModal = () => setSpeciesProfile(true);
+
+  const getMap = () => {
+    return (
+      <div className="fullscreen-tappable map" onClick={getMapGallery}>
+        <img src={`/images/${species?.id}_map.svg`} />
+        <div className="fullscreen-btn">
+          <IonIcon src={expandOutline} slot="end" color="secondary" />
+        </div>
+      </div>
+    );
+  };
 
   if (!species) return null;
 
@@ -145,9 +173,7 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
           {!isSpeciesAsianHornet && (
             <>
               <h3>Distribution:</h3>
-              <p>
-                <img src={`/images/${species?.id}_map.svg`} />
-              </p>
+              {getMap()}
             </>
           )}
 

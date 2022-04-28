@@ -153,4 +153,8 @@
   ion-content {
     --background: white;
   }
+
+  ion-icon {
+    color: var(--ion-color-primary) !important;
+  }
 }
