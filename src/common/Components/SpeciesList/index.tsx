@@ -9,8 +9,8 @@ import {
   IonToolbar,
   IonHeader,
 } from '@ionic/react';
-import { Main, InfoMessage } from '@flumens';
-import { arrowBack, informationCircle } from 'ionicons/icons';
+import { Main } from '@flumens';
+import { arrowBack } from 'ionicons/icons';
 import speciesData from 'common/data/species.json';
 import { Species } from 'common/data/species';
 import SpeciesProfile from './components/SpeciesProfile';
@@ -54,11 +54,6 @@ const SpeciesList: FC<Props> = ({ onSelect }) => {
 
   return (
     <Main className="species-list">
-      <InfoMessage icon={informationCircle}>
-        Asian hornet is often confused with similar species, find out more about
-        each below.
-      </InfoMessage>
-
       <IonGrid>{getSpeciesData()}</IonGrid>
 
       <IonModal isOpen={!!speciesProfile} backdropDismiss={false} mode="md">

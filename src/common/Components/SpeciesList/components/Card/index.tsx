@@ -1,4 +1,6 @@
 import React, { FC, SyntheticEvent } from 'react';
+import { InfoMessage } from '@flumens';
+import { informationCircle } from 'ionicons/icons';
 import { IonCard, IonLabel, IonRow, IonIcon } from '@ionic/react';
 import { Species } from 'common/data/species';
 import { informationCircleOutline, warning } from 'ionicons/icons';
@@ -48,6 +50,13 @@ const SpeciesCard: FC<Props> = ({
           </div>
         </div>
       </IonCard>
+
+      {isSpeciesAsianHornet && (
+        <InfoMessage icon={informationCircle}>
+          Asian hornet is often confused with similar species, find out more
+          about each below.
+        </InfoMessage>
+      )}
     </IonRow>
   );
 };
