@@ -1,4 +1,8 @@
 #guide {
+  ion-content {
+    --padding-top: env(safe-area-inset-top) !important;
+  }
+
   ion-item-divider {
     padding: 20px 0;
     background: #ffffff;

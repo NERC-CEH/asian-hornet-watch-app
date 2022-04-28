@@ -1,4 +1,8 @@
 #menu {
+  ion-content {
+    --padding-top: env(safe-area-inset-top) !important;
+  }
+
   h1 {
     text-align: center;
     margin: 20px 0;
