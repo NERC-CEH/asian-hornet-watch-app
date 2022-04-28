@@ -5,6 +5,7 @@ ion-content {
 
 *:not(.rounded) > .info-message {
   border-radius: 10px;
+  --border-radius: 10px;
   margin: 10px;
   --border-color: transparent;
 }
