@@ -150,6 +150,11 @@ const survey = {
 
     create() {
       return new Occurrence({
+        metadata: {
+          confidential: 't',
+          release_status: 'P',
+          sensitivity_precision: 100000,
+        },
         attrs: {
           comment: null,
           taxon: null,
