@@ -11,7 +11,7 @@
 
       .app-home-background-contrast {
         width: 100%;
-        background: var(--ion-color-primary);
+        background: rgba(var(--ion-color-primary-rgb), 0.9);
         display: flex;
         justify-content: center;
 
@@ -22,12 +22,14 @@
         }
       }
 
-      .text {
-        width: 90%;
-        margin: 20px auto;
-        font-size: 1.1em;
+      h2 {
+        width: 100%;
+        padding: 28px;
+        margin: 0;
+        font-size: 1.2em;
         color: white;
-        font-weight: 700;
+        font-weight: 300;
+        background: rgba(var(--ion-color-primary-rgb), 0.7);
       }
 
       ion-item-group {
@@ -35,6 +37,8 @@
         top: 81%;
         transform: translateY(-90%);
         width: 100%;
+
+        font-size: 1.1em;
 
         .pretty-button {
           left: 50%;
@@ -49,7 +53,7 @@
           --background: var(--ion-page-background);
           --color: var(--ion-color-primary);
           --color-activated: var(--ion-color-primary);
-          box-shadow: 0 0 5px var(--ion-color-primary-tint);
+          box-shadow: 0 0 5px var(--ion-color-secondary-tint);
           font-weight: 500;
           font-size: 1.2em;
 

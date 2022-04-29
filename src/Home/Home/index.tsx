@@ -17,16 +17,17 @@ const Home: FC = () => {
             <img className="app-logo" src={appLogo} alt="" />
           </div>
 
-          <div className="text">
+          <h2>
             Learn more about Asian hornet and help detect it by recording
             suspected sightings.
-          </div>
+          </h2>
 
           <IonItemGroup>
             <IonItem
               className="pretty-button"
               routerLink="/survey/survey"
               routerDirection="none"
+              color="secondary"
               detail
             >
               <IonLabel>Record</IonLabel>
