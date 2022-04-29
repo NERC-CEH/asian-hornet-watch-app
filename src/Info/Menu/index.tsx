@@ -10,12 +10,6 @@ const useConfirmationDialog = () => {
   const alert = useAlert();
 
   const logoutAlert = (callback: any) => {
-    let deleteData = false;
-
-    const onCheckboxChange = (e: any) => {
-      deleteData = e.detail.checked;
-    };
-
     alert({
       header: 'Logout',
       message: (
@@ -23,10 +17,8 @@ const useConfirmationDialog = () => {
           Are you sure you want to logout?
           <br />
           <br />
-          <IonItem lines="none" className="log-out-checkbox">
-            <IonLabel>Discard local data</IonLabel>
-            <IonCheckbox onIonChange={onCheckboxChange} />
-          </IonItem>
+          Your pending and uploaded <b>records will not be deleted</b> from this
+          device.
         </>
       ),
       buttons: [
@@ -38,7 +30,7 @@ const useConfirmationDialog = () => {
         {
           text: 'Logout',
           cssClass: 'primary',
-          handler: () => callback(deleteData),
+          handler: () => callback(),
         },
       ],
     });
