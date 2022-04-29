@@ -11,6 +11,7 @@ import numberIcon from 'common/images/number.svg';
 const fixedLocationSchema = Yup.object().shape({
   latitude: Yup.number().required(),
   longitude: Yup.number().required(),
+  name: Yup.string().required(),
 });
 
 const validateLocation = (val: any) => {
@@ -24,7 +25,7 @@ const validateLocation = (val: any) => {
 
 export const verifyLocationSchema = Yup.mixed().test(
   'location',
-  'Please select location.',
+  'Please enter location and its name.',
   validateLocation
 );
 

@@ -261,6 +261,15 @@ ion-radio-group ion-item {
   }
 }
 
+.alert-message {
+  text-align: left !important;
+  font-size: 1em !important;
+
+  ion-item {
+    --background: transparent;
+  }
+}
+
 html.ios.plt-hybrid #status-bar-background {
   background: transparent;
   width: 100vw;
