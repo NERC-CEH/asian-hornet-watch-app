@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 import { Page, useAlert, useToast, useLoader } from '@flumens';
 import savedSamples from 'models/savedSamples';
 import userModel, { useUserStatusCheck } from 'models/user';
-import { IonItem, IonLabel, IonCheckbox } from '@ionic/react';
 import Main from './Main';
 
 const useConfirmationDialog = () => {
