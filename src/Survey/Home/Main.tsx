@@ -8,7 +8,12 @@ import {
   MenuAttrItemFromModel,
   InfoMessage,
 } from '@flumens';
-import { warning, locationOutline, calendarOutline } from 'ionicons/icons';
+import {
+  warning,
+  locationOutline,
+  calendarOutline,
+  informationCircle,
+} from 'ionicons/icons';
 import { IonList, IonLabel } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
 import DateInput from 'Survey/common/Components/DateInput';
@@ -69,10 +74,16 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
   return (
     <Main>
-      <InfoMessage icon={warning} className="info-message warning">
-        Caution: take care when recording this species as its sting is similar
-        to that of a wasp
-      </InfoMessage>
+      {isDisabled ? (
+        <InfoMessage icon={informationCircle}>
+          This record has been submitted and cannot be edited within this App.
+        </InfoMessage>
+      ) : (
+        <InfoMessage icon={warning} className="info-message warning">
+          Caution: take care when recording this species as its sting is similar
+          to that of a wasp
+        </InfoMessage>
+      )}
 
       <IonList lines="full">
         <div className="rounded">
