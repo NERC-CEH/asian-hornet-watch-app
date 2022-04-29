@@ -48,16 +48,6 @@ const survey = {
   getDraftIdKey: () => `draftId:${survey.name}`,
 
   attrs: {
-    comment: {
-      menuProps: { icon: chatboxOutline, skipValueTranslation: true },
-      pageProps: {
-        attrProps: {
-          input: 'textarea',
-          info: 'Please add any extra info about this record.',
-        },
-      },
-    },
-
     device: {
       id: 273,
       values: { iOS: 2398, Android: 2399 },
@@ -145,6 +135,16 @@ const survey = {
           },
         },
         remote: { id: 523, values: numberValues },
+      },
+
+      comment: {
+        menuProps: { icon: chatboxOutline, skipValueTranslation: true },
+        pageProps: {
+          attrProps: {
+            input: 'textarea',
+            info: 'Please add any extra info about this record.',
+          },
+        },
       },
     },
 

@@ -117,7 +117,11 @@ const HomeMain: FC<Props> = ({ sample }) => {
             model={occ}
             routerLink={`${url}/${occ?.cid}/number`}
           />
-          <MenuAttrItemFromModel attr="comment" model={sample} />
+          <MenuAttrItemFromModel
+            attr="comment"
+            model={occ}
+            routerLink={`${url}/${occ?.cid}/comment`}
+          />
         </div>
       </IonList>
     </Main>
