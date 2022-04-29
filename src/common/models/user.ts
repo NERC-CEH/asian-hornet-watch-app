@@ -71,6 +71,44 @@ const userModel = new UserModel({
   config: CONFIG.backend,
 });
 
+/**
+ * Migrate from Indicia API auth to JWT. Remove in the future versions.
+ */
+const migrateOldAuth = async () => {
+  if (userModel.isLoggedIn()) return;
+
+  const OLD_USER_MODEL_KEY = 'asian-hornet-watch-user';
+
+  let password;
+  let email;
+  try {
+    const oldUserString = localStorage.getItem(OLD_USER_MODEL_KEY);
+    const oldUser = oldUserString ? JSON.parse(oldUserString) : {};
+    password = oldUser.password;
+    email = oldUser.email;
+  } catch (error) {
+    localStorage.removeItem(OLD_USER_MODEL_KEY);
+    return;
+  }
+
+  if (!email || !password) {
+    localStorage.removeItem(OLD_USER_MODEL_KEY);
+    return;
+  }
+
+  console.log('Migrating user auth.');
+
+  try {
+    await userModel.logIn(email, password);
+  } catch (e) {
+    // do nothing
+  } finally {
+    localStorage.removeItem(OLD_USER_MODEL_KEY);
+  }
+};
+
+userModel.ready?.then(migrateOldAuth);
+
 export const useUserStatusCheck = () => {
   const toast = useToast();
   const loader = useLoader();
