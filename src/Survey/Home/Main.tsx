@@ -72,6 +72,9 @@ const HomeMain: FC<Props> = ({ sample }) => {
     sample.save();
   };
 
+  // backwards compatible: dates were objects in previous version
+  const dateValue = new Date(sample.attrs.date as any).toISOString();
+
   return (
     <Main>
       {isDisabled ? (
@@ -99,7 +102,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
           {getLocationButton()}
 
           <DateInput
-            value={sample.attrs.date}
+            value={dateValue}
             onChange={onChangeDate}
             presentation="date"
             label="Date"
