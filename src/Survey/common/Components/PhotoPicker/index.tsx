@@ -31,8 +31,10 @@ interface Props extends Omit<ComponentProps<typeof PhotoPicker>, 'getImage'> {
   model: Sample | Occurrence;
 }
 
-const AppPhotoPicker: FC<Props> = ({ model, ...restProps }) => {
+const AppPhotoPicker: FC<Props> = ({ model, isDisabled, ...restProps }) => {
   const promptImageSource = usePromptImageSource();
+
+  if (isDisabled && !model.media.length) return null;
 
   async function getImageWrap() {
     const shouldUseCamera = await promptImageSource();
@@ -52,7 +54,14 @@ const AppPhotoPicker: FC<Props> = ({ model, ...restProps }) => {
     return imageModel;
   }
 
-  return <PhotoPicker getImage={getImageWrap} model={model} {...restProps} />;
+  return (
+    <PhotoPicker
+      getImage={getImageWrap}
+      model={model}
+      isDisabled={isDisabled}
+      {...restProps}
+    />
+  );
 };
 
 export default observer(AppPhotoPicker);
