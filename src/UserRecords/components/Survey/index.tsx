@@ -55,8 +55,10 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
 
   const survey = sample.getSurvey();
 
+  const { synchronising } = sample.remote;
+
   let href;
-  if (!sample.remote.synchronising) {
+  if (!synchronising) {
     href = `/survey/${survey.name}/${sample.cid}`;
   }
 
@@ -100,7 +102,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
 
   return (
     <IonItemSliding className="survey-list-item">
-      <IonItem routerLink={href} detail>
+      <IonItem routerLink={href} detail={!synchronising}>
         {getSampleInfo()}
 
         <OnlineStatus
