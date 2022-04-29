@@ -147,7 +147,7 @@ const survey = {
         attrs: {
           comment: null,
           taxon: null,
-          number: 'Present',
+          number: null,
         },
       });
     },
