@@ -103,13 +103,33 @@ export default class AppMedia extends Media {
   }
 
   getURL() {
-    const { data: name } = this.attrs;
+    let { data: name } = this.attrs;
+    const { path } = this.attrs;
 
     if (!isPlatform('hybrid') || process.env.NODE_ENV === 'test') {
       return name;
     }
 
-    return Capacitor.convertFileSrc(`${config.dataPath}/${name}`);
+    let pathToFile = config.dataPath;
+
+    // backwards compatible
+    if (!path) {
+      pathToFile = config.dataPath.replace('/Documents/', '/Library/NoCloud/');
+    }
+
+    // make backwards compatible with cordova.file.dataDirectory
+    if (!path) {
+      if (isPlatform('ios')) {
+        pathToFile = config.dataPath.replace(
+          '/Documents/',
+          '/Library/NoCloud/'
+        );
+      } else {
+        name = name.replace('file://', '');
+      }
+    }
+
+    return Capacitor.convertFileSrc(`${pathToFile}/${name}`);
   }
 
   // eslint-disable-next-line class-methods-use-this
