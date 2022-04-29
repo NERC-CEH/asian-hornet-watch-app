@@ -148,12 +148,14 @@ const survey = {
       },
     },
 
-    create() {
+    create(training: string | null) {
       return new Occurrence({
         metadata: {
           confidential: 't',
           release_status: 'P',
           sensitivity_precision: 100000,
+          // training is required for backwards compatibility - some verification pages don't use sample lvl flag
+          training,
         },
         attrs: {
           comment: null,
@@ -210,7 +212,7 @@ const survey = {
       },
     });
 
-    const occurrence = survey.occ.create();
+    const occurrence = survey.occ.create(training);
     sample.occurrences.push(occurrence);
 
     sample.startGPS();
