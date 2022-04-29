@@ -4,9 +4,11 @@ import {
   chatboxOutline,
   locationOutline,
 } from 'ionicons/icons';
+import { isPlatform } from '@ionic/react';
 import * as Yup from 'yup';
 import Occurrence from 'models/occurrence';
 import numberIcon from 'common/images/number.svg';
+import config from 'common/config';
 
 const fixedLocationSchema = Yup.object().shape({
   latitude: Yup.number().required(),
@@ -58,13 +60,11 @@ const survey = {
 
     device: {
       id: 273,
-      values: {
-        ios: 2398,
-        android: 2399,
-      },
+      values: { iOS: 2398, Android: 2399 },
     },
 
-    appVersion: { id: 1139 },
+    device_version: { id: 759 },
+    app_version: { id: 1139 },
 
     location: {
       menuProps: { icon: locationOutline },
@@ -118,6 +118,12 @@ const survey = {
       },
       remote: { values: (date: Date) => dateHelp.print(date, false) },
     },
+
+    // anonymous user info
+    firstname: { remote: { id: 6 } },
+    secondname: { remote: { id: 7 } },
+    user_email: { remote: { id: 8 } }, // email key is taken
+    phone: { remote: { id: 20 } },
   },
 
   occ: {
@@ -194,6 +200,8 @@ const survey = {
         input_form: 'enter-app-record',
         location_type: 'latlon',
         location: null,
+        device: isPlatform('android') ? 'Android' : 'iOS',
+        app_version: config.version,
       },
     });
 
