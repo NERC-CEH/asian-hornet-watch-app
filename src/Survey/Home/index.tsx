@@ -26,7 +26,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
   const isDisabled = sample.isUploaded();
 
   const processSubmission = () => {
-    const isLoggedIn = !!userModel.attrs.id;
+    const isLoggedIn = !!userModel.attrs.email;
     if (!isLoggedIn) {
       navigate(`/user/login`);
       return;
