@@ -90,11 +90,11 @@ h3 {
 }
 
 .attr-page .info-message {
-  --background: #2598d5; //
+  --background: #e3f1ba; // primary based
 
   ion-icon,
   ion-note {
-    color: #fff !important;
+    color: var(--ion-color-primary-shade) !important;
   }
 }
 
@@ -230,14 +230,11 @@ ion-radio-group ion-item {
 }
 
 .info-message {
-  --background: #2598d5;
+  --background: #e3f1ba;
 
-  ion-icon {
-    fill: #fff;
-  }
-
+  ion-icon,
   ion-note {
-    color: #fff;
+    color: var(--ion-color-primary-shade) !important;
   }
 }
 
