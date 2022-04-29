@@ -3,12 +3,7 @@ import {
   IonItem,
   IonLabel,
   IonDatetime,
-  useIonViewDidEnter,
   IonIcon,
-  IonPopover,
-  IonModal,
-  IonList,
-  IonNote,
   IonAccordionGroup,
   IonAccordion,
 } from '@ionic/react';
@@ -18,6 +13,13 @@ import './styles.scss';
 
 import { JSX } from '@ionic/core';
 
+/**
+ * CHANGELOG:
+ *
+ * No formatting
+ * Label will not be shown as format by default
+ */
+
 type Props = JSX.IonDatetime & {
   /**
    * Function invoke on value change.
@@ -26,7 +28,10 @@ type Props = JSX.IonDatetime & {
   /**
    * Time or Date format label.
    */
-  format?: string;
+  format?: {
+    locales?: string | string[];
+    options: Intl.DateTimeFormatOptions;
+  };
   /**
    * Current value.
    */
@@ -89,6 +94,20 @@ const DateInput: FC<Props> = ({
 
   const [value, setValue] = useState(valueProp);
 
+  let formattedValue;
+  if (value) {
+    const defaultLocale = 'en-GB';
+    const defaultFormat: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    };
+    formattedValue = new Date(value).toLocaleString(
+      formatProp?.locales || defaultLocale,
+      formatProp?.options || defaultFormat
+    );
+  }
+
   const onChange = (e: any) => {
     setValue(e.target.value);
 
@@ -103,18 +122,7 @@ const DateInput: FC<Props> = ({
     }
   };
 
-  const autoFocus = () => autoFocusProp && input.current.open();
-  useIonViewDidEnter(autoFocus);
-
-  let format = formatProp;
-
-  format = format || 'DD/MM/YYYY';
-
-  let label = labelProp || format;
-
-  if (!skipTranslation) {
-    label = t(label);
-  }
+  const label = !skipTranslation || !labelProp ? labelProp : t(labelProp);
 
   const onDateChange = (e: any) =>
     onChange({ target: { value: e.detail.value } });
@@ -124,48 +132,35 @@ const DateInput: FC<Props> = ({
   const min =
     typeof minProp === 'function' ? (minProp as any)().toISOString() : minProp;
 
+  const id = 'date-input-attr'; // used to control the only nested accordion
+
   return (
-    <IonItem
+    <IonAccordionGroup
       className={clsx('date-input-attr', className)}
       disabled={disabled}
-      id="open-modal"
+      value={autoFocusProp ? id : undefined}
       {...itemProps}
     >
-      {icon && <IonIcon slot="start" icon={icon} />}
-      <IonLabel>{label}</IonLabel>
+      <IonAccordion value={id}>
+        <IonItem slot="header">
+          {icon && <IonIcon slot="start" icon={icon} />}
+          <IonLabel>{label}</IonLabel>
+          <IonLabel slot="end">{formattedValue}</IonLabel>
+        </IonItem>
 
-      {/* <IonModal
-        id="date-time-modal"
-        trigger="open-modal"
-        // breakpoints={[0.5]}
-        // initialBreakpoint={0.5}
-        // handle={false}
-      > */}
-      {/* <IonPopover trigger="open-modal" showBackdrop={false}> */}
-      <IonAccordionGroup>
-        <IonAccordion value="colors" toggleIcon="">
-          <IonItem slot="header">
-            <IonLabel>Colors</IonLabel>
-            <IonNote slot="end">{value?.split('T')[0]}</IonNote>
-          </IonItem>
-          <IonItem slot="content">
-            <IonDatetime
-              ref={input}
-              // cancelText={t('Cancel')}
-              // doneText={t('OK')}
-              // showDefaultButtons
-              value={value}
-              onIonChange={onDateChange}
-              max={max}
-              min={min}
-              {...other}
-            />
-          </IonItem>
-        </IonAccordion>
-      </IonAccordionGroup>
-      {/* </IonModal> */}
-      {/* </IonPopover> */}
-    </IonItem>
+        <IonItem slot="content">
+          <IonDatetime
+            ref={input}
+            value={value}
+            onIonChange={onDateChange}
+            max={max}
+            min={min}
+            disabled={disabled}
+            {...other}
+          />
+        </IonItem>
+      </IonAccordion>
+    </IonAccordionGroup>
   );
 };
 

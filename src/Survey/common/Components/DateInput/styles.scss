@@ -1,5 +1,33 @@
 .date-input-attr {
-  ion-datetime {
-    padding-right: 3px;
+  ion-accordion {
+    &.accordion-disabled::part(header) {
+      opacity: 1;
+    }
+    &:last-of-type ion-item[slot='header'] {
+      --border-width: 0 0 0.55px 0;
+
+      ion-label[slot='end'] {
+        max-width: 40%;
+        text-align: right;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  ion-item[slot='content'] {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --ripple-color: transparent;
+
+    ion-datetime {
+      width: 100%;
+      --background: white;
+      --ion-background-colour: white;
+      --background-rgb: 255, 255, 255;
+    }
+  }
+
+  .ion-accordion-toggle-icon {
+    display: none;
   }
 }

@@ -9,14 +9,7 @@ import {
   InfoMessage,
 } from '@flumens';
 import { warning, locationOutline, calendarOutline } from 'ionicons/icons';
-import {
-  IonList,
-  IonLabel,
-  IonItem,
-  IonIcon,
-  IonModal,
-  IonDatetime,
-} from '@ionic/react';
+import { IonList, IonLabel } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
 import DateInput from 'Survey/common/Components/DateInput';
 import PhotoPicker from 'Survey/common/Components/PhotoPicker';
@@ -71,15 +64,9 @@ const HomeMain: FC<Props> = ({ sample }) => {
 
   const speciesValue = sample?.occurrences[0]?.attrs?.taxon?.common_name;
 
-  const dateValue = new Date(
-    sample.attrs.date || (sample as any).attributes.date
-  ).toISOString();
-
-  const maxDate: any = new Date().toISOString().split('T');
-
-  const onChangeDate = (e: any) => {
+  const onChangeDate = (value: string) => {
     // eslint-disable-next-line
-    sample.attrs.date = e.detail.value;
+    sample.attrs.date = value;
     sample.save();
   };
 
@@ -103,37 +90,16 @@ const HomeMain: FC<Props> = ({ sample }) => {
           />
           {getLocationButton()}
 
-          {/* <DateInput
-            value={sample.attrs.date}
-            onChange={onChangeDate}
-            presentation="date"
-          /> */}
-
           <DateInput
             value={sample.attrs.date}
             onChange={onChangeDate}
-            presentation="time"
-          />
-
-          {/* <IonItem
+            presentation="date"
+            label="Date"
+            autoFocus={false}
+            icon={calendarOutline}
             disabled={isDisabled}
-            className="menu-attr-item"
-            id="open-modal"
-            detail={!isDisabled}
-          >
-            <IonIcon icon={calendarOutline} slot="start" />
-            <IonLabel>Date</IonLabel>
-            <IonLabel slot="end">{dateValue}</IonLabel>
-          </IonItem>
-          <IonModal id="date-time-modal" trigger="open-modal">
-            <IonDatetime
-              onIonChange={onChangeDate}
-              showDefaultButtons
-              presentation="date"
-              value={dateValue}
-              max={maxDate[0]}
-            />
-          </IonModal> */}
+            max={new Date().toISOString()}
+          />
 
           <MenuAttrItemFromModel
             attr="number"
