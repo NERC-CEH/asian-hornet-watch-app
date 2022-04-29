@@ -33,7 +33,8 @@ const numberValues = [
   { isDefault: true, value: 'Present', label: 'Present' },
   { value: '1', id: 665 },
   { value: '2-5', id: 666 },
-  { value: '21-100', id: 667 },
+  { value: '6-20', id: 667 },
+  { value: '21-100', id: 668 },
   { value: '101-500', id: 669 },
   { value: '500+', id: 670 },
 ];
