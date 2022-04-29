@@ -32,17 +32,14 @@ const HomeMain: FC<Props> = ({ sample }) => {
   const getLocationButton = () => {
     const location = sample.attrs.location || {};
     const hasLocation = location.latitude;
-    const hasName = location.name;
-    const empty = !hasLocation || !hasName;
+    const empty = !hasLocation;
 
     const value = (
       <IonLabel position="stacked" mode="ios">
         <IonLabel color={clsx(empty && hasLocation && 'dark')}>
           <GridRefValue sample={sample} requiredMessage="No location" />
         </IonLabel>
-        <IonLabel color={clsx(empty && hasName && 'dark')}>
-          {location.name || 'No site name'}
-        </IonLabel>
+        <IonLabel>{location.name || 'No site name'}</IonLabel>
       </IonLabel>
     );
 

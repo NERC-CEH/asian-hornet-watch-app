@@ -11,7 +11,6 @@ import numberIcon from 'common/images/number.svg';
 const fixedLocationSchema = Yup.object().shape({
   latitude: Yup.number().required(),
   longitude: Yup.number().required(),
-  name: Yup.string().required(),
 });
 
 const validateLocation = (val: any) => {
@@ -25,12 +24,12 @@ const validateLocation = (val: any) => {
 
 export const verifyLocationSchema = Yup.mixed().test(
   'location',
-  'Please enter location and its name.',
+  'Please enter location.',
   validateLocation
 );
 
 const numberValues = [
-  { isDefault: true, value: 'Present', label: 'Present' },
+  { isDefault: true, label: 'Present' },
   { value: '1', id: 665 },
   { value: '2-5', id: 666 },
   { value: '6-20', id: 667 },
