@@ -170,22 +170,6 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
         </IonCardHeader>
 
         <IonCardContent>
-          {!isSpeciesAsianHornet && (
-            <>
-              <h3>Distribution:</h3>
-              {getMap()}
-            </>
-          )}
-
-          {isSpeciesAsianHornet && (
-            <>
-              <h3>Distribution:</h3>
-              <InfoMessage icon={informationCircle}>
-                Asian hornet is not currently established in the UK.
-              </InfoMessage>
-            </>
-          )}
-
           <h3>Flight period:</h3>
           <img src={`/images/${species.id}_timeline.jpg`} />
 
@@ -253,6 +237,22 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
             <T>{species.description} </T>
             {species.factsheet && <a href={species.factsheet}>fact sheet</a>}
           </p>
+
+          {!isSpeciesAsianHornet && (
+            <>
+              <h3>Distribution:</h3>
+              {getMap()}
+            </>
+          )}
+
+          {isSpeciesAsianHornet && (
+            <>
+              <h3>Distribution:</h3>
+              <InfoMessage icon={informationCircle}>
+                Asian hornet is not currently established in the UK.
+              </InfoMessage>
+            </>
+          )}
         </IonCardContent>
 
         <IonModal isOpen={!!speciesProfile} backdropDismiss={false} mode="md">
