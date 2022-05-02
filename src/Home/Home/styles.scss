@@ -13,12 +13,13 @@
         width: 100%;
         background: rgba(var(--ion-color-primary-rgb), 0.9);
         display: flex;
+        flex-direction: column;
         justify-content: center;
 
         .app-logo {
-          margin: 5% 0;
+          margin: 5% auto;
           padding: 5%;
-          max-width: 80%;
+          width: 80%;
         }
       }
 
