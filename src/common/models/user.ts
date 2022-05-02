@@ -7,6 +7,7 @@ import {
 } from '@flumens';
 import * as Yup from 'yup';
 import { set } from 'mobx';
+import axios, { AxiosRequestConfig } from 'axios';
 import { genericStore } from './store';
 
 export interface Attrs extends DrupalUserModelAttrs {
@@ -74,6 +75,27 @@ class UserModel extends DrupalUserModel {
     await this._sendVerificationEmail();
 
     return true;
+  }
+
+  async getAnonymousToken() {
+    const timeout = 60000; // default request timeout in ms
+
+    const formdata = new FormData();
+    formdata.append('grant_type', 'client_credentials');
+    formdata.append('client_id', this.config.clientId);
+    this.config.clientPass &&
+      formdata.append('client_secret', this.config.clientPass);
+
+    const options: AxiosRequestConfig = {
+      method: 'post',
+      url: `${this.config.url}/oauth/token`,
+      data: formdata,
+      timeout,
+    };
+
+    const { data: newTokens } = await axios(options);
+
+    return newTokens.access_token;
   }
 
   resetDefaults() {

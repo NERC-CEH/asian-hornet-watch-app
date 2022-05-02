@@ -22,7 +22,7 @@ const LoginController: FC<Props> = ({ userModel }) => {
   const onSuccessReturn = () => {
     const { email } = userModel.attrs;
     toast.success(`Successfully logged in as: ${email}`);
-    navigate('/home/landing', 'root');
+    navigate('/home/records', 'root');
   };
 
   async function onLogin(details: Details) {

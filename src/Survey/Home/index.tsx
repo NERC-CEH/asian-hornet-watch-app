@@ -43,7 +43,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     }
 
     if (sample.canUploadAnonymously()) {
-      const isUploading = await sample.uploadAnonymously().catch(toast.error);
+      const isUploading = await sample.upload().catch(toast.error);
       if (!isUploading) return;
 
       navigate(`/home/records`, 'root');

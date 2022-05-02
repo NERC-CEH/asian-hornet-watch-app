@@ -47,9 +47,15 @@ class AppSample extends Sample {
 
     this.remote.url = `${CONFIG.backend.indicia.url}/index.php/services/rest`;
     // eslint-disable-next-line
-    this.remote.headers = async () => ({
-      Authorization: `Bearer ${await userModel.getAccessToken()}`,
-    });
+    this.remote.headers = async () => {
+      const token = this.canUploadAnonymously()
+        ? await userModel.getAnonymousToken()
+        : await userModel.getAccessToken();
+
+      return {
+        Authorization: `Bearer ${token}`,
+      };
+    };
 
     this.survey = surveyConfig;
     Object.assign(this, GPSExtension());
@@ -66,26 +72,12 @@ class AppSample extends Sample {
 
     if (!device.isOnline) return false;
 
-    const isActivated = await userModel.checkActivation();
-    if (!isActivated) return false;
+    if (!this.canUploadAnonymously()) {
+      const isActivated = await userModel.checkActivation();
+      if (!isActivated) return false;
+    }
 
     this.saveRemote();
-
-    return true;
-  }
-
-  async uploadAnonymously() {
-    if (this.remote.synchronising || this.isUploaded()) return true;
-
-    const invalids = this.validateRemote();
-    if (invalids) return false;
-
-    if (!device.isOnline) return false;
-
-    if (!this.canUploadAnonymously()) return false;
-
-    console.log('Uploading sample anonymously');
-    // this.saveRemote();
 
     return true;
   }

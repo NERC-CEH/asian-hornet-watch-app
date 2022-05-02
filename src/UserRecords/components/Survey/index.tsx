@@ -107,7 +107,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
     }
 
     if (sample.canUploadAnonymously()) {
-      sample.uploadAnonymously().catch(toast.error);
+      sample.upload().catch(toast.error);
       return;
     }
 
