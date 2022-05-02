@@ -13,6 +13,13 @@ export type URL = string;
 
 type Attrs = MediaAttrs;
 
+function fixPreviousVersions(path: URL) {
+  if (path.search('file://') >= 0) {
+    return path.split('/').pop();
+  }
+  return path;
+}
+
 export default class AppMedia extends Media {
   /**
    * Create new image model with a photo
@@ -112,21 +119,12 @@ export default class AppMedia extends Media {
 
     let pathToFile = config.dataPath;
 
-    // backwards compatible
-    if (!path) {
+    // make backwards compatible with cordova.file.dataDirectory
+    if (!path && isPlatform('ios')) {
       pathToFile = config.dataPath.replace('/Documents/', '/Library/NoCloud/');
     }
-
-    // make backwards compatible with cordova.file.dataDirectory
-    if (!path) {
-      if (isPlatform('ios')) {
-        pathToFile = config.dataPath.replace(
-          '/Documents/',
-          '/Library/NoCloud/'
-        );
-      } else {
-        name = name.replace('file://', '');
-      }
+    if (!path && isPlatform('android')) {
+      name = fixPreviousVersions(name);
     }
 
     return Capacitor.convertFileSrc(`${pathToFile}/${name}`);
