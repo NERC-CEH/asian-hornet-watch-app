@@ -40,6 +40,8 @@ const CONFIG = {
   },
 
   dataPath: '',
+
+  deviceVersion: undefined as string | undefined,
 };
 
 (async function getMediaDirectory() {

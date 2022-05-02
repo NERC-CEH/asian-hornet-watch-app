@@ -6,6 +6,7 @@ import appModel, { SurveyDraftKeys } from 'models/app';
 import { useRouteMatch } from 'react-router';
 import savedSamples from 'models/savedSamples';
 import SurveyConfig from 'Survey/config';
+import CONFIG from 'common/config';
 
 async function showDraftAlert(alert: any) {
   const alertWrap = (resolve: any) => {
@@ -38,7 +39,7 @@ async function getNewSample(
   draftIdKey: keyof SurveyDraftKeys
 ) {
   const isTraining = appModel.attrs.training ? 't' : null;
-  const sample = await survey.create(Sample, isTraining);
+  const sample = await survey.create(Sample, isTraining, CONFIG.deviceVersion);
   await sample.save();
 
   savedSamples.push(sample);

@@ -6,6 +6,8 @@ import userModel from 'models/user';
 import savedSamples from 'models/savedSamples';
 import { StatusBar, Style as StatusBarStyle } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
+import { Device } from '@capacitor/device';
+
 import i18n from 'i18next';
 import config from 'common/config';
 import { configure as mobxConfig } from 'mobx';
@@ -25,6 +27,12 @@ i18n.use(initReactI18next).init({ lng: 'en' });
 
 mobxConfig({ enforceActions: 'never' });
 
+const getDeviceVersion = async () => {
+  const device = await Device.getInfo();
+
+  config.deviceVersion = device.osVersion;
+};
+
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -41,6 +49,8 @@ async function init() {
       build: config.build,
       release: config.version,
     });
+
+  await getDeviceVersion();
 
   appModel.attrs.appSession += 1;
   appModel.save();

@@ -195,7 +195,11 @@ const survey = {
     return null;
   },
 
-  create(Sample: any, training: string | null) {
+  create(
+    Sample: any,
+    training: string | null,
+    deviceVersion: string | undefined
+  ) {
     const sample = new Sample({
       metadata: {
         survey: survey.name,
@@ -208,6 +212,7 @@ const survey = {
         location_type: 'latlon',
         location: null,
         device: isPlatform('android') ? 'Android' : 'iOS',
+        device_version: deviceVersion,
         app_version: config.version,
       },
     });
