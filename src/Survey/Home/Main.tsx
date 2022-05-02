@@ -14,12 +14,14 @@ import {
   calendarOutline,
   informationCircle,
 } from 'ionicons/icons';
-import { IonList, IonLabel } from '@ionic/react';
+import { IonList, IonLabel, isPlatform } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
 import DateInput from 'Survey/common/Components/DateInput';
 import PhotoPicker from 'Survey/common/Components/PhotoPicker';
 import GridRefValue from 'Survey/common/Components/GridRefValue';
 import clsx from 'clsx';
+import config from 'common/config';
+import { Capacitor } from '@capacitor/core';
 
 import './styles.scss';
 
@@ -75,6 +77,18 @@ const HomeMain: FC<Props> = ({ sample }) => {
   // backwards compatible: dates were objects in previous version
   const dateValue = new Date(sample.attrs.date as any).toISOString();
 
+  function fixPreviousVersions(path: string) {
+    if (path.includes('file://')) {
+      return path.split('/').pop();
+    }
+    return path;
+  }
+  const img =
+    // occ.media[0].attrs.data ||
+    Capacitor.convertFileSrc(
+      `${config.dataPath}/${fixPreviousVersions(occ.media[0].attrs.data)}`
+    );
+
   return (
     <Main>
       {isDisabled ? (
@@ -87,8 +101,38 @@ const HomeMain: FC<Props> = ({ sample }) => {
           to that of a wasp
         </InfoMessage>
       )}
-
+      <p style={{ maxHeight: '80px', overflow: 'hidden' }}>
+        <code>pics count: "{occ.media.length}"</code>
+      </p>{' '}
+      <p style={{ maxHeight: '80px', overflow: 'hidden' }}>
+        <code>data: "{occ.media[0].attrs.data}"</code>
+      </p>{' '}
+      <p style={{ maxHeight: '80px', overflow: 'hidden' }}>
+        <code>path: "{occ.media[0].attrs.path}"</code>
+      </p>
+      <p style={{ maxHeight: '80px', overflow: 'hidden' }}>
+        <code>is android: "{isPlatform('android') ? 'true' : 'false'}"</code>
+      </p>{' '}
+      <p style={{ maxHeight: '80px', overflow: 'hidden' }}>
+        <code>dataPath: "{config.dataPath}"</code>
+      </p>{' '}
+      <p style={{ maxHeight: '80px', overflow: 'hidden' }}>
+        <code>getURL: "{occ.media[0].getURL()}"</code>
+      </p>{' '}
+      <p style={{ maxHeight: '80px', overflow: 'hidden' }}>
+        <code>thumbnail: "{occ.media[0].attrs.thumbnail}"</code>
+      </p>{' '}
+      <p style={{ maxHeight: '120px', overflow: 'hidden' }}>
+        <code>
+          convertFileSrc: "
+          {Capacitor.convertFileSrc(
+            `${config.dataPath}/${fixPreviousVersions(occ.media[0].attrs.data)}`
+          )}
+          "
+        </code>
+      </p>
       <IonList lines="full">
+        <img src={occ.media[0].attrs.thumbnail} />
         <div className="rounded">
           <PhotoPicker model={occ} isDisabled={isDisabled} />
           <MenuAttrItem
