@@ -4,7 +4,6 @@ import {
   DrupalUserModelAttrs,
   useToast,
   useLoader,
-  device,
 } from '@flumens';
 import * as Yup from 'yup';
 import { set } from 'mobx';
@@ -20,6 +19,25 @@ const defaults: Attrs = {
   firstName: '',
   lastName: '',
   id: null,
+};
+
+export const hasValidContactDetails = (details: any) => {
+  try {
+    Yup.object()
+      .shape({
+        email: Yup.string().email().required(),
+        firstname: Yup.string().required(),
+        secondname: Yup.string().required(),
+        phone: Yup.string(),
+      })
+      .validateSync(details, {
+        abortEarly: false,
+      });
+  } catch (attrError) {
+    return false;
+  }
+
+  return true;
 };
 
 class UserModel extends DrupalUserModel {
@@ -114,16 +132,6 @@ export const useUserStatusCheck = () => {
   const loader = useLoader();
 
   const userStatusAlert = async () => {
-    if (!device.isOnline) {
-      toast.warn('Looks like you are offline!');
-      return false;
-    }
-
-    if (!userModel.isLoggedIn()) {
-      toast.warn('Please log in first.');
-      return false;
-    }
-
     if (!userModel.attrs.verified) {
       await loader.show('Please wait...');
       const isVerified = await userModel.checkActivation();

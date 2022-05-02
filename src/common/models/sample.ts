@@ -15,6 +15,12 @@ import GPSExtension from './sampleGPSExt';
 type Attrs = SampleAttrs & {
   location?: any;
   date?: string;
+
+  // anonymous upload
+  firstname?: string;
+  secondname?: string;
+  user_email?: string;
+  phone?: string;
 };
 
 class AppSample extends Sample {
@@ -66,6 +72,27 @@ class AppSample extends Sample {
     this.saveRemote();
 
     return true;
+  }
+
+  async uploadAnonymously() {
+    if (this.remote.synchronising || this.isUploaded()) return true;
+
+    const invalids = this.validateRemote();
+    if (invalids) return false;
+
+    if (!device.isOnline) return false;
+
+    if (!this.canUploadAnonymously()) return false;
+
+    console.log('Uploading sample anonymously');
+    // this.saveRemote();
+
+    return true;
+  }
+
+  canUploadAnonymously() {
+    const { user_email, firstname, secondname } = this.attrs;
+    return user_email && firstname && secondname;
   }
 }
 

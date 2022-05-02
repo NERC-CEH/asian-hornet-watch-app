@@ -1,10 +1,14 @@
 import React, { FC, useContext } from 'react';
 import Sample, { useValidateCheck } from 'models/sample';
 import { AppModel } from 'models/app';
-import { UserModel } from 'models/user';
+import { UserModel, useUserStatusCheck } from 'models/user';
 import { observer } from 'mobx-react';
 import { IonButton, NavContext } from '@ionic/react';
-import { Page, Header } from '@flumens';
+import { Page, Header, useToast, device } from '@flumens';
+import {
+  useContactDetailsPrompt,
+  usePromptToLogin,
+} from 'helpers/anonymousUploadAlerts';
 import Main from './Main';
 import './styles.scss';
 
@@ -16,6 +20,10 @@ type Props = {
 
 const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
   const { navigate } = useContext(NavContext);
+  const toast = useToast();
+  const checkUserStatus = useUserStatusCheck();
+  const promptToLogin = usePromptToLogin();
+  const promptToEnterContactDetails = useContactDetailsPrompt(sample);
 
   const isTraining = !!sample.metadata.training;
 
@@ -25,14 +33,43 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
 
   const isDisabled = sample.isUploaded();
 
-  const processSubmission = () => {
-    const isLoggedIn = !!userModel.attrs.email;
-    if (!isLoggedIn) {
-      navigate(`/user/login`);
+  const onUpload = async () => {
+    const isValid = checkSampleStatus();
+    if (!isValid) return;
+
+    if (!device.isOnline) {
+      toast.warn('Looks like you are offline!');
       return;
     }
 
-    sample.upload();
+    if (sample.canUploadAnonymously()) {
+      const isUploading = await sample.uploadAnonymously().catch(toast.error);
+      if (!isUploading) return;
+
+      navigate(`/home/records`, 'root');
+      return;
+    }
+
+    if (!userModel.isLoggedIn()) {
+      const shouldLogin = await promptToLogin();
+      if (shouldLogin) {
+        navigate(`/user/login`);
+        return;
+      }
+
+      const hasCancelled = await promptToEnterContactDetails();
+      if (hasCancelled) return;
+
+      onUpload();
+      return;
+    }
+
+    const isUserOK = await checkUserStatus();
+    if (!isUserOK) return;
+
+    const isUploading = await sample.upload().catch(toast.error);
+    if (!isUploading) return;
+
     navigate(`/home/records`, 'root');
   };
 
@@ -57,7 +94,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
       return;
     }
 
-    await processSubmission();
+    await onUpload();
   };
 
   const finishButton = isDisabled ? null : (

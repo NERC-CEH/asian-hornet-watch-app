@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { useAlert, useToast, date } from '@flumens';
+import React, { FC, useContext } from 'react';
+import { useAlert, useToast, date, device } from '@flumens';
 import Sample, { useValidateCheck } from 'models/sample';
-import { useUserStatusCheck } from 'models/user';
+import userModel, { useUserStatusCheck } from 'models/user';
 import { observer } from 'mobx-react';
 import {
   IonItem,
@@ -12,8 +12,13 @@ import {
   IonIcon,
   IonAvatar,
   IonBadge,
+  NavContext,
 } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
+import {
+  useContactDetailsPrompt,
+  usePromptToLogin,
+} from 'helpers/anonymousUploadAlerts';
 import OnlineStatus from './components/OnlineStatus';
 import './styles.scss';
 
@@ -49,10 +54,12 @@ type Props = {
 
 const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
   const deleteSurvey = useDeleteAlert(sample);
+  const { navigate } = useContext(NavContext);
   const toast = useToast();
   const checkUserStatus = useUserStatusCheck();
   const checkSampleStatus = useValidateCheck(sample);
-
+  const promptToLogin = usePromptToLogin();
+  const promptToEnterContactDetails = useContactDetailsPrompt(sample);
   const survey = sample.getSurvey();
 
   const { synchronising } = sample.remote;
@@ -91,11 +98,35 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
   }
 
   const onUpload = async () => {
-    const isUserOK = await checkUserStatus();
-    if (!isUserOK) return;
-
     const isValid = checkSampleStatus();
     if (!isValid) return;
+
+    if (!device.isOnline) {
+      toast.warn('Looks like you are offline!');
+      return;
+    }
+
+    if (sample.canUploadAnonymously()) {
+      sample.uploadAnonymously().catch(toast.error);
+      return;
+    }
+
+    if (!userModel.isLoggedIn()) {
+      const shouldLogin = await promptToLogin();
+      if (shouldLogin) {
+        navigate(`/user/login`);
+        return;
+      }
+
+      const hasCancelled = await promptToEnterContactDetails();
+      if (hasCancelled) return;
+
+      onUpload();
+      return;
+    }
+
+    const isUserOK = await checkUserStatus();
+    if (!isUserOK) return;
 
     sample.upload().catch(toast.error);
   };
