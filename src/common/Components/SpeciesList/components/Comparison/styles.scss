@@ -1,5 +1,6 @@
 #comparison {
   --background: var(--ion-page-light) !important;
+  --padding-top: env(safe-area-inset-top) !important;
 
   ion-list {
     &:nth-child(even) {
