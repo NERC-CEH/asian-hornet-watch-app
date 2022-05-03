@@ -66,7 +66,7 @@ workflows:
           inputs:
             - package_name: $BITRISE_PROJECT_NAME
             - service_account_json_key_path: $BITRISEIO_GOOGLE_SERVICE_KEY_URL
-      - deploy-to-itunesconnect-application-loader@0:
+      - deploy-to-itunesconnect-application-loader@1:
           run_if: enveq "BUILD_ONLY" ""
           inputs:
             - password: $ITUNES_CONNECT_PASS
