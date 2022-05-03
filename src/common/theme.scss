@@ -67,10 +67,52 @@
   --ion-page-background: #f8f7f4;
 }
 
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./fonts/Quicksand-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Quicksand Bold';
+  src: url('./fonts/Quicksand-Bold.ttf');
+}
+
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5 {
   color: var(--ion-color-primary);
+  font-family: 'Quicksand Bold' !important;
+}
+
+b {
+  font-family: 'Quicksand Bold' !important;
+}
+
+p,
+div,
+input,
+ion-button,
+button,
+span,
+ion-back-button,
+ion-item-option,
+ion-note,
+ion-label,
+ion-item {
+  font-family: 'Quicksand' !important;
+}
+
+ion-label.bold {
+  font-family: 'Quicksand Bold' !important;
+}
+
+ion-title,
+ion-item-divider,
+ion-badge,
+ion-chip {
+  font-family: 'Quicksand Bold' !important;
 }
 
 .ios,

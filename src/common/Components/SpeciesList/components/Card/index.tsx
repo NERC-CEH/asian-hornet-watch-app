@@ -42,7 +42,7 @@ const SpeciesCard: FC<Props> = ({
         >
           <div className="card-wrapper">
             <div className="card-blur-container">
-              <IonLabel>
+              <IonLabel className="bold">
                 {species.common_name}
 
                 {isSpeciesAsianHornet && (

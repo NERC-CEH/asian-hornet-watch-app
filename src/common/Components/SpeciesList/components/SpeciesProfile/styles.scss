@@ -56,10 +56,10 @@
         margin: 0 0 8px;
         font-weight: bold;
       }
-      h3 {
+      h4 {
         font-size: 1.2em;
         margin: 0;
-        color: var(--ion-color-dark);
+        color: var(--ion-color-primary-tint);
         font-weight: 200;
       }
     }
@@ -141,8 +141,11 @@
 
   .container-wrapper {
     margin-top: 15px;
-    border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
+
+    ion-item {
+      --border-radius: 15px;
+      --background: var(--ion-page-background);
+    }
   }
 }
 

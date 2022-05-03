@@ -87,7 +87,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
       <>
         <IonAvatar>{avatar}</IonAvatar>
         <IonLabel position="stacked" mode="ios" color="dark">
-          <IonLabel className="species-name">{label || 'Record'}</IonLabel>
+          <IonLabel className="species-name bold">{label || 'Record'}</IonLabel>
           <div className="badge-wrapper">
             <IonLabel class="ion-text-wrap">{prettyDate}</IonLabel>
             {sample.metadata.training && <IonBadge>Training</IonBadge>}

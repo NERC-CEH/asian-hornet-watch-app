@@ -163,9 +163,9 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
         <IonCardHeader>
           <div className="title">
             <h1>{species.common_name}</h1>
-            <h3>
+            <h4>
               <i>{species.scientific_name}</i>
-            </h3>
+            </h4>
           </div>
         </IonCardHeader>
 
