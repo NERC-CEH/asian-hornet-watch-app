@@ -78,7 +78,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     if (!isValid) return;
 
     // eslint-disable-next-line
-    appModel.attrs['draftId:survey'] = '';
+    appModel.attrs['draftId:main'] = null;
     await appModel.save();
 
     // eslint-disable-next-line

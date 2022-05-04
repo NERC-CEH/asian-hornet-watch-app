@@ -76,7 +76,7 @@ function StartNewSurvey({ survey }: Props): null {
 
   const baseURL = `/survey/${survey.name}`;
 
-  const draftIdKey: keyof SurveyDraftKeys = `draftId:survey`;
+  const draftIdKey: any = `draftId:${survey.name}`;
 
   const pickDraftOrCreateSampleWrap = () => {
     const pickDraftOrCreateSample = async () => {

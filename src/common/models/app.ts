@@ -3,7 +3,7 @@ import { Model, ModelAttrs } from '@flumens';
 import { genericStore } from './store';
 
 export type SurveyDraftKeys = {
-  'draftId:survey'?: string;
+  'draftId:main': string | null;
 };
 
 export interface Attrs extends ModelAttrs, SurveyDraftKeys {
@@ -22,6 +22,8 @@ const defaults: Attrs = {
   showSurveyUploadTip: true,
   appSession: 0,
   training: false,
+
+  'draftId:main': null,
 };
 
 class AppModel extends Model {
