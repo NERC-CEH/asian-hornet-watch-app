@@ -41,7 +41,7 @@ const numberValues = [
 ];
 
 const survey = {
-  name: 'survey',
+  name: 'main',
   label: 'Record',
   id: 423,
 

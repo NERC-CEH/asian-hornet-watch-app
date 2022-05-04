@@ -9,7 +9,7 @@ import StartNewSurvey from './StartNewSurvey';
 import survey from './config';
 import Home from './Home';
 
-const baseURL = `/survey/survey`;
+const baseURL = `/survey/${survey.name}`;
 
 const HomeWrap = (props: any) => (
   <Home appModel={appModel} userModel={userModel} {...props} />

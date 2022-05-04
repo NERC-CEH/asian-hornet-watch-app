@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { IonItem, IonItemGroup, IonLabel } from '@ionic/react';
 import { Page, Main } from '@flumens';
+import surveyConfig from 'Survey/config';
 import homePageBackground from './images/background.jpg';
 import appLogo from './images/app_logo.png';
 import './styles.scss';
@@ -25,7 +26,7 @@ const Home: FC = () => {
           <IonItemGroup>
             <IonItem
               className="pretty-button"
-              routerLink="/survey/survey"
+              routerLink={`/survey/${surveyConfig.name}`}
               routerDirection="none"
               color="secondary"
               detail
