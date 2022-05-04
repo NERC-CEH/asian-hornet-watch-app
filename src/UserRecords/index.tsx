@@ -35,7 +35,7 @@ function getPendingSurveys(surveys: any[], uploadIsPrimary: boolean) {
     return (
       <IonList lines="full">
         <InfoBackgroundMessage>
-          No finished pending surveys.
+          No finished pending records.
         </InfoBackgroundMessage>
       </IonList>
     );
@@ -56,7 +56,7 @@ function getPendingSurveys(surveys: any[], uploadIsPrimary: boolean) {
         {surveysList}
 
         <InfoBackgroundMessage name="showSurveyUploadTip">
-          Please do not forget to upload any pending surveys!
+          Please do not forget to upload any pending records!
         </InfoBackgroundMessage>
       </IonList>
     );
@@ -67,7 +67,7 @@ function getPendingSurveys(surveys: any[], uploadIsPrimary: boolean) {
       {surveysList}
 
       <InfoBackgroundMessage name="showSurveysDeleteTip">
-        To delete any surveys swipe it to the left.
+        To delete any records swipe it to the left.
       </InfoBackgroundMessage>
     </IonList>
   );
@@ -77,7 +77,7 @@ function getUploadedSurveys(surveys: any[]) {
   if (!surveys.length) {
     return (
       <IonList lines="full">
-        <InfoBackgroundMessage>No uploaded surveys</InfoBackgroundMessage>
+        <InfoBackgroundMessage>No uploaded records</InfoBackgroundMessage>
       </IonList>
     );
   }
