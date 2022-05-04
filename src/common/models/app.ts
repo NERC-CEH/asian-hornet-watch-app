@@ -11,11 +11,15 @@ export interface Attrs extends ModelAttrs, SurveyDraftKeys {
   showedWelcome: boolean;
   sendAnalytics: boolean;
   training: boolean;
+  showSurveysDeleteTip: boolean;
+  showSurveyUploadTip: boolean;
 }
 
 const defaults: Attrs = {
   showedWelcome: false,
   sendAnalytics: true,
+  showSurveysDeleteTip: true,
+  showSurveyUploadTip: true,
   appSession: 0,
   training: false,
 };

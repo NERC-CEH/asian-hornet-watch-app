@@ -4,12 +4,12 @@ import { InfoBackgroundMessage } from '@flumens';
 import appModel, { Attrs } from 'models/app';
 
 interface Props {
-  name?: any;
+  name?: keyof Attrs;
   children: any;
 }
 
 const Message: FC<Props> = ({ name, children, ...props }) => {
-  if (name) {
+  if (name && !appModel.attrs[name]) {
     return null;
   }
 
