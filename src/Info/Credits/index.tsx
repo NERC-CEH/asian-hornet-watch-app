@@ -27,10 +27,10 @@ const Credits: FC = () => {
               app:
             </b>
             <ul>
-              <li>Helen Roy (CEH)</li>
+              <li>Helen Roy (UKCEH)</li>
               <li>Karolis Kazlauskis (Flumens)</li>
               <li>Vilius Stankaitis (Flumens)</li>
-              <li>Marc Botham (CEH)</li>
+              <li>Marc Botham (UKCEH)</li>
               <li>Niall Moore (APHA)</li>
               <li>Olaf Booy (APHA)</li>
               <li>Lucy Cornwell (APHA)</li>
