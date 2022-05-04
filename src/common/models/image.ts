@@ -74,9 +74,7 @@ export default class AppMedia extends Media {
     ...this.attrs,
   });
 
-  async destroy() {
-    console.log('MediaModel: destroying.');
-
+  async destroy(silent: any) {
     // remove from internal storage
     if (!isPlatform('hybrid') || (window as any).testing) {
       if (!this.parent) {
@@ -84,6 +82,10 @@ export default class AppMedia extends Media {
       }
 
       this.parent.media.remove(this);
+
+      if (silent) {
+        return null;
+      }
 
       return this.parent.save();
     }
@@ -100,6 +102,10 @@ export default class AppMedia extends Media {
       if (!this.parent) return null;
 
       this.parent.media.remove(this);
+
+      if (silent) {
+        return null;
+      }
 
       return this.parent.save();
     } catch (err) {

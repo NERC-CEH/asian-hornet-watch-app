@@ -35,7 +35,7 @@
     "@bit/flumens.apps.model-location-map": "^3.1.4",
     "@bit/flumens.apps.models.drupal-user-model": "1.0.3",
     "@bit/flumens.apps.models.init-stored-samples": "^0.1.0",
-    "@bit/flumens.apps.models.media": "^0.2.7",
+    "@bit/flumens.apps.models.media": "^0.2.8",
     "@bit/flumens.apps.models.model": "^2.2.2",
     "@bit/flumens.apps.models.occurrence": "^0.4.2",
     "@bit/flumens.apps.models.sample": "1.0.1",
