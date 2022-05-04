@@ -44,7 +44,7 @@ const HomeMain: FC<Props> = ({ sample }) => {
         <IonLabel color={clsx(empty && hasLocation && 'dark')}>
           <GridRefValue sample={sample} requiredMessage="No location" />
         </IonLabel>
-        <IonLabel>{location.name || 'No site name'}</IonLabel>
+        <IonLabel color="dark">{location.name || 'No site name'}</IonLabel>
       </IonLabel>
     );
 
