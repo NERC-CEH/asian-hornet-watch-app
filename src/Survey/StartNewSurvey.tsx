@@ -3,7 +3,6 @@ import { NavContext } from '@ionic/react';
 import Sample from 'models/sample';
 import { useAlert } from '@flumens';
 import appModel, { SurveyDraftKeys } from 'models/app';
-import { useRouteMatch } from 'react-router';
 import savedSamples from 'models/savedSamples';
 import SurveyConfig from 'Survey/config';
 import CONFIG from 'common/config';
@@ -54,7 +53,7 @@ async function getDraft(draftIdKey: keyof SurveyDraftKeys, alert: any) {
   if (draftID) {
     const byId = ({ cid }: any) => cid === draftID;
     const draftSample = savedSamples.find(byId);
-    if (draftSample) {
+    if (draftSample && !draftSample.isDisabled()) {
       const continueDraftRecord = await showDraftAlert(alert);
       if (continueDraftRecord) {
         return draftSample;
@@ -72,24 +71,26 @@ type Props = {
 };
 
 function StartNewSurvey({ survey }: Props): null {
-  const match = useRouteMatch();
   const { navigate } = useContext(NavContext);
   const alert = useAlert();
+
+  const baseURL = `/survey/${survey.name}`;
 
   const draftIdKey: keyof SurveyDraftKeys = `draftId:survey`;
 
   const pickDraftOrCreateSampleWrap = () => {
-    // eslint-disable-next-line
-    (async () => {
+    const pickDraftOrCreateSample = async () => {
       let sample = await getDraft(draftIdKey, alert);
       if (!sample) {
         sample = await getNewSample(survey, draftIdKey);
       }
 
-      const url = `${match.url}/${sample.cid}`;
+      const url = `${baseURL}/${sample.cid}`;
 
       navigate(url, 'none', 'replace');
-    })();
+    };
+
+    pickDraftOrCreateSample();
   };
 
   const disableBackButton = () => {
@@ -104,7 +105,7 @@ function StartNewSurvey({ survey }: Props): null {
   };
   useEffect(disableBackButton);
 
-  useEffect(pickDraftOrCreateSampleWrap, [match.url]);
+  useEffect(pickDraftOrCreateSampleWrap, []);
 
   return null;
 }
