@@ -22,7 +22,7 @@ const defaults: Attrs = {
   id: null,
 };
 
-export const hasValidContactDetails = (details: any) => {
+export const validateContactDetails = (details: any) => {
   try {
     Yup.object()
       .shape({
@@ -35,10 +35,10 @@ export const hasValidContactDetails = (details: any) => {
         abortEarly: false,
       });
   } catch (attrError) {
-    return false;
+    return attrError;
   }
 
-  return true;
+  return false;
 };
 
 class UserModel extends DrupalUserModel {

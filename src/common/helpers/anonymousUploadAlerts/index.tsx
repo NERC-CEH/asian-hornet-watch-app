@@ -1,7 +1,8 @@
 import React from 'react';
 import { useAlert } from '@flumens';
-import { hasValidContactDetails } from 'models/user';
-import Sample from '../models/sample';
+import { validateContactDetails } from 'models/user';
+import Sample from '../../models/sample';
+import './styles.scss';
 
 export const usePromptToLogin = () => {
   const alert = useAlert();
@@ -52,15 +53,38 @@ export const useContactDetailsPrompt = (sample: Sample) => {
 
     const showAlert = (resolve: any) => {
       const sendHandler = (data: any) => {
-        if (hasValidContactDetails(data)) {
-          assignContactDetailsToSample(data);
+        const invalids: any = validateContactDetails(data);
+        if (invalids) {
+          // remove old
+          const oldErrorMessages = [
+            ...document.getElementsByClassName('alert-input-error'),
+          ];
+          const remove = (oldErrorMessage: Element) => oldErrorMessage.remove();
+          oldErrorMessages.forEach(remove);
 
-          resolve(false);
+          // add new
+          const updateErrCode = (input: any) => {
+            const inputEl = document.getElementById(
+              `anonymous-user-${input.path}-input`
+            );
 
-          return true; // close alert
+            if (!inputEl) return;
+
+            const errorMessage = document.createElement('span');
+            errorMessage.classList.add('alert-input-error');
+            errorMessage.innerHTML = 'is incorrect or missing';
+            inputEl.parentNode?.insertBefore(errorMessage, inputEl.nextSibling);
+          };
+
+          invalids.inner.forEach(updateErrCode);
+          return false; // don't close alert
         }
 
-        return false; // don't close alert
+        assignContactDetailsToSample(data);
+
+        resolve(false);
+
+        return true; // close alert
       };
 
       alert({
@@ -70,16 +94,19 @@ export const useContactDetailsPrompt = (sample: Sample) => {
           {
             name: 'email',
             type: 'email',
+            id: 'anonymous-user-email-input',
             placeholder: 'Email',
           },
           {
             name: 'firstname',
             type: 'text',
+            id: 'anonymous-user-firstname-input',
             placeholder: 'Name',
           },
           {
             name: 'secondname',
             type: 'text',
+            id: 'anonymous-user-secondname-input',
             placeholder: 'Surname',
           },
           {
