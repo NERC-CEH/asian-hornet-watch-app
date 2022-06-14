@@ -11,6 +11,8 @@ import './1_7.jpg?originalName';
 import './1_8.jpg?originalName';
 import './1_9.jpg?originalName';
 import './1_10.jpg?originalName';
+import './1_11.jpg?originalName';
+import './1_12.jpg?originalName';
 import './2_timeline.jpg?originalName';
 import './2_map.svg?originalName';
 import './2_0.jpg?originalName';

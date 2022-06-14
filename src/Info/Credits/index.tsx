@@ -44,15 +44,16 @@ const Credits: FC = () => {
             <b>Front page</b> - Opening (flash): Didier Descouens; <br />
             Background: Laurent Eude <b>Species pages</b> - Asian Hornet: Jean
             Haxaire, John Feltwell, Laurent Eude, Luc Alary, Steph Cariou,
-            Michel Reynaud, Siga, National Bee Unit; European Hornet: Steven
-            Falk, Paul Davis, Steven Falk, Cristian Arghuis, Steven Falk, Martin
-            D Parr, Nigel Jones, Chris Taklis, Colin Pumfrett, Frank Post; Giant
-            Woodwasp: Steve Covey, Paul Hill, Les Binns, Les Binns, Holger
-            Groschl, Nigel Jones, Les Binns, Peter L Herring; Hornet Hoverfly:
-            Lee Collins, Marc Botham, Steven Falk, Joaquim Alves Gaspar, Paul
-            Davis, Matt Smith, Frank Post, Pere Igor, Fujnky, Steven Falk;
-            Hornet comparisons: National Bee Unit, John Feltwell, Cristian
-            Arghuis, Jean Marie Rohou, Steven Falk, John Feltwell, Frank Post
+            Michel Reynaud, Siga, National Bee Unit, John De Carteret; European
+            Hornet: Steven Falk, Paul Davis, Steven Falk, Cristian Arghuis,
+            Steven Falk, Martin D Parr, Nigel Jones, Chris Taklis, Colin
+            Pumfrett, Frank Post; Giant Woodwasp: Steve Covey, Paul Hill, Les
+            Binns, Les Binns, Holger Groschl, Nigel Jones, Les Binns, Peter L
+            Herring; Hornet Hoverfly: Lee Collins, Marc Botham, Steven Falk,
+            Joaquim Alves Gaspar, Paul Davis, Matt Smith, Frank Post, Pere Igor,
+            Fujnky, Steven Falk; Hornet comparisons: National Bee Unit, John
+            Feltwell, Cristian Arghuis, Jean Marie Rohou, Steven Falk, John
+            Feltwell, Frank Post;
           </P>
         </Section>
 
