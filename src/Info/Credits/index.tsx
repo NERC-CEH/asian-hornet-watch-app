@@ -42,18 +42,31 @@ const Credits: FC = () => {
           <H>Photographs:</H>
           <P>
             <b>Front page</b> - Opening (flash): Didier Descouens; <br />
-            Background: Laurent Eude <b>Species pages</b> - Asian Hornet: Jean
-            Haxaire, John Feltwell, Laurent Eude, Luc Alary, Steph Cariou,
-            Michel Reynaud, Siga, National Bee Unit, John De Carteret; European
-            Hornet: Steven Falk, Paul Davis, Steven Falk, Cristian Arghuis,
-            Steven Falk, Martin D Parr, Nigel Jones, Chris Taklis, Colin
-            Pumfrett, Frank Post; Giant Woodwasp: Steve Covey, Paul Hill, Les
-            Binns, Les Binns, Holger Groschl, Nigel Jones, Les Binns, Peter L
-            Herring; Hornet Hoverfly: Lee Collins, Marc Botham, Steven Falk,
+            Background: Laurent Eude; <br />
+            <br />
+            <b>Species pages</b>
+            <br />
+            <br />
+            <b>Asian Hornet:</b> Jean Haxaire, John Feltwell, Laurent Eude, Luc
+            Alary, Steph Cariou, Michel Reynaud, Siga, National Bee Unit, John
+            De Carteret;
+            <br />
+            <b>European Hornet:</b> Steven Falk, Paul Davis, Steven Falk,
+            Cristian Arghuis, Steven Falk, Martin D Parr, Nigel Jones, Chris
+            Taklis, Colin Pumfrett, Frank Post;
+            <br />
+            <b>Giant Woodwasp:</b> Steve Covey, Paul Hill, Les Binns, Les Binns,
+            Holger Groschl, Nigel Jones, Les Binns, Peter L Herring;
+            <br />
+            <b>Hornet Hoverfly:</b> Lee Collins, Marc Botham, Steven Falk,
             Joaquim Alves Gaspar, Paul Davis, Matt Smith, Frank Post, Pere Igor,
-            Fujnky, Steven Falk; Hornet comparisons: National Bee Unit, John
-            Feltwell, Cristian Arghuis, Jean Marie Rohou, Steven Falk, John
-            Feltwell, Frank Post;
+            Fujnky, Steven Falk;
+            <br />
+            <b>Hornet comparisons:</b> National Bee Unit, John Feltwell,
+            Cristian Arghuis, Jean Marie Rohou, Steven Falk, John Feltwell,
+            Frank Post;
+            <br />
+            <b>Dark Giant Horsefly</b>: Janet Graham, Ron Allen, Geoffrey Foale;
           </P>
         </Section>
 
