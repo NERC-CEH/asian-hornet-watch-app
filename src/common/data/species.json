@@ -14,6 +14,8 @@
     "antennae": "Dark coloured ",
     "thorax": "Entirely black, velvety",
     "notes": "Not active at night",
+    "hasMap": true,
+    "hasFlightPeriodImage": true,
     "images": [
       {
         "width": [
@@ -57,6 +59,8 @@
     "antennae": "Yellow (pale brown) coloured",
     "thorax": "Black with extensive brown markings",
     "notes": "May be active at night and regularly attracted to light",
+    "hasMap": true,
+    "hasFlightPeriodImage": true,
     "images": [
       {
         "photos": 10,
@@ -86,11 +90,13 @@
     "flight": "Giant Woodwasps spend much of their life as larvae living for 1-3 years in the host tree. Adults start to emerge in May/June and records are most common in July and August. They are still seen well after this, especially in mild years.\n",
     "size": "Larger than Asian Hornet. Female: up to 45mm long",
     "legs": "Yellow (without contrasting dark upper parts)",
-    "abdomen": "Distinctive yellow and black banded, long and cylindrical lacking an obvious waist (unlike hornets and other social wasps).\n",
+    "abdomen": "Distinctive yellow and black banded, long and cylindrical lacking an obvious waist (unlike hornets and other social wasps)\n",
     "head": "",
     "antennae": "Long and bright yellow",
     "thorax": "",
     "notes": "Female has long, obvious sting-like appendage (ovipositor) for laying eggs in trees",
+    "hasMap": true,
+    "hasFlightPeriodImage": true,
     "images": [
       {
         "photos": 8,
@@ -123,6 +129,8 @@
     "antennae": "Very short and plumose (feathery)",
     "thorax": "Chestnut brown in female, black with extensive chestnut coloration in male",
     "notes": "Only one pair of wings (hornets and woodwasp have two pairs). Has sucking mouth parts (proboscis) typical of flies rather than chewing mouth parts (mandibles) of hornets and wasps; very similar to Lesser Hornet Hoverfly, <i>Volucella inanis</i>",
+    "hasMap": true,
+    "hasFlightPeriodImage": true,
     "images": [
       {
         "photos": 10,
@@ -140,6 +148,31 @@
         ],
         "width": [1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024],
         "height": [767, 768, 969, 907, 756, 768, 717, 771, 1367, 1167]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "warehouse_id": 258325,
+    "scientific_name": "Tabanus sudeticus",
+    "common_name": "Dark Giant Horsefly",
+    "description": "One of the largest flies in the UK. The Pale Giant Horsefly is almost identical in appearance, but is much rarer and has only been seen a few times in recent years",
+    "flight": "Beginning of June to the beginning of September, peaking in early July",
+    "size": "20-25mm",
+    "legs": "Black at base and at tip, yellow-brown in middle",
+    "abdomen": "Broad and pointed, mostly dark brown with pale stripes and a central pale triangle on each segment",
+    "head": "Large eyes cover most of the head",
+    "antennae": "Distinctive pointed shape",
+    "thorax": "Grey-brown",
+    "distribution": "Usually found on heaths and moors in the north and west of Britain, and in similar habitats in southern England",
+    "notes": "Females have short piercing mouthparts, and bite farm stock and wild animals (they rarely bite humans); males are sometimes seen feeding at flowers or taking sweet substances from leaf surfaces",
+    "hasMap": false,
+    "hasFlightPeriodImage": false,
+    "images": [
+      {
+        "width": [1024, 1024, 1024],
+        "height": [638, 682, 682],
+        "author": ["Janet Graham", "Ron Allen", "Geoffrey Foale"]
       }
     ]
   }

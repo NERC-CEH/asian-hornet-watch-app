@@ -47,3 +47,6 @@ import './4_8.jpg?originalName';
 import './4_9.jpg?originalName';
 import './4_timeline.jpg?originalName';
 import './4_map.svg?originalName';
+import './5_0.jpg?originalName';
+import './5_1.jpg?originalName';
+import './5_2.jpg?originalName';

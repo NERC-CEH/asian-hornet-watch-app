@@ -170,8 +170,13 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
         </IonCardHeader>
 
         <IonCardContent>
-          <h3>Flight period:</h3>
-          <img src={`/images/${species.id}_timeline.jpg`} />
+          <>
+            <h3>Flight period:</h3>
+            {species.hasFlightPeriodImage && (
+              <img src={`/images/${species.id}_timeline.jpg`} />
+            )}
+            {!species.hasFlightPeriodImage && <p>{species.flight}</p>}
+          </>
 
           {species.size && (
             <>
@@ -241,7 +246,8 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
           {!isSpeciesAsianHornet && (
             <>
               <h3>Distribution:</h3>
-              {getMap()}
+              {species.hasMap && getMap()}
+              {species.distribution}
             </>
           )}
 
