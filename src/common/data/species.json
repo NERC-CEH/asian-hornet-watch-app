@@ -175,5 +175,27 @@
         "author": ["Janet Graham", "Ron Allen", "Geoffrey Foale"]
       }
     ]
+  },
+  {
+    "id": 6,
+    "warehouse_id": 246008,
+    "scientific_name": "Dolichovespula media",
+    "common_name": "Median wasp",
+    "description": "Although a close relative of other UK social wasp species, it was first seen in the UK circa 1980. It nests in trees and shrubs, often found in hedgerows",
+    "flight": "June to October",
+    "size": "15-22mm",
+    "abdomen": "From yellow and black to very dark and almost black individuals with minimal banding",
+    "thorax": "Yellow markings on the top and front sides of the thorax resembling mirrored number 7's",
+    "distribution": "Mostly in the south and east England but has spread to Wales and southern Scotland",
+    "notes": "Found mostly in lowland habitats including woodland, farmland, towns and parks",
+    "hasMap": false,
+    "hasFlightPeriodImage": false,
+    "images": [
+      {
+        "width": [1024, 1024],
+        "height": [896, 1365],
+        "author": []
+      }
+    ]
   }
 ]

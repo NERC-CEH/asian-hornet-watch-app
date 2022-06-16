@@ -1,7 +1,6 @@
 interface Image {
   width: number[];
   height: number[];
-  photos: number;
   author: string[];
 }
 
@@ -14,10 +13,10 @@ export interface Species {
   factsheet?: string;
   flight: string;
   size: string;
-  legs: string;
+  legs?: string;
   abdomen: string;
-  head: string;
-  antennae: string;
+  head?: string;
+  antennae?: string;
   thorax: string;
   notes: string;
   images: Image[];
