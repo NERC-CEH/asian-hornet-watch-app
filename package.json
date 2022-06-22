@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.0.1",
   "scripts": {
     "start": "webpack serve --progress --port 8000",
     "build": "NODE_ENV=production webpack",
