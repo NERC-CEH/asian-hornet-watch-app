@@ -21,6 +21,12 @@ const Home: FC = () => {
           <h2>
             Learn more about Asian hornet and help detect it by recording
             suspected sightings.
+            <br />
+            <br />
+            Find out more about confirmed{' '}
+            <a href="https://www.gov.uk/government/publications/asian-hornet-uk-sightings">
+              UK Asian hornet sightings.
+            </a>{' '}
           </h2>
 
           <IonItemGroup>
