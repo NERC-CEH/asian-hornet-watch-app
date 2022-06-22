@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import {
   IonCardHeader,
-  IonSlides,
-  IonSlide,
   IonItem,
   IonIcon,
   IonModal,
@@ -20,9 +18,14 @@ import {
   arrowBack,
   expandOutline,
 } from 'ionicons/icons';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import ImageWithBackground from '../ImageWithBackground';
 import Comparison from '../Comparison';
 import 'common/images/images';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '@ionic/react/css/ionic-swiper.css';
 import './styles.scss';
 
 type Props = {
@@ -60,13 +63,13 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
       const onSpeciesImageClicked = () => setShowGallery(index);
 
       return (
-        <IonSlide
+        <SwiperSlide
           key={imageURL}
           onClick={onSpeciesImageClicked}
           className="species-profile-photo"
         >
           <ImageWithBackground src={imageURL} />
-        </IonSlide>
+        </SwiperSlide>
       );
     };
 
@@ -75,9 +78,15 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
     const slideImage = species.images[0].width.map(getSlide);
 
     return (
-      <IonSlides pager options={slideOpts}>
+      <Swiper
+        modules={[Pagination]}
+        pagination={{
+          type: 'fraction',
+        }}
+        {...slideOpts}
+      >
         {slideImage}
-      </IonSlides>
+      </Swiper>
     );
   };
 

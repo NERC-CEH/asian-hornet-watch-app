@@ -4,12 +4,12 @@
   --padding-top: 0;
   --padding-bottom: 0;
 
-  ion-slides {
+  .swiper {
     background: var(--ion-page-background);
     overflow: visible;
     margin-bottom: 20px;
 
-    ion-slide.species-profile-photo {
+    .species-profile-photo {
       position: relative;
       overflow: hidden;
 
