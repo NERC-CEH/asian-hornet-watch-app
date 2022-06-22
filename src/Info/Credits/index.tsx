@@ -67,6 +67,9 @@ const Credits: FC = () => {
             Frank Post;
             <br />
             <b>Dark Giant Horsefly</b>: Janet Graham, Ron Allen, Geoffrey Foale;
+            <br />
+            <b>Median wasp</b>: Tim Hodge, Jemima Osbahr, Teresa Fowler, Philip
+            Booker, Sandra Bemister, Teresa Fowler, Barry Walter;
           </P>
         </Section>
 

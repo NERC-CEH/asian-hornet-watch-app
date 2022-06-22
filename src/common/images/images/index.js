@@ -52,3 +52,8 @@ import './5_1.jpg?originalName';
 import './5_2.jpg?originalName';
 import './6_0.jpg?originalName';
 import './6_1.jpg?originalName';
+import './6_2.jpg?originalName';
+import './6_3.jpg?originalName';
+import './6_4.jpg?originalName';
+import './6_5.jpg?originalName';
+import './6_6.jpg?originalName';

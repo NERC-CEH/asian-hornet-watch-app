@@ -188,9 +188,17 @@
     "hasFlightPeriodImage": false,
     "images": [
       {
-        "width": [1024, 1024],
-        "height": [896, 1365],
-        "author": []
+        "width": [1024, 1024, 1024, 1024, 450, 1024, 1024],
+        "height": [683, 1365, 768, 822, 1000, 741, 1024],
+        "author": [
+          "Tim Hodge",
+          "Jemima Osbahr",
+          "Teresa Fowler",
+          "Philip Booker",
+          "Sandra Bemister",
+          "Teresa Fowler",
+          "Barry Walter"
+        ]
       }
     ]
   }
