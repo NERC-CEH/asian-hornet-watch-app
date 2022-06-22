@@ -72,12 +72,15 @@ workflows:
             - password: $ITUNES_CONNECT_PASS
             - app_password: $ITUNES_CONNECT_APP_PASS
             - itunescon_user: $ITUNES_CONNECT_USER
-      - git-tag-project-version-and-build-number@1:
+      - script@1:
+          title: Git Tag
           inputs:
-            - bitrise_tag_format: v_VERSION_-_BUILD_
-            - use_lightweight_tag: 'yes'
-            - bitrise_tag_xcodeproj_path: ios/App/App.xcodeproj
-            - bitrise_tag_info_plist_path: ios/App/App/Info.plist
+            - content: |
+                #!/usr/bin/env bash
+
+                TAG_NAME="v$NPM_PACKAGE_VERSION-$BITRISE_BUILD_NUMBER"
+                git tag -a "$TAG_NAME" -m "* Demo link: $DEMO_URL" -m "* Build link: $BITRISE_BUILD_URL" "$BITRISE_GIT_COMMIT"
+                git push origin "$TAG_NAME"
   ios:
     steps:
       - certificate-and-profile-installer@1: {}
