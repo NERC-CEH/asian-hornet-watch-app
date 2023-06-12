@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { useAlert } from '@flumens';
 import { NavContext } from '@ionic/react';
 import CONFIG from 'common/config';

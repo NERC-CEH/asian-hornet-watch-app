@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import { FC, useContext } from 'react';
 import { observer } from 'mobx-react';
 import { Page, Header } from '@flumens';
 import { NavContext } from '@ionic/react';

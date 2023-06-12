@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import { observer } from 'mobx-react';
 import { arrowBack } from 'ionicons/icons';
 import { Main } from '@flumens';

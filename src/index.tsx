@@ -1,4 +1,3 @@
-import React from 'react';
 import { configure as mobxConfig } from 'mobx';
 import i18n from 'i18next';
 import ReactDOM from 'react-dom';

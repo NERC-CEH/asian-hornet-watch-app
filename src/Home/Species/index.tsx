@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page } from '@flumens';
 import SpeciesList from 'common/Components/SpeciesList';
 import './styles.scss';

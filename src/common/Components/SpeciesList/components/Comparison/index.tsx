@@ -1,4 +1,3 @@
-import React from 'react';
 import { informationCircle } from 'ionicons/icons';
 import { Main, InfoMessage, Section } from '@flumens';
 import { IonRow, IonCol, IonTitle } from '@ionic/react';

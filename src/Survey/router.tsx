@@ -1,4 +1,3 @@
-import React from 'react';
 import { AttrPage, RouteWithModels, ModelLocation } from '@flumens';
 import CONFIG from 'common/config';
 import appModel from 'models/app';

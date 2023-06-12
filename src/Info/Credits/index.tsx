@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Header, Page, Main, Section } from '@flumens';
 import { IonImg } from '@ionic/react';
 import BRCLogo from 'common/images/BRC_approved_logo.png';

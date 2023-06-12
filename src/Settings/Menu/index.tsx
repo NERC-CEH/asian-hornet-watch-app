@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { observer } from 'mobx-react';
 import { Page, Header, useToast } from '@flumens';
 import { AppModel } from 'models/app';

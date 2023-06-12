@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Page, Main } from '@flumens';
 import { IonItem, IonItemGroup, IonLabel } from '@ionic/react';
 import surveyConfig from 'Survey/config';
