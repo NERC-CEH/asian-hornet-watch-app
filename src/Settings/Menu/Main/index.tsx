@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import { Main, useAlert, InfoMessage, MenuAttrToggle } from '@flumens';
-import { IonIcon, IonList, IonItem } from '@ionic/react';
 import {
   arrowUndoSharp,
   shareSocialOutline,
   barbellOutline,
 } from 'ionicons/icons';
+import { Main, useAlert, InfoMessage, MenuAttrToggle } from '@flumens';
+import { IonIcon, IonList, IonItem } from '@ionic/react';
 import './styles.scss';
 
 const useResetDialog = (resetApp: any) => {

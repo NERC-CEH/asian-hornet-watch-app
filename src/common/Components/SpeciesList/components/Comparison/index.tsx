@@ -1,16 +1,16 @@
 import React from 'react';
+import { informationCircle } from 'ionicons/icons';
 import { Main, InfoMessage, Section } from '@flumens';
 import { IonRow, IonCol, IonTitle } from '@ionic/react';
-import { informationCircle } from 'ionicons/icons';
+import 'common/images/images';
 import abdomen1 from './images/abdomen1.jpg';
 import abdomen2 from './images/abdomen2.jpg';
 import head1 from './images/head1.jpg';
 import head2 from './images/head2.jpg';
-import thorax1 from './images/thorax1.jpg';
-import thorax2 from './images/thorax2.jpg';
 import legs1 from './images/legs1.jpg';
 import legs2 from './images/legs2.jpg';
-import 'common/images/images';
+import thorax1 from './images/thorax1.jpg';
+import thorax2 from './images/thorax2.jpg';
 import './styles.scss';
 
 const { H } = Section;

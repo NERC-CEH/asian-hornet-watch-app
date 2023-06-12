@@ -1,5 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
 import {
+  informationCircle,
+  eyeOutline,
+  arrowBack,
+  expandOutline,
+} from 'ionicons/icons';
+import { Trans as T } from 'react-i18next';
+import { Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Main, Gallery, InfoMessage } from '@flumens';
+import {
   IonCardHeader,
   IonItem,
   IonIcon,
@@ -10,22 +22,10 @@ import {
   IonToolbar,
   IonCardContent,
 } from '@ionic/react';
-import { Trans as T } from 'react-i18next';
-import { Main, Gallery, InfoMessage } from '@flumens';
-import {
-  informationCircle,
-  eyeOutline,
-  arrowBack,
-  expandOutline,
-} from 'ionicons/icons';
-import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import ImageWithBackground from '../ImageWithBackground';
-import Comparison from '../Comparison';
-import 'common/images/images';
-import 'swiper/css';
-import 'swiper/css/pagination';
 import '@ionic/react/css/ionic-swiper.css';
+import 'common/images/images';
+import Comparison from '../Comparison';
+import ImageWithBackground from '../ImageWithBackground';
 import './styles.scss';
 
 type Props = {

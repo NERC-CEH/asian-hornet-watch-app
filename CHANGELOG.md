@@ -1,3 +1,9 @@
+# 2.1.0
+
+Fixed anonymous record upload.
+Added account delete option.
+Framework upgrade.
+
 # 2.0.1
 
 Added Median Wasp and Dark Giant Horsefly species.

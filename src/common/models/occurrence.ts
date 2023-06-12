@@ -1,8 +1,5 @@
-import Occurrence, {
-  Attrs as OccurrenceAttrs,
-} from '@bit/flumens.apps.models.occurrence';
-import { validateRemoteModel } from '@flumens';
-import Media from './image';
+import { Occurrence, OccurrenceAttrs, validateRemoteModel } from '@flumens';
+import Media from './media';
 
 type Attrs = OccurrenceAttrs & { taxon: any; number: string };
 
@@ -12,8 +9,6 @@ export default class AppOccurrence extends Occurrence {
   }
 
   attrs: Attrs = this.attrs;
-
-  media: Media[] = this.media;
 
   validateRemote = validateRemoteModel;
 

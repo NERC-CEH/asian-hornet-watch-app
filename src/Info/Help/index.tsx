@@ -1,6 +1,4 @@
 import React, { FC } from 'react';
-import { Header, Page, Main, Collapse } from '@flumens';
-import { IonIcon, IonItemDivider } from '@ionic/react';
 import {
   settingsOutline,
   arrowUndoSharp,
@@ -10,6 +8,8 @@ import {
   exitOutline,
   layersOutline,
 } from 'ionicons/icons';
+import { Header, Page, Main, Collapse } from '@flumens';
+import { IonIcon, IonItemDivider } from '@ionic/react';
 import CONFIG from 'common/config';
 import deleteRecordImg from './deleteRecord.jpg';
 import './styles.scss';

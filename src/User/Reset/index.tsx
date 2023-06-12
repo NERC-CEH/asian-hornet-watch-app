@@ -1,7 +1,7 @@
-import React, { FC, useContext } from 'react';
-import { UserModel } from 'models/user';
-import { NavContext } from '@ionic/react';
+import { FC, useContext } from 'react';
 import { Page, Header, device, useAlert, useLoader, useToast } from '@flumens';
+import { NavContext } from '@ionic/react';
+import userModel from 'models/user';
 import Main from './Main';
 import './styles.scss';
 
@@ -10,11 +10,7 @@ export type Details = {
   email: string;
 };
 
-type Props = {
-  userModel: UserModel;
-};
-
-const ResetController: FC<Props> = ({ userModel }) => {
+const ResetController: FC = () => {
   const { navigate } = useContext(NavContext);
   const alert = useAlert();
   const toast = useToast();
@@ -44,12 +40,8 @@ const ResetController: FC<Props> = ({ userModel }) => {
           },
         ],
       });
-    } catch (err) {
-      if (err instanceof Error) {
-        toast.error(`${err.message}`);
-      }
-      loader.hide();
-      console.error(err, 'e');
+    } catch (err: any) {
+      toast.error(err);
     }
 
     loader.hide();

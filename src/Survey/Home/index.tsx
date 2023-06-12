@@ -1,10 +1,10 @@
 import React, { FC, useContext } from 'react';
-import Sample, { useValidateCheck } from 'models/sample';
-import { AppModel } from 'models/app';
-import { UserModel, useUserStatusCheck } from 'models/user';
 import { observer } from 'mobx-react';
-import { IonButton, NavContext } from '@ionic/react';
 import { Page, Header, useToast, device } from '@flumens';
+import { IonButton, NavContext } from '@ionic/react';
+import { AppModel } from 'models/app';
+import Sample, { useValidateCheck } from 'models/sample';
+import { UserModel, useUserStatusCheck } from 'models/user';
 import {
   useContactDetailsPrompt,
   usePromptToLogin,
@@ -25,7 +25,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
   const promptToLogin = usePromptToLogin();
   const promptToEnterContactDetails = useContactDetailsPrompt(sample);
 
-  const isTraining = !!sample.metadata.training;
+  const isTraining = !!sample.attrs.training;
 
   const checkSampleStatus = useValidateCheck(sample);
 

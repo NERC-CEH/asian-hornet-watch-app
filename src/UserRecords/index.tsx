@@ -1,4 +1,6 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
+import { observer } from 'mobx-react';
+import { Page, Main, device, useToast } from '@flumens';
 import {
   IonList,
   IonToolbar,
@@ -9,17 +11,15 @@ import {
   IonSegment,
   IonButton,
 } from '@ionic/react';
-import { Page, Main, device, useToast } from '@flumens';
-import { observer } from 'mobx-react';
-import Sample from 'models/sample';
-import savedSamples from 'models/savedSamples';
 import InfoBackgroundMessage from 'common/Components/InfoBackgroundMessage';
+import Sample from 'models/sample';
+import savedSamples, { uploadAllSamples } from 'models/savedSamples';
 import Survey from './components/Survey';
 import './styles.scss';
 
 function byCreateTime(smp1: Sample, smp2: Sample) {
-  const date1 = new Date(smp1.metadata.created_on);
-  const date2 = new Date(smp2.metadata.created_on);
+  const date1 = new Date(smp1.metadata.createdOn);
+  const date2 = new Date(smp2.metadata.createdOn);
   return date2.getTime() - date1.getTime();
 }
 
@@ -100,7 +100,7 @@ const UserSurveys: FC<Props> = () => {
 
   const getSamplesList = (uploaded?: boolean) => {
     const uploadedSamples = (sample: Sample) =>
-      uploaded ? sample.metadata.synced_on : !sample.metadata.synced_on;
+      uploaded ? sample.metadata.syncedOn : !sample.metadata.syncedOn;
     return savedSamples.filter(uploadedSamples).sort(byCreateTime);
   };
 
@@ -110,7 +110,7 @@ const UserSurveys: FC<Props> = () => {
       return;
     }
 
-    savedSamples.uploadAll();
+    uploadAllSamples(toast);
   };
 
   const showingPending = segment === 'pending';

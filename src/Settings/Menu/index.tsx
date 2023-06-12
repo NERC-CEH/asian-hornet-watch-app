@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
+import { observer } from 'mobx-react';
+import { Page, Header, useToast } from '@flumens';
+import { AppModel } from 'models/app';
 import SavedSamples from 'models/savedSamples';
 import { UserModel } from 'models/user';
-import { AppModel } from 'models/app';
-import { Page, Header, useToast } from '@flumens';
-import { observer } from 'mobx-react';
 import Main from './Main';
 
 function onToggle(appModel: any, setting: string, checked: boolean) {

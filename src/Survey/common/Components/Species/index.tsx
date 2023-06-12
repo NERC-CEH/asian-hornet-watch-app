@@ -1,10 +1,10 @@
 import React, { FC, useContext } from 'react';
 import { observer } from 'mobx-react';
-import Sample from 'models/sample';
 import { Page, Header } from '@flumens';
 import { NavContext } from '@ionic/react';
 import Main from 'common/Components/SpeciesList';
 import 'common/images/images';
+import Sample from 'models/sample';
 
 type Props = {
   sample: Sample;

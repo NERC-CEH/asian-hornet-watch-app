@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from 'react';
-import { NavContext } from '@ionic/react';
-import Sample from 'models/sample';
 import { useAlert } from '@flumens';
+import { NavContext } from '@ionic/react';
+import CONFIG from 'common/config';
 import appModel, { SurveyDraftKeys } from 'models/app';
+import Sample from 'models/sample';
 import savedSamples from 'models/savedSamples';
 import SurveyConfig from 'Survey/config';
-import CONFIG from 'common/config';
 
 async function showDraftAlert(alert: any) {
   const alertWrap = (resolve: any) => {
@@ -85,7 +85,7 @@ function StartNewSurvey({ survey }: Props): null {
         sample = await getNewSample(survey, draftIdKey);
       }
 
-      const url = `${baseURL}/${sample.cid}`;
+      const url = `${baseURL}/${sample!.cid}`;
 
       navigate(url, 'none', 'replace');
     };

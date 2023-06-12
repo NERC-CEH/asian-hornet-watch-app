@@ -1,5 +1,7 @@
 import React, { FC, SyntheticEvent, useState } from 'react';
 import { observer } from 'mobx-react';
+import { arrowBack } from 'ionicons/icons';
+import { Main } from '@flumens';
 import {
   IonGrid,
   IonModal,
@@ -9,12 +11,10 @@ import {
   IonToolbar,
   IonHeader,
 } from '@ionic/react';
-import { Main } from '@flumens';
-import { arrowBack } from 'ionicons/icons';
-import speciesData from 'common/data/species.json';
 import { Species } from 'common/data/species';
-import SpeciesProfile from './components/SpeciesProfile';
+import speciesData from 'common/data/species.json';
 import SpeciesCard from './components/Card';
+import SpeciesProfile from './components/SpeciesProfile';
 import './styles.scss';
 
 type Props = {

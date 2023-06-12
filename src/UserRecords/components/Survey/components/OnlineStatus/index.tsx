@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { IonSpinner, IonLabel, IonChip, IonButton } from '@ionic/react';
 import { observer } from 'mobx-react';
+import { IonSpinner, IonLabel, IonChip, IonButton } from '@ionic/react';
 import Sample from 'models/sample';
 import './styles.scss';
 
@@ -39,7 +39,7 @@ const OnlineStatus: FC<Props> = ({ sample, onUpload, uploadIsPrimary }) => {
 
   return (
     <IonButton
-      class="survey-status-upload"
+      className="survey-status-upload"
       color="secondary"
       onClick={onUploadWrap}
       fill={uploadIsPrimary ? undefined : 'outline'}

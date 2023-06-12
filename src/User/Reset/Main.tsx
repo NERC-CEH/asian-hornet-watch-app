@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
-import { IonButton, IonList } from '@ionic/react';
-import { Main, InputWithValidation } from '@flumens';
+import { FC } from 'react';
+import { Formik, Form } from 'formik';
 import { personOutline } from 'ionicons/icons';
 import { AnySchema } from 'yup';
-import { Formik, Form } from 'formik';
+import { Main, InputWithValidation } from '@flumens';
+import { IonButton, IonList } from '@ionic/react';
 import { Details } from './';
 
 type Props = {
@@ -25,7 +25,13 @@ const ResetMain: FC<Props> = ({ onSubmit, schema }) => {
         />
       </IonList>
 
-      <IonButton color="secondary" type="submit" expand="block">
+      {/** https://github.com/formium/formik/issues/1418 */}
+      <input type="submit" style={{ display: 'none' }} />
+      <IonButton
+        color={props.isValid ? 'secondary' : 'medium'}
+        type="submit"
+        expand="block"
+      >
         Reset
       </IonButton>
     </Form>
@@ -41,6 +47,7 @@ const ResetMain: FC<Props> = ({ onSubmit, schema }) => {
         validationSchema={schema}
         onSubmit={onSubmit}
         initialValues={initialValues}
+        validateOnMount
       >
         {resetForm}
       </Formik>

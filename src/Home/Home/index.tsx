@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { IonItem, IonItemGroup, IonLabel } from '@ionic/react';
 import { Page, Main } from '@flumens';
+import { IonItem, IonItemGroup, IonLabel } from '@ionic/react';
 import surveyConfig from 'Survey/config';
-import homePageBackground from './images/background.jpg';
 import appLogo from './images/app_logo.png';
+import homePageBackground from './images/background.jpg';
 import './styles.scss';
 
 const Home: FC = () => {

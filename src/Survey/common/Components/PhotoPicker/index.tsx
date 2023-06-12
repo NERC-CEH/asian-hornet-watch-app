@@ -1,11 +1,11 @@
-import React, { FC, ComponentProps } from 'react';
-import { PhotoPicker, captureImage } from '@flumens';
+import { FC, ComponentProps } from 'react';
 import { observer } from 'mobx-react';
+import { PhotoPicker, captureImage } from '@flumens';
 import { useIonActionSheet } from '@ionic/react';
-import Media from 'models/image';
-import Sample from 'models/sample';
-import Occurrence from 'models/occurrence';
 import config from 'common/config';
+import Media from 'models/media';
+import Occurrence from 'models/occurrence';
+import Sample from 'models/sample';
 import './styles.scss';
 
 export function usePromptImageSource() {

@@ -1,4 +1,7 @@
 import React, { FC, useRef, useState } from 'react';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+import { JSX } from '@ionic/core';
 import {
   IonItem,
   IonLabel,
@@ -7,11 +10,7 @@ import {
   IonAccordionGroup,
   IonAccordion,
 } from '@ionic/react';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
 import './styles.scss';
-
-import { JSX } from '@ionic/core';
 
 /**
  * CHANGELOG:

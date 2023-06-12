@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Header, Page, Main, Section } from '@flumens';
 import { IonImg } from '@ionic/react';
-import CEHLogo from 'common/images/ceh_logo.png';
 import BRCLogo from 'common/images/BRC_approved_logo.png';
+import CEHLogo from 'common/images/ceh_logo.png';
 import './styles.scss';
 
 const { P, H } = Section;

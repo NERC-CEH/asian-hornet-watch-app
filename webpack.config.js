@@ -7,6 +7,7 @@ const required = [
   'APP_MAPBOX_MAP_KEY',
   'APP_BACKEND_CLIENT_ID',
   'APP_BACKEND_CLIENT_PASS',
+  'APP_BACKEND_ANONYMOUS_TOKEN',
 ];
 
 const development = {

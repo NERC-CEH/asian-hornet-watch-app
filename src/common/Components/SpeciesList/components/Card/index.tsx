@@ -1,12 +1,12 @@
 import React, { FC, SyntheticEvent } from 'react';
-import { InfoMessage } from '@flumens';
-import { IonCard, IonLabel, IonRow, IonIcon } from '@ionic/react';
-import { Species } from 'common/data/species';
 import {
   informationCircleOutline,
   informationCircle,
   warning,
 } from 'ionicons/icons';
+import { InfoMessage } from '@flumens';
+import { IonCard, IonLabel, IonRow, IonIcon } from '@ionic/react';
+import { Species } from 'common/data/species';
 import 'common/images/images';
 import './styles.scss';
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import About from './About';
-import Menu from './Menu';
 import Credits from './Credits';
-
 import Help from './Help';
+import Menu from './Menu';
 
 export default [
   <Route path="/info/menu" key="/info/menu" exact component={Menu} />,

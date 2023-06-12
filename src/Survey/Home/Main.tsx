@@ -1,26 +1,25 @@
 import React, { FC } from 'react';
-import Sample from 'models/sample';
-import { useRouteMatch } from 'react-router';
 import { observer } from 'mobx-react';
-import {
-  Main,
-  MenuAttrItem,
-  MenuAttrItemFromModel,
-  InfoMessage,
-} from '@flumens';
+import clsx from 'clsx';
 import {
   warning,
   locationOutline,
   calendarOutline,
   informationCircle,
 } from 'ionicons/icons';
+import { useRouteMatch } from 'react-router';
+import {
+  Main,
+  MenuAttrItem,
+  MenuAttrItemFromModel,
+  InfoMessage,
+} from '@flumens';
 import { IonList, IonLabel } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
+import Sample from 'models/sample';
 import DateInput from 'Survey/common/Components/DateInput';
-import PhotoPicker from 'Survey/common/Components/PhotoPicker';
 import GridRefValue from 'Survey/common/Components/GridRefValue';
-import clsx from 'clsx';
-
+import PhotoPicker from 'Survey/common/Components/PhotoPicker';
 import './styles.scss';
 
 type Props = {

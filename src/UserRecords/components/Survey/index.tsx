@@ -1,8 +1,6 @@
 import React, { FC, useContext } from 'react';
-import { useAlert, useToast, date, device } from '@flumens';
-import Sample, { useValidateCheck } from 'models/sample';
-import userModel, { useUserStatusCheck } from 'models/user';
 import { observer } from 'mobx-react';
+import { useAlert, useToast, date, device } from '@flumens';
 import {
   IonItem,
   IonItemSliding,
@@ -15,6 +13,8 @@ import {
   NavContext,
 } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
+import Sample, { useValidateCheck } from 'models/sample';
+import userModel, { useUserStatusCheck } from 'models/user';
 import {
   useContactDetailsPrompt,
   usePromptToLogin,
@@ -90,7 +90,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
           <IonLabel className="species-name bold">{label || 'Record'}</IonLabel>
           <div className="badge-wrapper">
             <IonLabel class="ion-text-wrap">{prettyDate}</IonLabel>
-            {sample.metadata.training && <IonBadge>Training</IonBadge>}
+            {sample.attrs.training && <IonBadge>Training</IonBadge>}
           </div>
         </IonLabel>
       </>

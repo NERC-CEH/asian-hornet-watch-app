@@ -1,8 +1,6 @@
-import GPS from 'helpers/GPS';
 import { observable } from 'mobx';
 import { updateModelLocation } from '@flumens';
-
-const DEFAULT_ACCURACY_LIMIT = 50; // meters
+import GPS from 'helpers/GPS';
 
 export type LatLng = [number, number];
 
@@ -12,10 +10,10 @@ export type Location = {
   accuracy: number;
 };
 
+const DEFAULT_ACCURACY_LIMIT = 50; // meters
+
 type Extension = {
   gps: { locating: null | string };
-  setLocation: any;
-  toggleGPStracking: any;
   startGPS: any;
   stopGPS: any;
   isGPSRunning: any;
@@ -26,27 +24,9 @@ type Extension = {
 const extension = (): Extension => ({
   gps: observable({ locating: null }),
 
-  setLocation([longitude, latitude]: LatLng, source = 'map', accuracy: number) {
-    this.attrs.location = {
-      latitude,
-      longitude,
-      source,
-      accuracy,
-    };
-
-    return this.save();
-  },
-
-  toggleGPStracking(state?: boolean) {
-    if (this.isGPSRunning() || state === false) {
-      this.stopGPS();
-      return;
-    }
-
-    this.startGPS();
-  },
-
   async startGPS(accuracyLimit = DEFAULT_ACCURACY_LIMIT) {
+    if (this.gps.locating) return;
+
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     const options = {
@@ -72,9 +52,7 @@ const extension = (): Extension => ({
   },
 
   stopGPS() {
-    if (!this.gps.locating) {
-      return;
-    }
+    if (!this.gps.locating) return;
 
     GPS.stop(this.gps.locating);
     this.gps.locating = null;

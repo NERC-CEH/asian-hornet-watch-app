@@ -1,14 +1,14 @@
-import { date as dateHelp } from '@flumens';
 import {
   calendarOutline,
   chatboxOutline,
   locationOutline,
 } from 'ionicons/icons';
-import { isPlatform } from '@ionic/react';
 import * as Yup from 'yup';
-import Occurrence from 'models/occurrence';
-import numberIcon from 'common/images/number.svg';
+import { date as dateHelp } from '@flumens';
+import { isPlatform } from '@ionic/react';
 import config from 'common/config';
+import numberIcon from 'common/images/number.svg';
+import Occurrence from 'models/occurrence';
 
 const fixedLocationSchema = Yup.object().shape({
   latitude: Yup.number().required(),

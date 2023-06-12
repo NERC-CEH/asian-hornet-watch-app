@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { IonIcon, IonButton, IonList, IonRouterLink } from '@ionic/react';
+import { FC, useState } from 'react';
+import { Formik, Form } from 'formik';
 import {
   personOutline,
   mailOutline,
@@ -8,8 +8,8 @@ import {
   eyeOffOutline,
 } from 'ionicons/icons';
 import { AnySchema } from 'yup';
-import { Formik, Form } from 'formik';
 import { Main, InputWithValidation } from '@flumens';
+import { IonIcon, IonButton, IonList, IonRouterLink } from '@ionic/react';
 import config from 'common/config';
 
 type Props = {
@@ -60,6 +60,7 @@ const RegisterMain: FC<Props> = ({ onSubmit, schema }) => {
           <IonButton slot="end" onClick={togglePassword} fill="clear">
             <IonIcon
               icon={showPassword ? eyeOutline : eyeOffOutline}
+              className="faint"
               size="small"
             />
           </IonButton>
@@ -67,15 +68,23 @@ const RegisterMain: FC<Props> = ({ onSubmit, schema }) => {
 
         <div className="terms-info-text">
           By clicking Sign Up, you agree to our{' '}
-          <a href={`${config.backend.url}/privacy-notice`}>Privacy Policy</a>{' '}
+          <IonRouterLink href={`${config.backend.url}/privacy-notice`}>
+            Privacy Policy
+          </IonRouterLink>{' '}
           and{' '}
-          <a href={`${config.backend.url}/terms_of_use`}>
+          <IonRouterLink href={`${config.backend.url}/terms_of_use`}>
             Terms and Conditions
-          </a>
+          </IonRouterLink>
         </div>
       </IonList>
 
-      <IonButton color="secondary" type="submit" expand="block">
+      {/** https://github.com/formium/formik/issues/1418 */}
+      <input type="submit" style={{ display: 'none' }} />
+      <IonButton
+        color={props.isValid ? 'secondary' : 'medium'}
+        type="submit"
+        expand="block"
+      >
         Sign Up
       </IonButton>
 
@@ -90,7 +99,17 @@ const RegisterMain: FC<Props> = ({ onSubmit, schema }) => {
     <Main>
       <h1>Create a free account</h1>
 
-      <Formik validationSchema={schema} onSubmit={onSubmit} initialValues={{}}>
+      <Formik
+        validationSchema={schema}
+        onSubmit={onSubmit}
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+        }}
+        validateOnMount
+      >
         {registrationForm}
       </Formik>
     </Main>

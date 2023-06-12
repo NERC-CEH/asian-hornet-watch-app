@@ -1,7 +1,7 @@
-import React, { FC, useContext } from 'react';
-import userModelProps from 'models/user';
-import { NavContext } from '@ionic/react';
+import { FC, useContext } from 'react';
 import { useToast, useLoader, Page, Header, device } from '@flumens';
+import { NavContext } from '@ionic/react';
+import userModel from 'models/user';
 import Main from './Main';
 import './styles.scss';
 
@@ -10,11 +10,7 @@ export type Details = {
   email: string;
 };
 
-type Props = {
-  userModel: typeof userModelProps;
-};
-
-const LoginController: FC<Props> = ({ userModel }) => {
+const LoginController: FC = () => {
   const { navigate } = useContext(NavContext);
   const toast = useToast();
   const loader = useLoader();
@@ -39,12 +35,8 @@ const LoginController: FC<Props> = ({ userModel }) => {
       await userModel.logIn(email.trim(), password);
 
       onSuccessReturn();
-    } catch (err) {
-      if (err instanceof Error) {
-        toast.error(err.message);
-      }
-      loader.hide();
-      console.error(err);
+    } catch (err: any) {
+      toast.error(err);
     }
 
     loader.hide();
@@ -52,7 +44,7 @@ const LoginController: FC<Props> = ({ userModel }) => {
 
   return (
     <Page id="user-login">
-      <Header className="ion-no-border" routerDirection="none" title="Login" />
+      <Header className="ion-no-border" title="Login" />
       <Main schema={userModel.loginSchema} onSubmit={onLogin} />
     </Page>
   );

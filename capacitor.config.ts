@@ -1,4 +1,4 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli'; // eslint-disable-line
 
 const config: CapacitorConfig = {
   appId: 'uk.ac.ceh.hornets',

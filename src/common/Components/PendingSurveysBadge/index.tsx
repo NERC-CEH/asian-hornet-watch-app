@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
-import { IonBadge } from '@ionic/react';
+import { FC } from 'react';
 import { observer } from 'mobx-react';
+import { IonBadge } from '@ionic/react';
 import Sample from 'models/sample';
 import './styles.scss';
 
 type SavedSamples = any;
 
 function getPendingCount(savedSamples: SavedSamples) {
-  const byUploadStatus = (sample: Sample) => !sample.metadata.synced_on;
+  const byUploadStatus = (sample: Sample) => !sample.metadata.syncedOn;
 
   return savedSamples.filter(byUploadStatus).length;
 }

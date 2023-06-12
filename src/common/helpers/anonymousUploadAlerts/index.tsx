@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAlert } from '@flumens';
 import { validateContactDetails } from 'models/user';
 import Sample from '../../models/sample';
@@ -56,9 +55,9 @@ export const useContactDetailsPrompt = (sample: Sample) => {
         const invalids: any = validateContactDetails(data);
         if (invalids) {
           // remove old
-          const oldErrorMessages = [
-            ...document.getElementsByClassName('alert-input-error'),
-          ];
+          const oldErrorMessages = Array.from(
+            document.getElementsByClassName('alert-input-error')
+          );
           const remove = (oldErrorMessage: Element) => oldErrorMessage.remove();
           oldErrorMessages.forEach(remove);
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { AttrPage, RouteWithModels, ModelLocation } from '@flumens';
-import appModel from 'models/app';
-import userModel from 'models/user';
-import savedSamples from 'models/savedSamples';
-import Species from 'Survey/common/Components/Species';
 import CONFIG from 'common/config';
+import appModel from 'models/app';
+import savedSamples from 'models/savedSamples';
+import userModel from 'models/user';
+import Species from 'Survey/common/Components/Species';
+import Home from './Home';
 import StartNewSurvey from './StartNewSurvey';
 import survey from './config';
-import Home from './Home';
 
 const baseURL = `/survey/${survey.name}`;
 

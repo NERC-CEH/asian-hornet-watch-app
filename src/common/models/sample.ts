@@ -1,20 +1,27 @@
+import { IObservableArray } from 'mobx';
 import {
-  validateRemoteModel,
   device,
   getDeepErrorMessage,
   useAlert,
+  Sample as SampleOriginal,
+  SampleAttrs,
+  SampleOptions,
+  SampleMetadata,
 } from '@flumens';
-import Sample, { Attrs as SampleAttrs } from '@bit/flumens.apps.models.sample';
+import config from 'common/config';
 import userModel from 'models/user';
 import surveyConfig from 'Survey/config';
-import CONFIG from 'common/config';
-import { modelStore } from './store';
+import appModel from './app';
+import Media from './media';
 import Occurrence from './occurrence';
 import GPSExtension from './sampleGPSExt';
+import { modelStore } from './store';
 
 type Attrs = SampleAttrs & {
+  date?: any;
   location?: any;
-  date?: string;
+
+  training?: boolean;
 
   // anonymous upload
   firstname?: string;
@@ -23,29 +30,45 @@ type Attrs = SampleAttrs & {
   phone?: string;
 };
 
-class AppSample extends Sample {
+type Metadata = SampleMetadata & {
+  /**
+   * Survey name.
+   */
+  survey: 'survey';
+
+  saved?: boolean;
+
+  // verification
+  verification: any;
+  verification_substatus: any;
+};
+
+export default class Sample extends SampleOriginal<Attrs, Metadata> {
   static fromJSON(json: any) {
-    return super.fromJSON(json, Occurrence, AppSample);
+    return super.fromJSON(json, Occurrence, Sample, Media);
   }
 
-  validateRemote = validateRemoteModel;
+  declare occurrences: IObservableArray<Occurrence>;
 
-  isGPSRunning: any;
+  declare samples: IObservableArray<Sample>;
 
-  gpsExtensionInit: any;
+  declare media: IObservableArray<Media>;
 
-  attrs: Attrs = this.attrs;
+  declare survey: any;
 
-  occurrences: Occurrence[] = this.occurrences;
+  declare toggleGPStracking: any;
 
-  samples: AppSample[] = this.samples;
+  startGPS: any; // from extension
 
-  store = modelStore;
+  isGPSRunning: any; // from extension
 
-  constructor(args: any) {
-    super(args);
+  stopGPS: any; // from extension
 
-    this.remote.url = `${CONFIG.backend.indicia.url}/index.php/services/rest`;
+  constructor(options: SampleOptions) {
+    super({ ...options, store: modelStore });
+
+    this.remote.url = `${config.backend.indicia.url}/index.php/services/rest`;
+    // eslint-disable-next-line
     // eslint-disable-next-line
     this.remote.headers = async () => {
       const token = this.canUploadAnonymously()
@@ -57,12 +80,26 @@ class AppSample extends Sample {
       };
     };
 
-    this.survey = surveyConfig;
+    this.attrs.training = appModel.attrs.training;
+
     Object.assign(this, GPSExtension());
+    this.survey = surveyConfig;
   }
 
-  // eslint-disable-next-line
-  destroy = () => super.destroy();
+  destroy(silent?: boolean) {
+    this.cleanUp();
+    return super.destroy(silent);
+  }
+
+  cleanUp = () => {
+    this.stopGPS();
+    const stopGPS = (smp: Sample) => smp.stopGPS();
+    this.samples.forEach(stopGPS);
+  };
+
+  getSurvey() {
+    return this.survey;
+  }
 
   async upload() {
     if (this.remote.synchronising || this.isUploaded()) return true;
@@ -77,6 +114,7 @@ class AppSample extends Sample {
       if (!isActivated) return false;
     }
 
+    this.cleanUp();
     this.saveRemote();
 
     return true;
@@ -88,7 +126,7 @@ class AppSample extends Sample {
   }
 }
 
-export const useValidateCheck = (sample: AppSample) => {
+export const useValidateCheck = (sample: Sample) => {
   const alert = useAlert();
 
   const validateAlert = () => {
@@ -96,6 +134,7 @@ export const useValidateCheck = (sample: AppSample) => {
     if (invalids) {
       alert({
         header: 'Survey incomplete',
+        skipTranslation: true,
         message: getDeepErrorMessage(invalids),
         buttons: [
           {
@@ -111,5 +150,3 @@ export const useValidateCheck = (sample: AppSample) => {
 
   return validateAlert;
 };
-
-export default AppSample;

@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
+import {
+  homeOutline,
+  informationCircleOutline,
+  layersOutline,
+} from 'ionicons/icons';
 import { Route, Redirect } from 'react-router-dom';
-import savedSamples from 'common/models/savedSamples';
 import {
   IonTabs,
   IonTabButton,
@@ -9,17 +13,13 @@ import {
   IonTabBar,
   IonRouterOutlet,
 } from '@ionic/react';
-import {
-  homeOutline,
-  informationCircleOutline,
-  layersOutline,
-} from 'ionicons/icons';
-import waspIcon from 'common/images/wasp.svg';
 import PendingSurveysBadge from 'common/Components/PendingSurveysBadge';
+import waspIcon from 'common/images/wasp.svg';
+import savedSamples from 'common/models/savedSamples';
 import Menu from '../Info/Menu';
+import UserRecords from '../UserRecords';
 import Home from './Home';
 import Species from './Species';
-import UserRecords from '../UserRecords';
 import './styles.scss';
 
 const HomeController: FC = () => {

@@ -1,14 +1,5 @@
 import React, { FC } from 'react';
-import { Main, InfoMessage } from '@flumens';
 import { observer } from 'mobx-react';
-import { UserModel } from 'common/models/user';
-import {
-  IonIcon,
-  IonList,
-  IonItem,
-  IonItemDivider,
-  IonButton,
-} from '@ionic/react';
 import {
   settingsOutline,
   informationCircleOutline,
@@ -18,8 +9,17 @@ import {
   personAddOutline,
   exitOutline,
 } from 'ionicons/icons';
+import { Main, InfoMessage } from '@flumens';
+import {
+  IonIcon,
+  IonList,
+  IonItem,
+  IonItemDivider,
+  IonButton,
+} from '@ionic/react';
 import CONFIG from 'common/config';
 import flumensLogo from 'common/images/flumens.svg';
+import { UserModel } from 'common/models/user';
 import './styles.scss';
 
 type Props = {

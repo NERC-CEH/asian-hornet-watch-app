@@ -1,7 +1,7 @@
-import React, { FC, useContext } from 'react';
-import userModelProps from 'models/user';
-import { NavContext } from '@ionic/react';
+import { FC, useContext } from 'react';
 import { Page, Header, device, useToast, useAlert, useLoader } from '@flumens';
+import { NavContext } from '@ionic/react';
+import userModel from 'models/user';
 import Main from './Main';
 import './styles.scss';
 
@@ -12,11 +12,7 @@ export type Details = {
   lastName?: string | undefined;
 };
 
-type Props = {
-  userModel: typeof userModelProps;
-};
-
-const RegisterContainer: FC<Props> = ({ userModel }) => {
+const RegisterContainer: FC = () => {
   const { navigate } = useContext(NavContext);
   const alert = useAlert();
   const toast = useToast();
@@ -43,6 +39,7 @@ const RegisterContainer: FC<Props> = ({ userModel }) => {
 
       userModel.attrs.firstName = firstName; // eslint-disable-line
       userModel.attrs.lastName = lastName; // eslint-disable-line
+      userModel.save();
 
       alert({
         header: 'Welcome aboard',
@@ -56,12 +53,8 @@ const RegisterContainer: FC<Props> = ({ userModel }) => {
           },
         ],
       });
-    } catch (err) {
-      if (err instanceof Error) {
-        toast.error(err.message);
-      }
-      loader.hide();
-      console.error(err, 'e');
+    } catch (err: any) {
+      toast.error(err);
     }
 
     loader.hide();
@@ -69,11 +62,7 @@ const RegisterContainer: FC<Props> = ({ userModel }) => {
 
   return (
     <Page id="user-register">
-      <Header
-        className="ion-no-border"
-        routerDirection="none"
-        title="Register"
-      />
+      <Header className="ion-no-border" title="Register" />
       <Main schema={userModel.registerSchema} onSubmit={onRegister} />
     </Page>
   );

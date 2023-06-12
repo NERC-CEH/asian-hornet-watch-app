@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { IonSpinner } from '@ionic/react';
 import { observer } from 'mobx-react';
-import Sample from 'models/sample';
 import { prettyPrintLocation } from '@flumens';
+import { IonSpinner } from '@ionic/react';
+import Sample from 'models/sample';
 import './styles.scss';
 
 function getValue(sample: Sample) {
