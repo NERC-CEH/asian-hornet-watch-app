@@ -1,62 +1,52 @@
 import { FC, ComponentProps } from 'react';
 import { observer } from 'mobx-react';
-import { PhotoPicker, captureImage } from '@flumens';
-import { useIonActionSheet } from '@ionic/react';
+import { Capacitor } from '@capacitor/core';
+import { PhotoPicker, captureImage, useToast } from '@flumens';
+import { isPlatform } from '@ionic/react';
 import config from 'common/config';
 import Media from 'models/media';
 import Occurrence from 'models/occurrence';
 import Sample from 'models/sample';
 import './styles.scss';
 
-export function usePromptImageSource() {
-  const [presentActionSheet] = useIonActionSheet();
-
-  const message = (
-    resolve: (value: boolean | PromiseLike<boolean | null> | null) => void
-  ): void => {
-    presentActionSheet({
-      buttons: [
-        { text: 'Gallery', handler: () => resolve(false) },
-        { text: 'Camera', handler: () => resolve(true) },
-        { text: 'Cancel', role: 'cancel', handler: () => resolve(null) },
-      ],
-      header: 'Choose a method to upload a photo',
-    });
-  };
-  const promptMessage = () => new Promise<boolean | null>(message);
-  return promptMessage;
-}
+type URL = string;
 
 interface Props extends Omit<ComponentProps<typeof PhotoPicker>, 'getImage'> {
   model: Sample | Occurrence;
 }
 
 const AppPhotoPicker: FC<Props> = ({ model, isDisabled, ...restProps }) => {
-  const promptImageSource = usePromptImageSource();
+  const toast = useToast();
 
   if (isDisabled && !model.media.length) return null;
 
-  async function getImageWrap() {
-    const shouldUseCamera = await promptImageSource();
-    const cancelled = shouldUseCamera === null;
-    if (cancelled) return null;
+  async function onAddNew(shouldUseCamera: boolean) {
+    try {
+      const photoURLs = await captureImage({
+        camera: shouldUseCamera,
+        multiple: true,
+      });
+      if (!photoURLs.length) return;
 
-    const [image] = await captureImage({
-      camera: shouldUseCamera,
-    });
+      const getImageModel = async (imageURL: URL) =>
+        Media.getImageModel(
+          isPlatform('hybrid') ? Capacitor.convertFileSrc(imageURL) : imageURL,
+          config.dataPath
+        );
+      const imageModels: Media[] = await Promise.all<any>(
+        photoURLs.map(getImageModel)
+      );
 
-    if (!image) {
-      return null;
+      model.media.push(...imageModels);
+      model.save();
+    } catch (e: any) {
+      toast.error(e);
     }
-
-    const imageModel = await Media.getImageModel(image, config.dataPath);
-
-    return imageModel;
   }
 
   return (
     <PhotoPicker
-      getImage={getImageWrap}
+      onAddNew={onAddNew}
       model={model}
       isDisabled={isDisabled}
       {...restProps}

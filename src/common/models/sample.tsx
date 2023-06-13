@@ -135,7 +135,18 @@ export const useValidateCheck = (sample: Sample) => {
       alert({
         header: 'Survey incomplete',
         skipTranslation: true,
-        message: getDeepErrorMessage(invalids),
+        // TODO: remove the replace once the flumens lib is fixed
+        message: (
+          <>
+            <div>
+              {getDeepErrorMessage(invalids)
+                .split('<br/>')
+                .map(val => (
+                  <div> {val}</div>
+                ))}
+            </div>
+          </>
+        ),
         buttons: [
           {
             text: 'Got it',
