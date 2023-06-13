@@ -22,10 +22,7 @@ const AppPhotoPicker: FC<Props> = ({ model, isDisabled, ...restProps }) => {
 
   async function onAddNew(shouldUseCamera: boolean) {
     try {
-      const photoURLs = await captureImage({
-        camera: shouldUseCamera,
-        multiple: true,
-      });
+      const photoURLs = await captureImage({ camera: shouldUseCamera });
       if (!photoURLs.length) return;
 
       const getImageModel = async (imageURL: URL) =>
