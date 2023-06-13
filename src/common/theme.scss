@@ -1,4 +1,4 @@
-@import './roundedTheme.scss';
+@import '@flumens/ionic/dist/themes/rounded.css';
 
 :root {
   --ion-color-primary: #424733;
@@ -283,9 +283,11 @@ ion-radio-group ion-item {
 .swiper-pagination {
   background: transparent;
 
+  --bullet-background-active: var(--ion-color-secondary);
+  --bullet-background: var(--ion-color-secondary);
+
   .swiper-pagination-bullet-active {
     opacity: 0.8;
-    background: var(--ion-color-secondary);
   }
 }
 
