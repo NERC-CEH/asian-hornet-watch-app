@@ -1,3 +1,7 @@
+# 2.1.2
+
+Added maintenance message.
+
 # 2.1.1
 
 Added maintenance message.
