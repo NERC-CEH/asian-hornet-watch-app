@@ -22,8 +22,8 @@ const useBackendMaintenanceAlert = () => {
     if (shown) return;
 
     const now = new Date().getTime();
-    const notReady = now < new Date('2023-10-09T00:00').getTime();
-    const expired = now > new Date('2023-10-10T07:00').getTime();
+    const notReady = now < new Date('2023-11-13T00:00').getTime();
+    const expired = now > new Date('2023-11-14T07:00').getTime();
     if (expired || notReady) return;
 
     alert({
@@ -35,7 +35,7 @@ const useBackendMaintenanceAlert = () => {
           <a href="mailto:alert_nonnative@ceh.ac.uk">
             alert_nonnative@ceh.ac.uk
           </a>{' '}
-          on <b>09/10/2023</b>
+          on <b>13/11/2023</b>
         </>
       ),
       buttons: [{ text: 'OK', handler: () => setShown(true) }],
