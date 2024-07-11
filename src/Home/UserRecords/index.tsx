@@ -125,7 +125,7 @@ const UserSurveys: FC<Props> = () => {
     }
 
     return (
-      <IonBadge color="secondary" slot="end">
+      <IonBadge color="secondary" slot="end" className="mx-2">
         {pendingSurveys.length}
       </IonBadge>
     );
@@ -137,7 +137,7 @@ const UserSurveys: FC<Props> = () => {
     }
 
     return (
-      <IonBadge color="light" slot="end">
+      <IonBadge color="light" slot="end" className="mx-2">
         {uploadedSurveys.length}
       </IonBadge>
     );

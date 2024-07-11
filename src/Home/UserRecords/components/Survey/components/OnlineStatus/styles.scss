@@ -5,9 +5,12 @@
 }
 
 ion-button.survey-status-upload {
-  margin-right: 10px;
+  margin-left: 20px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
   --padding-end: 15px;
   --padding-start: 15px;
+  height: fit-content;
 }
 
 ion-spinner.survey-status {

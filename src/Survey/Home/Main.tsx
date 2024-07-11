@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { observer } from 'mobx-react';
 import clsx from 'clsx';
 import {
@@ -14,7 +13,7 @@ import {
   MenuAttrItemFromModel,
   InfoMessage,
 } from '@flumens';
-import { IonList, IonLabel } from '@ionic/react';
+import { IonList, IonIcon } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
 import Sample from 'models/sample';
 import DateInput from 'Survey/common/Components/DateInput';
@@ -26,7 +25,7 @@ type Props = {
   sample: Sample;
 };
 
-const HomeMain: FC<Props> = ({ sample }) => {
+const HomeMain = ({ sample }: Props) => {
   const { url } = useRouteMatch();
 
   const isDisabled = sample.isUploaded();
@@ -39,12 +38,14 @@ const HomeMain: FC<Props> = ({ sample }) => {
     const empty = !hasLocation;
 
     const value = (
-      <IonLabel position="stacked" mode="ios">
-        <IonLabel color={clsx(empty && hasLocation && 'dark')}>
+      <div className="flex flex-col">
+        <div color={clsx(empty && hasLocation && 'dark')}>
           <GridRefValue sample={sample} requiredMessage="No location" />
-        </IonLabel>
-        <IonLabel color="dark">{location.name || 'No site name'}</IonLabel>
-      </IonLabel>
+        </div>
+        <div className={clsx(!location.name && 'opacity-50')}>
+          {location.name || 'No site name'}
+        </div>
+      </div>
     );
 
     return (
@@ -77,19 +78,27 @@ const HomeMain: FC<Props> = ({ sample }) => {
   return (
     <Main>
       {isDisabled ? (
-        <InfoMessage icon={informationCircle}>
+        <InfoMessage
+          prefix={<IonIcon src={informationCircle} className="size-6" />}
+          color="tertiary"
+          className="m-2"
+        >
           This record has been submitted and cannot be edited within this App.
         </InfoMessage>
       ) : (
-        <InfoMessage icon={warning} className="info-message warning">
+        <InfoMessage
+          prefix={<IonIcon src={warning} className="size-6" />}
+          color="secondary"
+          className="m-2"
+        >
           Caution: take care when recording this species as its sting is similar
           to that of a wasp
         </InfoMessage>
       )}
 
       <IonList lines="full">
-        <div className="rounded">
-          <PhotoPicker model={occ} isDisabled={isDisabled} />
+        <div className="rounded-list">
+          <PhotoPicker model={occ} />
           <MenuAttrItem
             routerLink={`${url}/species`}
             icon={waspIcon}

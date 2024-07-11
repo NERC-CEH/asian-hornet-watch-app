@@ -64,7 +64,7 @@ export const useContactDetailsPrompt = (sample: Sample) => {
           // add new
           const updateErrCode = (input: any) => {
             const inputEl = document.getElementById(
-              `anonymous-user-${input.path}-input`
+              `anonymous-user-${input.path[0]}-input`
             );
 
             if (!inputEl) return;
@@ -75,7 +75,7 @@ export const useContactDetailsPrompt = (sample: Sample) => {
             inputEl.parentNode?.insertBefore(errorMessage, inputEl.nextSibling);
           };
 
-          invalids.inner.forEach(updateErrCode);
+          invalids.issues.forEach(updateErrCode);
           return false; // don't close alert
         }
 

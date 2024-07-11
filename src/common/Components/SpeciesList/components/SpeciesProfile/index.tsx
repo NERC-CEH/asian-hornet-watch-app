@@ -6,9 +6,9 @@ import {
   expandOutline,
 } from 'ionicons/icons';
 import { Trans as T } from 'react-i18next';
-import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Main, Gallery, InfoMessage } from '@flumens';
 import {
@@ -263,7 +263,10 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
           {isSpeciesAsianHornet && (
             <>
               <h3>Distribution:</h3>
-              <InfoMessage icon={informationCircle}>
+              <InfoMessage
+                prefix={<IonIcon src={informationCircle} className="size-6" />}
+                color="tertiary"
+              >
                 Asian hornet is not currently established in the UK.
               </InfoMessage>
             </>

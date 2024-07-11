@@ -10,13 +10,7 @@ import {
   exitOutline,
 } from 'ionicons/icons';
 import { Main, InfoMessage } from '@flumens';
-import {
-  IonIcon,
-  IonList,
-  IonItem,
-  IonItemDivider,
-  IonButton,
-} from '@ionic/react';
+import { IonIcon, IonList, IonItem, IonButton } from '@ionic/react';
 import CONFIG from 'common/config';
 import flumensLogo from 'common/images/flumens.svg';
 import { UserModel } from 'common/models/user';
@@ -45,8 +39,8 @@ const MainComponent: FC<Props> = ({
       <IonList lines="full">
         <h1>Menu</h1>
 
-        <IonItemDivider>Account</IonItemDivider>
-        <div className="rounded">
+        <h2 className="list-title">Account</h2>
+        <div className="rounded-list">
           {isLoggedIn && (
             <IonItem detail id="logout-button" onClick={logOut}>
               <IonIcon icon={exitOutline} size="small" slot="start" />
@@ -58,8 +52,8 @@ const MainComponent: FC<Props> = ({
 
           {isLoggedIn && isNotVerified && (
             <InfoMessage className="verification-warning">
-              Looks like your <b>{{ userEmail }}</b> email hasn't been verified
-              yet.
+              Looks like your <b>{{ userEmail } as any}</b> email hasn't been
+              verified yet.
               <div>
                 <IonButton fill="outline" onClick={refreshAccount}>
                   Refresh
@@ -86,8 +80,8 @@ const MainComponent: FC<Props> = ({
           )}
         </div>
 
-        <IonItemDivider>Info</IonItemDivider>
-        <div className="rounded">
+        <h2 className="list-title">Info</h2>
+        <div className="rounded-list">
           <IonItem routerLink="/info/about" detail>
             <IonIcon
               icon={informationCircleOutline}
@@ -107,20 +101,20 @@ const MainComponent: FC<Props> = ({
           </IonItem>
         </div>
 
-        <IonItemDivider>Settings</IonItemDivider>
-        <div className="rounded">
+        <h2 className="list-title">Settings</h2>
+        <div className="rounded-list">
           <IonItem routerLink="/settings/menu" detail>
             <IonIcon icon={settingsOutline} size="small" slot="start" />
             App
           </IonItem>
         </div>
 
-        <div>
+        <div className="mt-10">
           <a href="https://flumens.io">
             <img src={flumensLogo} alt="logo" />
           </a>
 
-          <p className="app-version">{`App version: v${CONFIG.version} (${CONFIG.build})`}</p>
+          <div className="mt-2 opacity-60">{`App version: v${CONFIG.version} (${CONFIG.build})`}</div>
         </div>
       </IonList>
     </Main>

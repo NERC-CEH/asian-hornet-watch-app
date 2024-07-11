@@ -1,7 +1,6 @@
-import { FC, ComponentProps } from 'react';
 import { observer } from 'mobx-react';
 import { Capacitor } from '@capacitor/core';
-import { PhotoPicker, captureImage, useToast } from '@flumens';
+import { PhotoPicker, captureImage } from '@flumens';
 import { isPlatform } from '@ionic/react';
 import config from 'common/config';
 import Media from 'models/media';
@@ -9,44 +8,45 @@ import Occurrence from 'models/occurrence';
 import Sample from 'models/sample';
 import './styles.scss';
 
-type URL = string;
-
-interface Props extends Omit<ComponentProps<typeof PhotoPicker>, 'getImage'> {
+type Props = {
   model: Sample | Occurrence;
-}
+};
 
-const AppPhotoPicker: FC<Props> = ({ model, isDisabled, ...restProps }) => {
-  const toast = useToast();
+const AppPhotoPicker = ({ model }: Props) => {
+  const isUploaded = model.isUploaded();
 
-  if (isDisabled && !model.media.length) return null;
+  async function onAdd(shouldUseCamera: boolean) {
+    const images = await captureImage(
+      shouldUseCamera ? { camera: true } : { multiple: true }
+    );
+    if (!images.length) return;
 
-  async function onAddNew(shouldUseCamera: boolean) {
-    try {
-      const photoURLs = await captureImage({ camera: shouldUseCamera });
-      if (!photoURLs.length) return;
-
-      const getImageModel = async (imageURL: URL) =>
-        Media.getImageModel(
-          isPlatform('hybrid') ? Capacitor.convertFileSrc(imageURL) : imageURL,
-          config.dataPath
-        );
-      const imageModels: Media[] = await Promise.all<any>(
-        photoURLs.map(getImageModel)
+    const getImageModel = async (image: any) => {
+      const imageModel: any = await Media.getImageModel(
+        isPlatform('hybrid') ? Capacitor.convertFileSrc(image) : image,
+        config.dataPath,
+        true
       );
 
-      model.media.push(...imageModels);
-      model.save();
-    } catch (e: any) {
-      toast.error(e);
-    }
+      return imageModel;
+    };
+
+    const imageModels: Media[] = await Promise.all<any>(
+      images.map(getImageModel)
+    );
+
+    model.media.push(...imageModels);
+    model.save();
   }
+
+  const onRemove = (m: any) => m.destroy();
 
   return (
     <PhotoPicker
-      onAddNew={onAddNew}
-      model={model}
-      isDisabled={isDisabled}
-      {...restProps}
+      onAdd={onAdd}
+      onRemove={onRemove}
+      value={model.media}
+      isDisabled={isUploaded}
     />
   );
 };

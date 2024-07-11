@@ -1,0 +1,15 @@
+.survey-list-item {
+  border-radius: 10px;
+  background: white;
+  --border-style: none;
+  margin: 6px auto;
+  max-width: 600px; // ipad
+
+  ion-item {
+    --padding-start: 5px;
+    --padding-top: 5px;
+    --padding-bottom: 5px;
+    --border-style: none;
+    --border-radius: 10px;
+  }
+}

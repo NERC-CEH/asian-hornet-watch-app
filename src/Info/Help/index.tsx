@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import {
   settingsOutline,
   arrowUndoSharp,
@@ -9,18 +8,18 @@ import {
   layersOutline,
 } from 'ionicons/icons';
 import { Header, Page, Main, Collapse } from '@flumens';
-import { IonIcon, IonItemDivider } from '@ionic/react';
+import { IonIcon } from '@ionic/react';
 import CONFIG from 'common/config';
 import deleteRecordImg from './deleteRecord.jpg';
 import './styles.scss';
 
-const Help: FC = () => {
+const Help = () => {
   return (
     <Page id="help">
       <Header title="Help" />
       <Main>
-        <IonItemDivider>Records</IonItemDivider>
-        <div className="rounded">
+        <h2 className="list-title">Records</h2>
+        <div className="rounded-list">
           <Collapse title="How to make a new record">
             <div className="collapse-content-wrapper">
               <p>
@@ -71,8 +70,8 @@ const Help: FC = () => {
           </Collapse>
         </div>
 
-        <IonItemDivider>User</IonItemDivider>
-        <div className="rounded">
+        <h2 className="list-title">User</h2>
+        <div className="rounded-list">
           <Collapse title=" Sign in/out or register">
             <div className="collapse-content-wrapper">
               <p>
@@ -98,8 +97,8 @@ const Help: FC = () => {
           </Collapse>
         </div>
 
-        <IonItemDivider>Other</IonItemDivider>
-        <div className="rounded">
+        <h2 className="list-title">Other</h2>
+        <div className="rounded-list">
           <Collapse title="Reset the application">
             <div className="collapse-content-wrapper">
               <p>
@@ -111,7 +110,7 @@ const Help: FC = () => {
           </Collapse>
         </div>
 
-        <p>
+        <p className="mt-2 p-2">
           For more help please visit the iRecord{' '}
           <a href="https://irecord.org.uk/forum">forum</a>. Or drop us an{' '}
           <a

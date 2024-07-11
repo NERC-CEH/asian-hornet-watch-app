@@ -1,117 +1,108 @@
-import { FC, useState } from 'react';
-import { Formik, Form } from 'formik';
+import { useState } from 'react';
+import clsx from 'clsx';
 import {
-  personOutline,
-  mailOutline,
   keyOutline,
+  personOutline,
   eyeOutline,
   eyeOffOutline,
+  mailOutline,
 } from 'ionicons/icons';
-import { AnySchema } from 'yup';
-import { Main, InputWithValidation } from '@flumens';
-import { IonIcon, IonButton, IonList, IonRouterLink } from '@ionic/react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Trans as T } from 'react-i18next';
+import { TypeOf } from 'zod';
+import { Main, Button } from '@flumens';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { IonIcon, IonRouterLink } from '@ionic/react';
 import config from 'common/config';
+import { UserModel } from 'models/user';
+import ControlledInput from '../common/Components/ControlledInput';
+
+type Details = TypeOf<typeof UserModel.registerSchema>;
 
 type Props = {
-  onSubmit: any;
-  schema: AnySchema;
+  onSubmit: SubmitHandler<Details>;
 };
 
-const RegisterMain: FC<Props> = ({ onSubmit, schema }) => {
+const RegisterMain = ({ onSubmit }: Props) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const registrationForm = (props: any) => (
-    <Form>
-      <IonList lines="full">
-        <InputWithValidation
-          name="firstName"
-          placeholder="First name"
-          icon={personOutline}
-          type="text"
-          autocomplete="off"
-          {...props}
-        />
-        <InputWithValidation
-          name="lastName"
-          placeholder="Surname"
-          icon={personOutline}
-          type="text"
-          autocomplete="off"
-          {...props}
-        />
-        <InputWithValidation
-          name="email"
-          placeholder="Email"
-          icon={mailOutline}
-          type="email"
-          autocomplete="off"
-          {...props}
-        />
-        <InputWithValidation
-          name="password"
-          placeholder="Password"
-          icon={keyOutline}
-          type={showPassword ? 'text' : 'password'}
-          autocomplete="off"
-          {...props}
-        >
-          <IonButton slot="end" onClick={togglePassword} fill="clear">
-            <IonIcon
-              icon={showPassword ? eyeOutline : eyeOffOutline}
-              className="faint"
-              size="small"
-            />
-          </IonButton>
-        </InputWithValidation>
-
-        <div className="terms-info-text">
-          By clicking Sign Up, you agree to our{' '}
-          <IonRouterLink href={`${config.backend.url}/privacy-notice`}>
-            Privacy Policy
-          </IonRouterLink>{' '}
-          and{' '}
-          <IonRouterLink href={`${config.backend.url}/terms_of_use`}>
-            Terms and Conditions
-          </IonRouterLink>
-        </div>
-      </IonList>
-
-      {/** https://github.com/formium/formik/issues/1418 */}
-      <input type="submit" style={{ display: 'none' }} />
-      <IonButton
-        color={props.isValid ? 'secondary' : 'medium'}
-        type="submit"
-        expand="block"
-      >
-        Sign Up
-      </IonButton>
-
-      <div className="signin-button">
-        I am already a member.{' '}
-        <IonRouterLink routerLink="/user/login">Sign In</IonRouterLink>
-      </div>
-    </Form>
-  );
+  const { formState, handleSubmit, control } = useForm<Details>({
+    defaultValues: { firstName: '', lastName: '', email: '', password: '' },
+    resolver: zodResolver(UserModel.registerSchema),
+  });
 
   return (
     <Main>
-      <h1>Create a free account</h1>
+      <div className="mx-auto max-w-md px-3">
+        <h1 className="my-10 text-center">
+          <T>Create a free account</T>
+        </h1>
 
-      <Formik
-        validationSchema={schema}
-        onSubmit={onSubmit}
-        initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-        }}
-        validateOnMount
-      >
-        {registrationForm}
-      </Formik>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
+          <div className="rounded-list">
+            <ControlledInput
+              control={control}
+              name="fullName"
+              prefix={<IonIcon icon={personOutline} className="size-5" />}
+              placeholder="Full Name"
+            />
+            <ControlledInput
+              control={control}
+              name="email"
+              prefix={<IonIcon icon={mailOutline} className="size-5" />}
+              type="email"
+              placeholder="Email"
+            />
+            <ControlledInput
+              control={control}
+              name="password"
+              prefix={<IonIcon icon={keyOutline} className="size-5" />}
+              suffix={
+                <IonIcon
+                  icon={showPassword ? eyeOutline : eyeOffOutline}
+                  className="size-5 opacity-50"
+                  onClick={togglePassword}
+                />
+              }
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password"
+            />
+          </div>
+
+          <div className="my-4 px-5 text-sm">
+            <T>
+              By clicking Sign Up, you agree to our{' '}
+              <IonRouterLink href={`${config.backend.url}/privacy-notice`}>
+                Privacy Policy
+              </IonRouterLink>{' '}
+              and{' '}
+              <IonRouterLink href={`${config.backend.url}/terms-of-use`}>
+                Terms and Conditions
+              </IonRouterLink>
+            </T>
+          </div>
+
+          <Button
+            className={clsx(
+              'mx-auto mt-8 bg-secondary-500',
+              !formState.isValid && 'opacity-50'
+            )}
+            color="secondary"
+            type="submit"
+          >
+            Sign Up
+          </Button>
+        </form>
+
+        <div className="mt-10 text-center">
+          <T>I am already a member</T>.{' '}
+          <IonRouterLink routerLink="/user/login">
+            <T>Sign In</T>
+          </IonRouterLink>
+        </div>
+      </div>
     </Main>
   );
 };

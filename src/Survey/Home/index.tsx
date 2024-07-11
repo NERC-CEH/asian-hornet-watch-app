@@ -108,7 +108,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
   return (
     <Page id="survey-home">
       <Header
-        title="Record"
+        title="Report"
         rightSlot={finishButton}
         subheader={trainingModeSubheader}
       />

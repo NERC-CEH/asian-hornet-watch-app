@@ -1,8 +1,8 @@
-import { AttrPage, RouteWithModels, ModelLocation } from '@flumens';
-import CONFIG from 'common/config';
+import { AttrPage, RouteWithModels } from '@flumens';
 import appModel from 'models/app';
 import savedSamples from 'models/savedSamples';
 import userModel from 'models/user';
+import ModelLocation from 'Survey/common/Components/ModelLocationMap';
 import Species from 'Survey/common/Components/Species';
 import Home from './Home';
 import StartNewSurvey from './StartNewSurvey';
@@ -14,19 +14,6 @@ const HomeWrap = (props: any) => (
   <Home appModel={appModel} userModel={userModel} {...props} />
 );
 
-const ModelLocationWrap = (props: any) => (
-  <ModelLocation
-    model={props.sample} // eslint-disable-line
-    mapProviderOptions={CONFIG.map}
-    useGridRef
-    useGridMap
-    onLocationNameChange={ModelLocation.utils.onLocationNameChange}
-    namePlaceholder="Site name eg nearby village"
-    onGPSClick={ModelLocation.utils.onGPSClick}
-    backButtonProps={{ text: 'Back' }}
-  />
-);
-
 const { AttrPageFromRoute } = AttrPage;
 
 const routes = [
@@ -34,7 +21,7 @@ const routes = [
   [`${baseURL}/:smpId`, HomeWrap],
   [`${baseURL}/:smpId/:attr`, AttrPageFromRoute],
   [`${baseURL}/:smpId/:occId/:attr`, AttrPageFromRoute],
-  [`${baseURL}/:smpId/location`, ModelLocationWrap],
+  [`${baseURL}/:smpId/location`, ModelLocation],
   [`${baseURL}/:smpId/species`, Species],
 ];
 

@@ -11,7 +11,7 @@ const Credits: FC = () => {
   return (
     <Page id="credits">
       <Header title="Credits" />
-      <Main>
+      <Main className="ion-padding">
         <div className="logos">
           <div>
             <IonImg src={CEHLogo} />
@@ -26,10 +26,11 @@ const Credits: FC = () => {
               We are very grateful for all the people that helped to create this
               app:
             </b>
-            <ul>
+            <ul className="[&>*]:mt-1">
               <li>Helen Roy (UKCEH)</li>
               <li>Karolis Kazlauskis (Flumens)</li>
               <li>Vilius Stankaitis (Flumens)</li>
+              <li>Steph Rorke (UKCEH)</li>
               <li>Marc Botham (UKCEH)</li>
               <li>Niall Moore (APHA)</li>
               <li>Olaf Booy (APHA)</li>

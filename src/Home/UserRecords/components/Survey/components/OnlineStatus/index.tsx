@@ -1,6 +1,6 @@
-import { FC } from 'react';
 import { observer } from 'mobx-react';
-import { IonSpinner, IonLabel, IonChip, IonButton } from '@ionic/react';
+import { IonSpinner, IonButton } from '@ionic/react';
+import { Badge } from 'common/flumens';
 import Sample from 'models/sample';
 import './styles.scss';
 
@@ -10,17 +10,11 @@ type Props = {
   uploadIsPrimary: boolean;
 };
 
-const OnlineStatus: FC<Props> = ({ sample, onUpload, uploadIsPrimary }) => {
+const OnlineStatus = ({ sample, onUpload, uploadIsPrimary }: Props) => {
   const { saved } = sample.metadata;
 
   if (!saved) {
-    return (
-      <IonLabel slot="end" class="survey-status">
-        <IonChip slot="end" class="survey-status">
-          <IonLabel>Draft</IonLabel>
-        </IonChip>
-      </IonLabel>
-    );
+    return <Badge>Draft</Badge>;
   }
 
   if (sample.remote.synchronising) {

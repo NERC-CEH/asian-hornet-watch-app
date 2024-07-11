@@ -17,7 +17,7 @@ const CONFIG = {
   sentryDNS: process.env.APP_SENTRY_KEY as string,
 
   map: {
-    mapboxApiKey: process.env.APP_MAPBOX_MAP_KEY,
+    mapboxApiKey: process.env.APP_MAPBOX_MAP_KEY as string,
   },
 
   backend: {

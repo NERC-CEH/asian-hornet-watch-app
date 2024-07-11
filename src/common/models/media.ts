@@ -1,4 +1,3 @@
-import { observable } from 'mobx';
 import { Capacitor } from '@capacitor/core';
 import {
   Filesystem,
@@ -14,12 +13,8 @@ export type URL = string;
 
 type Attrs = MediaAttrs & { species: any };
 
-export default class Media extends MediaOriginal {
+export default class Media extends MediaOriginal<Attrs> {
   declare parent?: Sample | Occurrence;
-
-  attrs: Attrs = observable({
-    ...this.attrs,
-  });
 
   async destroy(silent?: boolean) {
     // remove from internal storage

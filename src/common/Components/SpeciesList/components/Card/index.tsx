@@ -55,7 +55,11 @@ const SpeciesCard: FC<Props> = ({
       </IonCard>
 
       {isSpeciesAsianHornet && (
-        <InfoMessage icon={informationCircle}>
+        <InfoMessage
+          prefix={<IonIcon src={informationCircle} className="size-6" />}
+          color="tertiary"
+          className="mx-2 mt-2"
+        >
           Asian hornet is often confused with similar species, find out more
           about each below.
         </InfoMessage>

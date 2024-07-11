@@ -1,15 +1,12 @@
 import { FC, useContext } from 'react';
 import { observer } from 'mobx-react';
-import { useAlert, useToast, date, device } from '@flumens';
+import { useAlert, useToast, device, getRelativeDate, Badge } from '@flumens';
 import {
   IonItem,
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
-  IonLabel,
   IonIcon,
-  IonAvatar,
-  IonBadge,
   NavContext,
 } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
@@ -72,28 +69,34 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
   function getSampleInfo() {
     const occ = sample.occurrences[0];
 
-    const prettyDate = date.print(sample.attrs.date);
+    const prettyDate = getRelativeDate(sample.attrs.date);
 
     const image = occ?.media.length && occ?.media[0];
-    let avatar = <IonIcon icon={waspIcon} color="warning" />;
+    let avatar = <IonIcon icon={waspIcon} color="warning" className="size-6" />;
 
     if (image) {
-      avatar = <img src={image.getURL()} />;
+      avatar = (
+        <img src={image.getURL()} className="h-full w-full object-cover" />
+      );
     }
 
     const label = occ?.attrs?.taxon?.common_name;
 
     return (
-      <>
-        <IonAvatar>{avatar}</IonAvatar>
-        <IonLabel position="stacked" mode="ios" color="dark">
-          <IonLabel className="species-name bold">{label || 'Record'}</IonLabel>
-          <div className="badge-wrapper">
-            <IonLabel class="ion-text-wrap">{prettyDate}</IonLabel>
-            {sample.attrs.training && <IonBadge>Training</IonBadge>}
+      <div className="flex w-full items-center gap-3">
+        <div className="list-avatar">{avatar}</div>
+        <div className="flex flex-col">
+          <div className="font-bold">{label || 'Record'}</div>
+          <div>
+            {prettyDate}
+            {sample.attrs.training && (
+              <Badge className="mx-2" size="small">
+                Training
+              </Badge>
+            )}
           </div>
-        </IonLabel>
-      </>
+        </div>
+      </div>
     );
   }
 
@@ -133,14 +136,16 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
 
   return (
     <IonItemSliding className="survey-list-item">
-      <IonItem routerLink={href} detail={!synchronising}>
-        {getSampleInfo()}
+      <IonItem routerLink={href} detail={false}>
+        <div className="flex w-full items-center justify-between">
+          {getSampleInfo()}
 
-        <OnlineStatus
-          sample={sample}
-          onUpload={onUpload}
-          uploadIsPrimary={!!uploadIsPrimary}
-        />
+          <OnlineStatus
+            sample={sample}
+            onUpload={onUpload}
+            uploadIsPrimary={!!uploadIsPrimary}
+          />
+        </div>
       </IonItem>
 
       <IonItemOptions side="end">

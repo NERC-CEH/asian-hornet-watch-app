@@ -1,87 +1,91 @@
-import { FC, useState } from 'react';
-import { Formik, Form } from 'formik';
+import { useState } from 'react';
+import clsx from 'clsx';
 import {
   keyOutline,
-  personOutline,
   eyeOutline,
   eyeOffOutline,
+  mailOutline,
 } from 'ionicons/icons';
-import { AnySchema } from 'yup';
-import { Main, InputWithValidation } from '@flumens';
-import { IonIcon, IonButton, IonList, IonRouterLink } from '@ionic/react';
-import { Details } from './';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Trans as T } from 'react-i18next';
+import { TypeOf } from 'zod';
+import { Main, Button } from '@flumens';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { IonIcon, IonRouterLink } from '@ionic/react';
+import { UserModel } from 'models/user';
+import ControlledInput from '../common/Components/ControlledInput';
+
+type Details = TypeOf<typeof UserModel.loginSchema>;
 
 type Props = {
-  schema: AnySchema;
-  onSubmit: (details: Details) => Promise<void>;
+  onSubmit: SubmitHandler<Details>;
 };
 
-const LoginMain: FC<Props> = ({ schema, onSubmit }) => {
+const LoginMain = ({ onSubmit }: Props) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const loginForm = (props: any) => (
-    <Form>
-      <IonList lines="full">
-        <InputWithValidation
-          name="email"
-          placeholder="Email"
-          icon={personOutline}
-          type="email"
-          autocomplete="off"
-          {...props}
-        />
-        <InputWithValidation
-          name="password"
-          placeholder="Password"
-          icon={keyOutline}
-          type={showPassword ? 'text' : 'password'}
-          autocomplete="off"
-          {...props}
-        >
-          <IonButton slot="end" onClick={togglePassword} fill="clear">
-            <IonIcon
-              icon={showPassword ? eyeOutline : eyeOffOutline}
-              size="small"
-            />
-          </IonButton>
-        </InputWithValidation>
-        <IonRouterLink
-          routerLink="/user/reset"
-          className="password-forgot-button"
-        >
-          Forgot password?
-        </IonRouterLink>
-      </IonList>
-
-      {/** https://github.com/formium/formik/issues/1418 */}
-      <input type="submit" style={{ display: 'none' }} />
-      <IonButton
-        color={props.isValid ? 'secondary' : 'medium'}
-        type="submit"
-        expand="block"
-      >
-        Sign In
-      </IonButton>
-    </Form>
-  );
-
-  const initialValues: Details = { email: '', password: '' };
+  const { formState, handleSubmit, control } = useForm<Details>({
+    defaultValues: { email: '', password: '' },
+    resolver: zodResolver(UserModel.loginSchema),
+  });
 
   return (
     <Main>
-      <h1>Welcome back</h1>
-      <h2>Sign in to your account to start</h2>
+      <div className="mx-auto flex max-w-md flex-col gap-8 px-3 pt-3">
+        <h1 className="text-center">
+          <T>Welcome back</T>
+        </h1>
+        <h2 className="-mt-5 text-center">
+          <T>Sign in to your account to start</T>
+        </h2>
 
-      <Formik
-        validationSchema={schema}
-        onSubmit={onSubmit}
-        initialValues={initialValues}
-        validateOnMount
-      >
-        {loginForm}
-      </Formik>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="rounded-list">
+            <ControlledInput
+              control={control}
+              name="email"
+              prefix={<IonIcon icon={mailOutline} className="size-5" />}
+              type="email"
+              placeholder="Email"
+            />
+            <ControlledInput
+              control={control}
+              name="password"
+              prefix={<IonIcon icon={keyOutline} className="size-5" />}
+              suffix={
+                <IonIcon
+                  icon={showPassword ? eyeOutline : eyeOffOutline}
+                  className="size-5 opacity-50"
+                  onClick={togglePassword}
+                />
+              }
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Password"
+            />
+          </div>
+          <div className="my-4 flex justify-end">
+            <IonRouterLink
+              routerLink="/user/reset"
+              className="text-sm text-primary-950"
+            >
+              <T>Forgot password?</T>
+            </IonRouterLink>
+          </div>
+
+          <Button
+            className={clsx(
+              'mx-auto mt-7 bg-secondary-500',
+              !formState.isValid && 'opacity-50'
+            )}
+            color="secondary"
+            type="submit"
+          >
+            Sign in
+          </Button>
+        </form>
+      </div>
     </Main>
   );
 };

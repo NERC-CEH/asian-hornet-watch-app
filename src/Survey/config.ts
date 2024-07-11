@@ -3,32 +3,12 @@ import {
   chatboxOutline,
   locationOutline,
 } from 'ionicons/icons';
-import * as Yup from 'yup';
-import { date as dateHelp } from '@flumens';
+import { z, object } from 'zod';
+import { dateFormat } from '@flumens';
 import { isPlatform } from '@ionic/react';
 import config from 'common/config';
 import numberIcon from 'common/images/number.svg';
 import Occurrence from 'models/occurrence';
-
-const fixedLocationSchema = Yup.object().shape({
-  latitude: Yup.number().required(),
-  longitude: Yup.number().required(),
-});
-
-const validateLocation = (val: any) => {
-  try {
-    fixedLocationSchema.validateSync(val);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
-export const verifyLocationSchema = Yup.mixed().test(
-  'location',
-  'Please enter location.',
-  validateLocation
-);
 
 const numberValues = [
   { isDefault: true, label: 'Present' },
@@ -106,7 +86,7 @@ const survey = {
           },
         },
       },
-      remote: { values: (date: Date) => dateHelp.print(date, false) },
+      remote: { values: (date: Date) => dateFormat.format(new Date(date)) },
     },
 
     // anonymous user info
@@ -165,35 +145,22 @@ const survey = {
       });
     },
 
-    verify(attrs: any) {
-      try {
-        const occurrenceScheme = Yup.object().shape({
-          taxon: Yup.object().nullable().required('Species is missing.'),
-        });
-
-        occurrenceScheme.validateSync(attrs, { abortEarly: false });
-      } catch (attrError) {
-        return attrError;
-      }
-
-      return null;
-    },
+    verify: (attrs: any) =>
+      object({
+        taxon: z.object(
+          { warehouse_id: z.number() },
+          { invalid_type_error: 'Species is missing.' }
+        ),
+      }).safeParse(attrs).error,
   },
 
-  verify(_: any, sample: any) {
-    try {
-      Yup.object()
-        .shape({
-          attrs: Yup.object().shape({
-            location: verifyLocationSchema,
-          }),
-        })
-        .validateSync(sample, { abortEarly: false });
-    } catch (attrError) {
-      return attrError;
-    }
-    return null;
-  },
+  verify: (attrs: any) =>
+    object({
+      location: object(
+        { latitude: z.number(), longitude: z.number() },
+        { invalid_type_error: 'Please select location.' }
+      ),
+    }).safeParse(attrs).error,
 
   create(
     Sample: any,

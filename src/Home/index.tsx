@@ -16,10 +16,10 @@ import {
 import PendingSurveysBadge from 'common/Components/PendingSurveysBadge';
 import waspIcon from 'common/images/wasp.svg';
 import savedSamples from 'common/models/savedSamples';
-import Menu from '../Info/Menu';
-import UserRecords from '../UserRecords';
 import Home from './Home';
+import Menu from './Menu';
 import Species from './Species';
+import UserRecords from './UserRecords';
 import './styles.scss';
 
 const HomeController: FC = () => {

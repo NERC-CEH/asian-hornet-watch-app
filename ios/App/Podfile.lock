@@ -1,24 +1,24 @@
 PODS:
-  - Capacitor (5.0.5):
+  - Capacitor (6.1.0):
     - CapacitorCordova
-  - CapacitorApp (5.0.3):
+  - CapacitorApp (6.0.0):
     - Capacitor
-  - CapacitorCamera (5.0.4):
+  - CapacitorCamera (6.0.1):
     - Capacitor
-  - CapacitorCordova (5.0.5)
-  - CapacitorDevice (5.0.4):
+  - CapacitorCordova (6.1.0)
+  - CapacitorDevice (6.0.0):
     - Capacitor
-  - CapacitorFilesystem (5.0.4):
+  - CapacitorFilesystem (6.0.0):
     - Capacitor
-  - CapacitorGeolocation (5.0.4):
+  - CapacitorGeolocation (6.0.0):
     - Capacitor
-  - CapacitorNetwork (5.0.4):
+  - CapacitorNetwork (6.0.1):
     - Capacitor
-  - CapacitorSplashScreen (5.0.4):
+  - CapacitorSplashScreen (6.0.1):
     - Capacitor
-  - CapacitorStatusBar (5.0.4):
+  - CapacitorStatusBar (6.0.0):
     - Capacitor
-  - CordovaPlugins (5.0.5):
+  - CordovaPlugins (6.1.0):
     - CapacitorCordova
 
 DEPENDENCIES:
@@ -59,17 +59,17 @@ EXTERNAL SOURCES:
     :path: "../capacitor-cordova-ios-plugins"
 
 SPEC CHECKSUMS:
-  Capacitor: b1248915663add1bd6567e2b67c1c1fa3abcf5e8
-  CapacitorApp: 7a5dec8b33573707164b293475d5c89ba684364a
-  CapacitorCamera: 9b5c8e809c1042f263994f97ba846aa37e974f12
-  CapacitorCordova: f8c06b897c74ee8f7701fe10e6443b40822bc83a
-  CapacitorDevice: eb4b5e3b42ac35d2527f20aad296b59e0785dc8d
-  CapacitorFilesystem: e1bdfab09b95b181c844c16abcfda45ec8e8ed6b
-  CapacitorGeolocation: 33015be1ef496585a60da9efa1c5642ff8624db3
-  CapacitorNetwork: e2bd0bf1614aca34bb976f125a756a8a3df1c81a
-  CapacitorSplashScreen: 93a389d4f7673c08214ae25bb6f21d867d5305c5
-  CapacitorStatusBar: 190e0321b8734f4244d0c81baa183a00d5806ddf
-  CordovaPlugins: 43bc7a77baa92b7e213fe3e0c2275d24f331de9f
+  Capacitor: 187bd7847b6f71467015a20200a1a071be3e5f14
+  CapacitorApp: 9d53aec7101f7b030a950c5bdc4df8612576b279
+  CapacitorCamera: 3b77b3e8311b98220de65e63445c0e4d0b30ce3a
+  CapacitorCordova: be703980ca797f847c3356f78fa175d21c8330c2
+  CapacitorDevice: f8fd88f9edd1261c55a109f32015b09bbbfdc4a0
+  CapacitorFilesystem: 60e59ba274c234a979e7a3be2552feaadcee4263
+  CapacitorGeolocation: 1f12bbe372b65116e851bd8e3a94cf0ef9bacebb
+  CapacitorNetwork: 5c94acfdddc22043f2ffaff224ce9b4aa5a179f0
+  CapacitorSplashScreen: 61645214e8f955ff2b80f16a6a3648960fe4c89f
+  CapacitorStatusBar: 2e4369f99166125435641b1908d05f561eaba6f6
+  CordovaPlugins: b800c7b775918cef9e54f40fd55ffd16d4b1c226
 
 PODFILE CHECKSUM: 90f7c6b777c9b3db71dd385b484f6470f69fb8f3
 

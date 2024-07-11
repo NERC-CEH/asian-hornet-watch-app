@@ -10,14 +10,17 @@
 
   .apps-section-h {
     font-size: 1.3em;
-    --padding-start: 0;
+    --padding-start: 20px;
+    --padding-end: 20px;
     margin-top: 10px;
+    --background: transparent;
   }
 
   ion-title {
     text-align: center;
     margin: 15px 0 15px 0;
     font-size: 2em;
+    color: var(--color-primary);
   }
 
   img {
@@ -27,9 +30,9 @@
   h5 {
     text-align: center;
     margin: 15px 0;
-    font-size: 1.2em;
-    color: var(--ion-color-primary);
-    font-weight: 500;
+    font-size: 1.1em;
+    color: var(--color-primary-600);
+    font-weight: 600;
     height: 2em;
   }
 

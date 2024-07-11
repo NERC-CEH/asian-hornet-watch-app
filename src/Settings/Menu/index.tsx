@@ -47,7 +47,7 @@ const MenuController: FC<Props> = ({ savedSamples, appModel, userModel }) => {
       <Main
         resetApp={resetApp}
         sendAnalytics={sendAnalytics}
-        training={training}
+        useTraining={training}
         onToggle={onToggleWrap}
       />
     </Page>

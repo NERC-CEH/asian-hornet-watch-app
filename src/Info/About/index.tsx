@@ -8,7 +8,7 @@ const { P, H } = Section;
 const About: FC = () => (
   <Page id="about">
     <Header title="About" />
-    <Main>
+    <Main className="ion-padding">
       <Section>
         <P>
           Asian Hornet Watch is an app designed to record and help the early

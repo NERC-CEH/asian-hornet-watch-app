@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import * as Yup from 'yup';
+import { z, object } from 'zod';
 import {
   DrupalUserModel,
   device,
@@ -31,13 +31,24 @@ const defaults: Attrs = {
 };
 
 export class UserModel extends DrupalUserModel {
+  // eslint-disable-next-line
+  // @ts-ignore
   attrs: Attrs = DrupalUserModel.extendAttrs(this.attrs, defaults);
 
-  registerSchema = Yup.object().shape({
-    email: Yup.string().email('email is not valid').required('Please fill in'),
-    password: Yup.string().required('Please fill in'),
-    firstName: Yup.string().required('Please fill in'),
-    lastName: Yup.string().required('Please fill in'),
+  static registerSchema = object({
+    email: z.string().email('Please fill in'),
+    password: z.string().min(1, 'Please fill in'),
+    firstName: z.string().min(1, 'Please fill in'),
+    lastName: z.string().min(1, 'Please fill in'),
+  });
+
+  static resetSchema = object({
+    email: z.string().email('Please fill in'),
+  });
+
+  static loginSchema = object({
+    email: z.string().email('Please fill in'),
+    password: z.string().min(1, 'Please fill in'),
   });
 
   constructor(options: any) {
@@ -209,23 +220,11 @@ export const useUserStatusCheck = () => {
   return check;
 };
 
-export const validateContactDetails = (details: any) => {
-  try {
-    Yup.object()
-      .shape({
-        email: Yup.string().email().required(),
-        firstname: Yup.string().required(),
-        secondname: Yup.string().required(),
-        phone: Yup.string(),
-      })
-      .validateSync(details, {
-        abortEarly: false,
-      });
-  } catch (attrError) {
-    return attrError;
-  }
-
-  return false;
-};
+export const validateContactDetails = (details: any) =>
+  object({
+    email: z.string().email('Please fill in'),
+    firstname: z.string().min(1, 'Please fill in'),
+    secondname: z.string().min(1, 'Please fill in'),
+  }).safeParse(details).error;
 
 export default userModel;

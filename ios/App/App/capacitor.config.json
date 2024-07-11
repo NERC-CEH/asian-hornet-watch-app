@@ -2,10 +2,15 @@
 	"appId": "uk.ac.ceh.hornets",
 	"appName": "Asian Hornet Watch",
 	"webDir": "build",
-	"bundledWebRuntime": false,
-	"plugins": {
-		"SplashScreen": {
-			"androidScaleType": "CENTER_CROP"
-		}
-	}
+	"packageClassList": [
+		"AppPlugin",
+		"CAPCameraPlugin",
+		"DevicePlugin",
+		"FilesystemPlugin",
+		"GeolocationPlugin",
+		"CAPNetworkPlugin",
+		"SplashScreenPlugin",
+		"StatusBarPlugin",
+		"CDVPlugin"
+	]
 }

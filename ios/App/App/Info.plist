@@ -21,14 +21,14 @@
     <key>CFBundleVersion</key>
     <string>$(CURRENT_PROJECT_VERSION)</string>
     <key>LSRequiresIPhoneOS</key>
-    <true/>
+    <true />
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>
-      <true/>
+      <true />
     </dict>
     <key>ITSAppUsesNonExemptEncryption</key>
-    <false/>
+    <false />
     <key>NSCameraUsageDescription</key>
     <string>Allow camera access to attach photos to your records.</string>
     <key>NSLocationAlwaysUsageDescription</key>
@@ -59,6 +59,6 @@
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>UIViewControllerBasedStatusBarAppearance</key>
-    <true/>
+    <true />
   </dict>
 </plist>

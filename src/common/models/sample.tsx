@@ -1,12 +1,13 @@
 import { IObservableArray } from 'mobx';
+import { useTranslation } from 'react-i18next';
 import {
   device,
-  getDeepErrorMessage,
   useAlert,
   Sample as SampleOriginal,
   SampleAttrs,
   SampleOptions,
   SampleMetadata,
+  ModelValidationMessage,
 } from '@flumens';
 import config from 'common/config';
 import userModel from 'models/user';
@@ -128,28 +129,18 @@ export default class Sample extends SampleOriginal<Attrs, Metadata> {
 
 export const useValidateCheck = (sample: Sample) => {
   const alert = useAlert();
+  const { t } = useTranslation();
 
-  const validateAlert = () => {
+  return () => {
     const invalids = sample.validateRemote();
     if (invalids) {
       alert({
-        header: 'Survey incomplete',
+        header: t('Report incomplete'),
         skipTranslation: true,
-        // TODO: remove the replace once the flumens lib is fixed
-        message: (
-          <>
-            <div>
-              {getDeepErrorMessage(invalids)
-                .split('<br/>')
-                .map(val => (
-                  <div> {val}</div>
-                ))}
-            </div>
-          </>
-        ),
+        message: <ModelValidationMessage {...invalids} />,
         buttons: [
           {
-            text: 'Got it',
+            text: t('Got it'),
             role: 'cancel',
           },
         ],
@@ -158,6 +149,4 @@ export const useValidateCheck = (sample: Sample) => {
     }
     return true;
   };
-
-  return validateAlert;
 };

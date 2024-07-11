@@ -11,7 +11,7 @@ async function showDraftAlert(alert: any) {
   const alertWrap = (resolve: any) => {
     alert({
       header: 'Draft',
-      message: 'Previous record draft exists, would you like to continue it?',
+      message: 'Previous report draft exists, would you like to continue it?',
       backdropDismiss: false,
       buttons: [
         {

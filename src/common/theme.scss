@@ -1,72 +1,105 @@
+@import '@ionic/core/css/ionic.bundle.css';
 @import '@flumens/ionic/dist/themes/rounded.css';
 
-:root {
-  --ion-color-primary: #424733;
-  --ion-color-primary-rgb: 66, 71, 51;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3a3e2d;
-  --ion-color-primary-tint: #555947;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  --ion-color-secondary: #d66800;
-  --ion-color-secondary-rgb: 209, 116, 30;
-  --ion-color-secondary-contrast: #fff;
-  --ion-color-secondary-contrast-rgb: 0, 0, 0;
-  --ion-color-secondary-shade: #b8661a;
-  --ion-color-secondary-tint: #d68235;
-
-  --ion-color-tertiary: #7044ff;
-  --ion-color-tertiary-rgb: 112, 68, 255;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #633ce0;
-  --ion-color-tertiary-tint: #7e57ff;
-
-  --ion-color-success: #00bd1a;
-  --ion-color-success-rgb: 0, 189, 26;
-  --ion-color-success-contrast: #ffffff;
-  --ion-color-success-contrast-rgb: 255, 255, 255;
-  --ion-color-success-shade: #00a617;
-  --ion-color-success-tint: #1ac431;
-
-  --ion-color-warning: #e1672d;
-  --ion-color-warning-rgb: 255, 206, 0;
-  --ion-color-warning-contrast: #ffffff;
-  --ion-color-warning-contrast-rgb: 255, 255, 255;
-  --ion-color-warning-shade: #a76629;
-  --ion-color-warning-tint: #f18a29;
-
-  --ion-color-danger: #f04141;
-  --ion-color-danger-rgb: 245, 61, 61;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #d33939;
-  --ion-color-danger-tint: #f25454;
-
-  --ion-color-dark: #1f2722;
-  --ion-color-dark-rgb: 34, 34, 34;
-  --ion-color-dark-contrast: #ffffff;
-  --ion-color-dark-contrast-rgb: 255, 255, 255;
-  --ion-color-dark-shade: #121413;
-  --ion-color-dark-tint: #153522;
-
-  --ion-color-medium: #646e68;
-  --ion-color-medium-rgb: 152, 154, 162;
-  --ion-color-medium-contrast: #ffffff;
-  --ion-color-medium-contrast-rgb: 255, 255, 255;
-  --ion-color-medium-shade: #505854;
-  --ion-color-medium-tint: #96a09a;
-
-  --ion-color-light: #fcfcfc;
-  --ion-color-light-rgb: 244, 244, 244;
-  --ion-color-light-contrast: var(--ion-color-dark);
-  --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #d7d8da;
-  --ion-color-light-tint: #f5f6f9;
-
-  --ion-page-background: #f8f7f4;
+@layer base {
+  a:not([role='button']) {
+    // change link colours
+    color: var(--ion-color-primary);
+  }
+  h1 {
+    // tailwind is loaded later than ionic so resets some of the ionic's base styles
+    @apply mt-5 text-2xl;
+  }
 }
 
+:root {
+  --ion-color-primary: var(--color-primary);
+  --ion-color-primary-rgb: var(--color-primary-rgb);
+  --ion-color-primary-contrast: var(--color-primary-50);
+  --ion-color-primary-contrast-rgb: var(--color-primary-50-rgb);
+  --ion-color-primary-shade: var(--color-primary-800);
+  --ion-color-primary-tint: var(--color-primary-500);
+  --ion-color-primary-dark: var(--color-primary-950);
+
+  --ion-color-secondary: var(--color-secondary);
+  --ion-color-secondary-rgb: var(--color-secondary-rgb);
+  --ion-color-secondary-contrast: var(--color-secondary-50);
+  --ion-color-secondary-contrast-rgb: var(--color-secondary-50-rgb);
+  --ion-color-secondary-shade: var(--color-secondary-700);
+  --ion-color-secondary-tint: var(--color-secondary-500);
+  --ion-color-secondary-dark: var(--color-secondary-950);
+
+  --ion-color-tertiary: var(--color-tertiary);
+  --ion-color-tertiary-rgb: var(--color-tertiary-rgb);
+  --ion-color-tertiary-contrast: var(--color-tertiary-50);
+  --ion-color-tertiary-contrast-rgb: var(--color-tertiary-50-rgb);
+  --ion-color-tertiary-shade: var(--color-tertiary-700);
+  --ion-color-tertiary-tint: var(--color-tertiary-500);
+  --ion-color-tertiary-dark: var(--color-tertiary-950);
+
+  --ion-color-success: var(--color-success);
+  --ion-color-success-rgb: var(--color-success-rgb);
+  --ion-color-success-contrast: var(--color-success-50);
+  --ion-color-success-contrast-rgb: var(--color-success-50-rgb);
+  --ion-color-success-shade: var(--color-success-700);
+  --ion-color-success-tint: var(--color-success-500);
+  --ion-color-success-dark: var(--color-success-950);
+
+  --ion-color-warning: var(--color-warning);
+  --ion-color-warning-rgb: var(--color-warning-rgb);
+  --ion-color-warning-contrast: var(--color-warning-50);
+  --ion-color-warning-contrast-rgb: var(--color-warning-50-rgb);
+  --ion-color-warning-shade: var(--color-warning-700);
+  --ion-color-warning-tint: var(--color-warning-500);
+  --ion-color-warning-dark: var(--color-warning-900);
+
+  --ion-color-danger: var(--color-danger);
+  --ion-color-danger-rgb: var(--color-danger-rgb);
+  --ion-color-danger-contrast: var(--color-danger-50);
+  --ion-color-danger-contrast-rgb: var(--color-danger-50-rgb);
+  --ion-color-danger-shade: var(--color-danger-700);
+  --ion-color-danger-tint: var(--color-danger-500);
+  --ion-color-danger-dark: var(--color-danger-950);
+
+  --ion-color-dark: var(--color-slate-900);
+  --ion-color-dark-contrast: var(--color-slate-50);
+  --ion-color-dark-shade: var(--color-slate-950);
+  --ion-color-dark-tint: var(--color-slate-800);
+
+  --ion-color-medium: var(--color-slate-400);
+  --ion-color-medium-contrast: var(--color-slate-50);
+  --ion-color-medium-shade: var(--color-slate-500);
+  --ion-color-medium-tint: var(--color-slate-300);
+
+  --ion-color-light: var(--color-white);
+  --ion-color-light-contrast: var(--color-slate-950);
+  --ion-color-light-shade: var(--color-slate-200);
+  --ion-color-light-tint: var(--color-white);
+
+  --ion-toolbar-background: var(--ion-color-primary);
+  --ion-toolbar-color: #fff;
+  --ion-toolbar-color-activated: #fff;
+
+  --ion-page-background: #f8f7f4;
+
+  --form-value-color: rgba(var(--color-tertiary-800-rgb), 0.85);
+}
+
+// status bar
+html.ios.plt-hybrid #status-bar-background {
+  background: transparent;
+  width: 100vw;
+  height: env(safe-area-inset-top);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+// FONTS START
 @font-face {
   font-family: 'Quicksand';
   src: url('./fonts/Quicksand-Medium.ttf');
@@ -77,20 +110,26 @@
   src: url('./fonts/Quicksand-Bold.ttf');
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  color: var(--ion-color-primary);
+ion-title,
+h1 {
   font-family: 'Quicksand Bold' !important;
 }
 
+ion-item-divider,
+ion-badge,
+ion-label.bold,
+ion-card-title,
 b {
   font-family: 'Quicksand Bold' !important;
 }
 
+.apps-section .apps-section-h,
+h2,
+h3,
+h4,
+h5,
 p,
+i,
 div,
 input,
 ion-button,
@@ -100,222 +139,102 @@ ion-back-button,
 ion-item-option,
 ion-note,
 ion-label,
+ion-chip,
 ion-item {
   font-family: 'Quicksand' !important;
 }
+// FONTS END
 
-ion-label.bold {
-  font-family: 'Quicksand Bold' !important;
+// disable Ionic default button height - used for smaller buttons e.g. map controls
+ion-button {
+  min-height: 0;
 }
 
-ion-title,
-ion-item-divider,
-ion-badge,
-ion-chip {
-  font-family: 'Quicksand Bold' !important;
-}
-
-.ios,
-.md {
-  --ion-toolbar-background: var(--ion-color-primary);
-  --ion-toolbar-color: #fff;
-  --ion-toolbar-color-activated: #fff;
-}
-
-.apps-section .apps-section-h {
-  margin: 20px auto 10px;
-  color: var(--ion-color-primary);
-}
-
-.menu-attr-item ion-icon {
-  --ionicon-stroke-width: 20px;
-}
-
+// info messages
 .attr-page .info-message {
-  --background: #e3f1ba; // primary based
-
-  ion-icon,
-  ion-note {
-    color: var(--ion-color-primary-shade) !important;
-  }
+  @apply border-tertiary-300/40 bg-tertiary-50 text-tertiary-900;
 }
 
-.md ion-header ion-title:not(:last-child) {
-  padding: 0 10px; // header title to use the available space more effitiently
+/** Ionic 7 fixes START **/
+
+// Fix chip outline
+.chip-outline {
+  border-width: 1px;
+  border-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.32);
 }
 
-.info-background-message ion-button {
-  margin-left: 10px;
-
-  color: var(--ion-color-medium);
-  --border-color: var(--ion-color-medium);
+// Fix end-slot label placement
+ion-label[slot='end'] {
+  text-align: right;
 }
 
-ion-router-link,
-a {
-  text-decoration: none;
-  color: #719700; // primary based
+// Fix cropped radio button icons
+ion-radio {
+  padding-right: 1px;
 }
 
-html.ios.plt-hybrid #status-bar-background {
-  background: transparent;
-  width: 100vw;
-  height: env(safe-area-inset-top);
-  position: fixed;
-  top: 0;
-  z-index: 1000;
+ion-list.apps-section {
+  margin-left: 0;
+  margin-right: 0;
 }
 
-ion-item-divider {
-  border: 0;
+.checkbox-input-attr .hasIcon ion-checkbox {
+  max-width: 85%;
 }
 
-ul {
-  li {
-    margin-bottom: 10px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+ion-item.menu-attr-item ion-label[slot='end'] {
+  max-width: 33%;
 }
 
-input[type='email'] {
-  background: var(--ion-page-background);
-}
-input[type='password'] {
-  background: var(--ion-page-background);
-}
-input[type='text'] {
-  background: var(--ion-page-background);
+/** Ionic 7 fixes END **/
+
+// list item picture
+.list-avatar {
+  @apply flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-md bg-neutral-100;
 }
 
-ion-button[type='submit'] {
-  max-width: 50%;
-
-  margin: 20px auto 60px auto;
+// top of the list title
+.list-title {
+  @apply mx-2 mb-3 mt-5 flex items-center text-[1.0625rem] text-primary-950;
 }
 
-ion-alert {
-  ion-list,
-  ion-item {
-    background: none;
-    --background: none;
-  }
+// top of the list item
+.list-divider {
+  @apply flex items-center justify-between bg-neutral-200/70 p-1 px-2 text-sm text-neutral-600;
 }
 
-.leaflet-control-zoom {
-  display: none;
+// Make Android icons dark, same as iOS
+ion-icon[slot='start'].md {
+  color: var(--ion-text-color, #000);
 }
 
-ion-textarea {
-  margin: 10px auto !important;
-  max-width: 95%;
-  border-radius: 15px;
+// Makes iOS menu items same height as Android
+ion-item .sc-ion-label-ios-h.sc-ion-label-ios-s.ios {
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
-ion-textarea {
-  background: var(--ion-color-light) !important;
-  padding: 0 10px;
+// Add padding to pages
+ion-content {
+  --padding-top: 5px;
+  --padding-bottom: 30px;
 }
 
-*:not(.rounded) > .info-message {
-  border-radius: 10px;
-  margin: 10px;
+// Make menu item value colours same as form values, e.g. Settings page
+ion-item .sc-ion-label-md-h.sc-ion-label-md-s.md[slot='end'],
+ion-item .sc-ion-label-ios-h.sc-ion-label-ios-s.ios[slot='end'] {
+  color: var(--form-value-color);
 }
 
-ion-radio-group ion-item {
-  --border-style: none;
-  border-radius: 15px;
-  margin: 10px;
+// Fix date attribute value opacity to match other items
+.date-input-attr
+  ion-accordion:last-of-type
+  ion-item[slot='header']
+  ion-label[slot='end'] {
+  opacity: 1 !important;
 }
 
-.photo-picker {
-  --inner-padding-end: 0;
-
-  #img-picker-array .img {
-    margin-right: 5px;
-    .delete {
-      background-color: #80808085;
-    }
-  }
-
-  #img-picker-array .img-picker {
-    border-right: none;
-
-    ion-button {
-      background: var(--ion-color-primary-tint);
-      margin: 5px;
-      height: calc(80px - 10px);
-      width: calc(80px - 10px);
-      border-radius: 15px;
-      transform: none;
-
-      ion-icon {
-        fill: var(--ion-color-light);
-      }
-    }
-  }
-}
-
-#date-time-modal {
-  --background: #4040406b;
-
-  #ion-react-wrapper {
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.menu-attr-item ion-label[slot='end'] {
-  max-width: 40%;
-}
-
-.info-message {
-  --background: #e3f1ba;
-
-  ion-icon,
-  ion-note {
-    color: var(--ion-color-primary-shade) !important;
-  }
-}
-
-.swiper-pagination {
-  background: transparent;
-
-  --bullet-background-active: var(--ion-color-secondary);
-  --bullet-background: var(--ion-color-secondary);
-
-  .swiper-pagination-bullet-active {
-    opacity: 0.8;
-  }
-}
-
-.model-location-map {
-  .leaflet-top.leaflet-right {
-    .leaflet-control {
-      &:first-of-type {
-        border: transparent !important;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) !important;
-      }
-    }
-  }
-}
-
-.alert-message {
-  text-align: left !important;
-  font-size: 1em !important;
-
-  ion-item {
-    --background: transparent;
-  }
-}
-
-html.ios.plt-hybrid #status-bar-background {
-  background: transparent;
-  width: 100vw;
-  height: env(safe-area-inset-top);
-  position: fixed;
-  top: 0;
-  z-index: 1000;
+// Fix location name cancel button alignment
+.location-name-attr .location-name-attr-input-container ion-input {
+  --padding-end: 15px;
 }

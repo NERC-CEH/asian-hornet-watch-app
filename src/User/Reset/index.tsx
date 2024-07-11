@@ -1,22 +1,23 @@
-import { FC, useContext } from 'react';
-import { Page, Header, device, useAlert, useLoader, useToast } from '@flumens';
+import { useContext } from 'react';
+import { Trans as T } from 'react-i18next';
+import { TypeOf } from 'zod';
+import { useToast, useLoader, Page, Header, device, useAlert } from '@flumens';
 import { NavContext } from '@ionic/react';
-import userModel from 'models/user';
+import userModel, { UserModel } from 'models/user';
 import Main from './Main';
-import './styles.scss';
 
-export type Details = {
-  password?: string;
-  email: string;
-};
+type Details = TypeOf<typeof UserModel.resetSchema>;
 
-const ResetController: FC = () => {
+const LoginController = () => {
   const { navigate } = useContext(NavContext);
   const alert = useAlert();
+
   const toast = useToast();
   const loader = useLoader();
 
-  const onSuccess = () => navigate('/home/landing', 'root');
+  const onSuccess = () => {
+    navigate('/home/menu', 'root');
+  };
 
   async function onSubmit(details: Details) {
     const { email } = details;
@@ -30,8 +31,12 @@ const ResetController: FC = () => {
       await userModel.reset(email.trim());
       alert({
         header: "We've sent an email to you",
-        message:
-          "Click the link in the email to reset your password. If you don't see the email, check other places like your junk, spam or other folders.",
+        message: (
+          <T>
+            Click the link in the email to reset your password. If you don't see
+            the email, check other places like your junk, spam or other folders.
+          </T>
+        ),
         buttons: [
           {
             text: 'OK, got it',
@@ -49,14 +54,10 @@ const ResetController: FC = () => {
 
   return (
     <Page id="user-reset">
-      <Header
-        className="ion-no-border"
-        title="Reset"
-        defaultHref="/user/login"
-      />
-      <Main schema={userModel.resetSchema} onSubmit={onSubmit} />
+      <Header className="ion-no-border" title="Reset" />
+      <Main onSubmit={onSubmit} />
     </Page>
   );
 };
 
-export default ResetController;
+export default LoginController;

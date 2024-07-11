@@ -12,6 +12,8 @@
     .species-profile-photo {
       position: relative;
       overflow: hidden;
+      height: 240px;
+      background: var(--ion-page-background);
 
       .title {
         position: absolute;
@@ -24,9 +26,6 @@
         padding: 5px 15px 5px 20px;
         transform: translate3d(0, 0, 0); // fixes iOS scroll z-index
       }
-
-      height: 240px;
-      background: var(--ion-page-background);
     }
 
     .swiper-pagination {
@@ -55,11 +54,12 @@
         font-size: 1.6em;
         margin: 0 0 8px;
         font-weight: bold;
+        color: var(--color-primary-800);
       }
       h4 {
         font-size: 1.2em;
         margin: 0;
-        color: var(--ion-color-primary-tint);
+        color: var(--color-primary);
         font-weight: 200;
       }
     }
@@ -91,7 +91,8 @@
 
     h3 {
       font-weight: bold;
-      border-left: 3px solid var(--ion-color-primary);
+      border-left: 3px solid var(--color-primary-700);
+      color: var(--color-primary-700);
       padding-left: 5px;
       text-transform: uppercase;
       margin: 30px auto 15px;

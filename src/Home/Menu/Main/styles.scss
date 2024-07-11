@@ -34,12 +34,13 @@
 
     ion-button {
       font-size: 0.9em;
-      &.md {
-        font-size: 0.7em;
-      }
       float: right;
       color: var(--ion-color-primary-shade);
       --border-color: var(--ion-color-primary-shade);
+
+      &.md {
+        font-size: 0.7em;
+      }
     }
   }
 }
