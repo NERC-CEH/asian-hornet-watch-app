@@ -22,7 +22,7 @@
   }
 
   ion-content {
-    --padding-top: 80px;
+    --padding-top: calc(env(safe-area-inset-top) + 80px);
 
     .info-background-message {
       margin-top: 150px;

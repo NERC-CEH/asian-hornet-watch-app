@@ -116,7 +116,7 @@ export default class Sample extends SampleOriginal<Attrs, Metadata> {
     }
 
     this.cleanUp();
-    this.saveRemote();
+    await this.saveRemote();
 
     return true;
   }

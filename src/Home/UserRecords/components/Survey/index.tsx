@@ -9,6 +9,7 @@ import {
   IonIcon,
   NavContext,
 } from '@ionic/react';
+import useThankYouMessage from 'common/helpers/thankYouMessageHook';
 import waspIcon from 'common/images/wasp.svg';
 import Sample, { useValidateCheck } from 'models/sample';
 import userModel, { useUserStatusCheck } from 'models/user';
@@ -56,6 +57,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
   const checkUserStatus = useUserStatusCheck();
   const checkSampleStatus = useValidateCheck(sample);
   const promptToLogin = usePromptToLogin();
+  const showThankYouMessage = useThankYouMessage();
   const promptToEnterContactDetails = useContactDetailsPrompt(sample);
   const survey = sample.getSurvey();
 
@@ -110,7 +112,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
     }
 
     if (sample.canUploadAnonymously()) {
-      sample.upload().catch(toast.error);
+      sample.upload().then(showThankYouMessage).catch(toast.error);
       return;
     }
 
@@ -131,7 +133,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
     const isUserOK = await checkUserStatus();
     if (!isUserOK) return;
 
-    sample.upload().catch(toast.error);
+    sample.upload().then(showThankYouMessage).catch(toast.error);
   };
 
   return (

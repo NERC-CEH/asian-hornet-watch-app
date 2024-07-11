@@ -2,6 +2,7 @@ import { FC, useContext } from 'react';
 import { observer } from 'mobx-react';
 import { Page, Header, useToast, device } from '@flumens';
 import { IonButton, NavContext } from '@ionic/react';
+import useThankYouMessage from 'common/helpers/thankYouMessageHook';
 import { AppModel } from 'models/app';
 import Sample, { useValidateCheck } from 'models/sample';
 import { UserModel, useUserStatusCheck } from 'models/user';
@@ -21,6 +22,7 @@ type Props = {
 const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
   const { navigate } = useContext(NavContext);
   const toast = useToast();
+  const showThankYouMessage = useThankYouMessage();
   const checkUserStatus = useUserStatusCheck();
   const promptToLogin = usePromptToLogin();
   const promptToEnterContactDetails = useContactDetailsPrompt(sample);
@@ -43,8 +45,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     }
 
     if (sample.canUploadAnonymously()) {
-      const isUploading = await sample.upload().catch(toast.error);
-      if (!isUploading) return;
+      await sample.upload().then(showThankYouMessage).catch(toast.error);
 
       navigate(`/home/records`, 'root');
       return;
@@ -67,8 +68,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     const isUserOK = await checkUserStatus();
     if (!isUserOK) return;
 
-    const isUploading = await sample.upload().catch(toast.error);
-    if (!isUploading) return;
+    await sample.upload().then(showThankYouMessage).catch(toast.error);
 
     navigate(`/home/records`, 'root');
   };

@@ -19,7 +19,7 @@ const Home = () => {
           <div className="">
             <div className="flex w-full flex-col justify-center bg-primary">
               <img
-                className="mx-auto my-[5%] w-4/5 p-[5%]"
+                className="mx-auto my-[5%] w-4/5 p-[5%] pt-[env(safe-area-inset-top)]"
                 src={appLogo}
                 alt=""
               />
@@ -39,7 +39,7 @@ const Home = () => {
             </h2>
           </div>
 
-          <div className="h-full w-full overflow-hidden pb-[150px]">
+          <div className="h-full w-full overflow-hidden pb-[190px]">
             <img
               src={homePageBackground}
               alt=""

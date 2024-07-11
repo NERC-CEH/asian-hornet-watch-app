@@ -1,8 +1,4 @@
-import {
-  calendarOutline,
-  chatboxOutline,
-  locationOutline,
-} from 'ionicons/icons';
+import { calendarOutline, locationOutline } from 'ionicons/icons';
 import { z, object } from 'zod';
 import { dateFormat } from '@flumens';
 import { isPlatform } from '@ionic/react';
@@ -19,6 +15,14 @@ const numberValues = [
   { value: '101-500', id: 669 },
   { value: '500+', id: 670 },
 ];
+
+export const commentAttr = {
+  id: 'comment',
+  type: 'text_input',
+  title: 'Comment',
+  description: 'Any extra info about this report.',
+  appearance: 'multiline',
+} as const;
 
 const survey = {
   name: 'main',
@@ -115,16 +119,6 @@ const survey = {
           },
         },
         remote: { id: 523, values: numberValues },
-      },
-
-      comment: {
-        menuProps: { icon: chatboxOutline, skipValueTranslation: true },
-        pageProps: {
-          attrProps: {
-            input: 'textarea',
-            info: 'Please add any extra info about this record.',
-          },
-        },
       },
     },
 

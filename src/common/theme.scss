@@ -238,3 +238,7 @@ ion-item .sc-ion-label-ios-h.sc-ion-label-ios-s.ios[slot='end'] {
 .location-name-attr .location-name-attr-input-container ion-input {
   --padding-end: 15px;
 }
+
+.group:last-child {
+  border-bottom: none;
+}

@@ -12,6 +12,7 @@ import {
   MenuAttrItem,
   MenuAttrItemFromModel,
   InfoMessage,
+  Block,
 } from '@flumens';
 import { IonList, IonIcon } from '@ionic/react';
 import waspIcon from 'common/images/wasp.svg';
@@ -19,6 +20,7 @@ import Sample from 'models/sample';
 import DateInput from 'Survey/common/Components/DateInput';
 import GridRefValue from 'Survey/common/Components/GridRefValue';
 import PhotoPicker from 'Survey/common/Components/PhotoPicker';
+import { commentAttr } from 'Survey/config';
 import './styles.scss';
 
 type Props = {
@@ -40,10 +42,10 @@ const HomeMain = ({ sample }: Props) => {
     const value = (
       <div className="flex flex-col">
         <div color={clsx(empty && hasLocation && 'dark')}>
-          <GridRefValue sample={sample} requiredMessage="No location" />
+          <GridRefValue sample={sample} />
         </div>
         <div className={clsx(!location.name && 'opacity-50')}>
-          {location.name || 'No site name'}
+          {location.name}
         </div>
       </div>
     );
@@ -75,6 +77,8 @@ const HomeMain = ({ sample }: Props) => {
   // backwards compatible: dates were objects in previous version
   const dateValue = new Date(sample.attrs.date as any).toISOString();
 
+  const hasPhotos = !!occ.media.length;
+
   return (
     <Main>
       {isDisabled ? (
@@ -99,6 +103,9 @@ const HomeMain = ({ sample }: Props) => {
       <IonList lines="full">
         <div className="rounded-list">
           <PhotoPicker model={occ} />
+          {!hasPhotos && (
+            <InfoMessage inline>Photo needed to verify report.</InfoMessage>
+          )}
           <MenuAttrItem
             routerLink={`${url}/species`}
             icon={waspIcon}
@@ -125,10 +132,11 @@ const HomeMain = ({ sample }: Props) => {
             model={occ}
             routerLink={`${url}/${occ?.cid}/number`}
           />
-          <MenuAttrItemFromModel
-            attr="comment"
-            model={occ}
-            routerLink={`${url}/${occ?.cid}/comment`}
+
+          <Block
+            block={commentAttr}
+            record={occ.attrs}
+            isDisabled={sample.isDisabled()}
           />
         </div>
       </IonList>

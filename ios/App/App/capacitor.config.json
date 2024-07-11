@@ -11,6 +11,7 @@
 		"CAPNetworkPlugin",
 		"SplashScreenPlugin",
 		"StatusBarPlugin",
+		"SentryCapacitor",
 		"CDVPlugin"
 	]
 }

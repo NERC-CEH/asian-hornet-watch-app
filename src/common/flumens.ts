@@ -76,3 +76,4 @@ export {
   default as TailwindContext,
   type ContextValue as TailwindContextValue,
 } from '@flumens/tailwind/dist/components/Context';
+export { default as Block } from '@flumens/tailwind/dist/components/Block';

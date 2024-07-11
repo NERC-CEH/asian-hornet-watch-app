@@ -37,7 +37,7 @@ const ModelLocationMap = ({ subSample, sample }: Props) => {
     setLocation(textToLocation(e?.target?.value));
 
   const onLocationNameChange = ({ name }: any) => {
-    model.attrs.location.name = name;
+    model.attrs.location = { ...model.attrs.location, name };
   };
 
   const [showSettings, setShowSettings] = useState(false);
