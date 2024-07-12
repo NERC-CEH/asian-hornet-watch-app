@@ -1,3 +1,7 @@
+# 2.2.1
+
+Fix user registration.
+
 # 2.2.0
 
 Maintenance update.

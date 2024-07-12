@@ -44,9 +44,15 @@ const RegisterMain = ({ onSubmit }: Props) => {
           <div className="rounded-list">
             <ControlledInput
               control={control}
-              name="fullName"
+              name="firstName"
               prefix={<IonIcon icon={personOutline} className="size-5" />}
-              placeholder="Full Name"
+              placeholder="First Name"
+            />
+            <ControlledInput
+              control={control}
+              name="lastName"
+              prefix={<IonIcon icon={personOutline} className="size-5" />}
+              placeholder="Surname"
             />
             <ControlledInput
               control={control}
