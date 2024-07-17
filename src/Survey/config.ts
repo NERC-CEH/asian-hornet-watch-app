@@ -38,7 +38,7 @@ const survey = {
     },
 
     device_version: { id: 759 },
-    app_version: { id: 1139 },
+    app_version: { id: `smpAttr:1139` },
 
     location: {
       menuProps: { icon: locationOutline },
@@ -96,7 +96,8 @@ const survey = {
     // anonymous user info
     firstname: { remote: { id: 6 } },
     secondname: { remote: { id: 7 } },
-    user_email: { remote: { id: 8 } }, // email key is taken
+    user_email: { remote: { id: `8` } }, // email key is taken
+    // user_email: { remote: { id: `smpAttr:8` } }, // email key is taken
     phone: { remote: { id: 20 } },
   },
 

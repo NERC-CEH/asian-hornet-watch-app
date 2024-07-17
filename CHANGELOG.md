@@ -1,3 +1,7 @@
+# 2.2.2
+
+Fixed anonymous user details.
+
 # 2.2.1
 
 Fix user registration.

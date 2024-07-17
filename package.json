@@ -1,5 +1,5 @@
 {
-  "version": "2.2.1",
+  "version": "2.2.2",
   "scripts": {
     "prepare": "husky",
     "start": "webpack serve --progress --port 8000",
@@ -26,7 +26,7 @@
     "@capacitor/network": "^6.0.1",
     "@capacitor/splash-screen": "^6.0.1",
     "@capacitor/status-bar": "^6.0.0",
-    "@flumens/ionic": "2.0.0-alpha.56",
+    "@flumens/ionic": "2.0.0-alpha.57",
     "@flumens/tailwind": "0.17.0",
     "@hookform/resolvers": "^3.9.0",
     "@ionic-native/core": "^5.36.0",
