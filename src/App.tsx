@@ -33,12 +33,12 @@ const useBackendMaintenanceAlert = () => {
   const alert = useAlert();
   const [shown, setShown] = useState(false);
 
-  const showBackendMaintainanceAlert = () => {
+  const showBackendMaintenanceAlert = () => {
     if (shown) return;
 
     const now = new Date().getTime();
-    const notReady = now < new Date('2023-11-13T00:00').getTime();
-    const expired = now > new Date('2023-11-14T07:00').getTime();
+    const notReady = now < new Date('2024-10-25T20:00').getTime();
+    const expired = now > new Date('2024-10-27T17:00').getTime();
     if (expired || notReady) return;
 
     alert({
@@ -47,16 +47,19 @@ const useBackendMaintenanceAlert = () => {
         <>
           Due to essential server maintenance, please submit your records by
           email to{' '}
-          <a href="mailto:alert_nonnative@ceh.ac.uk">
+          <a
+            href="mailto:alert_nonnative@ceh.ac.uk"
+            className="font-bold !text-blue-600"
+          >
             alert_nonnative@ceh.ac.uk
           </a>{' '}
-          on <b>13/11/2023</b>
+          between <b>5pm 25th October</b> and <b>5pm 27th October</b>
         </>
       ),
       buttons: [{ text: 'OK', handler: () => setShown(true) }],
     });
   };
-  useEffect(showBackendMaintainanceAlert, []);
+  useEffect(showBackendMaintenanceAlert, []);
 };
 
 const App = () => {
