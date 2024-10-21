@@ -125,14 +125,11 @@ const survey = {
 
     create(training: string | null) {
       return new Occurrence({
-        metadata: {
+        attrs: {
+          training,
           confidential: 't',
           release_status: 'P',
           sensitivity_precision: 100000,
-          // training is required for backwards compatibility - some verification pages don't use sample lvl flag
-          training,
-        },
-        attrs: {
           comment: null,
           taxon: null,
           number: null,

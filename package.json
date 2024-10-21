@@ -1,5 +1,5 @@
 {
-  "version": "2.2.2",
+  "version": "2.2.3",
   "scripts": {
     "prepare": "husky",
     "start": "webpack serve --progress --port 8000",
