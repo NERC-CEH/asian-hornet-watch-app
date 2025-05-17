@@ -1,6 +1,5 @@
-import { set } from 'mobx';
 import { Model, ModelAttrs } from '@flumens';
-import { genericStore } from './store';
+import { mainStore } from './store';
 
 export type SurveyDraftKeys = {
   'draftId:main': string | null;
@@ -26,18 +25,16 @@ const defaults: Attrs = {
   'draftId:main': null,
 };
 
-class AppModel extends Model {
-  // eslint-disable-next-line
-  // @ts-ignore
-  attrs: Attrs = Model.extendAttrs(this.attrs, defaults);
+export class AppModel extends Model<Attrs> {
+  constructor(options: any) {
+    super({ ...options, data: { ...defaults, ...options.data } });
+  }
 
   resetDefaults() {
-    set(this.attrs, JSON.parse(JSON.stringify(defaults)));
-    delete this.id;
-    return this.save();
+    return super.reset(defaults);
   }
 }
 
-const appModel = new AppModel({ cid: 'app', store: genericStore });
+const appModel = new AppModel({ cid: 'app', store: mainStore });
 
-export { appModel as default, AppModel };
+export default appModel;

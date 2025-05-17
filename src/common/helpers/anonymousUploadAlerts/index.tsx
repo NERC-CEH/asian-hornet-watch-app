@@ -40,13 +40,13 @@ export const useContactDetailsPrompt = (sample: Sample) => {
   const alertDialog = () => {
     function assignContactDetailsToSample(data: any) {
       // eslint-disable-next-line no-param-reassign
-      sample.attrs.user_email = data.email;
+      sample.data.user_email = data.email;
       // eslint-disable-next-line no-param-reassign
-      sample.attrs.firstname = data.firstname;
+      sample.data.firstname = data.firstname;
       // eslint-disable-next-line no-param-reassign
-      sample.attrs.secondname = data.secondname;
+      sample.data.secondname = data.secondname;
       // eslint-disable-next-line no-param-reassign
-      sample.attrs.phone = data.phone;
+      sample.data.phone = data.phone;
       sample.save();
     }
 

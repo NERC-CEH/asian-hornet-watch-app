@@ -1,3 +1,7 @@
+# 2.3.0
+
+Updated framework.
+
 # 2.2.2
 
 Fixed anonymous user details.

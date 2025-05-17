@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom';
 import appModel from 'models/app';
-import savedSamples from 'models/savedSamples';
+import savedSamples from 'models/collections/samples';
 import userModel from 'models/user';
 import Menu from './Menu';
 

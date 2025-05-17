@@ -1,6 +1,6 @@
 require_relative '../../node_modules/@capacitor/ios/scripts/pods_helpers'
 
-platform :ios, '13.0'
+platform :ios, '14.0'
 use_frameworks!
 
 # workaround to avoid Xcode caching of Pods that requires
@@ -11,16 +11,17 @@ install! 'cocoapods', :disable_input_output_paths => true
 def capacitor_pods
   pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
   pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
+  pod 'CapacitorCommunitySqlite', :path => '../../node_modules/@capacitor-community/sqlite'
   pod 'CapacitorApp', :path => '../../node_modules/@capacitor/app'
   pod 'CapacitorCamera', :path => '../../node_modules/@capacitor/camera'
   pod 'CapacitorDevice', :path => '../../node_modules/@capacitor/device'
   pod 'CapacitorFilesystem', :path => '../../node_modules/@capacitor/filesystem'
   pod 'CapacitorGeolocation', :path => '../../node_modules/@capacitor/geolocation'
   pod 'CapacitorNetwork', :path => '../../node_modules/@capacitor/network'
+  pod 'CapacitorShare', :path => '../../node_modules/@capacitor/share'
   pod 'CapacitorSplashScreen', :path => '../../node_modules/@capacitor/splash-screen'
   pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
-  pod 'SentryCapacitor', :path => '../../node_modules/@sentry/capacitor'
-  pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
+  pod 'CapacitorBlobWriter', :path => '../../node_modules/capacitor-blob-writer'
 end
 
 target 'App' do

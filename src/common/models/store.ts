@@ -1,17 +1,17 @@
 import { Store } from '@flumens';
+import SQLiteDatabase from '@flumens/models/dist/Stores/SQLiteDatabase';
 import { isPlatform } from '@ionic/react';
 
-const isDemo = !isPlatform('hybrid');
+const web = !isPlatform('hybrid');
 
-export const genericStore = new Store({
-  storeName: 'generic',
-  debugging: isDemo,
-});
-export const modelStore = new Store({
-  storeName: 'models',
-  debugging: isDemo,
-});
+export const db = new SQLiteDatabase({ name: 'indicia', web, debug: web });
+export const mainStore = new Store({ name: 'main', db });
+export const samplesStore = new Store({ name: 'samples', db });
 
-if (isDemo) {
-  Object.assign(window, { genericStore, modelStore });
+if (web) {
+  Object.assign(window, {
+    mainStore,
+    samplesStore,
+    db,
+  });
 }

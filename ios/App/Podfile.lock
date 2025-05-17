@@ -1,58 +1,77 @@
 PODS:
-  - Capacitor (6.1.0):
+  - Capacitor (7.2.0):
     - CapacitorCordova
-  - CapacitorApp (6.0.0):
+  - CapacitorApp (7.0.1):
     - Capacitor
-  - CapacitorCamera (6.0.1):
+  - CapacitorBlobWriter (0.0.1):
     - Capacitor
-  - CapacitorCordova (6.1.0)
-  - CapacitorDevice (6.0.0):
+    - GCDWebServer (~> 3.0)
+  - CapacitorCamera (7.0.1):
     - Capacitor
-  - CapacitorFilesystem (6.0.0):
+  - CapacitorCommunitySqlite (7.0.0):
     - Capacitor
-  - CapacitorGeolocation (6.0.0):
+    - SQLCipher
+    - ZIPFoundation
+  - CapacitorCordova (7.2.0)
+  - CapacitorDevice (7.0.1):
     - Capacitor
-  - CapacitorNetwork (6.0.1):
+  - CapacitorFilesystem (7.0.1):
     - Capacitor
-  - CapacitorSplashScreen (6.0.1):
+  - CapacitorGeolocation (7.1.2):
     - Capacitor
-  - CapacitorStatusBar (6.0.0):
+    - IONGeolocationLib (~> 1.0)
+  - CapacitorNetwork (7.0.1):
     - Capacitor
-  - CordovaPlugins (6.1.0):
-    - CapacitorCordova
-  - Sentry/HybridSDK (8.21.0):
-    - SentryPrivate (= 8.21.0)
-  - SentryCapacitor (0.18.0):
+  - CapacitorShare (7.0.1):
     - Capacitor
-    - Sentry/HybridSDK (= 8.21.0)
-  - SentryPrivate (8.21.0)
+  - CapacitorSplashScreen (7.0.1):
+    - Capacitor
+  - CapacitorStatusBar (7.0.1):
+    - Capacitor
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - IONGeolocationLib (1.0.0)
+  - SQLCipher (4.6.1):
+    - SQLCipher/standard (= 4.6.1)
+  - SQLCipher/common (4.6.1)
+  - SQLCipher/standard (4.6.1):
+    - SQLCipher/common
+  - ZIPFoundation (0.9.19)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - CapacitorBlobWriter (from `../../node_modules/capacitor-blob-writer`)
   - "CapacitorCamera (from `../../node_modules/@capacitor/camera`)"
+  - "CapacitorCommunitySqlite (from `../../node_modules/@capacitor-community/sqlite`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorDevice (from `../../node_modules/@capacitor/device`)"
   - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
   - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
   - "CapacitorNetwork (from `../../node_modules/@capacitor/network`)"
+  - "CapacitorShare (from `../../node_modules/@capacitor/share`)"
   - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
-  - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
-  - "SentryCapacitor (from `../../node_modules/@sentry/capacitor`)"
 
 SPEC REPOS:
   trunk:
-    - Sentry
-    - SentryPrivate
+    - GCDWebServer
+    - IONGeolocationLib
+    - SQLCipher
+    - ZIPFoundation
 
 EXTERNAL SOURCES:
   Capacitor:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorApp:
     :path: "../../node_modules/@capacitor/app"
+  CapacitorBlobWriter:
+    :path: "../../node_modules/capacitor-blob-writer"
   CapacitorCamera:
     :path: "../../node_modules/@capacitor/camera"
+  CapacitorCommunitySqlite:
+    :path: "../../node_modules/@capacitor-community/sqlite"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorDevice:
@@ -63,31 +82,32 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/geolocation"
   CapacitorNetwork:
     :path: "../../node_modules/@capacitor/network"
+  CapacitorShare:
+    :path: "../../node_modules/@capacitor/share"
   CapacitorSplashScreen:
     :path: "../../node_modules/@capacitor/splash-screen"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
-  CordovaPlugins:
-    :path: "../capacitor-cordova-ios-plugins"
-  SentryCapacitor:
-    :path: "../../node_modules/@sentry/capacitor"
 
 SPEC CHECKSUMS:
-  Capacitor: 187bd7847b6f71467015a20200a1a071be3e5f14
-  CapacitorApp: 9d53aec7101f7b030a950c5bdc4df8612576b279
-  CapacitorCamera: 3b77b3e8311b98220de65e63445c0e4d0b30ce3a
-  CapacitorCordova: be703980ca797f847c3356f78fa175d21c8330c2
-  CapacitorDevice: f8fd88f9edd1261c55a109f32015b09bbbfdc4a0
-  CapacitorFilesystem: 60e59ba274c234a979e7a3be2552feaadcee4263
-  CapacitorGeolocation: 1f12bbe372b65116e851bd8e3a94cf0ef9bacebb
-  CapacitorNetwork: 5c94acfdddc22043f2ffaff224ce9b4aa5a179f0
-  CapacitorSplashScreen: 61645214e8f955ff2b80f16a6a3648960fe4c89f
-  CapacitorStatusBar: 2e4369f99166125435641b1908d05f561eaba6f6
-  CordovaPlugins: b800c7b775918cef9e54f40fd55ffd16d4b1c226
-  Sentry: ebc12276bd17613a114ab359074096b6b3725203
-  SentryCapacitor: 170d8b96ba195cead4dc60eaf5c42aacf97ff1d3
-  SentryPrivate: d651efb234cf385ec9a1cdd3eff94b5e78a0e0fe
+  Capacitor: 106e7a4205f4618d582b886a975657c61179138d
+  CapacitorApp: d63334c052278caf5d81585d80b21905c6f93f39
+  CapacitorBlobWriter: 110eeaf80611f19bf01a8a05ff3672149ed0baad
+  CapacitorCamera: eb8687d8687fed853598ec9460d94bcd5e16babe
+  CapacitorCommunitySqlite: 6501e7349acf998346acf24ef757861bb3f6fc2b
+  CapacitorCordova: 5967b9ba03915ef1d585469d6e31f31dc49be96f
+  CapacitorDevice: fe3f190e1d718f4607bdc6b73993433d1c84f409
+  CapacitorFilesystem: 307f97c27a265edf8396a1c9c235592fd8572fe3
+  CapacitorGeolocation: 8c86a3afea574c84447c17905da96f2356ad913e
+  CapacitorNetwork: 07ec4c69c1bb696f41c23e00d31bda1bbb221bba
+  CapacitorShare: 58d6c2da63b093e8693287b2d36db92435538435
+  CapacitorSplashScreen: 19cd3573e57507e02d6f34597a8c421e00931487
+  CapacitorStatusBar: 275cbf2f4dfc00388f519ef80c7ec22edda342c9
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
+  IONGeolocationLib: 81f33f88d025846946de2cf63b0c7628e7c6bc9d
+  SQLCipher: 77fbe633cd84db04b07876dd50766b4924b57d61
+  ZIPFoundation: b8c29ea7ae353b309bc810586181fd073cb3312c
 
-PODFILE CHECKSUM: f3df9328de5f9291867189c289194864c8463ff9
+PODFILE CHECKSUM: 4e4e7092a79586abe81ca988786977154691299e
 
 COCOAPODS: 1.10.1

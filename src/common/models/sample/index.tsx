@@ -12,11 +12,11 @@ import {
 import config from 'common/config';
 import userModel from 'models/user';
 import surveyConfig from 'Survey/config';
-import appModel from './app';
-import Media from './media';
-import Occurrence from './occurrence';
-import GPSExtension from './sampleGPSExt';
-import { modelStore } from './store';
+import appModel from '../app';
+import Media from '../media';
+import Occurrence from '../occurrence';
+import { samplesStore } from '../store';
+import GPSExtension from './GPSExt';
 
 type Attrs = SampleAttrs & {
   date?: any;
@@ -45,10 +45,6 @@ type Metadata = SampleMetadata & {
 };
 
 export default class Sample extends SampleOriginal<Attrs, Metadata> {
-  static fromJSON(json: any) {
-    return super.fromJSON(json, Occurrence, Sample, Media);
-  }
-
   declare occurrences: IObservableArray<Occurrence>;
 
   declare samples: IObservableArray<Sample>;
@@ -65,23 +61,19 @@ export default class Sample extends SampleOriginal<Attrs, Metadata> {
 
   stopGPS: any; // from extension
 
-  constructor(options: SampleOptions) {
-    super({ ...options, store: modelStore });
+  constructor(options: SampleOptions<Attrs>) {
+    super({ ...options, Occurrence, Media, store: samplesStore });
 
-    this.remote.url = `${config.backend.indicia.url}/index.php/services/rest`;
-    // eslint-disable-next-line
-    // eslint-disable-next-line
-    this.remote.headers = async () => {
+    this.remote.url = config.backend.indicia.url;
+    this.remote.getAccessToken = async () => {
       const token = this.canUploadAnonymously()
         ? await userModel.getAnonymousToken()
         : await userModel.getAccessToken();
 
-      return {
-        Authorization: `Bearer ${token}`,
-      };
+      return token;
     };
 
-    this.attrs.training = appModel.attrs.training;
+    this.data.training = appModel.data.training;
 
     Object.assign(this, GPSExtension());
     this.survey = surveyConfig;
@@ -103,7 +95,7 @@ export default class Sample extends SampleOriginal<Attrs, Metadata> {
   }
 
   async upload() {
-    if (this.remote.synchronising || this.isUploaded()) return true;
+    if (this.remote.synchronising || this.isUploaded) return true;
 
     const invalids = this.validateRemote();
     if (invalids) return false;
@@ -122,20 +114,20 @@ export default class Sample extends SampleOriginal<Attrs, Metadata> {
   }
 
   canUploadAnonymously() {
-    const { user_email, firstname, secondname } = this.attrs;
+    const { user_email, firstname, secondname } = this.data;
     return user_email && firstname && secondname;
   }
 }
 
-export const useValidateCheck = (sample: Sample) => {
+export const useValidateCheck = (sample?: Sample) => {
   const alert = useAlert();
   const { t } = useTranslation();
 
-  return () => {
-    const invalids = sample.validateRemote();
+  const showValidateCheck = () => {
+    const invalids = sample?.validateRemote();
     if (invalids) {
       alert({
-        header: t('Report incomplete'),
+        header: t('Survey incomplete'),
         skipTranslation: true,
         message: <ModelValidationMessage {...invalids} />,
         buttons: [
@@ -149,4 +141,6 @@ export const useValidateCheck = (sample: Sample) => {
     }
     return true;
   };
+
+  return showValidateCheck;
 };

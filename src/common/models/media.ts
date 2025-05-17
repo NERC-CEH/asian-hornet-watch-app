@@ -29,10 +29,10 @@ export default class Media extends MediaOriginal<Attrs> {
       return;
     }
 
-    const URL = this.attrs.data;
+    const URL = this.data.data;
 
     try {
-      if (this.attrs.path) {
+      if (this.data.path) {
         // backwards compatible - don't delete old media
         await Filesystem.deleteFile({
           path: URL,
@@ -53,7 +53,7 @@ export default class Media extends MediaOriginal<Attrs> {
   }
 
   getURL() {
-    const { data: name, path } = this.attrs;
+    const { data: name, path } = this.data;
 
     if (!isPlatform('hybrid') || process.env.NODE_ENV === 'test') {
       return name;

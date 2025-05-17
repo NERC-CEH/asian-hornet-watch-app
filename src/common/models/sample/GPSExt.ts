@@ -17,7 +17,7 @@ type Extension = {
   startGPS: any;
   stopGPS: any;
   isGPSRunning: any;
-  attrs?: any;
+  data?: any;
   save?: any;
 };
 

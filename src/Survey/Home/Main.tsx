@@ -30,12 +30,12 @@ type Props = {
 const HomeMain = ({ sample }: Props) => {
   const { url } = useRouteMatch();
 
-  const isDisabled = sample.isUploaded();
+  const isDisabled = sample.isUploaded;
 
   const [occ] = sample.occurrences;
 
   const getLocationButton = () => {
-    const location = sample.attrs.location || {};
+    const location = sample.data.location || {};
     const hasLocation = location.latitude;
     const empty = !hasLocation;
 
@@ -66,16 +66,16 @@ const HomeMain = ({ sample }: Props) => {
     );
   };
 
-  const speciesValue = sample?.occurrences[0]?.attrs?.taxon?.common_name;
+  const speciesValue = sample?.occurrences[0]?.data?.taxon?.common_name;
 
   const onChangeDate = (value: string) => {
     // eslint-disable-next-line
-    sample.attrs.date = value;
+    sample.data.date = value;
     sample.save();
   };
 
   // backwards compatible: dates were objects in previous version
-  const dateValue = new Date(sample.attrs.date as any).toISOString();
+  const dateValue = new Date(sample.data.date as any).toISOString();
 
   const hasPhotos = !!occ.media.length;
 
@@ -101,7 +101,7 @@ const HomeMain = ({ sample }: Props) => {
       )}
 
       <IonList lines="full">
-        <div className="rounded-list">
+        <div className="rounded-list border">
           <PhotoPicker model={occ} />
           {!hasPhotos && (
             <InfoMessage inline>Photo needed to verify report.</InfoMessage>
@@ -135,8 +135,8 @@ const HomeMain = ({ sample }: Props) => {
 
           <Block
             block={commentAttr}
-            record={occ.attrs}
-            isDisabled={sample.isDisabled()}
+            record={occ.data}
+            isDisabled={sample.isDisabled}
           />
         </div>
       </IonList>

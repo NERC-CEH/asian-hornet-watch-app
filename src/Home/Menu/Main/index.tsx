@@ -31,8 +31,8 @@ const MainComponent: FC<Props> = ({
   refreshAccount,
   resendVerificationEmail,
 }) => {
-  const isNotVerified = user.attrs.verified === false; // verified is undefined in old versions
-  const userEmail = user.attrs.email;
+  const isNotVerified = user.data.verified === false; // verified is undefined in old versions
+  const userEmail = user.data.email;
 
   return (
     <Main>
@@ -46,7 +46,7 @@ const MainComponent: FC<Props> = ({
               <IonIcon icon={exitOutline} size="small" slot="start" />
               Logout
               {': '}
-              {user.attrs.firstName} {user.attrs.lastName}
+              {user.data.firstName} {user.data.lastName}
             </IonItem>
           )}
 

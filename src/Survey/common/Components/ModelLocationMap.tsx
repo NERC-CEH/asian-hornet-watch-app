@@ -23,21 +23,21 @@ type Props = {
 
 const ModelLocationMap = ({ subSample, sample }: Props) => {
   const model = subSample || sample;
-  const location = model.attrs.location || {};
-  const parentLocation = model.parent?.attrs.location;
+  const location = model.data.location || {};
+  const parentLocation = model.parent?.data.location;
 
   const setLocation = async (newLocation: any) => {
     if (!newLocation) return;
     if (model.isGPSRunning()) model.stopGPS();
 
-    model.attrs.location = { ...model.attrs.location, ...newLocation };
+    model.data.location = { ...model.data.location, ...newLocation };
   };
 
   const onManuallyTypedLocationChange = (e: any) =>
     setLocation(textToLocation(e?.target?.value));
 
   const onLocationNameChange = ({ name }: any) => {
-    model.attrs.location = { ...model.attrs.location, name };
+    model.data.location = { ...model.data.location, name };
   };
 
   const [showSettings, setShowSettings] = useState(false);

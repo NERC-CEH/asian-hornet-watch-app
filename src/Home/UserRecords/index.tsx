@@ -12,14 +12,14 @@ import {
   IonButton,
 } from '@ionic/react';
 import InfoBackgroundMessage from 'common/Components/InfoBackgroundMessage';
+import savedSamples, { uploadAllSamples } from 'models/collections/samples';
 import Sample from 'models/sample';
-import savedSamples, { uploadAllSamples } from 'models/savedSamples';
 import Survey from './components/Survey';
 import './styles.scss';
 
 function byCreateTime(smp1: Sample, smp2: Sample) {
-  const date1 = new Date(smp1.metadata.createdOn);
-  const date2 = new Date(smp2.metadata.createdOn);
+  const date1 = new Date(smp1.createdAt);
+  const date2 = new Date(smp2.createdAt);
   return date2.getTime() - date1.getTime();
 }
 
@@ -100,7 +100,7 @@ const UserSurveys: FC<Props> = () => {
 
   const getSamplesList = (uploaded?: boolean) => {
     const uploadedSamples = (sample: Sample) =>
-      uploaded ? sample.metadata.syncedOn : !sample.metadata.syncedOn;
+      uploaded ? sample.syncedAt : !sample.syncedAt;
     return savedSamples.filter(uploadedSamples).sort(byCreateTime);
   };
 

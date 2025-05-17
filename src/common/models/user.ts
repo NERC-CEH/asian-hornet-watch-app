@@ -11,7 +11,7 @@ import {
 import { NavContext } from '@ionic/react';
 import * as Sentry from '@sentry/browser';
 import CONFIG from 'common/config';
-import { genericStore } from './store';
+import { mainStore } from './store';
 
 export interface Attrs extends DrupalUserModelAttrs {
   firstName?: string;
@@ -30,11 +30,7 @@ const defaults: Attrs = {
   email: '',
 };
 
-export class UserModel extends DrupalUserModel {
-  // eslint-disable-next-line
-  // @ts-ignore
-  attrs: Attrs = DrupalUserModel.extendAttrs(this.attrs, defaults);
-
+export class UserModel extends DrupalUserModel<Attrs> {
   static registerSchema = object({
     email: z.string().email('Please fill in'),
     password: z.string().min(1, 'Please fill in'),
@@ -52,17 +48,15 @@ export class UserModel extends DrupalUserModel {
   });
 
   constructor(options: any) {
-    super(options);
+    super({ ...options, data: { ...defaults, ...options.data } });
 
     const checkForValidation = () => {
-      if (this.isLoggedIn() && !this.attrs.verified) {
+      if (this.isLoggedIn() && !this.data.verified) {
         console.log('User: refreshing profile for validation');
         this.refreshProfile();
       }
     };
-    this.ready
-      ?.then(() => this.attrs.password && this._migrateAuth())
-      .then(checkForValidation);
+    this.ready.then(checkForValidation);
   }
 
   async logIn(email: string, password: string) {
@@ -73,28 +67,28 @@ export class UserModel extends DrupalUserModel {
 
   getPrettyName() {
     return this.isLoggedIn()
-      ? `${this.attrs.firstName} ${this.attrs.lastName}`
+      ? `${this.data.firstName} ${this.data.lastName}`
       : '';
   }
 
   async checkActivation() {
     if (!this.isLoggedIn()) return false;
 
-    if (!this.attrs.verified) {
+    if (!this.data.verified) {
       try {
         await this.refreshProfile();
       } catch (e) {
         // do nothing
       }
 
-      if (!this.attrs.verified) return false;
+      if (!this.data.verified) return false;
     }
 
     return true;
   }
 
   async resendVerificationEmail() {
-    if (!this.isLoggedIn() || this.attrs.verified) return false;
+    if (!this.isLoggedIn() || this.data.verified) return false;
 
     await this._sendVerificationEmail();
 
@@ -105,57 +99,14 @@ export class UserModel extends DrupalUserModel {
     return CONFIG.backend.anonymousToken;
   }
 
-  async getAccessToken(...args: any) {
-    if (this.attrs.password) await this._migrateAuth();
-
-    return super.getAccessToken(...args);
-  }
-
-  /**
-   * Migrate from Indicia API auth to JWT. Remove in the future versions.
-   */
-  async _migrateAuth() {
-    console.log('Migrating user auth.');
-    if (!this.attrs.email) {
-      // email might not exist
-      delete this.attrs.password;
-      return this.save();
-    }
-
-    try {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      const tokens = await this._exchangePasswordToTokens(
-        this.attrs.email,
-        this.attrs.password
-      );
-      this.attrs.tokens = tokens;
-      delete this.attrs.password;
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      await this._refreshAccessToken();
-    } catch (e: any) {
-      if (e.message === 'Incorrect password or email') {
-        console.log('Removing invalid old user credentials');
-        delete this.attrs.password;
-        return this.logOut();
-      }
-      console.error(e);
-      throw e;
-    }
-
-    return this.save();
-  }
-
   resetDefaults() {
-    return super.resetDefaults(defaults);
+    return super.reset(defaults);
   }
 }
 
 const userModel = new UserModel({
   cid: 'user',
-  store: genericStore,
+  store: mainStore,
   config: CONFIG.backend,
 });
 
@@ -176,7 +127,7 @@ export const useUserStatusCheck = () => {
       return false;
     }
 
-    if (!userModel.attrs.verified) {
+    if (!userModel.data.verified) {
       await loader.show('Please wait...');
       const isVerified = await userModel.checkActivation();
       loader.hide();

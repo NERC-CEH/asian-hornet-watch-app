@@ -2,12 +2,12 @@ import { FC } from 'react';
 import { observer } from 'mobx-react';
 import { Page, Header, useToast } from '@flumens';
 import { AppModel } from 'models/app';
-import SavedSamples from 'models/savedSamples';
+import SavedSamples from 'models/collections/samples';
 import { UserModel } from 'models/user';
 import Main from './Main';
 
 function onToggle(appModel: any, setting: string, checked: boolean) {
-  appModel.attrs[setting] = checked; // eslint-disable-line
+  appModel.data[setting] = checked; // eslint-disable-line
   appModel.save();
 }
 
@@ -20,7 +20,7 @@ type Props = {
 const MenuController: FC<Props> = ({ savedSamples, appModel, userModel }) => {
   const toast = useToast();
 
-  const { sendAnalytics, training } = appModel.attrs;
+  const { sendAnalytics, training } = appModel.data;
 
   const onToggleWrap = (settings: string, checked: boolean) => {
     return onToggle(appModel, settings, checked);

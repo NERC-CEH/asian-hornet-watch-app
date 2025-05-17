@@ -9,12 +9,12 @@ interface Props {
 }
 
 const Message: FC<Props> = ({ name, children, ...props }) => {
-  if (name && !appModel.attrs[name]) {
+  if (name && !appModel.data[name]) {
     return null;
   }
 
   const hideMessage = () => {
-    (appModel.attrs as any)[name as keyof Attrs] = false;
+    (appModel.data as any)[name as keyof Attrs] = false;
     return {};
   };
 

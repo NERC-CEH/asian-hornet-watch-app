@@ -13,7 +13,7 @@ const SpeciesSelect: FC<Props> = ({ sample }) => {
   const { goBack } = useContext(NavContext);
 
   function onSelect(sp: any) {
-    sample.occurrences[0].attrs.taxon = sp; // eslint-disable-line
+    sample.occurrences[0].data.taxon = sp; // eslint-disable-line
     sample.save();
 
     goBack();

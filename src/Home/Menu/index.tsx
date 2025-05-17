@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { observer } from 'mobx-react';
 import { Page, useAlert, useToast, useLoader } from '@flumens';
-import savedSamples from 'models/savedSamples';
+import savedSamples from 'models/collections/samples';
 import userModel, { useUserStatusCheck } from 'models/user';
 import Main from './Main';
 

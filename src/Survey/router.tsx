@@ -1,6 +1,6 @@
 import { AttrPage, RouteWithModels } from '@flumens';
 import appModel from 'models/app';
-import savedSamples from 'models/savedSamples';
+import savedSamples from 'models/collections/samples';
 import userModel from 'models/user';
 import ModelLocation from 'Survey/common/Components/ModelLocationMap';
 import Species from 'Survey/common/Components/Species';

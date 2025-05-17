@@ -7,12 +7,14 @@ import { Device } from '@capacitor/device';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { StatusBar, Style as StatusBarStyle } from '@capacitor/status-bar';
 import { sentryOptions } from '@flumens';
+import { loadingController } from '@ionic/core';
 import { setupIonicReact, isPlatform } from '@ionic/react';
 import * as SentryBrowser from '@sentry/browser';
-import * as Sentry from '@sentry/capacitor';
 import config from 'common/config';
+import migrate from 'common/models/migrate';
+import { db } from 'common/models/store';
 import appModel from 'models/app';
-import samples from 'models/savedSamples';
+import samples from 'models/collections/samples';
 import userModel from 'models/user';
 import App from './App';
 
@@ -31,29 +33,42 @@ const getDeviceVersion = async () => {
 setupIonicReact();
 
 (async function () {
-  await userModel.ready;
-  await appModel.ready;
-  await samples.ready;
+  if (isPlatform('hybrid') && !localStorage.getItem('sqliteMigrated')) {
+    SentryBrowser.init({
+      ...sentryOptions,
+      release: config.version,
+      dist: config.build,
+      dsn: config.sentryDSN,
+    });
+    (await loadingController.create({ message: 'Upgrading...' })).present();
+    await migrate();
+    localStorage.setItem('sqliteMigrated', 'true');
+    window.location.reload();
+    return;
+  }
 
-  appModel.attrs.sendAnalytics &&
-    Sentry.init(
-      {
-        ...sentryOptions,
-        dsn: config.sentryDNS,
-        environment: config.environment,
-        release: config.version,
-        dist: config.build,
-        initialScope: {
-          user: { id: userModel.id },
-          tags: { session: appModel.attrs.appSession },
-        },
+  await db.init();
+  await userModel.fetch();
+  await appModel.fetch();
+  await samples.fetch();
+
+  appModel.data.sendAnalytics &&
+    SentryBrowser.init({
+      ...sentryOptions,
+      dsn: config.sentryDSN,
+      environment: config.environment,
+      release: config.version,
+      dist: config.build,
+      enabled: config.environment === 'production',
+      initialScope: {
+        user: { id: userModel.id },
+        tags: { session: appModel.data.appSession },
       },
-      SentryBrowser.init
-    );
+    });
 
   await getDeviceVersion();
 
-  appModel.attrs.appSession += 1;
+  appModel.data.appSession += 1;
 
   const container = document.getElementById('root');
   const root = createRoot(container!);

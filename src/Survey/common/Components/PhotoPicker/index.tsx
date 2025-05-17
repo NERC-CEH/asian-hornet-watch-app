@@ -13,8 +13,6 @@ type Props = {
 };
 
 const AppPhotoPicker = ({ model }: Props) => {
-  const isUploaded = model.isUploaded();
-
   async function onAdd(shouldUseCamera: boolean) {
     const images = await captureImage(
       shouldUseCamera ? { camera: true } : { multiple: true }
@@ -46,7 +44,7 @@ const AppPhotoPicker = ({ model }: Props) => {
       onAdd={onAdd}
       onRemove={onRemove}
       value={model.media}
-      isDisabled={isUploaded}
+      isDisabled={model.isUploaded}
     />
   );
 };

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { Route, Redirect } from 'react-router-dom';
 import {
+  SamplesContext,
   useAlert,
   TailwindContext,
   TailwindBlockContext,
@@ -10,6 +11,7 @@ import {
 } from '@flumens';
 import { IonApp, IonRouterOutlet, isPlatform } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import samples from 'common/models/collections/samples';
 import 'common/theme.scss';
 import Home from './Home';
 import Info from './Info/router';
@@ -25,9 +27,9 @@ const tailwindBlockContext = {
   basePath: '',
 };
 
-const HomeRedirect = () => {
-  return <Redirect to="home" />;
-};
+const samplesContext = { samples };
+
+const HomeRedirect = () => <Redirect to="home" />;
 
 const useBackendMaintenanceAlert = () => {
   const alert = useAlert();
@@ -69,16 +71,18 @@ const App = () => {
     <IonApp>
       <TailwindContext.Provider value={tailwindContext}>
         <TailwindBlockContext.Provider value={tailwindBlockContext}>
-          <IonReactRouter>
-            <IonRouterOutlet id="main">
-              <Route exact path="/" component={HomeRedirect} />
-              <Route path="/home" component={Home} />
-              {User}
-              {Info}
-              {Survey}
-              {Settings}
-            </IonRouterOutlet>
-          </IonReactRouter>
+          <SamplesContext.Provider value={samplesContext}>
+            <IonReactRouter>
+              <IonRouterOutlet id="main">
+                <Route exact path="/" component={HomeRedirect} />
+                <Route path="/home" component={Home} />
+                {User}
+                {Info}
+                {Survey}
+                {Settings}
+              </IonRouterOutlet>
+            </IonReactRouter>
+          </SamplesContext.Provider>
         </TailwindBlockContext.Provider>
       </TailwindContext.Provider>
     </IonApp>

@@ -17,11 +17,11 @@ const OnlineStatus = ({ sample, onUpload, uploadIsPrimary }: Props) => {
     return <Badge>Draft</Badge>;
   }
 
-  if (sample.remote.synchronising) {
+  if (sample.isSynchronising) {
     return <IonSpinner class="survey-status" />;
   }
 
-  if (sample.isUploaded()) {
+  if (sample.isUploaded) {
     return null;
   }
 

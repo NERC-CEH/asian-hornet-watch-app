@@ -88,7 +88,7 @@ const DateInput: FC<Props> = ({
   itemProps,
   ...other
 }) => {
-  const input = useRef<any>();
+  const input = useRef<any>(null);
   const { t } = useTranslation();
 
   const [value, setValue] = useState(valueProp);

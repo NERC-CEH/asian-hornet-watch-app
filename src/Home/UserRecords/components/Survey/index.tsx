@@ -61,17 +61,15 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
   const promptToEnterContactDetails = useContactDetailsPrompt(sample);
   const survey = sample.getSurvey();
 
-  const { synchronising } = sample.remote;
-
   let href;
-  if (!synchronising) {
+  if (!sample.isSynchronising) {
     href = `/survey/${survey.name}/${sample.cid}`;
   }
 
   function getSampleInfo() {
     const occ = sample.occurrences[0];
 
-    const prettyDate = getRelativeDate(sample.attrs.date);
+    const prettyDate = getRelativeDate(sample.data.date);
 
     const image = occ?.media.length && occ?.media[0];
     let avatar = <IonIcon icon={waspIcon} color="warning" className="size-6" />;
@@ -82,7 +80,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
       );
     }
 
-    const label = occ?.attrs?.taxon?.common_name;
+    const label = occ?.data?.taxon?.common_name;
 
     return (
       <div className="flex w-full items-center gap-3">
@@ -91,7 +89,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
           <div className="font-bold">{label || 'Record'}</div>
           <div>
             {prettyDate}
-            {sample.attrs.training && (
+            {sample.data.training && (
               <Badge className="mx-2" size="small">
                 Training
               </Badge>

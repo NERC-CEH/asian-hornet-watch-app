@@ -27,13 +27,13 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
   const promptToLogin = usePromptToLogin();
   const promptToEnterContactDetails = useContactDetailsPrompt(sample);
 
-  const isTraining = !!sample.attrs.training;
+  const isTraining = !!sample.data.training;
 
   const checkSampleStatus = useValidateCheck(sample);
 
   const isEditing = sample.metadata.saved;
 
-  const isDisabled = sample.isUploaded();
+  const isDisabled = sample.isUploaded;
 
   const onUpload = async () => {
     const isValid = checkSampleStatus();
@@ -78,7 +78,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     if (!isValid) return;
 
     // eslint-disable-next-line
-    appModel.attrs['draftId:main'] = null;
+    appModel.data['draftId:main'] = null;
     await appModel.save();
 
     // eslint-disable-next-line

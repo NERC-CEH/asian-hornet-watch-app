@@ -2,16 +2,20 @@
 	"appId": "uk.ac.ceh.hornets",
 	"appName": "Asian Hornet Watch",
 	"webDir": "build",
+	"android": {
+		"adjustMarginsForEdgeToEdge": "force"
+	},
 	"packageClassList": [
+		"CapacitorSQLitePlugin",
 		"AppPlugin",
 		"CAPCameraPlugin",
 		"DevicePlugin",
 		"FilesystemPlugin",
 		"GeolocationPlugin",
 		"CAPNetworkPlugin",
+		"SharePlugin",
 		"SplashScreenPlugin",
 		"StatusBarPlugin",
-		"SentryCapacitor",
-		"CDVPlugin"
+		"BlobWriter"
 	]
 }

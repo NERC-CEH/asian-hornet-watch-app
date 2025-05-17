@@ -18,7 +18,7 @@ const numberValues = [
 
 export const commentAttr = {
   id: 'comment',
-  type: 'text_input',
+  type: 'textInput',
   title: 'Comment',
   description: 'Any extra info about this report.',
   appearance: 'multiline',
@@ -125,7 +125,7 @@ const survey = {
 
     create(training: string | null) {
       return new Occurrence({
-        attrs: {
+        data: {
           training,
           confidential: 't',
           release_status: 'P',
@@ -137,22 +137,22 @@ const survey = {
       });
     },
 
-    verify: (attrs: any) =>
+    verify: (data: any) =>
       object({
         taxon: z.object(
           { warehouse_id: z.number() },
           { invalid_type_error: 'Species is missing.' }
         ),
-      }).safeParse(attrs).error,
+      }).safeParse(data).error,
   },
 
-  verify: (attrs: any) =>
+  verify: (data: any) =>
     object({
       location: object(
         { latitude: z.number(), longitude: z.number() },
         { invalid_type_error: 'Please select location.' }
       ),
-    }).safeParse(attrs).error,
+    }).safeParse(data).error,
 
   create(
     Sample: any,
@@ -166,9 +166,11 @@ const survey = {
         training,
       },
 
-      attrs: {
-        input_form: 'enter-app-record',
-        location_type: 'latlon',
+      data: {
+        date: new Date().toISOString(),
+        enteredSrefSystem: 4326,
+        surveyId: survey.id,
+        inputForm: 'enter-app-record',
         location: null,
         device: isPlatform('android') ? 'Android' : 'iOS',
         device_version: deviceVersion,
