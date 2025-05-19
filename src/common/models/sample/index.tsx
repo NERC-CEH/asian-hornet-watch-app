@@ -127,7 +127,7 @@ export const useValidateCheck = (sample?: Sample) => {
     const invalids = sample?.validateRemote();
     if (invalids) {
       alert({
-        header: t('Survey incomplete'),
+        header: t('Report incomplete'),
         skipTranslation: true,
         message: <ModelValidationMessage {...invalids} />,
         buttons: [
