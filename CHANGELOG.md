@@ -1,3 +1,7 @@
+# 2.3.1
+
+Fixed password reset.
+
 # 2.3.0
 
 Updated framework.
