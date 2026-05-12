@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
+import { Camera } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
-import { PhotoPicker, captureImage } from '@flumens';
+import { PhotoPicker, captureImage, useToast } from '@flumens';
 import { isPlatform } from '@ionic/react';
 import config from 'common/config';
 import Media from 'models/media';
@@ -13,8 +14,24 @@ type Props = {
 };
 
 const AppPhotoPicker = ({ model }: Props) => {
+  const toast = useToast();
   async function onAdd(shouldUseCamera: boolean) {
-    // IMPLEMENT PERMISSIONS ASK MULTIPLE TIMES HERE
+    const res = await Camera.checkPermissions();
+    if (shouldUseCamera && res.camera !== 'granted') {
+      toast.warn(
+        'You have previously denied camera permissions. Please allow them in your device settings to use the camera.',
+        { duration: 5000, position: 'bottom' }
+      );
+      return;
+    }
+    if (!shouldUseCamera && res.photos !== 'granted') {
+      toast.warn(
+        'You have previously denied photo library permissions. Please allow them in your device settings to select photos from your library.',
+        { duration: 5000, position: 'bottom' }
+      );
+      return;
+    }
+
     const images = await captureImage(
       shouldUseCamera ? { camera: true } : { multiple: true }
     );
