@@ -1,3 +1,7 @@
+# 2.4.0
+
+Maintenance update.
+
 # 2.3.1
 
 Fixed password reset.
