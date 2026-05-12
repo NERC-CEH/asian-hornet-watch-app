@@ -16,7 +16,10 @@ const { H } = Section;
 
 const Comparison = () => {
   return (
-    <Main id="comparison" className="ion-padding">
+    <Main
+      id="comparison"
+      className="[--padding-start:10px] [--padding-end:10px]"
+    >
       <IonTitle>Comparison</IonTitle>
 
       <InfoMessage
@@ -34,20 +37,22 @@ const Comparison = () => {
           <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
             <h5>Asian Hornet</h5>
             <div style={{ flex: 1 }}>
-              <img src={abdomen1} />
+              <img src={abdomen1} className="p-2" />
             </div>{' '}
             <div style={{ flex: 1 }}>
-              <p className="message">Mostly dark with orange segment 4</p>
+              <p className="px-3 text-center">
+                Mostly dark with orange segment 4
+              </p>
             </div>
           </IonCol>
           <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
             <h5>European Hornet</h5>
             <div style={{ flex: 1 }}>
-              <img src={abdomen2} />
+              <img src={abdomen2} className="p-2" />
             </div>
 
             <div style={{ flex: 1 }}>
-              <p className="message">Extensive yellow/orange</p>
+              <p className="px-3 text-center">Extensive yellow/orange</p>
             </div>
           </IonCol>
         </IonRow>
@@ -59,13 +64,17 @@ const Comparison = () => {
         <IonRow>
           <IonCol>
             <h5> Asian Hornet</h5>
-            <img src={head1} />
-            <p className="message">Orange face, black top, dark antennae</p>
+            <img src={head1} className="p-2" />
+            <p className="px-3 text-center">
+              Orange face, black top, dark antennae
+            </p>
           </IonCol>
           <IonCol>
             <h5>European Hornet</h5>
-            <img src={head2} />
-            <p className="message">Yellow face, yellow top, paler antennae</p>
+            <img src={head2} className="p-2" />
+            <p className="px-3 text-center">
+              Yellow face, yellow top, paler antennae
+            </p>
           </IonCol>
         </IonRow>
       </Section>
@@ -76,13 +85,15 @@ const Comparison = () => {
         <IonRow>
           <IonCol>
             <h5> Asian Hornet</h5>
-            <img src={thorax1} />
-            <p className="message">Entirely black</p>
+            <img src={thorax1} className="p-2" />
+            <p className="px-3 text-center">Entirely black</p>
           </IonCol>
           <IonCol>
             <h5>European Hornet</h5>
-            <img src={thorax2} />
-            <p className="message">Black with extensive brown markings</p>
+            <img src={thorax2} className="p-2" />
+            <p className="px-3 text-center">
+              Black with extensive brown markings
+            </p>
           </IonCol>
         </IonRow>
       </Section>
@@ -93,13 +104,13 @@ const Comparison = () => {
         <IonRow>
           <IonCol>
             <h5> Asian Hornet</h5>
-            <img src={legs1} />
-            <p className="message">Dark with yellow ends</p>
+            <img src={legs1} className="p-2" />
+            <p className="px-3 text-center">Dark with yellow ends</p>
           </IonCol>
           <IonCol>
             <h5>European Hornet</h5>
-            <img src={legs2} />
-            <p className="message">All brown with brown ends</p>
+            <img src={legs2} className="p-2" />
+            <p className="px-3 text-center">All brown with brown ends</p>
           </IonCol>
         </IonRow>
       </Section>

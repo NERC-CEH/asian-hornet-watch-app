@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import { Header, Page, Main, Section } from '@flumens';
-import { IonImg } from '@ionic/react';
 import BRCLogo from 'common/images/BRC_approved_logo.png';
-import CEHLogo from 'common/images/ceh_logo.png';
-import './styles.scss';
+import CEHLogo from 'common/images/UKCEH.svg';
 
 const { P, H } = Section;
 
@@ -11,14 +9,10 @@ const Credits: FC = () => {
   return (
     <Page id="credits">
       <Header title="Credits" />
-      <Main className="ion-padding">
-        <div className="logos">
-          <div>
-            <IonImg src={CEHLogo} />
-          </div>
-          <div>
-            <IonImg src={BRCLogo} />
-          </div>
+      <Main className="[--padding-start:10px] [--padding-end:10px]">
+        <div className="flex w-full flex-nowrap items-center justify-center gap-2 overflow-hidden px-2">
+          <img src={CEHLogo} alt="UKCEH logo" className="max-w-2/5" />
+          <img src={BRCLogo} alt="BRC approved logo" className="max-w-2/5" />
         </div>
         <Section>
           <P>

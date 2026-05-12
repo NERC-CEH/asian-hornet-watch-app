@@ -49,20 +49,7 @@
     justify-content: space-between;
     background: var(--ion-page-background);
 
-    .title {
-      h1 {
-        font-size: 1.6em;
-        margin: 0 0 8px;
-        font-weight: bold;
-        color: var(--color-primary-800);
-      }
-      h4 {
-        font-size: 1.2em;
-        margin: 0;
-        color: var(--color-primary);
-        font-weight: 200;
-      }
-    }
+
 
     ion-button {
       align-self: center;

@@ -4,6 +4,7 @@ ion-tab-bar {
   --background: var(--ion-color-primary);
 
   ion-tab-button {
+    font-size: 12px;
     ion-icon,
     ion-label {
       color: white;

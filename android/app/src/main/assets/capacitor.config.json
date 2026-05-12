@@ -1,8 +1,5 @@
 {
 	"appId": "uk.ac.ceh.hornets",
 	"appName": "Asian Hornet Watch",
-	"webDir": "build",
-	"android": {
-		"adjustMarginsForEdgeToEdge": "force"
-	}
+	"webDir": "build"
 }

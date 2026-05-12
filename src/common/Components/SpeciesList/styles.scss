@@ -20,13 +20,13 @@
     overflow: hidden;
 
     .container {
-      position: relative;
-      background: white;
       display: flex;
+      position: relative;
       flex-direction: column;
       margin: 8px;
-      border-radius: 10px;
       box-shadow: 0 0 10px #d9d9da;
+      border-radius: 10px;
+      background: white;
 
       ion-icon {
         // TODO: remove once real pics are available
@@ -41,28 +41,28 @@
       }
 
       ion-label {
-        flex: 1;
         display: flex;
-        justify-content: center;
+        flex: 1;
         flex-direction: column;
+        justify-content: center;
+        z-index: 10;
         padding: 0.5em;
         min-height: 3.6em;
         line-height: 1.3em;
         text-align: center;
-        z-index: 10;
       }
 
       .info-box {
         position: absolute;
-        right: 0;
         top: 0;
-        height: 100%;
-        width: 100%;
-        background: #fffffff0;
-        border-radius: 50%;
+        right: 0;
         transform: translate(50%, -50%);
-        box-shadow: 0 0 15px 5px #e6e6e6;
         z-index: 100;
+        box-shadow: 0 0 15px 3px #e6e6e6;
+        border-radius: 50%;
+        background: #fffffff0;
+        width: 100%;
+        height: 100%;
 
         ion-icon {
           width: 30%;
@@ -83,11 +83,11 @@
   --border-style: none;
 
   ion-button {
-    height: 40px;
-    width: 40px;
-    background: var(--ion-color-light) !important;
-    border-radius: 50%;
     box-shadow: 0 0 7px #0000003d;
+    border-radius: 50%;
+    background: var(--ion-color-light) !important;
+    width: 40px;
+    height: 40px;
 
     ion-icon {
       color: black;

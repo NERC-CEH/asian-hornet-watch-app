@@ -1,0 +1,254 @@
+@import '@ionic/core/css/core.css';
+@import '@ionic/core/css/structure.css';
+@import '@ionic/core/css/typography.css';
+/* @import '@ionic/core/css/normalize.css'; not adding because messes up tailwind buttons */
+
+@import 'tailwindcss';
+
+@source "../../node_modules/@flumens/tailwind";
+@source "../../node_modules/@flumens/ionic";
+
+@import '@flumens/ionic/dist/themes/rounded.css';
+
+@theme {
+  /* https://www.shadecolr.com/#colors=Y29sb3I6NzQuOTk5OTk5OTk5OTk5OTksMTYuMzkzNDQyNjIyOTUwODIsMjMuOTIxNTY4NjI3NDUwOTh8c3RlcC11cDoxNi4xfHN0ZXAtZG93bjozLjh8aHVlLXNoaWZ0OjB8YmFzZS1zdG9wOjV8bmFtZTpzdG9uZXxsb2NrZWQ6MA%3D%3D&active=color-1&v=2 */
+  --color-primary: oklch(38.72% 0.03303 119.36);
+  --color-primary-50: oklch(97.531% 0.00396 106.47);
+  --color-primary-100: oklch(92.063% 0.01352 115.85);
+  --color-primary-200: oklch(80.929% 0.03221 119.01);
+  --color-primary-300: oklch(69.208% 0.05167 119.17);
+  --color-primary-400: oklch(55.23% 0.05134 120.15);
+  --color-primary-500: oklch(38.72% 0.03303 119.36);
+  --color-primary-600: oklch(34.702% 0.0288 118.68);
+  --color-primary-700: oklch(30.192% 0.02287 118.34);
+  --color-primary-800: oklch(25.896% 0.01823 116.88);
+  --color-primary-900: oklch(21.304% 0.01364 120.52);
+  --color-primary-950: oklch(18.819% 0.00994 116.55);
+
+  /* https://www.shadecolr.com/#colors=Y29sb3I6MjkuMTU4ODc4NTA0NjcyOSwxMDAsNDEuOTYwNzg0MzEzNzI1NDl8c3RlcC11cDoxMXxzdGVwLWRvd246OXxodWUtc2hpZnQ6MHxiYXNlLXN0b3A6NXxuYW1lOm9yYW5nZXxsb2NrZWQ6MA%3D%3D&active=color-1&v=2  --color-secondary: oklch(63.757% 0.16432 51.836); */
+  --color-secondary: oklch(63.757% 0.16432 51.836);
+  --color-secondary-50: oklch(94.6% 0.03777 67.344);
+  --color-secondary-100: oklch(91.082% 0.06184 65.34);
+  --color-secondary-200: oklch(84.586% 0.10938 63.68);
+  --color-secondary-300: oklch(78.886% 0.1514 61.006);
+  --color-secondary-400: oklch(73.826% 0.18192 53.968);
+  --color-secondary-500: oklch(63.757% 0.16432 51.836);
+  --color-secondary-600: oklch(53.534% 0.13598 52.941);
+  --color-secondary-700: oklch(42.625% 0.10683 54.002);
+  --color-secondary-800: oklch(31.161% 0.07493 57.571);
+  --color-secondary-900: oklch(18.562% 0.04026 69.811);
+  --color-secondary-950: oklch(11% 0.02248 88.031);
+
+  /* https://www.shadecolr.com/#colors=Y29sb3I6MjAzLjg5ODMwNTA4NDc0NTc3LDEwMCw0Ni4yNzQ1MDk4MDM5MjE1N3xzdGVwLXVwOjl8c3RlcC1kb3duOjEyfGh1ZS1zaGlmdDowfGJhc2Utc3RvcDo2fG5hbWU6c2t5fGxvY2tlZDow&active=color-1&v=2  --color-sky: oklch(63.276% 0.17242 248.5); */
+  --color-tertiary: oklch(63.276% 0.17242 248.5);
+  --color-tertiary-50: oklch(96.61% 0.01835 237.76);
+  --color-tertiary-100: oklch(93.267% 0.03678 238.08);
+  --color-tertiary-200: oklch(86.649% 0.07487 237.94);
+  --color-tertiary-300: oklch(80.425% 0.11115 239.06);
+  --color-tertiary-400: oklch(74.526% 0.1442 241.91);
+  --color-tertiary-500: oklch(69.562% 0.17063 245.65);
+  --color-tertiary-600: oklch(63.276% 0.17242 248.5);
+  --color-tertiary-700: oklch(50.844% 0.13671 247.95);
+  --color-tertiary-800: oklch(37.592% 0.09851 246.85);
+  --color-tertiary-900: oklch(23.245% 0.05366 240.46);
+  --color-tertiary-950: oklch(14.973% 0.03107 233.36);
+
+  /* https://www.shadecolr.com/#colors=Y29sb3I6MCw4NS4zNjU4NTM2NTg1MzY1OCw1OS44MDM5MjE1Njg2Mjc0NXxzdGVwLXVwOjh8c3RlcC1kb3duOjExfGh1ZS1zaGlmdDowfGJhc2Utc3RvcDo1fG5hbWU6cmVkfGxvY2tlZDow&active=color-1&v=2  --color-danger: oklch(63.538% 0.21167 25.6); */
+  --color-danger-50: oklch(95.437% 0.0196 17.501);
+  --color-danger-100: oklch(91.236% 0.04024 17.913);
+  --color-danger-200: oklch(83.016% 0.08326 18.986);
+  --color-danger-300: oklch(75.547% 0.12772 20.507);
+  --color-danger-400: oklch(68.817% 0.17302 22.739);
+  --color-danger-500: oklch(63.538% 0.21167 25.6);
+  --color-danger-600: oklch(58.728% 0.23449 28.638);
+  --color-danger-700: oklch(48.633% 0.19267 28.477);
+  --color-danger-800: oklch(38.007% 0.14816 28.152);
+  --color-danger-900: oklch(26.604% 0.0996 27.398);
+  --color-danger-950: oklch(20.442% 0.07305 26.62);
+
+  /* https://www.shadecolr.com/#colors=Y29sb3I6MTI4LjI1Mzk2ODI1Mzk2ODI1LDEwMCwzNy4wNTg4MjM1Mjk0MTE3N3xzdGVwLXVwOjExfHN0ZXAtZG93bjoxMHxodWUtc2hpZnQ6MHxiYXNlLXN0b3A6NnxuYW1lOmdyZWVufGxvY2tlZDow&active=color-1&v=2 */
+  --color-success: oklch(69.239% 0.22992 143.24);
+  --color-success-50: oklch(98.808% 0.01915 147.86);
+  --color-success-100: oklch(96.252% 0.06214 148.6);
+  --color-success-200: oklch(91.93% 0.14555 147.75);
+  --color-success-300: oklch(88.921% 0.21775 145.94);
+  --color-success-400: oklch(87.24% 0.26787 144.3);
+  --color-success-500: oklch(84.126% 0.28028 143.14);
+  --color-success-600: oklch(69.239% 0.22992 143.24);
+  --color-success-700: oklch(54.948% 0.18131 143.44);
+  --color-success-800: oklch(39.648% 0.12884 143.92);
+  --color-success-900: oklch(22.645% 0.06968 145.75);
+  --color-success-950: oklch(13.014% 0.03984 145.94);
+
+  --color-warning: var(--color-secondary);
+  --color-warning-50: var(--color-secondary-50);
+  --color-warning-100: var(--color-secondary-100);
+  --color-warning-200: var(--color-secondary-200);
+  --color-warning-300: var(--color-secondary-300);
+  --color-warning-400: var(--color-secondary-400);
+  --color-warning-500: var(--color-secondary-500);
+  --color-warning-600: var(--color-secondary-600);
+  --color-warning-700: var(--color-secondary-700);
+  --color-warning-800: var(--color-secondary-800);
+  --color-warning-900: var(--color-secondary-900);
+  --color-warning-950: var(--color-secondary-950);
+}
+
+:root {
+  --ion-color-primary: var(--color-primary);
+  --ion-color-primary-contrast: var(--color-primary-50);
+  --ion-color-primary-shade: var(--color-primary-800);
+  --ion-color-primary-tint: var(--color-primary-500);
+  --ion-color-primary-dark: var(--color-primary-950);
+
+  --ion-color-secondary: var(--color-secondary);
+  --ion-color-secondary-contrast: var(--color-secondary-50);
+  --ion-color-secondary-shade: var(--color-secondary-700);
+  --ion-color-secondary-tint: var(--color-secondary-500);
+  --ion-color-secondary-dark: var(--color-secondary-950);
+
+  --ion-color-tertiary: var(--color-tertiary);
+  --ion-color-tertiary-contrast: var(--color-tertiary-50);
+  --ion-color-tertiary-shade: var(--color-tertiary-700);
+  --ion-color-tertiary-tint: var(--color-tertiary-500);
+  --ion-color-tertiary-dark: var(--color-tertiary-950);
+
+  --ion-color-success: var(--color-success);
+  --ion-color-success-contrast: var(--color-success-50);
+  --ion-color-success-shade: var(--color-success-700);
+  --ion-color-success-tint: var(--color-success-500);
+  --ion-color-success-dark: var(--color-success-950);
+
+  --ion-color-warning: var(--color-warning);
+  --ion-color-warning-contrast: var(--color-warning-50);
+  --ion-color-warning-shade: var(--color-warning-700);
+  --ion-color-warning-tint: var(--color-warning-500);
+  --ion-color-warning-dark: var(--color-warning-900);
+
+  --ion-color-danger: var(--color-danger);
+  --ion-color-danger-contrast: var(--color-danger-50);
+  --ion-color-danger-shade: var(--color-danger-700);
+  --ion-color-danger-tint: var(--color-danger-500);
+  --ion-color-danger-dark: var(--color-danger-950);
+
+  --ion-color-dark: var(--color-slate-900);
+  --ion-color-dark-contrast: var(--color-slate-50);
+  --ion-color-dark-shade: var(--color-slate-950);
+  --ion-color-dark-tint: var(--color-slate-800);
+
+  --ion-color-medium: var(--color-slate-400);
+  --ion-color-medium-contrast: var(--color-slate-50);
+  --ion-color-medium-shade: var(--color-slate-500);
+  --ion-color-medium-tint: var(--color-slate-300);
+
+  --ion-color-light: var(--color-white);
+  --ion-color-light-contrast: var(--color-slate-950);
+  --ion-color-light-shade: var(--color-slate-200);
+  --ion-color-light-tint: var(--color-white);
+
+  --ion-page-background: #f8f7f4;
+
+  --ion-headings-font-weight: 300;
+  --ion-item-border-color: rgb(0, 0, 0, 0.2);
+
+  --ion-toolbar-background: var(--ion-color-primary);
+  --ion-toolbar-color: #fff;
+  --ion-toolbar-color-activated: #fff;
+
+  --classifier-success: oklch(from var(--color-success-800) l c h / 70%);
+  --classifier-plausible: var(--color-warning-600);
+  --classifier-unlikely: var(--color-danger);
+
+  --form-value-color: var(--color-tertiary-800);
+  --ion-font-family: 'Quicksand';
+}
+
+/* FONTS START */
+@font-face {
+  font-weight: 300;
+  src: url('./fonts/Quicksand-Light.ttf');
+  font-family: 'Quicksand';
+}
+@font-face {
+  font-weight: 400;
+  src: url('./fonts/Quicksand-Regular.ttf');
+  font-family: 'Quicksand';
+}
+@font-face {
+  font-weight: 500;
+  src: url('./fonts/Quicksand-Medium.ttf');
+  font-family: 'Quicksand';
+}
+@font-face {
+  font-weight: 600;
+  src: url('./fonts/Quicksand-SemiBold.ttf');
+  font-family: 'Quicksand';
+}
+@font-face {
+  font-weight: 700;
+  src: url('./fonts/Quicksand-Bold.ttf');
+  font-family: 'Quicksand';
+}
+
+ion-title,
+h1 {
+  font-weight: 700;
+  font-family: 'Quicksand';
+}
+
+ion-item-divider,
+ion-badge,
+ion-label.bold,
+ion-card-title,
+b {
+  font-weight: 600;
+  font-family: 'Quicksand';
+}
+
+.apps-section .apps-section-h,
+h2,
+h3,
+h4,
+h5,
+p,
+i,
+div,
+span,
+input,
+button {
+  font-family: 'Quicksand';
+}
+/* FONTS END */
+
+/* training subheader */
+.training-survey {
+  background: black;
+  padding: 4px;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+/* info messages */
+.info-message.blue,
+.attr-page .info-message {
+  @apply border-tertiary-300/40 bg-tertiary-50 text-tertiary-900;
+}
+
+/* Unify Select component value in menus */
+.react-aria-SelectValue {
+  @apply font-medium;
+}
+
+/* Fix ion-modal header padding */
+html.ios ion-modal ion-header ion-toolbar {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/* Make the input values in the trap details page right-aligned */
+#survey-bait-trap-trap-detail .field-label + input,
+#survey-bait-trap-edit-occurrence .field-label + input,
+#survey-bait-trap-detail .field-label + input {
+  text-align: right;
+}

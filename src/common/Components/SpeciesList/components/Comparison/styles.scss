@@ -17,10 +17,10 @@
   }
 
   ion-title {
-    text-align: center;
     margin: 15px 0 15px 0;
-    font-size: 2em;
     color: var(--color-primary);
+    font-size: 2em;
+    text-align: center;
   }
 
   img {
@@ -28,18 +28,11 @@
   }
 
   h5 {
-    text-align: center;
     margin: 15px 0;
-    font-size: 1.1em;
+    height: 2em;
     color: var(--color-primary-600);
     font-weight: 600;
-    height: 2em;
-  }
-
-  .message {
-    margin-bottom: 15px;
+    font-size: 1.1em;
     text-align: center;
-    font-size: 0.9em;
-    margin-top: 15px;
   }
 }

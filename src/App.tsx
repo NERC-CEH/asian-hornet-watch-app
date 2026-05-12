@@ -12,7 +12,7 @@ import {
 import { IonApp, IonRouterOutlet, isPlatform } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import samples from 'common/models/collections/samples';
-import 'common/theme.scss';
+import 'common/theme.css';
 import Home from './Home';
 import Info from './Info/router';
 import Settings from './Settings/router';

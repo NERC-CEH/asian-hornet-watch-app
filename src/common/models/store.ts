@@ -4,7 +4,11 @@ import { isPlatform } from '@ionic/react';
 
 const web = !isPlatform('hybrid');
 
-export const db = new SQLiteDatabase({ name: 'indicia', web, debug: web });
+export const db = new SQLiteDatabase({
+  name: process.env.APP_DATABASE_NAME || 'indicia',
+  web,
+  debug: web,
+});
 export const mainStore = new Store({ name: 'main', db });
 export const samplesStore = new Store({ name: 'samples', db });
 

@@ -14,6 +14,7 @@ type Props = {
 
 const AppPhotoPicker = ({ model }: Props) => {
   async function onAdd(shouldUseCamera: boolean) {
+    // IMPLEMENT PERMISSIONS ASK MULTIPLE TIMES HERE
     const images = await captureImage(
       shouldUseCamera ? { camera: true } : { multiple: true }
     );

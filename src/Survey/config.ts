@@ -141,7 +141,7 @@ const survey = {
       object({
         taxon: z.object(
           { warehouse_id: z.number() },
-          { invalid_type_error: 'Species is missing.' }
+          { error: 'Species is missing.' }
         ),
       }).safeParse(data).error,
   },
@@ -150,7 +150,7 @@ const survey = {
     object({
       location: object(
         { latitude: z.number(), longitude: z.number() },
-        { invalid_type_error: 'Please select location.' }
+        { error: 'Please select location.' }
       ),
     }).safeParse(data).error,
 

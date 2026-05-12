@@ -170,9 +170,9 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
         {getSlides()}
 
         <IonCardHeader>
-          <div className="title">
-            <h1>{species.common_name}</h1>
-            <h4>
+          <div className="p-3">
+            <h1 className=" text-primary-800 my-2!">{species.common_name}</h1>
+            <h4 className=" text-primary font-extralight">
               <i>{species.scientific_name}</i>
             </h4>
           </div>

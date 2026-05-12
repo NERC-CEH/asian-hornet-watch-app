@@ -8,7 +8,7 @@ const { P, H } = Section;
 const About: FC = () => (
   <Page id="about">
     <Header title="About" />
-    <Main className="ion-padding">
+    <Main className="[--padding-start:10px] [--padding-end:10px]">
       <Section>
         <P>
           Asian Hornet Watch is an app designed to record and help the early
@@ -35,14 +35,14 @@ const About: FC = () => (
 
         <H>App Development</H>
         <P>
-          This app was hand crafted with love by the BRC mobile development
-          team. For suggestions and feedback please do not hesitate to{' '}
-          <a
-            href={`mailto:apps%40ceh.ac.uk?subject=Asian%20Hornet%20Watch%20Support%26Feedback&body=%0A%0A%0AVersion%3A%20 ${CONFIG.version}`}
-          >
-            contact us
-          </a>
-          .
+          This app was handcrafted with love by
+          <a href="https://flumens.io" style={{ whiteSpace: 'nowrap' }}>
+            {' '}
+            Flumens,
+          </a>{' '}
+          an agency specialising in building bespoke data-oriented solutions.
+          For suggestions and feedback please do not hesitate to{' '}
+          <a href="mailto:apps%40ceh.ac.uk?subject=AHW%20App">contact us</a>.
         </P>
       </Section>
     </Main>

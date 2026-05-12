@@ -31,18 +31,18 @@ const defaults: Attrs = {
 };
 
 export class UserModel extends DrupalUserModel<Attrs> {
-  static registerSchema = object({
+  static registerSchema: any = object({
     email: z.string().email('Please fill in'),
     password: z.string().min(1, 'Please fill in'),
     firstName: z.string().min(1, 'Please fill in'),
     lastName: z.string().min(1, 'Please fill in'),
   });
 
-  static resetSchema = object({
+  static resetSchema: any = object({
     email: z.string().email('Please fill in'),
   });
 
-  static loginSchema = object({
+  static loginSchema: any = object({
     email: z.string().email('Please fill in'),
     password: z.string().min(1, 'Please fill in'),
   });
@@ -118,7 +118,7 @@ export const useUserStatusCheck = () => {
 
   const check = async () => {
     if (!device.isOnline) {
-      toast.warn('Looks like you are offline!');
+      toast.warn("Sorry, looks like you're offline.");
       return false;
     }
 

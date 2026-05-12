@@ -34,12 +34,14 @@ const LoginMain = ({ onSubmit }: Props) => {
   return (
     <Main>
       <div className="mx-auto flex max-w-md flex-col gap-8 px-3 pt-3">
-        <h1 className="text-center">
-          <T>Welcome back</T>
-        </h1>
-        <h2 className="-mt-5 text-center">
-          <T>Sign in to your account to start</T>
-        </h2>
+        <div>
+          <h1 className="text-center">
+            <T>Welcome back</T>
+          </h1>
+          <h2 className="-mt-5 text-center">
+            <T>Sign in to your account to start</T>
+          </h2>
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="rounded-list">
@@ -68,7 +70,7 @@ const LoginMain = ({ onSubmit }: Props) => {
           <div className="my-4 flex justify-end">
             <IonRouterLink
               routerLink="/user/reset"
-              className="text-sm text-primary-950"
+              className="text-primary-950 text-sm"
             >
               <T>Forgot password?</T>
             </IonRouterLink>
@@ -76,7 +78,7 @@ const LoginMain = ({ onSubmit }: Props) => {
 
           <Button
             className={clsx(
-              'mx-auto mt-7 bg-secondary-500',
+              'bg-secondary-500 mx-auto mt-7',
               !formState.isValid && 'opacity-50'
             )}
             color="secondary"

@@ -35,7 +35,7 @@ const RegisterMain = ({ onSubmit }: Props) => {
 
   return (
     <Main>
-      <div className="mx-auto max-w-md px-3">
+      <div className="mx-auto mt-10 max-w-md px-3">
         <h1 className="my-10 text-center">
           <T>Create a free account</T>
         </h1>
@@ -92,7 +92,7 @@ const RegisterMain = ({ onSubmit }: Props) => {
 
           <Button
             className={clsx(
-              'mx-auto mt-8 bg-secondary-500',
+              'bg-secondary-500 mx-auto mt-8',
               !formState.isValid && 'opacity-50'
             )}
             color="secondary"
