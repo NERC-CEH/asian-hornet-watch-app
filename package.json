@@ -94,7 +94,7 @@
     "jest-environment-jsdom": "30.3.0",
     "jest-transform-stub": "2.0.0",
     "tailwindcss": "4.2.4",
-    "typescript": "6.0.3",
+    "typescript": "5.9.3",
     "vercel": "51.8.0",
     "webpack": "5.106.2",
     "webpack-cli": "7.0.2",

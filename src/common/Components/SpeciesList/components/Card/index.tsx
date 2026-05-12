@@ -25,7 +25,7 @@ const SpeciesCard: FC<Props> = ({
 }) => {
   const isSurvey = !!onSelect;
 
-  const isSpeciesAsianHornet = species.common_name === 'Asian hornet';
+  const isSpeciesAsianHornet = species.commonName === 'Asian hornet';
 
   return (
     <IonRow id="card" key={species.id}>
@@ -43,7 +43,7 @@ const SpeciesCard: FC<Props> = ({
           <div className="card-wrapper">
             <div className="card-blur-container">
               <IonLabel className="bold">
-                {species.common_name}
+                {species.commonName}
 
                 {isSpeciesAsianHornet && (
                   <IonIcon icon={warning} color="danger" />

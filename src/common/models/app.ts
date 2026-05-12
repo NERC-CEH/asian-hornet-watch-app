@@ -5,14 +5,15 @@ export type SurveyDraftKeys = {
   'draftId:main': string | null;
 };
 
-export interface Attrs extends ModelAttrs, SurveyDraftKeys {
+export type Attrs = {
   appSession: number;
   showedWelcome: boolean;
   sendAnalytics: boolean;
   training: boolean;
   showSurveysDeleteTip: boolean;
   showSurveyUploadTip: boolean;
-}
+} & ModelAttrs &
+  SurveyDraftKeys;
 
 const defaults: Attrs = {
   showedWelcome: false,

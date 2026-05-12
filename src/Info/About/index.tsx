@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Page, Main, Header, Section } from '@flumens';
-import CONFIG from 'common/config';
 import './styles.scss';
 
 const { P, H } = Section;

@@ -7,7 +7,7 @@ import { UserModel } from 'models/user';
 import Main from './Main';
 
 function onToggle(appModel: any, setting: string, checked: boolean) {
-  appModel.data[setting] = checked; // eslint-disable-line
+  appModel.data[setting] = checked;
   appModel.save();
 }
 
@@ -22,9 +22,8 @@ const MenuController: FC<Props> = ({ savedSamples, appModel, userModel }) => {
 
   const { sendAnalytics, training } = appModel.data;
 
-  const onToggleWrap = (settings: string, checked: boolean) => {
-    return onToggle(appModel, settings, checked);
-  };
+  const onToggleWrap = (settings: string, checked: boolean) =>
+    onToggle(appModel, settings, checked);
 
   const resetApp = async () => {
     console.log('Settings:Menu:Controller: resetting the application!', 'w');
@@ -36,7 +35,7 @@ const MenuController: FC<Props> = ({ savedSamples, appModel, userModel }) => {
       toast.success('Done');
     } catch (e) {
       if (e instanceof Error) {
-        toast.error(`${e.message}`);
+        toast.error(e.message);
       }
     }
   };

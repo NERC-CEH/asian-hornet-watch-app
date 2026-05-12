@@ -21,7 +21,7 @@ type Props = {
   onSelect?: (sp: Species) => void;
 };
 const SpeciesList: FC<Props> = ({ onSelect }) => {
-  const [speciesProfile, setSpeciesProfile] = useState<any | null>(null);
+  const [speciesProfile, setSpeciesProfile] = useState<Species | null>(null);
 
   const hideSpeciesModal = () => setSpeciesProfile(null);
 
@@ -35,7 +35,7 @@ const SpeciesList: FC<Props> = ({ onSelect }) => {
       setSpeciesProfile(sp);
     };
 
-    const selectSpecies = () => onSelect && onSelect(sp);
+    const selectSpecies = () => onSelect?.(sp);
 
     const onClick = isSurvey ? selectSpecies : viewSpecies;
 

@@ -9,7 +9,7 @@ import { StatusBar, Style as StatusBarStyle } from '@capacitor/status-bar';
 import { sentryOptions } from '@flumens';
 import { loadingController } from '@ionic/core';
 import { setupIonicReact, isPlatform } from '@ionic/react';
-import * as SentryBrowser from '@sentry/browser';
+import { init } from '@sentry/browser';
 import config from 'common/config';
 import migrate from 'common/models/migrate';
 import { db } from 'common/models/store';
@@ -34,7 +34,7 @@ setupIonicReact();
 
 (async function () {
   if (isPlatform('hybrid') && !localStorage.getItem('sqliteMigrated')) {
-    SentryBrowser.init({
+    init({
       ...sentryOptions,
       release: config.version,
       dist: config.build,
@@ -53,7 +53,7 @@ setupIonicReact();
   await samples.fetch();
 
   appModel.data.sendAnalytics &&
-    SentryBrowser.init({
+    init({
       ...sentryOptions,
       dsn: config.sentryDSN,
       environment: config.environment,

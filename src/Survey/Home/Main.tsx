@@ -51,22 +51,20 @@ const HomeMain = ({ sample }: Props) => {
     );
 
     return (
-      <>
-        <MenuAttrItem
-          routerLink={`${url}/location`}
-          value={value}
-          icon={locationOutline}
-          label="Location"
-          skipValueTranslation
-          required
-          className={clsx({ empty })}
-          disabled={isDisabled}
-        />
-      </>
+      <MenuAttrItem
+        routerLink={`${url}/location`}
+        value={value}
+        icon={locationOutline}
+        label="Location"
+        skipValueTranslation
+        required
+        className={clsx({ empty })}
+        disabled={isDisabled}
+      />
     );
   };
 
-  const speciesValue = sample?.occurrences[0]?.data?.taxon?.common_name;
+  const speciesValue = sample?.occurrences[0]?.data?.taxon?.commonName;
 
   const onChangeDate = (value: string) => {
     // eslint-disable-next-line
@@ -75,7 +73,7 @@ const HomeMain = ({ sample }: Props) => {
   };
 
   // backwards compatible: dates were objects in previous version
-  const dateValue = new Date(sample.data.date as any).toISOString();
+  const dateValue = new Date(sample.data.date).toISOString();
 
   const hasPhotos = !!occ.media.length;
 

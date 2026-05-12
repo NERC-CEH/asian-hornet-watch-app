@@ -1,14 +1,14 @@
-interface Image {
+type Image = {
   width: number[];
   height: number[];
   author: string[];
-}
+};
 
-export interface Species {
+export type Species = {
   id: number;
-  warehouse_id: number;
-  scientific_name: string;
-  common_name: string;
+  warehouseId: number;
+  scientificName: string;
+  commonName: string;
   description: string;
   factsheet?: string;
   flight: string;
@@ -20,4 +20,4 @@ export interface Species {
   thorax: string;
   notes: string;
   images: Image[];
-}
+};

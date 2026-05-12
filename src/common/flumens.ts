@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 // MODELS
 export { default as Store } from '@flumens/models/dist/Stores/SQLiteStore';
 export {

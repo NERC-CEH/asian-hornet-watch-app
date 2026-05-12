@@ -17,7 +17,7 @@ const HomeWrap = (props: any) => (
 const { AttrPageFromRoute } = AttrPage;
 
 const routes = [
-  [`${baseURL}`, StartNewSurvey.with(survey), true],
+  [baseURL, StartNewSurvey.with(survey), true],
   [`${baseURL}/:smpId`, HomeWrap],
   [`${baseURL}/:smpId/:attr`, AttrPageFromRoute],
   [`${baseURL}/:smpId/:occId/:attr`, AttrPageFromRoute],

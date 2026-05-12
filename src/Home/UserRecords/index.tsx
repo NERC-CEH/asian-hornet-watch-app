@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Page, Main, device, useToast } from '@flumens';
 import {
@@ -90,9 +90,7 @@ function getUploadedSurveys(surveys: any[]) {
   return <IonList lines="full">{surveysList}</IonList>;
 }
 
-interface Props {}
-
-const UserSurveys: FC<Props> = () => {
+const UserSurveys = () => {
   const [segment, setSegment] = useState('pending');
   const toast = useToast();
 

@@ -69,7 +69,6 @@ export default class Media extends MediaOriginal<Attrs> {
     return Capacitor.convertFileSrc(`${pathToFile}/${name}`);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   validateRemote() {
     return null;
   }

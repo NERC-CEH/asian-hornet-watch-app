@@ -35,7 +35,7 @@ type Props = {
 const SpeciesProfile: FC<Props> = ({ species }) => {
   const [showGallery, setShowGallery] = useState<any>(false);
 
-  const [speciesProfile, setSpeciesProfile] = useState<any | null>(null);
+  const [speciesProfile, setSpeciesProfile] = useState<boolean | null>(null);
 
   const hideGallery = () => setShowGallery(false);
 
@@ -141,24 +141,22 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
   const openModal = () => setSpeciesProfile(true);
 
-  const getMap = () => {
-    return (
-      <div className="fullscreen-tappable map" onClick={getMapGallery}>
-        <img src={`/images/${species?.id}_map.svg`} />
-        <div className="fullscreen-btn">
-          <IonIcon src={expandOutline} slot="end" color="secondary" />
-        </div>
+  const getMap = () => (
+    <div className="fullscreen-tappable map" onClick={getMapGallery}>
+      <img src={`/images/${species?.id}_map.svg`} />
+      <div className="fullscreen-btn">
+        <IonIcon src={expandOutline} slot="end" color="secondary" />
       </div>
-    );
-  };
+    </div>
+  );
 
   if (!species) return null;
 
   const isSpeciesAsianOrEuropeanHornet =
-    species.common_name === 'Asian hornet' ||
-    species.common_name === 'European hornet';
+    species.commonName === 'Asian hornet' ||
+    species.commonName === 'European hornet';
 
-  const isSpeciesAsianHornet = species.common_name === 'Asian hornet';
+  const isSpeciesAsianHornet = species.commonName === 'Asian hornet';
 
   if (!species) return null;
 
@@ -171,9 +169,9 @@ const SpeciesProfile: FC<Props> = ({ species }) => {
 
         <IonCardHeader>
           <div className="p-3">
-            <h1 className=" text-primary-800 my-2!">{species.common_name}</h1>
+            <h1 className=" text-primary-800 my-2!">{species.commonName}</h1>
             <h4 className=" text-primary font-extralight">
-              <i>{species.scientific_name}</i>
+              <i>{species.scientificName}</i>
             </h4>
           </div>
         </IonCardHeader>

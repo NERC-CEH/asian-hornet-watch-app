@@ -80,7 +80,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
       );
     }
 
-    const label = occ?.data?.taxon?.common_name;
+    const label = occ?.data?.taxon?.commonName;
 
     return (
       <div className="flex w-full items-center gap-3">
@@ -117,7 +117,7 @@ const Survey: FC<Props> = ({ sample, uploadIsPrimary }) => {
     if (!userModel.isLoggedIn()) {
       const shouldLogin = await promptToLogin();
       if (shouldLogin) {
-        navigate(`/user/login`);
+        navigate('/user/login');
         return;
       }
 

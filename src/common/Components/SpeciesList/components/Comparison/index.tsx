@@ -14,108 +14,103 @@ import './styles.scss';
 
 const { H } = Section;
 
-const Comparison = () => {
-  return (
-    <Main
-      id="comparison"
-      className="[--padding-start:10px] [--padding-end:10px]"
+const Comparison = () => (
+  <Main id="comparison" className="[--padding-start:10px] [--padding-end:10px]">
+    <IonTitle>Comparison</IonTitle>
+
+    <InfoMessage
+      prefix={<IonIcon src={informationCircle} className="size-6" />}
+      color="tertiary"
     >
-      <IonTitle>Comparison</IonTitle>
+      Asian Hornet is most likely to be confused with European Hornet which is
+      slightly larger. Other than size the two species differ in the following
+      ways below.
+    </InfoMessage>
 
-      <InfoMessage
-        prefix={<IonIcon src={informationCircle} className="size-6" />}
-        color="tertiary"
-      >
-        Asian Hornet is most likely to be confused with European Hornet which is
-        slightly larger. Other than size the two species differ in the following
-        ways below.
-      </InfoMessage>
-
-      <Section>
-        <H>Abdomen</H>
-        <IonRow>
-          <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
-            <h5>Asian Hornet</h5>
-            <div style={{ flex: 1 }}>
-              <img src={abdomen1} className="p-2" />
-            </div>{' '}
-            <div style={{ flex: 1 }}>
-              <p className="px-3 text-center">
-                Mostly dark with orange segment 4
-              </p>
-            </div>
-          </IonCol>
-          <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
-            <h5>European Hornet</h5>
-            <div style={{ flex: 1 }}>
-              <img src={abdomen2} className="p-2" />
-            </div>
-
-            <div style={{ flex: 1 }}>
-              <p className="px-3 text-center">Extensive yellow/orange</p>
-            </div>
-          </IonCol>
-        </IonRow>
-      </Section>
-
-      <Section>
-        <H>Head</H>
-
-        <IonRow>
-          <IonCol>
-            <h5> Asian Hornet</h5>
-            <img src={head1} className="p-2" />
+    <Section>
+      <H>Abdomen</H>
+      <IonRow>
+        <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5>Asian Hornet</h5>
+          <div style={{ flex: 1 }}>
+            <img src={abdomen1} className="p-2" />
+          </div>{' '}
+          <div style={{ flex: 1 }}>
             <p className="px-3 text-center">
-              Orange face, black top, dark antennae
+              Mostly dark with orange segment 4
             </p>
-          </IonCol>
-          <IonCol>
-            <h5>European Hornet</h5>
-            <img src={head2} className="p-2" />
-            <p className="px-3 text-center">
-              Yellow face, yellow top, paler antennae
-            </p>
-          </IonCol>
-        </IonRow>
-      </Section>
+          </div>
+        </IonCol>
+        <IonCol style={{ display: 'flex', flexDirection: 'column' }}>
+          <h5>European Hornet</h5>
+          <div style={{ flex: 1 }}>
+            <img src={abdomen2} className="p-2" />
+          </div>
 
-      <Section>
-        <H>Thorax</H>
+          <div style={{ flex: 1 }}>
+            <p className="px-3 text-center">Extensive yellow/orange</p>
+          </div>
+        </IonCol>
+      </IonRow>
+    </Section>
 
-        <IonRow>
-          <IonCol>
-            <h5> Asian Hornet</h5>
-            <img src={thorax1} className="p-2" />
-            <p className="px-3 text-center">Entirely black</p>
-          </IonCol>
-          <IonCol>
-            <h5>European Hornet</h5>
-            <img src={thorax2} className="p-2" />
-            <p className="px-3 text-center">
-              Black with extensive brown markings
-            </p>
-          </IonCol>
-        </IonRow>
-      </Section>
+    <Section>
+      <H>Head</H>
 
-      <Section>
-        <H>Legs</H>
+      <IonRow>
+        <IonCol>
+          <h5> Asian Hornet</h5>
+          <img src={head1} className="p-2" />
+          <p className="px-3 text-center">
+            Orange face, black top, dark antennae
+          </p>
+        </IonCol>
+        <IonCol>
+          <h5>European Hornet</h5>
+          <img src={head2} className="p-2" />
+          <p className="px-3 text-center">
+            Yellow face, yellow top, paler antennae
+          </p>
+        </IonCol>
+      </IonRow>
+    </Section>
 
-        <IonRow>
-          <IonCol>
-            <h5> Asian Hornet</h5>
-            <img src={legs1} className="p-2" />
-            <p className="px-3 text-center">Dark with yellow ends</p>
-          </IonCol>
-          <IonCol>
-            <h5>European Hornet</h5>
-            <img src={legs2} className="p-2" />
-            <p className="px-3 text-center">All brown with brown ends</p>
-          </IonCol>
-        </IonRow>
-      </Section>
-    </Main>
-  );
-};
+    <Section>
+      <H>Thorax</H>
+
+      <IonRow>
+        <IonCol>
+          <h5> Asian Hornet</h5>
+          <img src={thorax1} className="p-2" />
+          <p className="px-3 text-center">Entirely black</p>
+        </IonCol>
+        <IonCol>
+          <h5>European Hornet</h5>
+          <img src={thorax2} className="p-2" />
+          <p className="px-3 text-center">
+            Black with extensive brown markings
+          </p>
+        </IonCol>
+      </IonRow>
+    </Section>
+
+    <Section>
+      <H>Legs</H>
+
+      <IonRow>
+        <IonCol>
+          <h5> Asian Hornet</h5>
+          <img src={legs1} className="p-2" />
+          <p className="px-3 text-center">Dark with yellow ends</p>
+        </IonCol>
+        <IonCol>
+          <h5>European Hornet</h5>
+          <img src={legs2} className="p-2" />
+          <p className="px-3 text-center">All brown with brown ends</p>
+        </IonCol>
+      </IonRow>
+    </Section>
+  </Main>
+);
 
 export default Comparison;

@@ -110,7 +110,6 @@ function StartNewSurvey({ survey }: Props): null {
   return null;
 }
 
-// eslint-disable-next-line @getify/proper-arrows/name
 StartNewSurvey.with = (survey: typeof SurveyConfig) => {
   const StartNewSurveyWrap = (params: any) => (
     <StartNewSurvey survey={survey} {...params} />

@@ -7,6 +7,8 @@ export default defineConfig([
     extends: [config],
     rules: {
       'no-param-reassign': 0,
+      'import/extensions': 0,
+      'react-hooks/immutability': 0,
       '@typescript-eslint/naming-convention': [
         'error',
         {

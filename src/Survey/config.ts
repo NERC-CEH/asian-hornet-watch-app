@@ -24,6 +24,9 @@ export const commentAttr = {
   appearance: 'multiline',
 } as const;
 
+export const appVersionAttr = { id: 'smpAttr:1139' } as const;
+export const deviceVersionAttr = { id: 'smpAttr:759' } as const;
+
 const survey = {
   name: 'main',
   label: 'Record',
@@ -36,9 +39,10 @@ const survey = {
       id: 273,
       values: { iOS: 2398, Android: 2399 },
     },
-
-    device_version: { id: 759 },
-    app_version: { id: `smpAttr:1139` },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    device_version: { id: 759 }, // backwards compatibility, remove in the future
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    app_version: { id: 1139 }, // backwards compatibility, remove in the future
 
     location: {
       menuProps: { icon: locationOutline },
@@ -56,14 +60,14 @@ const survey = {
           } = location;
 
           // add other location related attributes
-          // eslint-disable-next-line
+
           submission.values = { ...submission.values };
 
-          submission.values['smpAttr:760'] = source; // eslint-disable-line
-          submission.values['smpAttr:335'] = gridref; // eslint-disable-line
-          submission.values['smpAttr:282'] = accuracy; // eslint-disable-line
-          submission.values['smpAttr:283'] = altitude; // eslint-disable-line
-          submission.values['smpAttr:284'] = altitudeAccuracy; // eslint-disable-line
+          submission.values['smpAttr:760'] = source;
+          submission.values['smpAttr:335'] = gridref;
+          submission.values['smpAttr:282'] = accuracy;
+          submission.values['smpAttr:283'] = altitude;
+          submission.values['smpAttr:284'] = altitudeAccuracy;
           submission.values['location_name'] = name; // eslint-disable-line
 
           const lat = parseFloat(location.latitude);
@@ -96,8 +100,7 @@ const survey = {
     // anonymous user info
     firstname: { remote: { id: 6 } },
     secondname: { remote: { id: 7 } },
-    user_email: { remote: { id: `8` } }, // email key is taken
-    // user_email: { remote: { id: `smpAttr:8` } }, // email key is taken
+    userEmail: { remote: { id: 8 } }, // email key is taken
     phone: { remote: { id: 20 } },
   },
 
@@ -106,7 +109,9 @@ const survey = {
       taxon: {
         remote: {
           id: 'taxa_taxon_list_id',
-          values: (taxon: any) => taxon.warehouse_id,
+          values: (taxon: any) =>
+            taxon.warehouse_id || // for backwards compatibility, remove in the future
+            taxon.warehouseId,
         },
       },
 
@@ -128,8 +133,8 @@ const survey = {
         data: {
           training,
           confidential: 't',
-          release_status: 'P',
-          sensitivity_precision: 100000,
+          releaseStatus: 'P',
+          sensitivityPrecision: 100000,
           comment: null,
           taxon: null,
           number: null,
@@ -140,7 +145,7 @@ const survey = {
     verify: (data: any) =>
       object({
         taxon: z.object(
-          { warehouse_id: z.number() },
+          { warehouseId: z.number() },
           { error: 'Species is missing.' }
         ),
       }).safeParse(data).error,
@@ -162,7 +167,6 @@ const survey = {
     const sample = new Sample({
       metadata: {
         survey: survey.name,
-        survey_id: survey.id,
         training,
       },
 
@@ -173,8 +177,8 @@ const survey = {
         inputForm: 'enter-app-record',
         location: null,
         device: isPlatform('android') ? 'Android' : 'iOS',
-        device_version: deviceVersion,
-        app_version: config.version,
+        [deviceVersionAttr.id]: deviceVersion,
+        [appVersionAttr.id]: config.version,
       },
     });
 

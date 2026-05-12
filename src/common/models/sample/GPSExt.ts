@@ -26,13 +26,10 @@ const extension = (): Extension => ({
 
   async startGPS(accuracyLimit = DEFAULT_ACCURACY_LIMIT) {
     if (this.gps.locating) return;
-
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     const options = {
       accuracyLimit,
 
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
       onUpdate() {},
 
       callback(error: Error, location: Location) {
@@ -63,4 +60,4 @@ const extension = (): Extension => ({
   },
 });
 
-export { extension as default };
+export default extension;

@@ -47,14 +47,14 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     if (sample.canUploadAnonymously()) {
       await sample.upload().then(showThankYouMessage).catch(toast.error);
 
-      navigate(`/home/records`, 'root');
+      navigate('/home/records', 'root');
       return;
     }
 
     if (!userModel.isLoggedIn()) {
       const shouldLogin = await promptToLogin();
       if (shouldLogin) {
-        navigate(`/user/login`);
+        navigate('/user/login');
         return;
       }
 
@@ -70,7 +70,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
 
     await sample.upload().then(showThankYouMessage).catch(toast.error);
 
-    navigate(`/home/records`, 'root');
+    navigate('/home/records', 'root');
   };
 
   const processDraft = async () => {
@@ -85,7 +85,7 @@ const HomeController: FC<Props> = ({ sample, appModel, userModel }) => {
     sample.metadata.saved = true;
     sample.save();
 
-    navigate(`/home/records`, 'root');
+    navigate('/home/records', 'root');
   };
 
   const onFinish = async () => {

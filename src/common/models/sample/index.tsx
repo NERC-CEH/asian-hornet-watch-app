@@ -27,7 +27,7 @@ type Attrs = SampleAttrs & {
   // anonymous upload
   firstname?: string;
   secondname?: string;
-  user_email?: string;
+  userEmail?: string;
   phone?: string;
 };
 
@@ -41,6 +41,7 @@ type Metadata = SampleMetadata & {
 
   // verification
   verification: any;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   verification_substatus: any;
 };
 
@@ -114,8 +115,8 @@ export default class Sample extends SampleOriginal<Attrs, Metadata> {
   }
 
   canUploadAnonymously() {
-    const { user_email, firstname, secondname } = this.data;
-    return user_email && firstname && secondname;
+    const { userEmail, firstname, secondname } = this.data;
+    return userEmail && firstname && secondname;
   }
 }
 
