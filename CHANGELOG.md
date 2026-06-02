@@ -1,3 +1,7 @@
+# 2.4.1
+
+Fix camera permissions.
+
 # 2.4.0
 
 Maintenance update.
